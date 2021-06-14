@@ -1,0 +1,119 @@
+.pointer 
+{
+  cursor: pointer;
+}
+
+.edit_icon
+{
+    right: 10px;
+    top: 10px;
+    position: absolute;
+    background: #555;
+    padding: 5px;
+    color: #fff;
+    border-radius: 50%;
+    z-index: 99;
+    cursor: pointer;
+}
+
+.edit-section {
+  position: relative;
+  padding: 20px 10px 10px 10px;
+}
+
+.edit-section .edit, .edit-section .edit2 {
+  opacity: 0 !important;
+    transition: all 0.3s linear;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    padding: 5px;
+    cursor: pointer;
+    color: #fff;
+    z-index: 99;
+    font-size: 20px;
+}
+
+ .edit-section .edit3 {
+    opacity: 0;
+    transition: all 0.3s linear;
+    position: absolute;
+    background: #555;
+    color: #fff;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 50%;
+    height: fit-content;
+    top: -15px;
+    right: 0px;
+}
+
+.edit-section:hover {
+  background: rgba(99, 99, 99, 0.3);
+    border-radius: 10px;
+}
+
+.edit-section:hover .edit, .edit-section:hover .edit2, .edit-section:hover .edit3 {
+  opacity: 1 !important;
+}
+
+.update-photo {
+    background: rgba(0, 0, 0, 0.4);
+    width: fit-content!important;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    color: #fff;
+    right: 5px;
+  transition: all 0.3s linear;
+}
+
+.hidden-input {
+  position: absolute;
+  opacity: 0;
+}
+
+.cover {
+	  overflow: hidden;
+	  position: relative;
+    width: 100%;
+}
+
+.cover:hover .update-slider {
+    right: 2%;
+}
+
+.update-slider {
+	  color: #fff;
+    background: rgba(0, 0, 0, 0.3);
+    width: 160px;
+    height: 46px;
+    position: absolute;
+    top: 70%;
+    right: -50%;
+    text-align: center;
+    line-height: 3;
+    cursor: pointer;
+	  border: 1px solid #f1f1f1;
+    border-radius: 5px;
+    transition: all 0.3s linear;
+    z-index: 99;
+}
+
+
+.bararea{
+  width: 100%;
+  height: 25px;
+  padding: 2px;
+  overflow: hidden;
+  border: 1px solid rgba(62, 61, 61, 0.5);
+  border-radius: 10px;
+}
+
+.bar{
+  width: 0%;    
+  height: 19px;
+  background-color: #2ecc71;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 1px #eee;
+}

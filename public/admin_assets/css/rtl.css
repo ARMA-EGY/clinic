@@ -1,0 +1,144 @@
+body 
+{
+    direction: rtl;
+}
+
+.navbar-vertical.navbar-expand-xs.fixed-left 
+{
+    right: 0;
+}
+
+.navbar-vertical.navbar-expand-xs.fixed-left + .main-content 
+{
+    margin-right: 250px;
+    margin-left: 0;
+}
+
+.sidenav.fixed-left + .main-content 
+{
+    margin-right: 62px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before 
+{
+    display: inline-block;
+    padding-left: .5rem;
+    content: '/';
+    color: #8898aa;
+}
+
+.breadcrumb-item+.breadcrumb-item::before 
+{
+    float: right;
+    padding-right: .5rem;
+    color: #6c757d;
+    content: var(--bs-breadcrumb-divider, "/");
+}
+
+.dropdown-menu-right 
+{
+    right: auto;
+    left: 0;
+    text-align: right;
+}
+
+.ml-2, .mx-2 
+{
+    margin-right: .5rem !important;
+}
+
+.navbar-vertical .navbar-nav .nav-link > i 
+{
+    text-align: right;
+}
+
+.navbar-vertical .navbar-nav .nav-link[data-toggle='collapse']:after 
+{
+    margin-right: auto;
+    margin-left: unset !important;
+    transform: rotate(180deg);
+}
+
+.nav 
+{
+    padding-right: 0;
+    padding-left: unset;
+}
+
+.order-1
+{
+    order: -1 !important;
+}
+
+.card-header 
+{
+    text-align: right;
+}
+
+.table-responsive 
+{
+    text-align: right;
+}
+
+#example_length
+{
+    float: right;
+    margin-right: 10px;
+}
+
+#example_filter
+{
+    float: left;
+    margin-left: 10px;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    direction: ltr;
+}
+
+.navbar-nav 
+{
+    padding-right: 0;
+}
+
+.input-group-prepend .input-group-text 
+{
+    border-left: 0;
+    border-right: 1px solid #dee2e6;
+    border-radius: unset;
+}
+
+.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) 
+{
+    border-radius: unset;
+}
+
+.modal-header .close {
+    margin: -1rem -1rem -1rem 0;
+}
+
+@media (min-width: 1200px)
+{
+    .g-sidenav-pinned .sidenav.fixed-left + .main-content 
+    {
+        margin-right: 250px;
+        margin-left: 0;
+    }
+}
+
+
+@media (max-width: 1199.98px)
+{
+    .sidenav.fixed-left + .main-content 
+    {
+        margin-right: 0 !important;
+    }
+    
+    .sidenav 
+    {
+        transform: translateX(250px);
+    }
+}
+
+
+
