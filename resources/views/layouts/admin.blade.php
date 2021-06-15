@@ -252,14 +252,14 @@
                       <ul class="nav nav-sm flex-column">
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{route('patients.create')}}" class="nav-link nav-link-sub">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ADD-NEW-PATIENT')}} </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{route('patients.index')}}" class="nav-link nav-link-sub">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ALL-PATIENTS')}} </span>
                           </a>
@@ -764,6 +764,26 @@
             
         });
 
+
+
+
+        $(document).on("change",".item_check", function()
+        {
+            var id 	  = $(this).attr('data-id');
+            var url 	= $(this).attr('data-url');
+
+            $.ajax({
+                    url: url,
+                    type:"POST",
+                    dataType: 'text',
+                    data:    {"_token": "{{ csrf_token() }}",
+                                id: id},
+                    success : function(response)
+                        {
+                          
+                        }  
+                  })
+        });
     </script>
 
     @yield('script')

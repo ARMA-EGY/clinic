@@ -49,6 +49,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
     Route::resource('/branches', 'Branches\BranchesController'); 
     Route::get('/activebranches', 'Branches\BranchesController@active')->name('active-branches');
     Route::get('/deactivebranches', 'Branches\BranchesController@deactive')->name('deactive-branches');
+    Route::resource('/patients', 'Patients\PatientsController'); 
 });
 
 
