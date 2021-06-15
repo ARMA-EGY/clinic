@@ -3,6 +3,11 @@ body
     direction: rtl;
 }
 
+.col-auto 
+{
+    order: -1;
+}
+
 .navbar-vertical.navbar-expand-xs.fixed-left 
 {
     right: 0;

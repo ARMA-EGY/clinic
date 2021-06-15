@@ -41,6 +41,10 @@
   <link rel="stylesheet" href="{{ asset('admin_assets/css/argon.css?v=1.2.0') }}" type="text/css">
   <!-- Bootstrap switch toggle button -->
   <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
  
   {{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> --}}
   <!-- JQUERY UI -->
@@ -518,21 +522,21 @@
                         <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="ni ni-ungroup"></i>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-dark bg-default  dropdown-menu-right ">
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-dark dropdown-menu-right ">
                         <div class="row shortcuts px-4">
-                            <a href="{{route('calendar')}}" class="col-4 shortcut-item">
+                            <a href="{{route('calendar')}}" class="col-4 shortcut-item py-0">
                             <span class="shortcut-media avatar rounded-circle bg-gradient-red">
                                 <i class="ni ni-calendar-grid-58"></i>
                             </span>
                             <small>{{__('admin.CALENDAR')}}</small>
                             </a>
-                            <a href="#!" class="col-4 shortcut-item show-todo">
+                            <a href="#!" class="col-4 shortcut-item show-todo py-0">
                             <span class="shortcut-media avatar rounded-circle bg-gradient-purple">
                                 <i class="ni ni-bullet-list-67"></i>
                             </span>
                             <small>{{__('admin.TO-DO')}}</small>
                             </a>
-                            <a href="#!" class="col-4 shortcut-item show-notes">
+                            <a href="#!" class="col-4 shortcut-item show-notes py-0">
                             <span class="shortcut-media avatar rounded-circle bg-gradient-orange">
                                 <i class="fa fa-sticky-note"></i>
                             </span>

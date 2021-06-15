@@ -65,7 +65,7 @@
                         <div class="row">
 
                             <!--=================  Name  =================-->
-                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                            <div class="form-group col-md-6 mb-4 {{$text}}">
                                 <label class="font-weight-bold text-uppercase">{{__('admin.NAME')}}</label>
                                 <input type="text" name="name" class="@error('name') is-invalid @enderror form-control" placeholder="{{__('admin.NAME')}}" value="{{ isset($item) ? $item->name : old('name') }}" required>
                             
@@ -78,9 +78,9 @@
                             </div>
         
                             <!--=================  Phone  =================-->
-                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                            <div class="form-group col-md-6 mb-4 {{$text}}">
                                 <label class="font-weight-bold text-uppercase">{{__('admin.PHONE')}} </label>
-                                <input type="text" name="phone" class="@error('phone') is-invalid @enderror form-control text-right" placeholder="{{__('admin.PHONE')}}" value="{{ isset($item) ? $item->phone : old('phone') }}" required>
+                                <input type="text" name="phone" class="@error('phone') is-invalid @enderror form-control" placeholder="{{__('admin.PHONE')}}" value="{{ isset($item) ? $item->phone : old('phone') }}" required>
                             
                                 @error('phone')
                                     <div>
@@ -91,7 +91,7 @@
                             </div>
 
                             <!--=================  City  =================-->
-                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                            <div class="form-group col-md-6 mb-4 {{$text}}">
                                 <label class="font-weight-bold text-uppercase">{{__('admin.CITY')}}</label>
                                 <input type="text" name="city" class="@error('city') is-invalid @enderror form-control" placeholder="{{__('admin.CITY')}}" value="{{ isset($item) ? $item->city : old('city') }}" >
                             
@@ -104,9 +104,9 @@
                             </div>
         
                             <!--=================  Address  =================-->
-                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                            <div class="form-group col-md-6 mb-4 {{$text}}">
                                 <label class="font-weight-bold text-uppercase">{{__('admin.ADDRESS')}}</label>
-                                <input type="text" name="address" class="@error('address') is-invalid @enderror form-control text-right" placeholder="{{__('admin.ADDRESS')}}" value="{{ isset($item) ? $item->address : old('address') }}" >
+                                <input type="text" name="address" class="@error('address') is-invalid @enderror form-control" placeholder="{{__('admin.ADDRESS')}}" value="{{ isset($item) ? $item->address : old('address') }}" >
                             
                                 @error('address')
                                     <div>
