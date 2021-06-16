@@ -15,6 +15,7 @@ return [
     "NOTES" => "ملاحظات",
     "TO-DO" => "قائمة الاعمال",
     "CALENDAR" => "النتيجة",
+    "PENDING" => "معلق",
 
     "MALE" => "ذكر",       
     "FEMALE" => "انثى",
@@ -39,13 +40,16 @@ return [
     "ALL-BRANCHES" => "جميع الفروع",
     "ACTIVE-BRANCHES" => "الفروع المتاحة",
     "DEACTIVATED-BRANCHES" => " فروع غير متاحة",
+    "NO-BRANCHES-AVAILABLE" => "لا يوجد فروع متاحة",
 
     "SECTORS" => "الاقسام",
+    "SECTORS" => "القسم",
     "ADD-NEW-SECTOR" => "اضافة قسم جديد",
+    "EDIT-SECTOR" => "تعديل القسم",
     "ALL-SECTORS" => "جميع الاقسام",
     "ACTIVE-SECTORS" => "الاقسام المتاحة",
     "DEACTIVATED-SECTORS" => " اقسام غير متاحة",
-    "NO-BRANCHES-AVAILABLE" => "لا يوجد فروع متاحة",
+    "NO-SECTORS-AVAILABLE" => "لا يوجد اقسام متاحة",
 
     "DOCTORS" => "الاطباء",
     "ADD-NEW-DOCTOR" => "اضافة طبيب جديد",
@@ -72,7 +76,9 @@ return [
 
     "SERVICES" => "الخدمات",
     "ADD-NEW-SERVICE" => "اضافة خدمة جديدة",
+    "EDIT-SERVICE" => "تعديل الخدمة",
     "ALL-SERVICES" => "جميع الخدمات",
+    "NO-SERVICES-AVAILABLE" => "لا توجد خدمات متاحة",
 
     "RAYS" => "الاشاعات",
     "ADD-NEW-RAYS" => "اضافة اشعة جديدة",
@@ -88,6 +94,8 @@ return [
     "PHONE" => "رقم الهاتف",
     "CITY" => "المدينة",
     "ADDRESS" => "العنوان",
+    "PRICE" => "السعر",
+    "SERVICE-NUMBER" => "رقم الخدمة",
 
 
 ];

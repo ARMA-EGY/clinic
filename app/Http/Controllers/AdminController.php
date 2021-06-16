@@ -15,6 +15,10 @@ use App\Models\Todo;
 use App\Models\Note;
 use App\Models\Event;
 
+use App\Models\Branches;
+use App\Models\Sector;
+use App\Models\Patients;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -40,9 +44,11 @@ class AdminController extends Controller
     {
         $user = auth()->user();
         
-
         return view('admin.home', [
             'members_count' => User::all()->count(),
+            'branches_count' => Branches::all()->count(),
+            'sectors_count' => Sector::all()->count(),
+            'patients_count' => Patients::all()->count(),
         ]);
     }
 

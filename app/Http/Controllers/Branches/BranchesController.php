@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Branches;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Branches;
+use App\Models\Sector;
 use App\Http\Requests\Branches\AddRequest;
 use App\Http\Requests\Branches\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
@@ -55,7 +56,9 @@ class BranchesController extends Controller
 
     public function create()
     {
-        return view('admin.branches.create');
+        return view('admin.branches.create', [
+            'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
+            ]);
     }
 
 
@@ -69,6 +72,11 @@ class BranchesController extends Controller
                 'city' => $request->city,
                 'address' => $request->address,
             ]);
+
+            if($request->sectors)
+            {
+                $branch->sectors()->attach($request->sectors);
+            }
             
             $request->session()->flash('success', 'Branch created successfully');
             
@@ -80,7 +88,10 @@ class BranchesController extends Controller
     
     public function edit(Branches $branch)
     {
-		return view('admin.branches.create', ['item' => $branch]);
+		return view('admin.branches.create', [
+            'item' => $branch,
+            'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
+            ]);
     }
 
     
@@ -94,6 +105,11 @@ class BranchesController extends Controller
             'city' => $request->city,
             'address' => $request->address,
         ]);
+
+        if($request->sectors)
+        {
+            $branch->sectors()->sync($request->sectors);
+        }
 		
 		session()->flash('success', 'Branch updated successfully');
 		

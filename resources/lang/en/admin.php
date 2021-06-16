@@ -15,6 +15,7 @@ return [
     "NOTES" => "Notes",
     "TO-DO" => "To-Do",
     "CALENDAR" => "Calendar",
+    "PENDING" => "Pending",
 
     "MALE" => "Male",       
     "FEMALE" => "Female",
@@ -42,10 +43,13 @@ return [
     "NO-BRANCHES-AVAILABLE" => "No Branches Available",
 
     "SECTORS" => "Sectors",
+    "SECTOR" => "Sector",
     "ADD-NEW-SECTOR" => "Add New Sector",
+    "EDIT-SECTOR" => "Edit Sector",
     "ALL-SECTORS" => "All Sectors",
     "ACTIVE-SECTORS" => "Active Sectors",
     "DEACTIVATED-SECTORS" => "Deactivated Sectors",
+    "NO-SECTORS-AVAILABLE" => "No Sectors Available",
 
     "DOCTORS" => "Doctors",
     "ADD-NEW-DOCTOR" => "Add New Doctor",
@@ -72,7 +76,9 @@ return [
 
     "SERVICES" => "Services",
     "ADD-NEW-SERVICE" => "Add New Service",
+    "EDIT-SERVICE" => "Edit Service",
     "ALL-SERVICES" => "All Services",
+    "NO-SERVICES-AVAILABLE" => "No Services Available",
 
     "RAYS" => "Rays",
     "ADD-NEW-RAYS" => "Add New Rays",
@@ -88,5 +94,7 @@ return [
     "PHONE" => "Phone",
     "CITY" => "City",
     "ADDRESS" => "Address",
+    "PRICE" => "Price",
+    "SERVICE-NUMBER" => "Service Number",
 
 ];

@@ -50,6 +50,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
     Route::get('/activebranches', 'Branches\BranchesController@active')->name('active-branches');
     Route::get('/deactivebranches', 'Branches\BranchesController@deactive')->name('deactive-branches');
     Route::resource('/patients', 'Patients\PatientsController'); 
+    Route::resource('/sectors', 'Sectors\SectorsController'); 
+    Route::get('/activesectors', 'Sectors\SectorsController@active')->name('active-sectors');
+    Route::get('/deactivesectors', 'Sectors\SectorsController@deactive')->name('deactive-sectors');
+    Route::resource('/services', 'Services\ServicesController'); 
 });
 
 
@@ -65,6 +69,7 @@ Route::post('/changepassword', 'AdminController@changepassword')->name('change-p
 Route::post('/enableuser', 'AdminController@enableuser')->name('enable-user');
 
 Route::post('/disablebranch', 'Branches\BranchesController@disablebranch')->name('branch-disable');
+Route::post('/disablesector', 'Sectors\SectorsController@disable')->name('sector-disable');
 
     //------------------------------- To-Do List --------------------------\\
     //----------------------------------------------------------------------\\

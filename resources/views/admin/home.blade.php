@@ -43,7 +43,7 @@
                     <div class="row">
                       <div class="col">
                         <h5 class="card-title text-uppercase text-muted mb-0">{{__('admin.BRANCHES')}}</h5>
-                        <span class="h2 font-weight-bold mb-0">0</span>
+                        <span class="h2 font-weight-bold mb-0">{{number_format($branches_count)}}</span>
                       </div>
                       <div class="col-auto">
                         <div class="icon icon-shape bg-gradient-warning text-white rounded-circle shadow">
@@ -64,7 +64,7 @@
                     <div class="row">
                       <div class="col">
                         <h5 class="card-title text-uppercase text-muted mb-0">{{__('admin.SECTORS')}}</h5>
-                        <span class="h2 font-weight-bold mb-0">0</span>
+                        <span class="h2 font-weight-bold mb-0">{{number_format($sectors_count)}}</span>
                       </div>
                       <div class="col-auto">
                         <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
@@ -127,7 +127,7 @@
                     <div class="row">
                       <div class="col">
                         <h5 class="card-title text-uppercase text-muted mb-0">{{__('admin.PATIENTS')}}</h5>
-                        <span class="h2 font-weight-bold mb-0">0</span>
+                        <span class="h2 font-weight-bold mb-0">{{number_format($patients_count)}}</span>
                       </div>
                       <div class="col-auto">
                         <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
