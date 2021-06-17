@@ -172,20 +172,20 @@
                     <a class="nav-link collapsed" href="#navbar-doctors" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-stethoscope"></i>
                       <span class="nav-link-text">{{__('admin.DOCTORS')}}</span>
-                      <span class="badge badge-warning fs-9 p-1 mx-2">{{__('admin.PENDING')}}</span>
+                      <span class="badge badge-info fs-9 p-1 mx-2">{{__('admin.INPROGRESS')}}</span>
                     </a>
                     <div class="collapse" id="navbar-doctors" style="">
                       <ul class="nav nav-sm flex-column">
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{ route('doctors.create')}}" class="nav-link nav-link-sub {{request()->routeIs('doctors.create') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ADD-NEW-DOCTOR')}} </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{ route('doctors.index')}}" class="nav-link nav-link-sub {{request()->routeIs('doctors.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ALL-DOCTORS')}} </span>
                           </a>
@@ -213,7 +213,7 @@
                     <a class="nav-link collapsed" href="#navbar-staff" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fa fa-users"></i>
                       <span class="nav-link-text">{{__('admin.STAFF')}}</span>
-                      <span class="badge badge-warning fs-9 p-1 mx-2">{{__('admin.PENDING')}}</span>
+                      <span class="badge badge-info fs-9 p-1 mx-2">{{__('admin.INPROGRESS')}}</span>
                     </a>
                     <div class="collapse" id="navbar-staff" style="">
                       <ul class="nav nav-sm flex-column">
@@ -383,7 +383,7 @@
                     <a class="nav-link collapsed" href="#navbar-roles" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-user-tag"></i>
                       <span class="nav-link-text"> {{__('admin.ROLES')}}</span>
-                      <span class="badge badge-warning fs-9 p-1 mx-2">{{__('admin.PENDING')}}</span>
+                      <span class="badge badge-info fs-9 p-1 mx-2">{{__('admin.INPROGRESS')}}</span>
                     </a>
                     <div class="collapse" id="navbar-roles" style="">
                       <ul class="nav nav-sm flex-column">

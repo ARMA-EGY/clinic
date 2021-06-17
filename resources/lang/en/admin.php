@@ -16,6 +16,7 @@ return [
     "TO-DO" => "To-Do",
     "CALENDAR" => "Calendar",
     "PENDING" => "Pending",
+    "INPROGRESS" => "Inprogress",
 
     "MALE" => "Male",       
     "FEMALE" => "Female",
@@ -53,9 +54,11 @@ return [
 
     "DOCTORS" => "Doctors",
     "ADD-NEW-DOCTOR" => "Add New Doctor",
+    "EDIT-DOCTOR" => "Edit Doctor",
     "ALL-DOCTORS" => "All Doctors",
     "ACTIVE-DOCTORS" => "Active Doctors",
     "BANNED-DOCTORS" => "Banned Doctors",
+    "NO-DOCTORS-AVAILABLE" => "No Doctors Available",
 
     "STAFF" => "Staff",
     "ADD-NEW-STAFF" => "Add New Staff",
@@ -65,7 +68,9 @@ return [
 
     "PATIENTS" => "Patients",
     "ADD-NEW-PATIENT" => "Add New Patient",
+    "EDIT-PATIENT" => "Edit Patient",
     "ALL-PATIENTS" => "All Patients",
+    "NO-PATIENTS-AVAILABLE" => "No Patients Available",
 
     "APPOINTMENTS" => "Appointments",
     "CREATEE-APPOINTMENT" => "Create Appointment",
@@ -92,9 +97,25 @@ return [
 
     "NAME" => "Name",
     "PHONE" => "Phone",
+    "EMAIL" => "Email",
+    "GENDER" => "Gender",
+    "PASSWORD" => "Password",
+    "CONFIRM-PASSWORD" => "Confirm Password",
+    "ROLE" => "Role",
+    "NATIONALITY" => "Nationality",
+    "SALARY" => "Salary",
+    "BIRTHDATE" => "Birthdate",
+    "HIRING-DATE" => "Hiring Date",
+    "WORKING-HOURS" => "Working Hours",
+    "CERTIFICATE" => "Certificate",
+    "CONTRACT-DURATION" => "Contract Duration",
     "CITY" => "City",
     "ADDRESS" => "Address",
     "PRICE" => "Price",
     "SERVICE-NUMBER" => "Service Number",
+    "IDENTIFICATION" => "Identification",
+    "AGE" => "Age",
+
+    
 
 ];

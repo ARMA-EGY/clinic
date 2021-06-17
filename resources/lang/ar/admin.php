@@ -16,6 +16,7 @@ return [
     "TO-DO" => "قائمة الاعمال",
     "CALENDAR" => "النتيجة",
     "PENDING" => "معلق",
+    "INPROGRESS" => "جاري العمل",
 
     "MALE" => "ذكر",       
     "FEMALE" => "انثى",
@@ -43,7 +44,7 @@ return [
     "NO-BRANCHES-AVAILABLE" => "لا يوجد فروع متاحة",
 
     "SECTORS" => "الاقسام",
-    "SECTORS" => "القسم",
+    "SECTOR" => "القسم",
     "ADD-NEW-SECTOR" => "اضافة قسم جديد",
     "EDIT-SECTOR" => "تعديل القسم",
     "ALL-SECTORS" => "جميع الاقسام",
@@ -53,9 +54,11 @@ return [
 
     "DOCTORS" => "الاطباء",
     "ADD-NEW-DOCTOR" => "اضافة طبيب جديد",
+    "EDIT-DOCTOR" => "تعديل طبيب",
     "ALL-DOCTORS" => "جميع الاطباء",
     "ACTIVE-DOCTORS" => "الاطباء المتاحين",
     "BANNED-DOCTORS" => "اطباء غير متاحين",
+    "NO-DOCTORS-AVAILABLE" => "لا يوجد أطباء متاحين",
 
     "STAFF" => "العاملين",
     "ADD-NEW-STAFF" => "اضافة عامل جديد",
@@ -65,7 +68,9 @@ return [
 
     "PATIENTS" => "المرضى",
     "ADD-NEW-PATIENT" => "اضافة مريض جديد",
+    "EDIT-PATIENT" => "تعديل مريض",
     "ALL-PATIENTS" => "جميع المرضى ",
+    "NO-PATIENTS-AVAILABLE" => "لا يوجد مرضى متاحين",
 
     "APPOINTMENTS" => "الحجوزات",
     "CREATEE-APPOINTMENT" => "انشاء حجز جديد",
@@ -92,10 +97,24 @@ return [
 
     "NAME" => "الاسم",
     "PHONE" => "رقم الهاتف",
+    "EMAIL" => "البريد الالكتروني",
+    "GENDER" => "الجنس",
+    "PASSWORD" => "كلمة المرور",
+    "CONFIRM-PASSWORD" => "تأكيد كلمة المرور",
+    "ROLE" => "الوظيفة",
+    "NATIONALITY" => "الجنسية",
+    "SALARY" => "المرتب",
+    "BIRTHDATE" => "تاريخ الميلاد",
+    "HIRING-DATE" => "تاريخ التوظيف",
+    "WORKING-HOURS" => "عدد ساعات العمل",
+    "CERTIFICATE" => "الشهادة",
+    "CONTRACT-DURATION" => "مدة العقد",
     "CITY" => "المدينة",
     "ADDRESS" => "العنوان",
     "PRICE" => "السعر",
     "SERVICE-NUMBER" => "رقم الخدمة",
+    "IDENTIFICATION" => "الهوية",
+    "AGE" => "العمر",
 
 
 ];

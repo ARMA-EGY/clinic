@@ -10,6 +10,8 @@ use App\Models\Todo;
 use App\Models\Note;
 use App\Models\Event;
 
+use App\Models\Sector;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -20,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'phone', 'password', 'role', 'enable', 'gender', 'avatar'
+        'name', 'email', 'phone', 'password', 'role', 'enable', 'gender', 'avatar', 'nationality', 'salary', 'sector_id', 'contract_duration', 'contract_file', 'hiring_date', 'birthdate', 'certificate', 'working_hours',
     ];
 
     /**
@@ -64,5 +66,10 @@ class User extends Authenticatable
     public function event()
     {
         return $this->hasMany(Event::class);
+    }
+    
+    public function sector()
+    {
+        return $this->belongsTo(Sector::class);
     }
 }
