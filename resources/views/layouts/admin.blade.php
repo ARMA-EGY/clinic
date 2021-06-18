@@ -90,34 +90,41 @@
                     </a>
                     <div class="collapse" id="navbar-branches" style="">
                       <ul class="nav nav-sm flex-column">
-
+                      @if(auth()->user()->can('create branch'))
                         <li class="nav-item">
-                          <a href="{{ route('branches.create')}}" class="nav-link nav-link-sub {{request()->routeIs('branches.create') ? 'active' : '' }}">
-                            <i class="far fa-dot-circle"></i>
-                            <span class="sidenav-normal"> {{__('admin.ADD-NEW-BRANCH')}} </span>
-                          </a>
+                            <a href="{{ route('branches.create')}}" class="nav-link nav-link-sub {{request()->routeIs('branches.create') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> {{__('admin.ADD-NEW-BRANCH')}} </span>
+                            </a>
                         </li>
+                      @endif
 
+                      @if(auth()->user()->can('all branches'))
                         <li class="nav-item">
                           <a href="{{route('branches.index')}}" class="nav-link nav-link-sub {{request()->routeIs('branches.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ALL-BRANCHES')}} </span>
                           </a>
                         </li>
+                      @endif
 
+                      @if(auth()->user()->can('active branches'))
                         <li class="nav-item">
                           <a href="{{ route('active-branches')}}" class="nav-link nav-link-sub {{request()->routeIs('active-branches') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ACTIVE-BRANCHES')}} </span>
                           </a>
                         </li>
+                      @endif  
 
+                      @if(auth()->user()->can('deactivated branches'))
                         <li class="nav-item">
                             <a href="{{ route('deactive-branches')}}" class="nav-link nav-link-sub {{request()->routeIs('deactive-branches') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.DEACTIVATED-BRANCHES')}} </span>
                           </a>
                         </li>
+                      @endif  
                         
                       </ul>
                     </div>
@@ -386,7 +393,7 @@
                         </li>
                         
                         <li class="nav-item">
-                            <a href="#" class="nav-link nav-link-sub">
+                            <a href="{{route('permissions.index')}}" class="nav-link nav-link-sub">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('admin.ALL-ROLES')}} </span>
                             </a>

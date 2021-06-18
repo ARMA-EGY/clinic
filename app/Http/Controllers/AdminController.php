@@ -18,6 +18,9 @@ use App\Models\Event;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
 class AdminController extends Controller
 {
     
@@ -40,6 +43,7 @@ class AdminController extends Controller
     {
         $user = auth()->user();
         
+        //$user->assignRole('staff');
 
         return view('admin.home', [
             'members_count' => User::all()->count(),

@@ -39,7 +39,7 @@ Auth::routes();
 */
 
 
-Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'auth' , 'admin','localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function () 
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'auth','localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function () 
 {
     Route::get('/members', 'AdminController@members')->name('admin-members'); 
     Route::get('/home', 'AdminController@index')->name('home');
@@ -50,6 +50,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
     Route::get('/activebranches', 'Branches\BranchesController@active')->name('active-branches');
     Route::get('/deactivebranches', 'Branches\BranchesController@deactive')->name('deactive-branches');
     Route::resource('/patients', 'Patients\PatientsController'); 
+    Route::resource('/permissions', 'Permissions\PermissionsController'); 
 });
 
 
