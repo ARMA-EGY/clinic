@@ -15,6 +15,8 @@ return [
     "NOTES" => "Notes",
     "TO-DO" => "To-Do",
     "CALENDAR" => "Calendar",
+    "PENDING" => "Pending",
+    "INPROGRESS" => "Inprogress",
 
     "MALE" => "Male",       
     "FEMALE" => "Female",
@@ -42,16 +44,21 @@ return [
     "NO-BRANCHES-AVAILABLE" => "No Branches Available",
 
     "SECTORS" => "Sectors",
+    "SECTOR" => "Sector",
     "ADD-NEW-SECTOR" => "Add New Sector",
+    "EDIT-SECTOR" => "Edit Sector",
     "ALL-SECTORS" => "All Sectors",
     "ACTIVE-SECTORS" => "Active Sectors",
     "DEACTIVATED-SECTORS" => "Deactivated Sectors",
+    "NO-SECTORS-AVAILABLE" => "No Sectors Available",
 
     "DOCTORS" => "Doctors",
     "ADD-NEW-DOCTOR" => "Add New Doctor",
+    "EDIT-DOCTOR" => "Edit Doctor",
     "ALL-DOCTORS" => "All Doctors",
     "ACTIVE-DOCTORS" => "Active Doctors",
     "BANNED-DOCTORS" => "Banned Doctors",
+    "NO-DOCTORS-AVAILABLE" => "No Doctors Available",
 
     "STAFF" => "Staff",
     "ADD-NEW-STAFF" => "Add New Staff",
@@ -61,7 +68,9 @@ return [
 
     "PATIENTS" => "Patients",
     "ADD-NEW-PATIENT" => "Add New Patient",
+    "EDIT-PATIENT" => "Edit Patient",
     "ALL-PATIENTS" => "All Patients",
+    "NO-PATIENTS-AVAILABLE" => "No Patients Available",
 
     "APPOINTMENTS" => "Appointments",
     "CREATEE-APPOINTMENT" => "Create Appointment",
@@ -72,7 +81,9 @@ return [
 
     "SERVICES" => "Services",
     "ADD-NEW-SERVICE" => "Add New Service",
+    "EDIT-SERVICE" => "Edit Service",
     "ALL-SERVICES" => "All Services",
+    "NO-SERVICES-AVAILABLE" => "No Services Available",
 
     "RAYS" => "Rays",
     "ADD-NEW-RAYS" => "Add New Rays",
@@ -86,7 +97,25 @@ return [
 
     "NAME" => "Name",
     "PHONE" => "Phone",
+    "EMAIL" => "Email",
+    "GENDER" => "Gender",
+    "PASSWORD" => "Password",
+    "CONFIRM-PASSWORD" => "Confirm Password",
+    "ROLE" => "Role",
+    "NATIONALITY" => "Nationality",
+    "SALARY" => "Salary",
+    "BIRTHDATE" => "Birthdate",
+    "HIRING-DATE" => "Hiring Date",
+    "WORKING-HOURS" => "Working Hours",
+    "CERTIFICATE" => "Certificate",
+    "CONTRACT-DURATION" => "Contract Duration",
     "CITY" => "City",
     "ADDRESS" => "Address",
+    "PRICE" => "Price",
+    "SERVICE-NUMBER" => "Service Number",
+    "IDENTIFICATION" => "Identification",
+    "AGE" => "Age",
+
+    
 
 ];

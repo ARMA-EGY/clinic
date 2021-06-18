@@ -1,3 +1,19 @@
+@if (LaravelLocalization::getCurrentLocale() == 'ar')
+    @php
+    $dir   = 'rtl';
+    $text  = 'text-right';
+    $inverse_text  = 'text-left';
+    $lang  = 'ar';
+    @endphp
+@elseif (LaravelLocalization::getCurrentLocale() == 'en')  
+    @php
+    $dir    = 'ltr';
+    $text   = '';
+    $inverse_text  = 'text-right';
+    $lang   = 'en';
+    @endphp
+@endif
+
 @extends('layouts.admin')
 
 @section('content')    <!-- Header -->
@@ -5,14 +21,13 @@
     <div class="container-fluid">
         <div class="header-body">
             <div class="row align-items-center py-4">
-                <div class="col-lg-6 col-md-7">
+                <div class="col-lg-6 col-md-7 {{$text}}">
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                            <li class="breadcrumb-item"><a href="{{asset('/')}}"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="{{asset('/')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('patients.index')}}">patients</a></li>
-                            <li class="breadcrumb-item active"
-                                aria-current="page">{{ isset($patient) ?  "Edit patient" : "Add New patient" }}</li>
+                            <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('admin.DASHBOARD')}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('patients.index')}}">{{__('admin.PATIENTS')}}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ isset($patient) ? __('admin.EDIT-PATIENT') : __('admin.ADD-NEW-PATIENT') }}</li>
                         </ol>
                     </nav>
                 </div>
@@ -30,7 +45,7 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="card card-defualt">
-                <div class="card-header">{{ isset($patient) ?  "Edit patient" : "Add New patient" }} </div>
+                <div class="card-header">{{ isset($patient) ? __('admin.EDIT-PATIENT') : __('admin.ADD-NEW-PATIENT') }} </div>
 
                 <div class="card-body">
                     <form
@@ -44,10 +59,10 @@
 
                         <div class="row">
                             <!--=================  Name  =================-->
-                            <div class="form-group col-md-6 mb-2">
-                                <label class="font-weight-bold text-uppercase">Name</label>
+                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                                <label class="font-weight-bold text-uppercase">{{__('admin.NAME')}}</label>
                                 <input type="text" name="name" class="@error('name') is-invalid @enderror form-control"
-                                       placeholder="patient Name"
+                                       placeholder="{{__('admin.NAME')}}"
                                        value="{{ isset($patient) ? $patient->name : old('name') }}">
 
                                 @error('name')
@@ -59,11 +74,11 @@
                             </div>
 
                             <!--=================  Phone  =================-->
-                            <div class="form-group col-md-6 mb-2">
-                                <label class="font-weight-bold text-uppercase">Phone</label>
+                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                                <label class="font-weight-bold text-uppercase">{{__('admin.PHONE')}}</label>
                                 <input type="number" name="phone"
                                        class="@error('phone') is-invalid @enderror form-control"
-                                       placeholder="Phone Number "
+                                       placeholder="{{__('admin.PHONE')}}"
                                        value="{{ isset($patient) ? $patient->phone : old('phone') }}" required>
 
                                 @error('phone')
@@ -82,11 +97,11 @@
                         <div class="row">
 
                             <!--================= identifiation  =================-->
-                            <div class="form-group col-md-6 mb-2">
-                                <label class="font-weight-bold text-uppercase">Identifiation</label>
+                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                                <label class="font-weight-bold text-uppercase">{{__('admin.IDENTIFICATION')}}</label>
                                 <input type="text" name="identifiation"
                                        class="@error('identifiation') is-invalid @enderror form-control"
-                                       placeholder="patient identifiation"
+                                       placeholder="{{__('admin.IDENTIFICATION')}}"
                                        value="{{ isset($patient) ? $patient->identifiation : old('identifiation') }}">
 
                                 @error('identifiation')
@@ -98,9 +113,9 @@
                             </div>
 
                             <!--=================  dateofbirth  =================-->
-                            <div class="form-group col-md-6 mb-2">
-                                <label class="font-weight-bold text-uppercase">Date of Birth</label>
-                                <input type="date" name="dateofbirth" class="@error('dateofbirth') is-invalid @enderror form-control" placeholder="Date of Birth" value="{{ isset($patient) ? $patient->dateofbirth : old('dateofbirth') }}" required>
+                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                                <label class="font-weight-bold text-uppercase">{{__('admin.BIRTHDATE')}}</label>
+                                <input type="date" name="dateofbirth" class="@error('dateofbirth') is-invalid @enderror form-control" placeholder="{{__('admin.BIRTHDATE')}}" value="{{ isset($patient) ? $patient->dateofbirth : old('dateofbirth') }}" required>
 
                                 @error('dateofbirth')
                                 <div>
@@ -116,8 +131,8 @@
                         <div class="row">
 
                             <!--================= gender  =================-->
-                            <div class="form-group col-md-6 mb-2">
-                                <label class="font-weight-bold text-uppercase">gender</label>
+                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                                <label class="font-weight-bold text-uppercase">{{__('admin.GENDER')}}</label>
 
                                 <select class="form-control" name="gender" id="input-gender" required>
                                     <option value="male"
@@ -138,11 +153,11 @@
 
                             </div>
                             <!--=================  age  =================-->
-                            <div class="form-group col-md-6 mb-2">
-                                <label class="font-weight-bold text-uppercase">age</label>
+                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                                <label class="font-weight-bold text-uppercase">{{__('admin.AGE')}}</label>
                                 <input type="number" name="age"
                                        class="@error('age') is-invalid @enderror form-control"
-                                       placeholder="patient age"
+                                       placeholder="{{__('admin.AGE')}}"
                                        value="{{ isset($patient) ? $patient->age : old('age') }}">
 
                                 @error('age')
@@ -160,11 +175,11 @@
                         <div class="row">
 
                             <!--================= nationality  =================-->
-                            <div class="form-group col-md-6 mb-2">
-                                <label class="font-weight-bold text-uppercase">nationality</label>
+                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                                <label class="font-weight-bold text-uppercase">{{__('admin.NATIONALITY')}}</label>
                                 <input type="text" name="nationality"
                                        class="@error('nationality') is-invalid @enderror form-control"
-                                       placeholder="patient nationality"
+                                       placeholder="{{__('admin.NATIONALITY')}}"
                                        value="{{ isset($patient) ? $patient->nationality : old('nationality') }}">
 
                                 @error('nationality')
@@ -180,7 +195,7 @@
                         <hr class="my-3">                        
                         <div class="form-group">
                             <button type="submit"
-                                    class="btn btn-success">{{ isset($patient) ? 'Save' : 'Add' }}</button>
+                                    class="btn btn-success">{{ isset($patient) ?  __('admin.SAVE'):__('admin.ADD')  }}</button>
                         </div>
 
                     </form>

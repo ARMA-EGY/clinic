@@ -35,13 +35,13 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('admin.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">{{__('admin.ALL-PATIENTS')}}</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{__('admin.ALL-SERVICES')}}</li>
                 </ol>
               </nav>
             </div>
 
             <div class="col-lg-6 col-5 {{$inverse_text}}">
-              <a href="{{ route('patients.create')}}" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> {{__('admin.ADD-NEW-PATIENT')}}</a>
+              <a href="{{ route('services.create')}}" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> {{__('admin.ADD-NEW-SERVICE')}}</a>
             </div>
 
             @if(session()->has('success'))	
@@ -68,46 +68,38 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">{{__('admin.ALL-PATIENTS')}} <span class="badge badge-primary p-2">{{$patients_count}}</span></h3>
+                  <h3 class="mb-0">{{__('admin.ALL-SERVICES')}} <span class="badge badge-primary p-2">{{$total_rows}}</span></h3>
                 </div>
               </div>
             </div>
 
-            @if ($patients->count() > 0)
+            @if ($items->count() > 0)
 
             <div class="table-responsive">
               <!-- Projects table -->
               <table class="table align-items-center table-flush display nowrap" id="example">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col"></th>
                     <th scope="col">#</th>
                     <th scope="col" class="sort" >{{__('admin.NAME')}}</th>
-                    <th scope="col" class="sort" >{{__('admin.PHONE')}}</th>
-                    <th scope="col" class="sort" >{{__('admin.IDENTIFICATION')}}</th>
-                    <th scope="col" class="sort" >{{__('admin.BIRTHDATE')}} </th>
-                    <th scope="col" class="sort" >{{__('admin.AGE')}}</th>
-                    <th scope="col" class="sort" >{{__('admin.GENDER')}}</th>
-                    <th scope="col" class="sort" >{{__('admin.NATIONALITY')}}</th>                    
+                    <th scope="col" class="sort" >{{__('admin.SERVICE-NUMBER')}}</th>
+                    <th scope="col" class="sort" >{{__('admin.PRICE')}}</th>
+                    <th scope="col" class="sort" >{{__('admin.SECTOR')}} </th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
-                <tbody class="sortable">
+                <tbody>
 
-                  @foreach ($patients as $patient)
+                  @foreach ($items as $item)
 
-                  <tr class="parent" data-index="{{ $patient->id }}">
-                    <td class="pointer"><i class="fas fa-arrows-alt-v"></i></td>
+                  <tr class="parent">
                     <td>{{ $loop->iteration }}</td>
-                    <td><b> {{  $patient->name }} </b></td>
-                    <td>{{ $patient->phone }}</td>
-                    <td>{{ $patient->identifiation }}</td>
-                    <td>{{ $patient->dateofbirth }}  </td>
-                    <td>{{ $patient->age }}  </td>
-                    <td> {{ $patient->gender }} </td>
-                    <td>{{ $patient->nationality }}  </td>
+                    <td><b> {{  $item->name }} </b></td>
+                    <td>{{ $item->number }}</td>
+                    <td>{{ $item->price }} </td>
+                    <td>{{ $item->sector->name }} </td>
                     <td>
-                      <a href="{{ route('patients.edit', $patient->id)}}" class="btn btn-primary btn-sm mx-1"><i class="fa fa-edit"></i> {{__('admin.EDIT')}}  </a>
+                      <a href="{{ route('services.edit', $item->id)}}" class="btn btn-primary btn-sm mx-1"> <i class="fa fa-edit"></i> {{__('admin.EDIT')}} </a>
                     </td>
                   </tr>
 
@@ -119,7 +111,7 @@
 
 
             @else 
-                <p class="text-center"> {{__('admin.NO-PATIENTS-AVAILABLE')}} </p>
+                <p class="text-center"> {{__('admin.NO-SERVICES-AVAILABLE')}} </p>
             @endif
 
             <!-- Card footer -->
@@ -147,12 +139,10 @@
 
 
 <script>
+
 $('#example').DataTable( {
     "pagingType": "numbers"
   } );
-  
-	
- 
 
 </script>
     

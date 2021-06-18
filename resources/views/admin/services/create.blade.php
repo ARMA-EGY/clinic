@@ -33,8 +33,8 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('admin.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('branches.index')}}">{{__('admin.BRANCHES')}}</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">{{ isset($item) ? __('admin.EDIT-BRANCH') : __('admin.ADD-NEW-BRANCH') }}</li>
+                  <li class="breadcrumb-item"><a href="{{route('services.index')}}">{{__('admin.SERVICES')}}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{ isset($item) ? __('admin.EDIT-SERVICE') : __('admin.ADD-NEW-SERVICE') }}</li>
                 </ol>
               </nav>
             </div>
@@ -52,10 +52,10 @@
       <div class="row">
         <div class="col-xl-12">
             <div class="card card-defualt">
-                <div class="card-header">{{ isset($item) ? __('admin.EDIT-BRANCH') : __('admin.ADD-NEW-BRANCH') }} </div>
+                <div class="card-header">{{ isset($item) ? __('admin.EDIT-SERVICE') : __('admin.ADD-NEW-SERVICE') }} </div>
         
                 <div class="card-body">
-                    <form action="{{ isset($item) ? route('branches.update', $item->id) : route('branches.store')  }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ isset($item) ? route('services.update', $item->id) : route('services.store')  }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         @if (isset($item))
@@ -77,12 +77,12 @@
             
                             </div>
         
-                            <!--=================  Phone  =================-->
+                            <!--=================  Number  =================-->
                             <div class="form-group col-md-6 mb-4 {{$text}}">
-                                <label class="font-weight-bold text-uppercase">{{__('admin.PHONE')}} </label>
-                                <input type="text" name="phone" class="@error('phone') is-invalid @enderror form-control" placeholder="{{__('admin.PHONE')}}" value="{{ isset($item) ? $item->phone : old('phone') }}" required>
+                                <label class="font-weight-bold text-uppercase">{{__('admin.SERVICE-NUMBER')}} </label>
+                                <input type="text" name="number" class="@error('number') is-invalid @enderror form-control" placeholder="{{__('admin.SERVICE-NUMBER')}}" value="{{ isset($item) ? $item->number : old('number') }}" required>
                             
-                                @error('phone')
+                                @error('number')
                                     <div>
                                         <span class="text-danger">{{ $message }}</span>
                                     </div>
@@ -95,12 +95,12 @@
 
                         <div class="row">
 
-                            <!--=================  City  =================-->
+                            <!--=================  Price  =================-->
                             <div class="form-group col-md-6 mb-4 {{$text}}">
-                                <label class="font-weight-bold text-uppercase">{{__('admin.CITY')}}</label>
-                                <input type="text" name="city" class="@error('city') is-invalid @enderror form-control" placeholder="{{__('admin.CITY')}}" value="{{ isset($item) ? $item->city : old('city') }}" >
+                                <label class="font-weight-bold text-uppercase">{{__('admin.PRICE')}}</label>
+                                <input type="number" step="0.1" name="price" class="@error('price') is-invalid @enderror form-control" placeholder="{{__('admin.PRICE')}}" value="{{ isset($item) ? $item->price : old('price') }}" >
                             
-                                @error('city')
+                                @error('price')
                                     <div>
                                         <span class="text-danger">{{ $message }}</span>
                                     </div>
@@ -108,37 +108,23 @@
             
                             </div>
         
-                            <!--=================  Address  =================-->
+                            <!--=================  Sector  =================-->
                             <div class="form-group col-md-6 mb-4 {{$text}}">
-                                <label class="font-weight-bold text-uppercase">{{__('admin.ADDRESS')}}</label>
-                                <input type="text" name="address" class="@error('address') is-invalid @enderror form-control" placeholder="{{__('admin.ADDRESS')}}" value="{{ isset($item) ? $item->address : old('address') }}" >
-                            
-                                @error('address')
+                                <label class="font-weight-bold text-uppercase">{{__('admin.SECTOR')}}</label>
+
+                                <select class="form-control" name="sector_id" required>
+                                    @foreach ($sectors as $sector)
+                                        <option value="{{$sector->id}}" @if (isset($item))  @if ($item->sector_id == $sector->id ) selected @endif @endif>{{$sector->name}}</option>
+                                    @endforeach
+                                </select>
+
+                                @error('sector_id')
                                     <div>
                                         <span class="text-danger">{{ $message }}</span>
                                     </div>
                                 @enderror
-            
                             </div>
 
-                        </div>
-                        <hr class="my-3">
-
-                        <div class="row">
-
-                            <!--=================  Sectors  =================-->
-                            @if ($sectors->count() > 0)
-                                <div class="form-group col-md-12 mb-4 {{$text}}">
-                                    <label class="font-weight-bold text-uppercase" for="sectors">{{__('admin.SECTORS')}}</label>
-                                    <select id="sectors" class="select2 form-control" name="sectors[]" multiple="multiple">
-                                        @foreach ($sectors as $sector)
-                                            <option value="{{$sector->id}}" @if (isset($item))  @if ($item->hasSector($sector->id)) selected @endif @endif>{{$sector->name}}</option>
-                                        @endforeach
-                                    </select>
-            
-                                </div>
-                            @endif
-                            
                         </div>
         
                         <div class="form-group card-footer">

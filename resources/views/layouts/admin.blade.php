@@ -41,6 +41,11 @@
   <link rel="stylesheet" href="{{ asset('admin_assets/css/argon.css?v=1.2.0') }}" type="text/css">
   <!-- Bootstrap switch toggle button -->
   <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Material Design Bootstrap -->
+  {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet"> --}}
+  <link rel="stylesheet" href="{{ asset('admin_assets/css/mdbootstrap.css') }}" type="text/css">
  
   {{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> --}}
   <!-- JQUERY UI -->
@@ -139,28 +144,28 @@
                       <ul class="nav nav-sm flex-column">
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{route('sectors.create')}}" class="nav-link nav-link-sub {{request()->routeIs('sectors.create') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ADD-NEW-SECTOR')}} </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{route('sectors.index')}}" class="nav-link nav-link-sub {{request()->routeIs('sectors.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ALL-SECTORS')}} </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{ route('active-sectors')}}" class="nav-link nav-link-sub {{request()->routeIs('active-sectors') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ACTIVE-SECTORS')}} </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{ route('deactive-sectors')}}" class="nav-link nav-link-sub {{request()->routeIs('deactive-sectors') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.DEACTIVATED-SECTORS')}} </span>
                           </a>
@@ -174,19 +179,20 @@
                     <a class="nav-link collapsed" href="#navbar-doctors" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-stethoscope"></i>
                       <span class="nav-link-text">{{__('admin.DOCTORS')}}</span>
+                      <span class="badge badge-info fs-9 p-1 mx-2">{{__('admin.INPROGRESS')}}</span>
                     </a>
                     <div class="collapse" id="navbar-doctors" style="">
                       <ul class="nav nav-sm flex-column">
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{ route('doctors.create')}}" class="nav-link nav-link-sub {{request()->routeIs('doctors.create') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ADD-NEW-DOCTOR')}} </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{ route('doctors.index')}}" class="nav-link nav-link-sub {{request()->routeIs('doctors.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ALL-DOCTORS')}} </span>
                           </a>
@@ -214,6 +220,7 @@
                     <a class="nav-link collapsed" href="#navbar-staff" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fa fa-users"></i>
                       <span class="nav-link-text">{{__('admin.STAFF')}}</span>
+                      <span class="badge badge-info fs-9 p-1 mx-2">{{__('admin.INPROGRESS')}}</span>
                     </a>
                     <div class="collapse" id="navbar-staff" style="">
                       <ul class="nav nav-sm flex-column">
@@ -259,14 +266,14 @@
                       <ul class="nav nav-sm flex-column">
 
                         <li class="nav-item">
-                          <a href="{{route('patients.create')}}" class="nav-link nav-link-sub">
+                          <a href="{{route('patients.create')}}" class="nav-link nav-link-sub {{request()->routeIs('patients.create') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ADD-NEW-PATIENT')}} </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="{{route('patients.index')}}" class="nav-link nav-link-sub">
+                          <a href="{{route('patients.index')}}" class="nav-link nav-link-sub {{request()->routeIs('patients.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ALL-PATIENTS')}} </span>
                           </a>
@@ -281,6 +288,7 @@
                     <a class="nav-link collapsed" href="#navbar-appointment" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-notes-medical"></i>
                       <span class="nav-link-text">{{__('admin.APPOINTMENTS')}}</span>
+                      <span class="badge badge-warning fs-9 p-1 mx-2">{{__('admin.PENDING')}}</span>
                     </a>
                     <div class="collapse" id="navbar-appointment" style="">
                       <ul class="nav nav-sm flex-column">
@@ -333,14 +341,14 @@
                       <ul class="nav nav-sm flex-column">
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{ route('services.create')}}" class="nav-link nav-link-sub {{request()->routeIs('services.create') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ADD-NEW-SERVICE')}} </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{ route('services.index')}}" class="nav-link nav-link-sub {{request()->routeIs('services.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ALL-SERVICES')}} </span>
                           </a>
@@ -355,6 +363,7 @@
                     <a class="nav-link collapsed" href="#navbar-rays" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-x-ray"></i>
                       <span class="nav-link-text">{{__('admin.RAYS')}}</span>
+                      <span class="badge badge-warning fs-9 p-1 mx-2">{{__('admin.PENDING')}}</span>
                     </a>
                     <div class="collapse" id="navbar-rays" style="">
                       <ul class="nav nav-sm flex-column">
@@ -381,6 +390,7 @@
                     <a class="nav-link collapsed" href="#navbar-roles" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-user-tag"></i>
                       <span class="nav-link-text"> {{__('admin.ROLES')}}</span>
+                      <span class="badge badge-info fs-9 p-1 mx-2">{{__('admin.INPROGRESS')}}</span>
                     </a>
                     <div class="collapse" id="navbar-roles" style="">
                       <ul class="nav nav-sm flex-column">
@@ -407,6 +417,7 @@
                     <a class="nav-link collapsed" href="#navbar-reports" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="far fa-chart-bar"></i>
                       <span class="nav-link-text"> {{__('admin.REPORTS')}}</span>
+                      <span class="badge badge-warning fs-9 p-1 mx-2">{{__('admin.PENDING')}}</span>
                     </a>
                     <div class="collapse" id="navbar-reports" style="">
                       <ul class="nav nav-sm flex-column">
@@ -525,21 +536,21 @@
                         <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="ni ni-ungroup"></i>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-dark bg-default  dropdown-menu-right ">
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-dark dropdown-menu-right ">
                         <div class="row shortcuts px-4">
-                            <a href="{{route('calendar')}}" class="col-4 shortcut-item">
+                            <a href="{{route('calendar')}}" class="col-4 shortcut-item py-0">
                             <span class="shortcut-media avatar rounded-circle bg-gradient-red">
                                 <i class="ni ni-calendar-grid-58"></i>
                             </span>
                             <small>{{__('admin.CALENDAR')}}</small>
                             </a>
-                            <a href="#!" class="col-4 shortcut-item show-todo">
+                            <a href="#!" class="col-4 shortcut-item show-todo py-0">
                             <span class="shortcut-media avatar rounded-circle bg-gradient-purple">
                                 <i class="ni ni-bullet-list-67"></i>
                             </span>
                             <small>{{__('admin.TO-DO')}}</small>
                             </a>
-                            <a href="#!" class="col-4 shortcut-item show-notes">
+                            <a href="#!" class="col-4 shortcut-item show-notes py-0">
                             <span class="shortcut-media avatar rounded-circle bg-gradient-orange">
                                 <i class="fa fa-sticky-note"></i>
                             </span>

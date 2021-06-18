@@ -7,6 +7,16 @@
 =========================================================
 */
 
+.fs-9
+{
+    font-size: 9px !important;
+}
+
+.fs-10
+{
+    font-size: 10px !important;
+}
+
 .w-20
 {
     width: 20px;
@@ -806,6 +816,8 @@ label
     display: inline-block;
 
     margin-bottom: .5rem;
+
+    font-size: 0.8rem;
 }
 
 button
@@ -6730,7 +6742,7 @@ input[type='button'].btn-block
 .navbar-dark .navbar-nav .nav-link.show,
 .navbar-dark .navbar-nav .nav-link.active
 {
-    color: rgba(0, 0, 0, .65);
+    color: rgba(0, 0, 0, .65) !important;
 }
 
 .navbar-dark .navbar-toggler
@@ -20566,7 +20578,7 @@ a.btn-icon-only
 {
     font-size: .875rem;
 
-    height: calc(1.5em + 1.25rem + 5px); 
+    height: calc(1.0em + 1.25rem + 5px); 
 
     transition: all .15s ease-in-out;
 }
@@ -21973,7 +21985,7 @@ textarea[resize='horizontal']
 }
 .navbar-vertical .navbar-nav .nav-link
 {
-    display: flex;
+    display: flex !important;
 
     align-items: center;
 }

@@ -17,7 +17,7 @@
               </nav>
             </div>
             <div class="col-lg-6 col-5 text-right">
-              <a href="/register" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> New Member</a>
+              <a href="{{route('register')}}" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> New Member</a>
             </div>
           </div>
         </div>
