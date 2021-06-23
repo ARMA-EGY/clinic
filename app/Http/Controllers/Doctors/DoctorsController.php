@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Sector;
+use App\Models\Branches;
 use App\Http\Requests\Doctors\AddRequest;
 use App\Http\Requests\Doctors\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
@@ -15,6 +16,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+use Image;
 
 class DoctorsController extends Controller
 {
@@ -65,6 +67,7 @@ class DoctorsController extends Controller
     public function create()
     {
         return view('admin.doctors.create', [
+            'branches'   => Branches::where('disable', 0)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
             ]);
     }
@@ -74,13 +77,44 @@ class DoctorsController extends Controller
 
     public function store(AddRequest $request)
     {
-            if ($request->gender == 'Male')
+
+            $certificate_file   = '';
+            $contract_file      = '';
+
+            if($request->hasfile('avatar'))
             {
-                $avatar = 'admin_assets/img/theme/avatar.png';
+                $image = $request->file('avatar');
+                $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+            
+                $destinationPath = public_path('/images/avatars');
+                ini_set('memory_limit', '256M');
+                $img = Image::make($image->getRealPath());
+                $img->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($destinationPath.'/'.$input['imagename']);
+
+                $avatar = 'images/avatars'.$input['imagename'];
             }
             else
             {
-                $avatar = 'admin_assets/img/theme/avatar2.png';
+                if ($request->gender == 'Male')
+                {
+                    $avatar = 'images/male.png';
+                }
+                else
+                {
+                    $avatar = 'images/female.png';
+                }
+            }
+
+            if($request->hasfile('certificate_file'))
+            {
+                $certificate_file = $request->certificate_file->store('files/certificate', 'public');
+            }
+
+            if($request->hasfile('contract_file'))
+            {
+                $contract_file = $request->contract_file->store('files/contract', 'public');
             }
 
             $doctor =  User::create([
@@ -88,16 +122,25 @@ class DoctorsController extends Controller
                 'phone' => $request->phone,
                 'email' => $request->email,
                 'gender' => $request->gender,
-                'role' => $request->role,
-                'sector_id' => $request->sector_id,
+                'birthdate' => $request->birthdate,
                 'nationality' => $request->nationality,
+
+                'branch_id' => $request->branch_id,
+                'sector_id' => $request->sector_id,
+                'working_hours' => $request->working_hours,
                 'salary' => $request->salary,
                 'hiring_date' => $request->hiring_date,
-                'birthdate' => $request->birthdate,
+                'profit_ratio' => $request->profit_ratio,
+                'license_number' => $request->license_number,
+
+                'certificate_file' => $certificate_file,
+                'contract_file' => $contract_file,
                 'contract_duration' => $request->contract_duration,
-                'working_hours' => $request->working_hours,
-                'certificate' => $request->certificate,
+                'contract_end_date' => $request->contract_end_date,
+
                 'avatar' => $avatar,
+
+                'role' => $request->role,
                 'password' => Hash::make($request->password),
             ]);
             
@@ -113,6 +156,7 @@ class DoctorsController extends Controller
     {
 		return view('admin.doctors.create', [
             'item' => $doctor,
+            'branches'   => Branches::where('disable', 0)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
         ]);
     }
@@ -122,31 +166,39 @@ class DoctorsController extends Controller
 
     public function update(UpdateRequest $request, User $doctor)
     {
-        if ($request->gender == 'Male')
+
+        $data = $request->only(['name', 'phone', 'email', 'gender', 'birthdate', 'nationality', 'branch_id', 'sector_id', 'working_hours', 'salary', 'hiring_date', 'profit_ratio', 'license_number', 'contract_duration', 'contract_end_date']);
+
+        if($request->hasfile('avatar'))
         {
-            $avatar = 'admin_assets/img/theme/avatar.png';
+            $image = $request->file('avatar');
+            $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+        
+            $destinationPath = public_path('/images/avatars');
+            ini_set('memory_limit', '256M');
+            $img = Image::make($image->getRealPath());
+            $img->resize(400, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$input['imagename']);
+
+            $avatar = 'images/avatars'.$input['imagename'];
+
+            $data['avatar'] = $avatar;
         }
-        else
+           
+        if($request->hasfile('certificate_file'))
         {
-            $avatar = 'admin_assets/img/theme/avatar2.png';
+            $certificate_file = $request->certificate_file->store('files/certificate', 'public');
+            $data['certificate_file'] = $certificate_file;
         }
 
-        $doctor->update([
-            'name' => $request->name,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'gender' => $request->gender,
-            'role' => $request->role,
-            'sector_id' => $request->sector_id,
-            'nationality' => $request->nationality,
-            'salary' => $request->salary,
-            'hiring_date' => $request->hiring_date,
-            'birthdate' => $request->birthdate,
-            'contract_duration' => $request->contract_duration,
-            'working_hours' => $request->working_hours,
-            'certificate' => $request->certificate,
-            'avatar' => $avatar,
-        ]);
+        if($request->hasfile('contract_file'))
+        {
+            $contract_file = $request->contract_file->store('files/contract', 'public');
+            $data['contract_file'] = $contract_file;
+        }
+
+        $doctor->update($data);
 		
 		session()->flash('success', 'Doctor updated successfully');
 		

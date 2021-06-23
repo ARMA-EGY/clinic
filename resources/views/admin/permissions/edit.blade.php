@@ -30,31 +30,28 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="card card-defualt">
-                <div class="card-header">Edit {{$role->name}} Permissions</div>
+                <div class="card-header bg-light">Edit {{$role->name}} Permissions</div>
 
                 <div class="card-body">
                     <form
-                        action="{{ route('permissions.update', $role->id)  }}"
-                        method="post" enctype="multipart/form-data">
+                        action="{{ route('permissions.update', $role->id)  }}"  method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
-
-
                         <div class="row">
-                        @foreach($permissions as $permission)
-                          <div class="col-md-6">
-                            <label class="checkbox checkbox-outline-primary">
-                              <input name="permissions[]" type="checkbox" @foreach($rolePermissions as $rolePermission) @if($rolePermission->id == $permission->id) checked @endif @endforeach value="{{$permission->name}}"> 
-                              <span>{{$permission->name}}</span> <span class="checkmark"></span>
-                            </label>
-                          </div> 
-                        @endforeach
+
+                            @foreach($permissions as $permission)
+                                <div class="col-md-4">
+                                    <label class="checkbox checkbox-outline-primary">
+                                        <input name="permissions[]" class="form-check-input p-2 mx-2 position-relative" type="checkbox" @foreach($rolePermissions as $rolePermission) @if($rolePermission->id == $permission->id) checked @endif @endforeach value="{{$permission->name}}"> 
+                                        <span style="text-transform: uppercase;line-height: 2;">{{$permission->name}}</span> 
+                                    </label>
+                                </div> 
+                            @endforeach
 
                         </div>                       
-                        <div class="form-group">
-                            <button type="submit"
-                                    class="btn btn-success">Save</button>
+                        <div class="form-group mt-4">
+                            <button type="submit" class="btn btn-success">Save</button>
                         </div>
 
                     </form>
