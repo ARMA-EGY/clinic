@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\Sector;
+use App\Models\User;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,6 +21,11 @@ class Branches extends Model
     {
         $sectors = $this->sectors->pluck('id')->toArray();
         return in_array($sectorID, $sectors);
+    }
+
+    public function user()
+    {
+        return $this->hasMany(User::class, 'branch_id', 'id');
     }
 }
 

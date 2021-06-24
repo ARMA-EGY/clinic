@@ -11,6 +11,7 @@ use App\Models\Todo;
 use App\Models\Note;
 use App\Models\Event;
 
+use App\Models\Branches;
 use App\Models\Sector;
 
 class User extends Authenticatable
@@ -23,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'phone', 'password', 'role', 'enable', 'gender', 'avatar', 'nationality', 'salary', 'branch_id', 'sector_id', 'contract_duration', 'contract_end_date', 'contract_file', 'hiring_date', 'birthdate', 'certificate_file', 'working_hours', 'profit_ratio', 'license_number',
+        'name', 'email', 'phone', 'password', 'gender', 'avatar', 'nationality', 'salary', 'branch_id', 'sector_id', 'contract_duration', 'contract_end_date', 'contract_file', 'hiring_date', 'birthdate', 'certificate_file', 'working_hours', 'profit_ratio', 'license_number', 'role', 'disable',
     ];
 
     /**
@@ -67,6 +68,11 @@ class User extends Authenticatable
     public function event()
     {
         return $this->hasMany(Event::class);
+    }
+    
+    public function branch()
+    {
+        return $this->belongsTo(Branches::class, 'branch_id', 'id');
     }
     
     public function sector()

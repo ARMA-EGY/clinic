@@ -56,6 +56,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
     Route::get('/deactivesectors', 'Sectors\SectorsController@deactive')->name('deactive-sectors');
     Route::resource('/services', 'Services\ServicesController'); 
     Route::resource('/doctors', 'Doctors\DoctorsController'); 
+    Route::get('/activedoctors', 'Doctors\DoctorsController@active')->name('active-doctors');
+    Route::get('/deactivedoctors', 'Doctors\DoctorsController@deactive')->name('deactive-doctors');
+    Route::get('/doctor/{id}/profile', 'Doctors\DoctorsController@profile')->name('doctors.profile');
 });
 
 
@@ -72,6 +75,7 @@ Route::post('/enableuser', 'AdminController@enableuser')->name('enable-user');
 
 Route::post('/disablebranch', 'Branches\BranchesController@disablebranch')->name('branch-disable');
 Route::post('/disablesector', 'Sectors\SectorsController@disable')->name('sector-disable');
+Route::post('/disabledoctor', 'Doctors\DoctorsController@disable')->name('doctor-disable');
 
     //------------------------------- To-Do List --------------------------\\
     //----------------------------------------------------------------------\\

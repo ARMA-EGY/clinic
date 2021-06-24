@@ -17,6 +17,9 @@ return [
     "CALENDAR" => "النتيجة",
     "PENDING" => "معلق",
     "INPROGRESS" => "جاري العمل",
+    "ACTIVE" => "متاح",
+    "DEACTIVE" => "غير متاح",
+    "BANNED" => "غير متاح",
 
     "MALE" => "ذكر",       
     "FEMALE" => "انثى",
@@ -54,6 +57,8 @@ return [
     "NO-SECTORS-AVAILABLE" => "لا يوجد اقسام متاحة",
 
     "DOCTORS" => "الاطباء",
+    "DOCTOR" => "الطبيب",
+    "DOCTOR-DETAILS" => "تفاصيل الطبيب",
     "ADD-NEW-DOCTOR" => "اضافة طبيب جديد",
     "EDIT-DOCTOR" => "تعديل طبيب",
     "ALL-DOCTORS" => "جميع الاطباء",
@@ -129,6 +134,8 @@ return [
     "PROFIT-RATIO" => "نسبة الربح",
     "LICENSE-NUMBER" => "الترخيص",
     "SHOW-FILE" => "عرض الملف",
+    "NO-FILE" => "لا يوجد ملف",
+    "DETAILS" => "التفاصيل",
 
     "1-HOUR" => "ساعة واحدة",
     "2-HOURS" => "ساعتين",

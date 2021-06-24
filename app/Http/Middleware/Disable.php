@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\User;
 use Closure;
 
-class Enable
+class Disable
 {
     /**
      * Handle an incoming request.
@@ -18,9 +18,9 @@ class Enable
     public function handle($request, Closure $next)
     {
         $user = User::where('email', $request->email)->first();
-        $isenabled = $user['enable'];
+        $isDisabled = $user['disable'];
 
-        if($isenabled == 0)
+        if($isDisabled == 1)
         {
             session()->flash('fail', 'This User is Disabled');
             return redirect(route('login'));

@@ -17,6 +17,9 @@ return [
     "CALENDAR" => "Calendar",
     "PENDING" => "Pending",
     "INPROGRESS" => "Inprogress",
+    "ACTIVE" => "Active",
+    "DEACTIVE" => "Deactive",
+    "BANNED" => "Banned",
 
     "MALE" => "Male",       
     "FEMALE" => "Female",
@@ -54,6 +57,8 @@ return [
     "NO-SECTORS-AVAILABLE" => "No Sectors Available",
 
     "DOCTORS" => "Doctors",
+    "DOCTOR" => "Doctor",
+    "DOCTOR-DETAILS" => "Doctor Details",
     "ADD-NEW-DOCTOR" => "Add New Doctor",
     "EDIT-DOCTOR" => "Edit Doctor",
     "ALL-DOCTORS" => "All Doctors",
@@ -129,6 +134,8 @@ return [
     "PROFIT-RATIO" => "Profit Ratio",
     "LICENSE-NUMBER" => "License Number",
     "SHOW-FILE" => "Show File",
+    "NO-FILE" => "There is no file exist.",
+    "DETAILS" => "Details",
 
     "1-HOUR" => "1 Hour",
     "2-HOURS" => "2 Hours",

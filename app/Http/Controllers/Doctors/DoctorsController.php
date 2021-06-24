@@ -40,11 +40,11 @@ class DoctorsController extends Controller
 
     public function active()
     {
-		$items       = User::where('disable', 0)->orderBy('id','desc')->get();
+		$items       = User::where('role', 'Doctor')->where('disable', 0)->orderBy('id','desc')->get();
 		
-        return view('admin.services.active', [
+        return view('admin.doctors.active', [
             'items' => $items,
-            'total_rows' => User::where('disable', 0)->count(),
+            'total_rows' => User::where('role', 'Doctor')->where('disable', 0)->count(),
         ]);
     }
 
@@ -53,11 +53,11 @@ class DoctorsController extends Controller
 
     public function deactive()
     {
-		$items       = User::where('disable', 1)->orderBy('id','desc')->get();
+		$items       = User::where('role', 'Doctor')->where('disable', 1)->orderBy('id','desc')->get();
 		
-        return view('admin.services.deactive', [
+        return view('admin.doctors.deactive', [
             'items' => $items,
-            'total_rows' => User::where('disable', 1)->count(),
+            'total_rows' => User::where('role', 'Doctor')->where('disable', 1)->count(),
         ]);
     }
 
@@ -203,6 +203,18 @@ class DoctorsController extends Controller
 		session()->flash('success', 'Doctor updated successfully');
 		
 		return redirect(route('doctors.index'));
+    }
+
+
+    //-------------- Show Data  ---------------\\
+
+    public function profile($id)
+    {
+        $item     = User::where('id', $id)->first();
+
+        return view('admin.doctors.profile', [
+            'item' => $item,
+        ]);
     }
 
 

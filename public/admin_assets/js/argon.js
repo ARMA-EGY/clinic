@@ -23,6 +23,12 @@
 // Layout
 //
 
+
+$(function () 
+ {
+	$('[data-toggle="tooltip"]').tooltip()
+ });
+
 'use strict';
 
 var Layout = (function() {

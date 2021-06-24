@@ -179,7 +179,6 @@
                     <a class="nav-link collapsed" href="#navbar-doctors" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-stethoscope"></i>
                       <span class="nav-link-text">{{__('admin.DOCTORS')}}</span>
-                      <span class="badge badge-info fs-9 p-1 mx-2">{{__('admin.INPROGRESS')}}</span>
                     </a>
                     <div class="collapse" id="navbar-doctors" style="">
                       <ul class="nav nav-sm flex-column">
@@ -199,14 +198,14 @@
                         </li>
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{ route('active-doctors')}}" class="nav-link nav-link-sub {{request()->routeIs('active-doctors') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ACTIVE-DOCTORS')}} </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{ route('deactive-doctors')}}" class="nav-link nav-link-sub {{request()->routeIs('deactive-doctors') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.BANNED-DOCTORS')}} </span>
                           </a>

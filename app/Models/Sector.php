@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\Models\Branches;
 use App\Models\Services;
+use App\Models\User;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,5 +21,10 @@ class Sector extends Model
     public function services()
     {
         return $this->belongsToMany(Services::class);
+    }
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
     }
 }
