@@ -168,24 +168,6 @@
                         <div class="card-body">
 
                                 <div class="row">
-
-                                    <!--=================  Role  =================-->
-                                    <input type="hidden" name="role" value="Doctor">
-
-                                    {{-- <div class="form-group col-md-6 mb-4 {{$text}}">
-                                        <label class="font-weight-bold text-uppercase">{{__('admin.ROLE')}}</label>
-                                        <select class="form-control" name="role" required>
-                                            <option>Admin</option>
-                                            <option>Staff</option>
-                                        </select>
-                                    
-                                        @error('role')
-                                            <div>
-                                                <span class="text-danger">{{ $message }}</span>
-                                            </div>
-                                        @enderror
-                    
-                                    </div> --}}
                 
                                     <!--=================  Branches  =================-->
                                     <div class="form-group col-md-6 mb-2 {{$text}}">

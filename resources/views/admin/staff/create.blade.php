@@ -32,8 +32,8 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('admin.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('doctors.index')}}">{{__('admin.DOCTORS')}}</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">{{ isset($item) ? __('admin.EDIT-DOCTOR') : __('admin.ADD-NEW-DOCTOR') }}</li>
+                  <li class="breadcrumb-item"><a href="{{route('staff.index')}}">{{__('admin.STAFF')}}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{ isset($item) ? __('admin.EDIT-STAFF') : __('admin.ADD-NEW-STAFF') }}</li>
                 </ol>
               </nav>
             </div>
@@ -49,7 +49,7 @@
     <!-- Page content -->
     <div class="container-fluid mt--6">
 
-        <form action="{{ isset($item) ? route('doctors.update', $item->id) : route('doctors.store')  }}" method="post" enctype="multipart/form-data">
+        <form action="{{ isset($item) ? route('staff.update', $item->id) : route('staff.store')  }}" method="post" enctype="multipart/form-data">
             @csrf
 
             @if (isset($item))
@@ -168,24 +168,6 @@
                         <div class="card-body">
 
                                 <div class="row">
-
-                                    <!--=================  Role  =================-->
-                                    <input type="hidden" name="role" value="Doctor">
-
-                                    {{-- <div class="form-group col-md-6 mb-4 {{$text}}">
-                                        <label class="font-weight-bold text-uppercase">{{__('admin.ROLE')}}</label>
-                                        <select class="form-control" name="role" required>
-                                            <option>Admin</option>
-                                            <option>Staff</option>
-                                        </select>
-                                    
-                                        @error('role')
-                                            <div>
-                                                <span class="text-danger">{{ $message }}</span>
-                                            </div>
-                                        @enderror
-                    
-                                    </div> --}}
                 
                                     <!--=================  Branches  =================-->
                                     <div class="form-group col-md-6 mb-2 {{$text}}">
@@ -203,23 +185,24 @@
                                             </div>
                                         @enderror
                                     </div>
-                
-                                    <!--=================  Sector  =================-->
-                                    <div class="form-group col-md-6 mb-2 {{$text}}">
-                                        <label class="font-weight-bold text-uppercase">{{__('admin.SECTOR')}}</label>
 
-                                        <select class="form-control" name="sector_id" required>
-                                            @foreach ($sectors as $sector)
-                                                <option value="{{$sector->id}}" @if (isset($item))  @if ($item->sector_id == $sector->id ) selected @endif @endif>{{$sector->name}}</option>
+                                    <!--=================  Role  =================-->
+                                    <div class="form-group col-md-6 mb-2 {{$text}}">
+                                        <label class="font-weight-bold text-uppercase">{{__('admin.ROLE')}}</label>
+
+                                        <select class="form-control" name="role_id" required>
+                                            @foreach ($roles as $role)
+                                                <option value="{{$role->id}}" @if (isset($item))  @if ($item->role_id == $role->id ) selected @endif @endif>{{$role->name}}</option>
                                             @endforeach
                                         </select>
-
-                                        @error('sector_id')
+                                    
+                                        @error('role_id')
                                             <div>
                                                 <span class="text-danger">{{ $message }}</span>
                                             </div>
                                         @enderror
-                                    </div>
+                    
+                                    </div> 
 
                                 </div>
                                 <hr class="my-2">
@@ -315,24 +298,6 @@
                                                 <span class="text-danger">{{ $message }}</span>
                                             </div>
                                         @enderror
-                                    </div>
-
-                                </div>
-                                <hr class="my-2">
-
-                                <div class="row">
-
-                                    <!--=================  License Number  =================-->
-                                    <div class="form-group col-md-12 mb-2 {{$text}}">
-                                        <label class="font-weight-bold text-uppercase">{{__('admin.LICENSE-NUMBER')}}</label>
-                                        <input type="text" name="license_number" class="@error('license_number') is-invalid @enderror form-control" placeholder="{{__('admin.LICENSE-NUMBER')}}" value="{{ isset($item) ? $item->license_number : old('license_number') }}" required>
-                                    
-                                        @error('license_number')
-                                            <div>
-                                                <span class="text-danger">{{ $message }}</span>
-                                            </div>
-                                        @enderror
-                    
                                     </div>
 
                                 </div>

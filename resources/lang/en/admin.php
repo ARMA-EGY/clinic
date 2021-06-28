@@ -68,9 +68,11 @@ return [
 
     "STAFF" => "Staff",
     "ADD-NEW-STAFF" => "Add New Staff",
+    "EDIT-STAFF" => "Edit Staff",
     "ALL-STAFF" => "All Staff",
     "ACTIVE-STAFF" => "Active Staff",
     "BANNED-STAFF" => "Banned Staff",
+    "NO-STAFF-AVAILABLE" => "No Staff Available",
 
     "PATIENTS" => "Patients",
     "ADD-NEW-PATIENT" => "Add New Patient",

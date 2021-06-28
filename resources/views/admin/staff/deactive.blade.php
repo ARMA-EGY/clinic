@@ -35,7 +35,7 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('admin.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">{{__('admin.BANNED-DOCTORS')}}</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{__('admin.BANNED-STAFF')}}</li>
                 </ol>
               </nav>
             </div>
@@ -64,7 +64,7 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">{{__('admin.BANNED-DOCTORS')}} <span class="badge badge-primary p-2">{{$total_rows}}</span></h3>
+                  <h3 class="mb-0">{{__('admin.BANNED-STAFF')}} <span class="badge badge-primary p-2">{{$total_rows}}</span></h3>
                 </div>
               </div>
             </div>
@@ -80,7 +80,7 @@
                     <th scope="col" class="sort" >{{__('admin.NAME')}}</th>
                     <th scope="col" class="sort" >{{__('admin.PHONE')}}</th>
                     <th scope="col" class="sort" >{{__('admin.HIRING-DATE')}}</th>
-                    <th scope="col" class="sort" >{{__('admin.SECTOR')}} </th>
+                    <th scope="col" class="sort" >{{__('admin.ROLE')}} </th>
                     <th scope="col">{{__('admin.STATUS')}}</th>
                     <th scope="col"></th>
                   </tr>
@@ -91,18 +91,18 @@
 
                   <tr class="parent">
                     <td>{{ $loop->iteration }}</td>
-                    <td> <a href="{{ route('doctors.profile', $item->id)}}"> <strong> {{  $item->name }} </strong> </a> </td>
+                    <td> <a href="{{ route('staff.profile', $item->id)}}"> <strong> {{  $item->name }} </strong> </a> </td>
                     <td>{{ $item->phone }}</td>
                     <td>{{ $item->hiring_date }} </td>
-                    <td>{{ $item->sector->name }} </td>
+                    <td>{{ $item->roleName->name }} </td>
                     <td>
                       <div class="col-3">
-                        <input type="checkbox" class="check_off item_check" data-id="{{$item->id}}" data-url="{{route('doctor-disable')}}" data-toggle="toggle" data-size="sm"  @if ($item->disable == '0') checked @endif>
+                        <input type="checkbox" class="check_off item_check" data-id="{{$item->id}}" data-url="{{route('staff-disable')}}" data-toggle="toggle" data-size="sm"  @if ($item->disable == '0') checked @endif>
                       </div>
                     </td>
                     <td>
-                      <a data-toggle="tooltip" data-placement="top" title="{{__('admin.EDIT')}}" href="{{ route('doctors.edit', $item->id)}}" class="btn btn-secondary btn-sm mx-1 px-3"> <i class="fa fa-edit"></i> </a>
-                      <a data-toggle="tooltip" data-placement="top" title="{{__('admin.DETAILS')}}" href="{{ route('doctors.profile', $item->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
+                      <a data-toggle="tooltip" data-placement="top" title="{{__('admin.EDIT')}}" href="{{ route('staff.edit', $item->id)}}" class="btn btn-secondary btn-sm mx-1 px-3"> <i class="fa fa-edit"></i> </a>
+                      <a data-toggle="tooltip" data-placement="top" title="{{__('admin.DETAILS')}}" href="{{ route('staff.profile', $item->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
                     </td>
                   </tr>
 
@@ -114,7 +114,7 @@
 
 
             @else 
-                <p class="text-center"> {{__('admin.NO-DOCTORS-AVAILABLE')}} </p>
+                <p class="text-center"> {{__('admin.NO-STAFF-AVAILABLE')}} </p>
             @endif
 
             <!-- Card footer -->

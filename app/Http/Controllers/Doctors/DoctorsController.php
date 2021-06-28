@@ -140,7 +140,7 @@ class DoctorsController extends Controller
 
                 'avatar' => $avatar,
 
-                'role' => $request->role,
+                'role' => 'Doctor',
                 'password' => Hash::make($request->password),
             ]);
             

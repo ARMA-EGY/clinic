@@ -81,8 +81,8 @@ class User extends Authenticatable
         return $this->belongsTo(Sector::class);
     }
     
-    public function roles()
+    public function roleName()
     {
-        return $this->belongsTo(Roles::class, 'role_id', 'id');
+        return $this->belongsTo(Roles::class, 'role_id');
     }
 }

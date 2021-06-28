@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Sector;
 use App\Models\Branches;
+use App\Models\Roles;
 use App\Http\Requests\Staff\AddRequest;
 use App\Http\Requests\Staff\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
@@ -28,7 +29,6 @@ class StaffController extends Controller
     public function index()
     {
 		$items       = User::where('role', 'Staff')->orderBy('id','desc')->get();
-
 
         return view('admin.staff.index', [
             'items' => $items,
@@ -70,6 +70,7 @@ class StaffController extends Controller
         return view('admin.staff.create', [
             'branches'   => Branches::where('disable', 0)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
+            'roles'    => Roles::where('name', '!=', 'Doctor')->orderBy('id','desc')->get(),
             ]);
     }
 
@@ -132,7 +133,6 @@ class StaffController extends Controller
                 'salary' => $request->salary,
                 'hiring_date' => $request->hiring_date,
                 'profit_ratio' => $request->profit_ratio,
-                'license_number' => $request->license_number,
 
                 'certificate_file' => $certificate_file,
                 'contract_file' => $contract_file,
@@ -141,7 +141,7 @@ class StaffController extends Controller
 
                 'avatar' => $avatar,
 
-                'role' => $request->role,
+                'role' => 'Staff',
                 'password' => Hash::make($request->password),
             ]);
             
@@ -168,7 +168,7 @@ class StaffController extends Controller
     public function update(UpdateRequest $request, User $doctor)
     {
 
-        $data = $request->only(['name', 'phone', 'email', 'gender', 'birthdate', 'nationality', 'branch_id', 'sector_id', 'working_hours', 'salary', 'hiring_date', 'profit_ratio', 'license_number', 'contract_duration', 'contract_end_date']);
+        $data = $request->only(['name', 'phone', 'email', 'gender', 'birthdate', 'nationality', 'branch_id', 'sector_id', 'working_hours', 'salary', 'hiring_date', 'profit_ratio', 'contract_duration', 'contract_end_date']);
 
         if($request->hasfile('avatar'))
         {

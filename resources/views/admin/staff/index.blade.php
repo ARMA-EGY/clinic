@@ -98,10 +98,10 @@
                     <td> <a href="{{ route('staff.profile', $item->id)}}"> <strong> {{  $item->name }} </strong> </a> </td>
                     <td>{{ $item->phone }}</td>
                     <td>{{ $item->hiring_date }} </td>
-                    <td>{{ $item->roles->name }} </td>
+                    <td>{{ $item->roleName->name }} </td>
                     <td>
                       <div class="col-3">
-                        <input type="checkbox" class="check_off item_check" data-id="{{$item->id}}" data-url="{{route('doctor-disable')}}" data-toggle="toggle" data-size="sm"  @if ($item->disable == '0') checked @endif>
+                        <input type="checkbox" class="check_off item_check" data-id="{{$item->id}}" data-url="{{route('staff-disable')}}" data-toggle="toggle" data-size="sm"  @if ($item->disable == '0') checked @endif>
                       </div>
                     </td>
                     <td>
@@ -118,7 +118,7 @@
 
 
             @else 
-                <p class="text-center"> {{__('admin.NO-DOCTORS-AVAILABLE')}} </p>
+                <p class="text-center"> {{__('admin.NO-STAFF-AVAILABLE')}} </p>
             @endif
 
             <!-- Card footer -->

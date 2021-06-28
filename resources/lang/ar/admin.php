@@ -66,11 +66,13 @@ return [
     "BANNED-DOCTORS" => "اطباء غير متاحين",
     "NO-DOCTORS-AVAILABLE" => "لا يوجد أطباء متاحين",
 
-    "STAFF" => "العاملين",
+    "STAFF" => "الموظفون",
     "ADD-NEW-STAFF" => "اضافة عامل جديد",
-    "ALL-STAFF" => "جميع العاملين",
-    "ACTIVE-STAFF" => "العمال المتاحين",
-    "BANNED-STAFF" => "عمال غير متاحين",
+    "EDIT-STAFF" => "تعديل بيانات العامل",
+    "ALL-STAFF" => "جميع الموظفون",
+    "ACTIVE-STAFF" => "الموظفون المتاحين",
+    "BANNED-STAFF" => "موظفون غير متاحين",
+    "NO-STAFF-AVAILABLE" => "لا يوجد موظفون متاحين",
 
     "PATIENTS" => "المرضى",
     "ADD-NEW-PATIENT" => "اضافة مريض جديد",
