@@ -60,6 +60,9 @@ class PatientsController extends Controller
                 'age' => $request->age,
                 'gender' => $request->gender,
                 'nationality' => $request->nationality,
+                'relationship' => $request->relationship,
+                'job' => $request->job,
+                'medical_history' => $request->medical_history,
             ]);
             
             $request->session()->flash('success', 'Patient created successfully');
@@ -88,6 +91,9 @@ class PatientsController extends Controller
             'age' => $request->age,
             'gender' => $request->gender,
             'nationality' => $request->nationality,
+            'relationship' => $request->relationship,
+            'job' => $request->job,
+            'medical_history' => $request->medical_history,
         ]);
 		
 		session()->flash('success', 'Patient updated successfully');

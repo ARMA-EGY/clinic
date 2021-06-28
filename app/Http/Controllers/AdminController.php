@@ -50,9 +50,10 @@ class AdminController extends Controller
         //$user->assignRole('staff');
 
         return view('admin.home', [
-            'members_count' => User::all()->count(),
-            'branches_count' => Branches::all()->count(),
-            'sectors_count' => Sector::all()->count(),
+            'branches_count' => Branches::where('disable', 0)->count(),
+            'sectors_count' => Sector::where('disable', 0)->count(),
+            'staff_count' => User::where('disable', 0)->where('role', 'Staff')->count(),
+            'doctors_count' => User::where('disable', 0)->where('role', 'Doctor')->count(),
             'patients_count' => Patients::all()->count(),
         ]);
     }

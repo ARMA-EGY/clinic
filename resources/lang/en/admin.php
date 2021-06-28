@@ -79,6 +79,7 @@ return [
     "NO-PATIENTS-AVAILABLE" => "No Patients Available",
 
     "APPOINTMENTS" => "Appointments",
+    "APPOINTMENT" => "Appointment",
     "CREATEE-APPOINTMENT" => "Create Appointment",
     "TODAY-APPOINTMENTS" => "Today Appointments",
     "DONE-APPOINTMENTS" => "Done",
@@ -156,5 +157,18 @@ return [
     "4-YEARS" => "4 Years",
     "5-YEARS" => "5 Years",
     
+    "RELATIONSHIP-STATUS" => "Relationship Status",
+    "SINGLE" => "Single",
+    "ENGAGED" => "Engaged",
+    "MARRIED" => "Married",
+
+    "JOB" => "Job",
+    "MEDICAL-HISTORY" => "Medical History",
+
+    "MONTHLY-APPOINTMENTS" => "Monthly Appointments",
+    "MONTHLY-SECTORS" => "Appointments for each sector this month",
+
+    
+
 
 ];

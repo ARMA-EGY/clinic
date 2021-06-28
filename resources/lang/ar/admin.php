@@ -79,6 +79,7 @@ return [
     "NO-PATIENTS-AVAILABLE" => "لا يوجد مرضى متاحين",
 
     "APPOINTMENTS" => "الحجوزات",
+    "APPOINTMENT" => "حجز",
     "CREATEE-APPOINTMENT" => "انشاء حجز جديد",
     "TODAY-APPOINTMENTS" => "حجوزات اليوم",
     "DONE-APPOINTMENTS" => "حجوزات انتهت",
@@ -155,6 +156,17 @@ return [
     "3-YEARS" => "٣ سنوات",
     "4-YEARS" => "٤ سنوات",
     "5-YEARS" => "٥ سنوات",
+    
+    "RELATIONSHIP-STATUS" => "الحالة الاجتماعية",
+    "SINGLE" => "اعزب",
+    "ENGAGED" => "مخطوب",
+    "MARRIED" => "متزوج",
+
+    "JOB" => "المهنة",
+    "MEDICAL-HISTORY" => "التاريخ الطبي",
+
+    "MONTHLY-APPOINTMENTS" => "الحجوزات الشهرية",
+    "MONTHLY-SECTORS" => "الحجوزات لكل قسم في الشهر الحالي",
 
 
 ];
