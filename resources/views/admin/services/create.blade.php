@@ -126,7 +126,25 @@
                             </div>
 
                         </div>
-        
+
+                        <hr class="my-3">
+
+                        <div class="row">
+
+                            <!--=================  Sectors  =================-->
+                            @if ($Categories->count() > 0)
+                                <div class="form-group col-md-12 mb-4 {{$text}}">
+                                    <label class="font-weight-bold text-uppercase" for="sectors">Category</label>
+                                    <select id="sectors" class=" form-control" name="category_id">
+                                        @foreach ($Categories as $Category)
+                                            <option value="{{$Category->id}}" @if (isset($item))  @if ($item->category_id == $Category->id) selected @endif @endif>{{$Category->name}}</option>
+                                        @endforeach
+                                    </select>
+            
+                                </div>
+                            @endif
+                            
+                        </div>        
                         <div class="form-group card-footer">
                         <button type="submit" class="btn btn-success">{{ isset($item) ?  __('admin.SAVE'):__('admin.ADD') }}</button>
                         </div>

@@ -155,6 +155,17 @@ return [
     "3-YEARS" => "3 Years",
     "4-YEARS" => "4 Years",
     "5-YEARS" => "5 Years",
+
+    "create branch" => "create branch",
+    "edit branch" => "edit branch",
+    "all branches" => "all branches",
+    "active branches" => "active branches",
+    "deactivated branches" => "deactivated branches",
+    
+    
+    
+    
+    
     
 
 ];

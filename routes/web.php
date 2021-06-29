@@ -54,7 +54,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
     Route::resource('/sectors', 'Sectors\SectorsController'); 
     Route::get('/activesectors', 'Sectors\SectorsController@active')->name('active-sectors');
     Route::get('/deactivesectors', 'Sectors\SectorsController@deactive')->name('deactive-sectors');
-    Route::resource('/services', 'Services\ServicesController'); 
+    Route::resource('/services', 'Services\ServicesController');
+
+    Route::resource('/servicescategory', 'servicescategory\ServicesCategoryController');
+
     Route::resource('/doctors', 'Doctors\DoctorsController'); 
     Route::get('/activedoctors', 'Doctors\DoctorsController@active')->name('active-doctors');
     Route::get('/deactivedoctors', 'Doctors\DoctorsController@deactive')->name('deactive-doctors');

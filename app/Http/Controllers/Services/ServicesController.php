@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Services;
 use App\Models\Sector;
+use App\Models\Categories;
 use App\Http\Requests\Services\AddRequest;
 use App\Http\Requests\Services\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
@@ -56,8 +57,10 @@ class ServicesController extends Controller
 
     public function create()
     {
+        $Categories = Categories::all();
         return view('admin.services.create', [
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
+            'Categories' => $Categories
             ]);
     }
 
@@ -71,6 +74,7 @@ class ServicesController extends Controller
                 'number' => $request->number,
                 'price' => $request->price,
                 'sector_id' => $request->sector_id,
+                'category_id'=> $request->category_id,
             ]);
             
             $request->session()->flash('success', 'Service created successfully');
@@ -83,9 +87,11 @@ class ServicesController extends Controller
     
     public function edit(Services $service)
     {
+        $Categories = Categories::all();
 		return view('admin.services.create', [
             'item' => $service,
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
+            'Categories' => $Categories
         ]);
     }
 
@@ -99,6 +105,7 @@ class ServicesController extends Controller
             'number' => $request->number,
             'price' => $request->price,
             'sector_id' => $request->sector_id,
+            'category_id'=> $request->category_id,
         ]);
 		
 		session()->flash('success', 'Service updated successfully');

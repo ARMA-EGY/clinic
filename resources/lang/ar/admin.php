@@ -157,4 +157,10 @@ return [
     "5-YEARS" => "٥ سنوات",
 
 
+    "create branch" => "إنشاء فرع",
+    "edit branch" => "تعديل الفرع",
+    "all branches" => "كل الفروع",
+    "active branches" => "الفروع النشطة",
+    "deactivated branches" => "الفروع المعطلة",
+
 ];

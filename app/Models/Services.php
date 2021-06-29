@@ -9,7 +9,7 @@ class Services extends Model
 {
     protected $table = 'services';
     
-    protected $fillable = ['name', 'number', 'price', 'sector_id', 'disable'];
+    protected $fillable = ['name', 'number', 'price', 'sector_id', 'category_id','disable'];
 
     public function sector()
     {

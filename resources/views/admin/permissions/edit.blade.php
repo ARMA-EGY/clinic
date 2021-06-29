@@ -44,7 +44,7 @@
                                 <div class="col-md-4">
                                     <label class="checkbox checkbox-outline-primary">
                                         <input name="permissions[]" class="form-check-input p-2 mx-2 position-relative" type="checkbox" @foreach($rolePermissions as $rolePermission) @if($rolePermission->id == $permission->id) checked @endif @endforeach value="{{$permission->name}}"> 
-                                        <span style="text-transform: uppercase;line-height: 2;">{{$permission->name}}</span> 
+                                        <span style="text-transform: uppercase;line-height: 2;">{{__('admin.'.$permission->name)}}</span> 
                                     </label>
                                 </div> 
                             @endforeach
