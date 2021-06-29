@@ -20,6 +20,10 @@ return [
     "ACTIVE" => "متاح",
     "DEACTIVE" => "غير متاح",
     "BANNED" => "غير متاح",
+    "PICTURE" => "الصورة",
+    "DESCRIPTION" => "الوصف",
+    "SELECT-BRANCH" => "اختر الفرع",
+    "SELECT-SECTOR" => "اختر القسم",
 
     "MALE" => "ذكر",       
     "FEMALE" => "انثى",
@@ -37,6 +41,7 @@ return [
     "EDIT" => "تعديل",
     "SAVE" => "حفظ",
     "ADD" => "اضافة",
+    "NEXT" => "التالي",
 
     "BRANCHES" => "الفروع",
     "BRANCH" => "الفرع",
@@ -75,6 +80,7 @@ return [
     "NO-STAFF-AVAILABLE" => "لا يوجد موظفون متاحين",
 
     "PATIENTS" => "المرضى",
+    "PATIENT" => "المريض",
     "ADD-NEW-PATIENT" => "اضافة مريض جديد",
     "EDIT-PATIENT" => "تعديل مريض",
     "ALL-PATIENTS" => "جميع المرضى ",
@@ -83,10 +89,16 @@ return [
     "APPOINTMENTS" => "الحجوزات",
     "APPOINTMENT" => "حجز",
     "CREATEE-APPOINTMENT" => "انشاء حجز جديد",
+    "CREATEE-NEW-APPOINTMENT" => "انشاء حجز جديد",
     "TODAY-APPOINTMENTS" => "حجوزات اليوم",
     "DONE-APPOINTMENTS" => "حجوزات انتهت",
     "CANCELLED-APPOINTMENTS" => "حجوزات ألغيت",
     "ALL-APPOINTMENTS" => "جميع الحجوزات",
+    "CREATEE" => "انشاء",
+    "TODAY" => "اليوم",
+    "DONE" => "انتهت",
+    "CANCELLED" => "ألغيت",
+    "ALL" => "الجميع",
 
     "SERVICES" => "الخدمات",
     "ADD-NEW-SERVICE" => "اضافة خدمة جديدة",

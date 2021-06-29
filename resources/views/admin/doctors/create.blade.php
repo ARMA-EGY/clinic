@@ -117,7 +117,7 @@
 
                                         <select class="form-control" name="gender" required>
                                             <option value="Male" @isset($item) @if ($item->gender == "Male") selected @endif @endisset>{{__('admin.MALE')}}</option>
-                                            <option value="Female" @isset($item) @if ($item->gender == "Female") selected @endif @endisset>>{{__('admin.FEMALE')}}</option>
+                                            <option value="Female" @isset($item) @if ($item->gender == "Female") selected @endif @endisset>{{__('admin.FEMALE')}}</option>
                                         </select>
 
                                         @error('gender')

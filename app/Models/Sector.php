@@ -11,7 +11,7 @@ class Sector extends Model
 {
     protected $table = 'sector';
     
-    protected $fillable = ['name', 'disable'];
+    protected $fillable = ['name', 'image', 'description', 'disable'];
 
     public function branches()
     {

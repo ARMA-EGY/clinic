@@ -9,6 +9,8 @@ use App\Http\Requests\Sectors\AddRequest;
 use App\Http\Requests\Sectors\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
 
+use Image;
+
 class SectorsController extends Controller
 {
 
@@ -63,8 +65,29 @@ class SectorsController extends Controller
 
     public function store(AddRequest $request)
     {
-            $branch =  Sector::create([
+            if($request->hasfile('image'))
+            {
+                $image = $request->file('image');
+                $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+            
+                $destinationPath = public_path('/images/sectors');
+                ini_set('memory_limit', '256M');
+                $img = Image::make($image->getRealPath());
+                $img->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($destinationPath.'/'.$input['imagename']);
+
+                $image = 'images/sectors/'.$input['imagename'];
+            }
+            else
+            {
+                $image = 'images/sector.png';
+            }
+
+            $sector =  Sector::create([
                 'name' => $request->name,
+                'description' => $request->description,
+                'image' => $image,
             ]);
             
             $request->session()->flash('success', 'Sector created successfully');
@@ -85,9 +108,27 @@ class SectorsController extends Controller
 
     public function update(UpdateRequest $request, Sector $sector)
     {
-        $sector->update([
-            'name' => $request->name,
-        ]);
+
+        $data = $request->only(['name', 'description']);
+
+        if($request->hasfile('image'))
+        {
+            $image = $request->file('image');
+            $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+        
+            $destinationPath = public_path('/images/avatars');
+            ini_set('memory_limit', '256M');
+            $img = Image::make($image->getRealPath());
+            $img->resize(400, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$input['imagename']);
+
+            $image = 'images/sector'.$input['imagename'];
+
+            $data['image'] = $image;
+        }
+
+        $sector->update($data);
 		
 		session()->flash('success', 'Sector updated successfully');
 		

@@ -93,7 +93,7 @@ class DoctorsController extends Controller
                     $constraint->aspectRatio();
                 })->save($destinationPath.'/'.$input['imagename']);
 
-                $avatar = 'images/avatars'.$input['imagename'];
+                $avatar = 'images/avatars/'.$input['imagename'];
             }
             else
             {
@@ -181,7 +181,7 @@ class DoctorsController extends Controller
                 $constraint->aspectRatio();
             })->save($destinationPath.'/'.$input['imagename']);
 
-            $avatar = 'images/avatars'.$input['imagename'];
+            $avatar = 'images/avatars/'.$input['imagename'];
 
             $data['avatar'] = $avatar;
         }

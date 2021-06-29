@@ -63,6 +63,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
     Route::get('/activestaff', 'Staff\StaffController@active')->name('active-staff');
     Route::get('/deactivestaff', 'Staff\StaffController@deactive')->name('deactive-staff');
     Route::get('/staff/{id}/profile', 'Staff\StaffController@profile')->name('staff.profile');
+    Route::resource('/appointment', 'Appointment\AppointmentController'); 
 });
 
 
@@ -76,6 +77,8 @@ Route::post('/changelogo', 'AdminController@changelogo')->name('changelogo');
 Route::post('/editinfo', 'AdminController@editinfo')->name('edit-info');
 Route::post('/changepassword', 'AdminController@changepassword')->name('change-password');
 Route::post('/enableuser', 'AdminController@enableuser')->name('enable-user');
+
+Route::post('/appointmentnext', 'Appointment\AppointmentController@next')->name('appointment.next');
 
 Route::post('/disablebranch', 'Branches\BranchesController@disablebranch')->name('branch-disable');
 Route::post('/disablesector', 'Sectors\SectorsController@disable')->name('sector-disable');
