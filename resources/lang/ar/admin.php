@@ -20,6 +20,10 @@ return [
     "ACTIVE" => "متاح",
     "DEACTIVE" => "غير متاح",
     "BANNED" => "غير متاح",
+    "PICTURE" => "الصورة",
+    "DESCRIPTION" => "الوصف",
+    "SELECT-BRANCH" => "اختر الفرع",
+    "SELECT-SECTOR" => "اختر القسم",
 
     "MALE" => "ذكر",       
     "FEMALE" => "انثى",
@@ -37,6 +41,7 @@ return [
     "EDIT" => "تعديل",
     "SAVE" => "حفظ",
     "ADD" => "اضافة",
+    "NEXT" => "التالي",
 
     "BRANCHES" => "الفروع",
     "BRANCH" => "الفرع",
@@ -66,24 +71,34 @@ return [
     "BANNED-DOCTORS" => "اطباء غير متاحين",
     "NO-DOCTORS-AVAILABLE" => "لا يوجد أطباء متاحين",
 
-    "STAFF" => "العاملين",
+    "STAFF" => "الموظفون",
     "ADD-NEW-STAFF" => "اضافة عامل جديد",
-    "ALL-STAFF" => "جميع العاملين",
-    "ACTIVE-STAFF" => "العمال المتاحين",
-    "BANNED-STAFF" => "عمال غير متاحين",
+    "EDIT-STAFF" => "تعديل بيانات العامل",
+    "ALL-STAFF" => "جميع الموظفون",
+    "ACTIVE-STAFF" => "الموظفون المتاحين",
+    "BANNED-STAFF" => "موظفون غير متاحين",
+    "NO-STAFF-AVAILABLE" => "لا يوجد موظفون متاحين",
 
     "PATIENTS" => "المرضى",
+    "PATIENT" => "المريض",
     "ADD-NEW-PATIENT" => "اضافة مريض جديد",
     "EDIT-PATIENT" => "تعديل مريض",
     "ALL-PATIENTS" => "جميع المرضى ",
     "NO-PATIENTS-AVAILABLE" => "لا يوجد مرضى متاحين",
 
     "APPOINTMENTS" => "الحجوزات",
+    "APPOINTMENT" => "حجز",
     "CREATEE-APPOINTMENT" => "انشاء حجز جديد",
+    "CREATEE-NEW-APPOINTMENT" => "انشاء حجز جديد",
     "TODAY-APPOINTMENTS" => "حجوزات اليوم",
     "DONE-APPOINTMENTS" => "حجوزات انتهت",
     "CANCELLED-APPOINTMENTS" => "حجوزات ألغيت",
     "ALL-APPOINTMENTS" => "جميع الحجوزات",
+    "CREATEE" => "انشاء",
+    "TODAY" => "اليوم",
+    "DONE" => "انتهت",
+    "CANCELLED" => "ألغيت",
+    "ALL" => "الجميع",
 
     "SERVICES" => "الخدمات",
     "ADD-NEW-SERVICE" => "اضافة خدمة جديدة",
@@ -155,6 +170,17 @@ return [
     "3-YEARS" => "٣ سنوات",
     "4-YEARS" => "٤ سنوات",
     "5-YEARS" => "٥ سنوات",
+    
+    "RELATIONSHIP-STATUS" => "الحالة الاجتماعية",
+    "SINGLE" => "اعزب",
+    "ENGAGED" => "مخطوب",
+    "MARRIED" => "متزوج",
+
+    "JOB" => "المهنة",
+    "MEDICAL-HISTORY" => "التاريخ الطبي",
+
+    "MONTHLY-APPOINTMENTS" => "الحجوزات الشهرية",
+    "MONTHLY-SECTORS" => "الحجوزات لكل قسم في الشهر الحالي",
 
 
     "create branch" => "إنشاء فرع",

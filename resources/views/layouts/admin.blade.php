@@ -219,34 +219,33 @@
                     <a class="nav-link collapsed" href="#navbar-staff" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fa fa-users"></i>
                       <span class="nav-link-text">{{__('admin.STAFF')}}</span>
-                      <span class="badge badge-info fs-9 p-1 mx-2">{{__('admin.INPROGRESS')}}</span>
                     </a>
                     <div class="collapse" id="navbar-staff" style="">
                       <ul class="nav nav-sm flex-column">
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{ route('staff.create')}}" class="nav-link nav-link-sub {{request()->routeIs('staff.create') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ADD-NEW-STAFF')}} </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="{{route('admin-members')}}" class="nav-link nav-link-sub {{request()->routeIs('admin-members') ? 'active' : '' }}">
+                          <a href="{{route('staff.index')}}" class="nav-link nav-link-sub {{request()->routeIs('staff.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ALL-STAFF')}} </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{ route('active-staff')}}" class="nav-link nav-link-sub {{request()->routeIs('active-staff') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ACTIVE-STAFF')}} </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{ route('deactive-staff')}}" class="nav-link nav-link-sub {{request()->routeIs('deactive-staff') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.BANNED-STAFF')}} </span>
                           </a>
@@ -293,37 +292,37 @@
                       <ul class="nav nav-sm flex-column">
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{route('appointment.create')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.create') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
-                            <span class="sidenav-normal"> {{__('admin.CREATEE-APPOINTMENT')}}  </span>
+                            <span class="sidenav-normal"> {{__('admin.CREATEE')}}  </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
                           <a href="#" class="nav-link nav-link-sub">
                             <i class="far fa-dot-circle"></i>
-                            <span class="sidenav-normal"> {{__('admin.TODAY-APPOINTMENTS')}}  </span>
+                            <span class="sidenav-normal"> {{__('admin.TODAY')}}  </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
                           <a href="#" class="nav-link nav-link-sub">
                             <i class="far fa-dot-circle"></i>
-                            <span class="sidenav-normal"> {{__('admin.DONE-APPOINTMENTS')}}  </span>
+                            <span class="sidenav-normal"> {{__('admin.DONE')}}  </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
                           <a href="#" class="nav-link nav-link-sub">
                             <i class="far fa-dot-circle"></i>
-                            <span class="sidenav-normal"> {{__('admin.CANCELLED-APPOINTMENTS')}}  </span>
+                            <span class="sidenav-normal"> {{__('admin.CANCELLED')}}  </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
                           <a href="#" class="nav-link nav-link-sub">
                             <i class="far fa-dot-circle"></i>
-                            <span class="sidenav-normal"> {{__('admin.ALL-APPOINTMENTS')}}  </span>
+                            <span class="sidenav-normal"> {{__('admin.ALL')}}  </span>
                           </a>
                         </li>
 
@@ -705,6 +704,7 @@
 
 
     <div id="loader" data-load='<div class="divload"><img src="{{asset("images/load.gif")}}" width="50" class="m-auto"></div>'></div>
+    <div id="loader2" data-load='<div class="d-flex"><img src="{{asset("images/loader.gif")}}" width="50" class="m-auto"></div>'></div>
 
 
     <script src="{{ asset('admin_assets/vendor/jquery/dist/jquery.min.js') }}" ></script>

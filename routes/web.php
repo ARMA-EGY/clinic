@@ -62,6 +62,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
     Route::get('/activedoctors', 'Doctors\DoctorsController@active')->name('active-doctors');
     Route::get('/deactivedoctors', 'Doctors\DoctorsController@deactive')->name('deactive-doctors');
     Route::get('/doctor/{id}/profile', 'Doctors\DoctorsController@profile')->name('doctors.profile');
+    Route::resource('/staff', 'Staff\StaffController'); 
+    Route::get('/activestaff', 'Staff\StaffController@active')->name('active-staff');
+    Route::get('/deactivestaff', 'Staff\StaffController@deactive')->name('deactive-staff');
+    Route::get('/staff/{id}/profile', 'Staff\StaffController@profile')->name('staff.profile');
+    Route::resource('/appointment', 'Appointment\AppointmentController'); 
 });
 
 
@@ -76,9 +81,12 @@ Route::post('/editinfo', 'AdminController@editinfo')->name('edit-info');
 Route::post('/changepassword', 'AdminController@changepassword')->name('change-password');
 Route::post('/enableuser', 'AdminController@enableuser')->name('enable-user');
 
+Route::post('/appointmentnext', 'Appointment\AppointmentController@next')->name('appointment.next');
+
 Route::post('/disablebranch', 'Branches\BranchesController@disablebranch')->name('branch-disable');
 Route::post('/disablesector', 'Sectors\SectorsController@disable')->name('sector-disable');
 Route::post('/disabledoctor', 'Doctors\DoctorsController@disable')->name('doctor-disable');
+Route::post('/disablestaff', 'Staff\StaffController@disable')->name('staff-disable');
 
     //------------------------------- To-Do List --------------------------\\
     //----------------------------------------------------------------------\\

@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Doctors;
+namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Sector;
 use App\Models\Branches;
-use App\Http\Requests\Doctors\AddRequest;
-use App\Http\Requests\Doctors\UpdateRequest;
+use App\Models\Roles;
+use App\Http\Requests\Staff\AddRequest;
+use App\Http\Requests\Staff\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
 
 use App\Providers\RouteServiceProvider;
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Validator;
 
 use Image;
 
-class DoctorsController extends Controller
+class StaffController extends Controller
 {
 
     use RegistersUsers;
@@ -27,11 +28,11 @@ class DoctorsController extends Controller
 
     public function index()
     {
-		$items       = User::where('role', 'Doctor')->orderBy('id','desc')->get();
-		
-        return view('admin.doctors.index', [
+		$items       = User::where('role', 'Staff')->orderBy('id','desc')->get();
+
+        return view('admin.staff.index', [
             'items' => $items,
-            'total_rows' => User::where('role', 'Doctor')->count(),
+            'total_rows' => User::where('role', 'Staff')->count(),
         ]);
     }
 
@@ -40,11 +41,11 @@ class DoctorsController extends Controller
 
     public function active()
     {
-		$items       = User::where('role', 'Doctor')->where('disable', 0)->orderBy('id','desc')->get();
+		$items       = User::where('role', 'Staff')->where('disable', 0)->orderBy('id','desc')->get();
 		
-        return view('admin.doctors.active', [
+        return view('admin.staff.active', [
             'items' => $items,
-            'total_rows' => User::where('role', 'Doctor')->where('disable', 0)->count(),
+            'total_rows' => User::where('role', 'Staff')->where('disable', 0)->count(),
         ]);
     }
 
@@ -53,11 +54,11 @@ class DoctorsController extends Controller
 
     public function deactive()
     {
-		$items       = User::where('role', 'Doctor')->where('disable', 1)->orderBy('id','desc')->get();
+		$items       = User::where('role', 'Staff')->where('disable', 1)->orderBy('id','desc')->get();
 		
-        return view('admin.doctors.deactive', [
+        return view('admin.staff.deactive', [
             'items' => $items,
-            'total_rows' => User::where('role', 'Doctor')->where('disable', 1)->count(),
+            'total_rows' => User::where('role', 'Staff')->where('disable', 1)->count(),
         ]);
     }
 
@@ -66,9 +67,10 @@ class DoctorsController extends Controller
 
     public function create()
     {
-        return view('admin.doctors.create', [
+        return view('admin.staff.create', [
             'branches'   => Branches::where('disable', 0)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
+            'roles'    => Roles::where('name', '!=', 'Doctor')->orderBy('id','desc')->get(),
             ]);
     }
 
@@ -131,7 +133,6 @@ class DoctorsController extends Controller
                 'salary' => $request->salary,
                 'hiring_date' => $request->hiring_date,
                 'profit_ratio' => $request->profit_ratio,
-                'license_number' => $request->license_number,
 
                 'certificate_file' => $certificate_file,
                 'contract_file' => $contract_file,
@@ -140,13 +141,13 @@ class DoctorsController extends Controller
 
                 'avatar' => $avatar,
 
-                'role' => 'Doctor',
+                'role' => 'Staff',
                 'password' => Hash::make($request->password),
             ]);
             
-            $request->session()->flash('success', 'Doctor Added successfully');
+            $request->session()->flash('success', 'Staff Added successfully');
             
-            return redirect(route('doctors.index'));
+            return redirect(route('staff.index'));
     }
 
 
@@ -154,7 +155,7 @@ class DoctorsController extends Controller
     
     public function edit(User $doctor)
     {
-		return view('admin.doctors.create', [
+		return view('admin.staff.create', [
             'item' => $doctor,
             'branches'   => Branches::where('disable', 0)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
@@ -167,7 +168,7 @@ class DoctorsController extends Controller
     public function update(UpdateRequest $request, User $doctor)
     {
 
-        $data = $request->only(['name', 'phone', 'email', 'gender', 'birthdate', 'nationality', 'branch_id', 'sector_id', 'working_hours', 'salary', 'hiring_date', 'profit_ratio', 'license_number', 'contract_duration', 'contract_end_date']);
+        $data = $request->only(['name', 'phone', 'email', 'gender', 'birthdate', 'nationality', 'branch_id', 'sector_id', 'working_hours', 'salary', 'hiring_date', 'profit_ratio', 'contract_duration', 'contract_end_date']);
 
         if($request->hasfile('avatar'))
         {
@@ -200,9 +201,9 @@ class DoctorsController extends Controller
 
         $doctor->update($data);
 		
-		session()->flash('success', 'Doctor updated successfully');
+		session()->flash('success', 'Staff updated successfully');
 		
-		return redirect(route('doctors.index'));
+		return redirect(route('staff.index'));
     }
 
 
@@ -212,7 +213,7 @@ class DoctorsController extends Controller
     {
         $item     = User::where('id', $id)->first();
 
-        return view('admin.doctors.profile', [
+        return view('admin.staff.profile', [
             'item' => $item,
         ]);
     }

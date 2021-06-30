@@ -13,6 +13,7 @@ use App\Models\Event;
 
 use App\Models\Branches;
 use App\Models\Sector;
+use App\Models\Roles;
 
 class User extends Authenticatable
 {
@@ -78,5 +79,10 @@ class User extends Authenticatable
     public function sector()
     {
         return $this->belongsTo(Sector::class);
+    }
+    
+    public function roleName()
+    {
+        return $this->belongsTo(Roles::class, 'role_id');
     }
 }

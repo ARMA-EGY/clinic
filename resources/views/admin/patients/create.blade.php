@@ -16,6 +16,10 @@
 
 @extends('layouts.admin')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('admin_assets/css/trix.min.css') }}" type="text/css">
+@endsection
+
 @section('content')    <!-- Header -->
 <div class="header bg-gradient-primary pb-6">
     <div class="container-fluid">
@@ -59,7 +63,7 @@
 
                         <div class="row">
                             <!--=================  Name  =================-->
-                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                            <div class="form-group col-md-4 mb-2 {{$text}}">
                                 <label class="font-weight-bold text-uppercase">{{__('admin.NAME')}}</label>
                                 <input type="text" name="name" class="@error('name') is-invalid @enderror form-control"
                                        placeholder="{{__('admin.NAME')}}"
@@ -74,7 +78,7 @@
                             </div>
 
                             <!--=================  Phone  =================-->
-                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                            <div class="form-group col-md-4 mb-2 {{$text}}">
                                 <label class="font-weight-bold text-uppercase">{{__('admin.PHONE')}}</label>
                                 <input type="number" name="phone"
                                        class="@error('phone') is-invalid @enderror form-control"
@@ -89,15 +93,8 @@
 
                             </div>
 
-
-                        </div>
-                        <hr class="my-3">
-
-
-                        <div class="row">
-
                             <!--================= identifiation  =================-->
-                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                            <div class="form-group col-md-4 mb-2 {{$text}}">
                                 <label class="font-weight-bold text-uppercase">{{__('admin.IDENTIFICATION')}}</label>
                                 <input type="text" name="identifiation"
                                        class="@error('identifiation') is-invalid @enderror form-control"
@@ -112,8 +109,15 @@
 
                             </div>
 
+
+                        </div>
+                        <hr class="my-3">
+
+
+                        <div class="row">
+
                             <!--=================  dateofbirth  =================-->
-                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                            <div class="form-group col-md-4 mb-2 {{$text}}">
                                 <label class="font-weight-bold text-uppercase">{{__('admin.BIRTHDATE')}}</label>
                                 <input type="date" name="dateofbirth" class="@error('dateofbirth') is-invalid @enderror form-control" placeholder="{{__('admin.BIRTHDATE')}}" value="{{ isset($patient) ? $patient->dateofbirth : old('dateofbirth') }}" required>
 
@@ -125,23 +129,18 @@
                            
                             </div>
 
-                        </div>
-                        <hr class="my-3">
-
-                        <div class="row">
-
                             <!--================= gender  =================-->
-                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                            <div class="form-group col-md-4 mb-2 {{$text}}">
                                 <label class="font-weight-bold text-uppercase">{{__('admin.GENDER')}}</label>
 
                                 <select class="form-control" name="gender" id="input-gender" required>
-                                    <option value="male"
-                                            @isset($patient) @if ($patient->gender == "male") selected @endif @endisset >
-                                        Male
+                                    <option value="Male"
+                                            @isset($patient) @if ($patient->gender == "Male") selected @endif @endisset >
+                                        {{__('admin.MALE')}}
                                     </option>
-                                    <option value="female"
-                                            @isset($patient) @if ($patient->gender == "female") selected @endif @endisset>
-                                        Female
+                                    <option value="Female"
+                                            @isset($patient) @if ($patient->gender == "Female") selected @endif @endisset>
+                                        {{__('admin.FEMALE')}}
                                     </option>                                   
                                 </select>
 
@@ -152,8 +151,9 @@
                                 @enderror
 
                             </div>
+
                             <!--=================  age  =================-->
-                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                            <div class="form-group col-md-4 mb-2 {{$text}}">
                                 <label class="font-weight-bold text-uppercase">{{__('admin.AGE')}}</label>
                                 <input type="number" name="age"
                                        class="@error('age') is-invalid @enderror form-control"
@@ -175,7 +175,7 @@
                         <div class="row">
 
                             <!--================= nationality  =================-->
-                            <div class="form-group col-md-6 mb-2 {{$text}}">
+                            <div class="form-group col-md-4 mb-2 {{$text}}">
                                 <label class="font-weight-bold text-uppercase">{{__('admin.NATIONALITY')}}</label>
                                 <input type="text" name="nationality"
                                        class="@error('nationality') is-invalid @enderror form-control"
@@ -190,12 +190,76 @@
 
                             </div>
 
+                            <!--================= relationship  =================-->
+                            <div class="form-group col-md-4 mb-2 {{$text}}">
+                                <label class="font-weight-bold text-uppercase">{{__('admin.RELATIONSHIP-STATUS')}}</label>
+
+                                <select class="form-control" name="relationship" id="input-relationship" required>
+                                    <option value="Single" @isset($patient) @if ($patient->relationship == "Single") selected @endif @endisset >
+                                        {{__('admin.SINGLE')}}
+                                    </option>    
+                                    <option value="Engaged" @isset($patient) @if ($patient->relationship == "Engaged") selected @endif @endisset >
+                                        {{__('admin.ENGAGED')}}
+                                    </option>                                 
+                                    <option value="Married" @isset($patient) @if ($patient->relationship == "Married") selected @endif @endisset >
+                                        {{__('admin.MARRIED')}}
+                                    </option>                                                              
+                                </select>
+
+                                @error('relationship')
+                                <div>
+                                    <span class="text-danger">{{ $message }}</span>
+                                </div>
+                                @enderror
+
+                            </div>
+
+                            <!--================= job  =================-->
+                            <div class="form-group col-md-4 mb-2 {{$text}}">
+                                <label class="font-weight-bold text-uppercase">{{__('admin.JOB')}}</label>
+                                <input type="text" name="job"
+                                       class="@error('job') is-invalid @enderror form-control"
+                                       placeholder="{{__('admin.JOB')}}"
+                                       value="{{ isset($patient) ? $patient->job : old('job') }}" required>
+
+                                @error('job')
+                                <div>
+                                    <span class="text-danger">{{ $message }}</span>
+                                </div>
+                                @enderror
+
+                            </div>
 
                         </div>
-                        <hr class="my-3">                        
+                        <hr class="my-3">  
+
+
+                        <div class="row">
+
+                            <!--================= Medical History  =================-->
+                            <div class="form-group col-md-12 mb-2 {{$text}}">
+                                <label class="font-weight-bold text-uppercase">{{__('admin.MEDICAL-HISTORY')}}</label>
+
+                                <input id="x" type="hidden" name="medical_history" value="{{ isset($patient) ? $patient->medical_history : old('medical_history') }}">
+                                <trix-editor input="x"></trix-editor>
+        
+                                @error('medical_history')
+                                    <div>
+                                        <span class="text-danger">{{ $message }}</span>
+                                    </div>
+                                @enderror
+
+                            </div>
+
+                        </div>
+                        <hr class="my-3">  
+
+
+
+                        
+                        
                         <div class="form-group">
-                            <button type="submit"
-                                    class="btn btn-success">{{ isset($patient) ?  __('admin.SAVE'):__('admin.ADD')  }}</button>
+                            <button type="submit" class="btn btn-success">{{ isset($patient) ?  __('admin.SAVE'):__('admin.ADD')  }}</button>
                         </div>
 
                     </form>
@@ -210,3 +274,8 @@
 </div>
 
 @endsection    
+
+
+@section('script')
+    <script src="{{ asset('admin_assets/js/trix.min.js') }}" ></script>
+@endsection

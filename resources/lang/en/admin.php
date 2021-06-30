@@ -20,6 +20,10 @@ return [
     "ACTIVE" => "Active",
     "DEACTIVE" => "Deactive",
     "BANNED" => "Banned",
+    "PICTURE" => "Picture",
+    "DESCRIPTION" => "Description",
+    "SELECT-BRANCH" => "Select Branch",
+    "SELECT-SECTOR" => "Select Sector",
 
     "MALE" => "Male",       
     "FEMALE" => "Female",
@@ -37,6 +41,7 @@ return [
     "EDIT" => "Edit",
     "SAVE" => "Save",
     "ADD" => "Add",
+    "NEXT" => "Next",
 
     "BRANCHES" => "Branches",
     "BRANCH" => "Branch",
@@ -68,22 +73,32 @@ return [
 
     "STAFF" => "Staff",
     "ADD-NEW-STAFF" => "Add New Staff",
+    "EDIT-STAFF" => "Edit Staff",
     "ALL-STAFF" => "All Staff",
     "ACTIVE-STAFF" => "Active Staff",
     "BANNED-STAFF" => "Banned Staff",
+    "NO-STAFF-AVAILABLE" => "No Staff Available",
 
     "PATIENTS" => "Patients",
+    "PATIENT" => "Patient",
     "ADD-NEW-PATIENT" => "Add New Patient",
     "EDIT-PATIENT" => "Edit Patient",
     "ALL-PATIENTS" => "All Patients",
     "NO-PATIENTS-AVAILABLE" => "No Patients Available",
 
     "APPOINTMENTS" => "Appointments",
+    "APPOINTMENT" => "Appointment",
     "CREATEE-APPOINTMENT" => "Create Appointment",
+    "CREATEE-NEW-APPOINTMENT" => "Create New Appointment",
     "TODAY-APPOINTMENTS" => "Today Appointments",
-    "DONE-APPOINTMENTS" => "Done",
-    "CANCELLED-APPOINTMENTS" => "Cancelled",
-    "ALL-APPOINTMENTS" => "ALL",
+    "DONE-APPOINTMENTS" => "Done Appointments",
+    "CANCELLED-APPOINTMENTS" => "Cancelled Appointments",
+    "ALL-APPOINTMENTS" => "All Appointments",
+    "CREATEE" => "Create",
+    "TODAY" => "Today",
+    "DONE" => "Done",
+    "CANCELLED" => "Cancelled",
+    "ALL" => "All",
 
     "SERVICES" => "Services",
     "ADD-NEW-SERVICE" => "Add New Service",
@@ -167,5 +182,18 @@ return [
     
     
     
+    "RELATIONSHIP-STATUS" => "Relationship Status",
+    "SINGLE" => "Single",
+    "ENGAGED" => "Engaged",
+    "MARRIED" => "Married",
+
+    "JOB" => "Job",
+    "MEDICAL-HISTORY" => "Medical History",
+
+    "MONTHLY-APPOINTMENTS" => "Monthly Appointments",
+    "MONTHLY-SECTORS" => "Appointments for each sector this month",
+
+    
+
 
 ];
