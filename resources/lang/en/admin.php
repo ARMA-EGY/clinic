@@ -22,9 +22,21 @@ return [
     "BANNED" => "Banned",
     "PICTURE" => "Picture",
     "DESCRIPTION" => "Description",
+    "SELECT" => "Select",
     "SELECT-BRANCH" => "Select Branch",
     "SELECT-SECTOR" => "Select Sector",
-
+    "SELECT-DOCTOR" => "Select Doctor",
+    "SELECT-DATE" => "Select Date",
+    "SELECT-APPOINTMENT" => "Select Appointment",
+    "AVAILABLE-SCHEDULE" => "Available Schedule",
+    "PATIENT-INFORMATION" => "Patient Information",
+    "NEW-PATIENT" => "New Patient",
+    "EXIST-PATIENT" => "Exist Patient",
+    "PATIENT-NAME" => "Patient Name",
+    "DOCTOR-NAME" => "Doctor Name",
+    "APPOINTMENT-NUMBER" => "Appointment Number",
+    "APPOINTMENT-DATE" => "Appointment Date",
+   
     "MALE" => "Male",       
     "FEMALE" => "Female",
     "LANGUAGE" => "Language",
@@ -42,6 +54,10 @@ return [
     "SAVE" => "Save",
     "ADD" => "Add",
     "NEXT" => "Next",
+    "PREV" => "Previous",
+    "BACK" => "Back",
+    "FINISH" => "Finish",
+    "CANCEL" => "Cancel",
 
     "BRANCHES" => "Branches",
     "BRANCH" => "Branch",
@@ -183,6 +199,10 @@ return [
     "MONTHLY-SECTORS" => "Appointments for each sector this month",
 
     
+    "DONE" => "Done",
+    "OOPS" => "Oops",
+    "APPOINTMENT-FINISHED" => "Appointment Finished Successfully",
+    "SOMETHING-WRONG" => "Something went wrong, please try again later",
 
 
 ];

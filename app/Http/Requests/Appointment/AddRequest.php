@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Sectors;
+namespace App\Http\Requests\Appointment;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -15,22 +15,24 @@ class AddRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:sector',
+            'appointment_date' => 'required',
+            'appointment_number' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Sector Name is required.',
-            'name.unique' => 'This Sector is Already Exist.',
+            'appointment_date.required' => 'Appointment Date is required.',
+            'appointment_number.required' => 'Appointment Number is required.',
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => 'Sector Name',
+            'appointment_date' => 'Appointment Date',
+            'appointment_number' => 'Appointment Number',
         ];
     }
 }

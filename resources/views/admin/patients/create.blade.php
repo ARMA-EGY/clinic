@@ -17,7 +17,7 @@
 @extends('layouts.admin')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('admin_assets/css/trix.min.css') }}" type="text/css">
+
 @endsection
 
 @section('content')    <!-- Header -->
@@ -277,5 +277,5 @@
 
 
 @section('script')
-    <script src="{{ asset('admin_assets/js/trix.min.js') }}" ></script>
+
 @endsection

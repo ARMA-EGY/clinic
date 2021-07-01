@@ -8,6 +8,6 @@ class Appointment extends Model
 {
     protected $table = 'appointments';
     
-    protected $fillable = ['branch_id', 'sector_id', 'doctor_id', 'patient_id'];
+    protected $fillable = ['branch_id', 'sector_id', 'doctor_id', 'patient_id', 'appointment_number', 'appointment_date'];
 
 }

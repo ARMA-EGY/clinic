@@ -22,8 +22,20 @@ return [
     "BANNED" => "غير متاح",
     "PICTURE" => "الصورة",
     "DESCRIPTION" => "الوصف",
+    "SELECT" => "اختر",
     "SELECT-BRANCH" => "اختر الفرع",
     "SELECT-SECTOR" => "اختر القسم",
+    "SELECT-DOCTOR" => "اختر الطبيب",
+    "SELECT-DATE" => "اختر التاريخ",
+    "SELECT-APPOINTMENT" => "تحديد الحجز",
+    "AVAILABLE-SCHEDULE" => " الجدول المتاح",
+    "PATIENT-INFORMATION" => "بيانات المريض",
+    "NEW-PATIENT" => "مريض جديد",
+    "EXIST-PATIENT" => "مريض سابق",
+    "PATIENT-NAME" => "اسم المريض",
+    "DOCTOR-NAME" => "اسم الطبيب",
+    "APPOINTMENT-NUMBER" => "رقم الحجز",
+    "APPOINTMENT-DATE" => "تاريخ الحجز",
 
     "MALE" => "ذكر",       
     "FEMALE" => "انثى",
@@ -42,6 +54,10 @@ return [
     "SAVE" => "حفظ",
     "ADD" => "اضافة",
     "NEXT" => "التالي",
+    "PREV" => "السابق",
+    "BACK" => "السابق",
+    "FINISH" => "انهاء",
+    "CANCEL" => "الغاء",
 
     "BRANCHES" => "الفروع",
     "BRANCH" => "الفرع",
@@ -181,6 +197,12 @@ return [
 
     "MONTHLY-APPOINTMENTS" => "الحجوزات الشهرية",
     "MONTHLY-SECTORS" => "الحجوزات لكل قسم في الشهر الحالي",
+
+    
+    "DONE" => "تم",
+    "OOPS" => "عفواً",
+    "APPOINTMENT-FINISHED" => "تم الانتهاء من الحجز بنجاح",
+    "SOMETHING-WRONG" => "هناك شئ خاطئ، يرجى المحاولة فى وقت لاحق.",
 
 
 ];
