@@ -51,7 +51,7 @@
   <!-- JQUERY UI -->
   <link rel="stylesheet" href="{{ asset('admin_assets/css/jquery-ui.css') }}" type="text/css">
   <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">
-
+  <link rel="stylesheet" href="{{ asset('admin_assets/css/trix.min.css') }}" type="text/css">
 
   @if (LaravelLocalization::getCurrentLocale() == 'ar')
     <!-- RTL CSS -->
@@ -286,7 +286,6 @@
                     <a class="nav-link collapsed" href="#navbar-appointment" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-notes-medical"></i>
                       <span class="nav-link-text">{{__('admin.APPOINTMENTS')}}</span>
-                      <span class="badge badge-warning fs-9 p-1 mx-2">{{__('admin.PENDING')}}</span>
                     </a>
                     <div class="collapse" id="navbar-appointment" style="">
                       <ul class="nav nav-sm flex-column">
@@ -299,28 +298,28 @@
                         </li>
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{route('appointment.today')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.today') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.TODAY')}}  </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{route('appointment.done')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.done') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.DONE')}}  </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{route('appointment.cancelled')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.cancelled') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.CANCELLED')}}  </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="#" class="nav-link nav-link-sub">
+                          <a href="{{route('appointment.index')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ALL')}}  </span>
                           </a>
@@ -736,8 +735,8 @@
     <script src="{{ asset('admin_assets/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('admin_assets/js/jquery.ui.touch-punch.min.js') }}"></script>
 
+    <script src="{{ asset('admin_assets/js/trix.min.js') }}" ></script>
     <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
-
 
     <script>
         $.ajaxSetup({

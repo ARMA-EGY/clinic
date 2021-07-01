@@ -67,6 +67,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
     Route::get('/deactivestaff', 'Staff\StaffController@deactive')->name('deactive-staff');
     Route::get('/staff/{id}/profile', 'Staff\StaffController@profile')->name('staff.profile');
     Route::resource('/appointment', 'Appointment\AppointmentController'); 
+    Route::get('/appointment-today', 'Appointment\AppointmentController@today')->name('appointment.today');
+    Route::get('/appointment-done', 'Appointment\AppointmentController@done')->name('appointment.done');
+    Route::get('/appointment-cancelled', 'Appointment\AppointmentController@cancelled')->name('appointment.cancelled');
+
+    Route::post('/appointmentnext', 'Appointment\AppointmentController@next')->name('appointment.next');
+    Route::post('/appointmentprev', 'Appointment\AppointmentController@prev')->name('appointment.prev');
+    Route::post('/patientinfo', 'Appointment\AppointmentController@patientinfo')->name('patient-info');
 });
 
 
@@ -80,8 +87,7 @@ Route::post('/changelogo', 'AdminController@changelogo')->name('changelogo');
 Route::post('/editinfo', 'AdminController@editinfo')->name('edit-info');
 Route::post('/changepassword', 'AdminController@changepassword')->name('change-password');
 Route::post('/enableuser', 'AdminController@enableuser')->name('enable-user');
-
-Route::post('/appointmentnext', 'Appointment\AppointmentController@next')->name('appointment.next');
+Route::post('/appointmentschedule', 'Appointment\AppointmentController@schedule')->name('appointment.schedule');
 
 Route::post('/disablebranch', 'Branches\BranchesController@disablebranch')->name('branch-disable');
 Route::post('/disablesector', 'Sectors\SectorsController@disable')->name('sector-disable');
