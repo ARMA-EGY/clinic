@@ -186,17 +186,6 @@ return [
     "3-YEARS" => "3 Years",
     "4-YEARS" => "4 Years",
     "5-YEARS" => "5 Years",
-
-    "create branch" => "create branch",
-    "edit branch" => "edit branch",
-    "all branches" => "all branches",
-    "active branches" => "active branches",
-    "deactivated branches" => "deactivated branches",
-    
-    
-    
-    
-    
     
     "RELATIONSHIP-STATUS" => "Relationship Status",
     "SINGLE" => "Single",
@@ -215,5 +204,37 @@ return [
     "APPOINTMENT-FINISHED" => "Appointment Finished Successfully",
     "SOMETHING-WRONG" => "Something went wrong, please try again later",
 
+
+    "create branch" => "create branch",
+    "edit branch" => "edit branch",
+    "all branches" => "all branches",
+    "active branches" => "active branches",
+    "deactivated branches" => "deactivated branches",
+
+
+    "create sectors" => "create sectors",
+    "edit sectors" => "edit sectors",
+    "all sectors" => "all sectors",
+    "active sectors" => "active sectors",
+    "deactivated sectors" => "deactivated sectors",
+    "create doctors" => "create doctors",
+    "edit doctors" => "edit doctors",
+    "all doctors" => "all doctors",
+    "active doctors" => "active doctors",
+    "deactivated doctors" => "deactivated doctors",
+    "create staff" => "create staff",
+    "edit staff" => "edit staff",
+    "all staff" => "all staff",
+    "active staff" => "active staff",
+    "deactivated staff" => "deactivated staff",
+    "create patients" => "create patients",
+    "edit patients" => "edit patients",
+    "all patients" => "all patients",
+    "create services" => "create services",
+    "edit services" => "edit services",
+    "all services" => "all services",
+    "doctors profile" => "doctors profile",
+    "staff profile" => "staff profile",
+   
 
 ];

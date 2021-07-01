@@ -18,6 +18,11 @@ class SectorsController extends Controller
 
     public function index()
     {
+        $user = auth()->user();
+        if(!$user->hasPermissionTo('all sectors'))
+        {
+            return redirect(route('home'));
+        }
 		$items       = Sector::orderBy('id','desc')->get();
 		
         return view('admin.sectors.index', [
@@ -31,6 +36,11 @@ class SectorsController extends Controller
 
     public function active()
     {
+        $user = auth()->user();
+        if(!$user->hasPermissionTo('active sectors'))
+        {
+            return redirect(route('home'));
+        }
 		$items       = Sector::where('disable', 0)->orderBy('id','desc')->get();
 		
         return view('admin.sectors.active', [
@@ -44,6 +54,11 @@ class SectorsController extends Controller
 
     public function deactive()
     {
+        $user = auth()->user();
+        if(!$user->hasPermissionTo('deactivated sectors'))
+        {
+            return redirect(route('home'));
+        }
 		$items       = Sector::where('disable', 1)->orderBy('id','desc')->get();
 		
         return view('admin.sectors.deactive', [
@@ -57,6 +72,11 @@ class SectorsController extends Controller
 
     public function create()
     {
+        $user = auth()->user();
+        if(!$user->hasPermissionTo('create sectors'))
+        {
+            return redirect(route('home'));
+        }
         return view('admin.sectors.create');
     }
 
@@ -65,6 +85,11 @@ class SectorsController extends Controller
 
     public function store(AddRequest $request)
     {
+            $user = auth()->user();
+            if(!$user->hasPermissionTo('create sectors'))
+            {
+                return redirect(route('home'));
+            }
             if($request->hasfile('image'))
             {
                 $image = $request->file('image');
@@ -100,6 +125,11 @@ class SectorsController extends Controller
     
     public function edit(Sector $sector)
     {
+        $user = auth()->user();
+        if(!$user->hasPermissionTo('edit sectors'))
+        {
+            return redirect(route('home'));
+        }
 		return view('admin.sectors.create', ['item' => $sector]);
     }
 
@@ -109,6 +139,11 @@ class SectorsController extends Controller
     public function update(UpdateRequest $request, Sector $sector)
     {
 
+        $user = auth()->user();
+        if(!$user->hasPermissionTo('edit sectors'))
+        {
+            return redirect(route('home'));
+        }  
         $data = $request->only(['name', 'description']);
 
         if($request->hasfile('image'))

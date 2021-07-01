@@ -15,6 +15,11 @@ class PatientsController extends Controller
 
     public function index()
     {
+        $user = auth()->user();
+        if(!$user->hasPermissionTo('all patients'))
+        {
+            return redirect(route('home'));
+        }
 		$patients       = Patients::orderBy('id','desc')->get();
 		
         return view('admin.patients.index', [
@@ -44,6 +49,11 @@ class PatientsController extends Controller
 
     public function create()
     {
+        $user = auth()->user();
+        if(!$user->hasPermissionTo('create patients'))
+        {
+            return redirect(route('home'));
+        }
         return view('admin.patients.create');
     }
 
@@ -52,6 +62,11 @@ class PatientsController extends Controller
 
     public function store(AddRequest $request)
     {
+            $user = auth()->user();
+            if(!$user->hasPermissionTo('create patients'))
+            {
+                return redirect(route('home'));
+            }
             $patients =  Patients::create([
                 'name' => $request->name,
                 'phone' => $request->phone,
@@ -75,6 +90,11 @@ class PatientsController extends Controller
     
     public function edit(Patients $patient)
     {
+        $user = auth()->user();
+        if(!$user->hasPermissionTo('edit patients'))
+        {
+            return redirect(route('home'));
+        }
 		return view('admin.patients.create', ['patient' => $patient]);
     }
 
@@ -83,6 +103,11 @@ class PatientsController extends Controller
 
     public function update(AddRequest $request, Patients $patient)
     {
+        $user = auth()->user();
+        if(!$user->hasPermissionTo('edit patients'))
+        {
+            return redirect(route('home'));
+        }
         $patient->update([
             'name' => $request->name,
             'phone' => $request->phone,

@@ -142,35 +142,41 @@
                     </a>
                     <div class="collapse" id="navbar-sectors" style="">
                       <ul class="nav nav-sm flex-column">
-
+                      @if(auth()->user()->can('create sectors'))
                         <li class="nav-item">
                           <a href="{{route('sectors.create')}}" class="nav-link nav-link-sub {{request()->routeIs('sectors.create') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ADD-NEW-SECTOR')}} </span>
                           </a>
                         </li>
+                      @endif 
 
+                      @if(auth()->user()->can('all sectors'))
                         <li class="nav-item">
                           <a href="{{route('sectors.index')}}" class="nav-link nav-link-sub {{request()->routeIs('sectors.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ALL-SECTORS')}} </span>
                           </a>
                         </li>
+                      @endif
 
+                      @if(auth()->user()->can('active sectors'))
                         <li class="nav-item">
                           <a href="{{ route('active-sectors')}}" class="nav-link nav-link-sub {{request()->routeIs('active-sectors') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ACTIVE-SECTORS')}} </span>
                           </a>
                         </li>
+                      @endif
 
+                      @if(auth()->user()->can('deactivated sectors'))
                         <li class="nav-item">
                           <a href="{{ route('deactive-sectors')}}" class="nav-link nav-link-sub {{request()->routeIs('deactive-sectors') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.DEACTIVATED-SECTORS')}} </span>
                           </a>
                         </li>
-                        
+                      @endif  
                       </ul>
                     </div>
                 </li>
@@ -182,35 +188,42 @@
                     </a>
                     <div class="collapse" id="navbar-doctors" style="">
                       <ul class="nav nav-sm flex-column">
-
+                      @if(auth()->user()->can('create doctors'))
                         <li class="nav-item">
                           <a href="{{ route('doctors.create')}}" class="nav-link nav-link-sub {{request()->routeIs('doctors.create') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ADD-NEW-DOCTOR')}} </span>
                           </a>
                         </li>
+                      @endif 
 
+                      @if(auth()->user()->can('all doctors'))
                         <li class="nav-item">
                           <a href="{{ route('doctors.index')}}" class="nav-link nav-link-sub {{request()->routeIs('doctors.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ALL-DOCTORS')}} </span>
                           </a>
                         </li>
+                      @endif 
 
+                      @if(auth()->user()->can('active doctors'))
                         <li class="nav-item">
                           <a href="{{ route('active-doctors')}}" class="nav-link nav-link-sub {{request()->routeIs('active-doctors') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ACTIVE-DOCTORS')}} </span>
                           </a>
                         </li>
+                      @endif
 
+                      @if(auth()->user()->can('deactivated doctors'))
                         <li class="nav-item">
                           <a href="{{ route('deactive-doctors')}}" class="nav-link nav-link-sub {{request()->routeIs('deactive-doctors') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.BANNED-DOCTORS')}} </span>
                           </a>
                         </li>
-                        
+                      @endif  
+
                       </ul>
                     </div>
                 </li>
@@ -222,35 +235,42 @@
                     </a>
                     <div class="collapse" id="navbar-staff" style="">
                       <ul class="nav nav-sm flex-column">
-
+                      @if(auth()->user()->can('create staff'))
                         <li class="nav-item">
                           <a href="{{ route('staff.create')}}" class="nav-link nav-link-sub {{request()->routeIs('staff.create') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ADD-NEW-STAFF')}} </span>
                           </a>
                         </li>
+                      @endif
 
+                      @if(auth()->user()->can('all staff'))                      
                         <li class="nav-item">
                           <a href="{{route('staff.index')}}" class="nav-link nav-link-sub {{request()->routeIs('staff.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ALL-STAFF')}} </span>
                           </a>
                         </li>
+                      @endif
 
+                      @if(auth()->user()->can('active staff')) 
                         <li class="nav-item">
                           <a href="{{ route('active-staff')}}" class="nav-link nav-link-sub {{request()->routeIs('active-staff') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ACTIVE-STAFF')}} </span>
                           </a>
                         </li>
+                      @endif
 
+                      @if(auth()->user()->can('deactivated staff')) 
                         <li class="nav-item">
                           <a href="{{ route('deactive-staff')}}" class="nav-link nav-link-sub {{request()->routeIs('deactive-staff') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.BANNED-STAFF')}} </span>
                           </a>
                         </li>
-                        
+                      @endif
+
                       </ul>
                     </div>
                 </li>
@@ -262,21 +282,23 @@
                     </a>
                     <div class="collapse" id="navbar-patients" style="">
                       <ul class="nav nav-sm flex-column">
-
+                      @if(auth()->user()->can('create patients')) 
                         <li class="nav-item">
                           <a href="{{route('patients.create')}}" class="nav-link nav-link-sub {{request()->routeIs('patients.create') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ADD-NEW-PATIENT')}} </span>
                           </a>
                         </li>
+                      @endif
 
+                      @if(auth()->user()->can('all patients'))                       
                         <li class="nav-item">
                           <a href="{{route('patients.index')}}" class="nav-link nav-link-sub {{request()->routeIs('patients.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ALL-PATIENTS')}} </span>
                           </a>
                         </li>
-
+                      @endif
                         
                       </ul>
                     </div>
@@ -336,21 +358,23 @@
                     </a>
                     <div class="collapse" id="navbar-services" style="">
                       <ul class="nav nav-sm flex-column">
-
+                      @if(auth()->user()->can('create services'))
                         <li class="nav-item">
                           <a href="{{ route('services.create')}}" class="nav-link nav-link-sub {{request()->routeIs('services.create') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ADD-NEW-SERVICE')}} </span>
                           </a>
                         </li>
+                      @endif
 
+                      @if(auth()->user()->can('all services'))
                         <li class="nav-item">
                           <a href="{{ route('services.index')}}" class="nav-link nav-link-sub {{request()->routeIs('services.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('admin.ALL-SERVICES')}} </span>
                           </a>
                         </li>
-
+                      @endif
                         
                       </ul>
                     </div>

@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 
-
+@section('style')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
 @section('content')
 
     <!-- Header -->
@@ -131,20 +133,19 @@
               </div>
             </div>
             <div class="card-body">
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form  class="add_service_form" enctype="multipart/form-data">
                         @csrf
 
-
+                        <input type="hidden" name="appointment_id" value="{{ $appointment->id }}">
 
                         <div class="row">
 
                             <!--=================  Service  =================-->
                             <div class="form-group col-md-6 mb-2">
                             <label class="font-weight-bold text-uppercase" for="service">Service</label>
-                                <select class="form-control selectpicker" data-live-search="true" name="service">
-                                    <option>-SELECT-</option>
+                                <select id="service" class="select2 form-control" name="service[]" multiple="multiple">
                                         @foreach($services as $service)
-                                        <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                            <option value="{{ $service->id }}">{{ $service->name }}</option>
                                         @endforeach
                                 </select>
 
@@ -196,7 +197,75 @@
     </div>
 
 
- 
+@endsection
+
+@section('script')
 
 
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+  <script>
+        $(document).ready(function() {
+                $('.select2').select2();
+
+
+        $(document).on('submit', '.add_service_form', function(e)
+        {
+            e.preventDefault();
+            let formData = new FormData(this);
+            $('.submit').prop('disabled', true);
+
+            var head1 	= 'Done';
+            var title1 	= 'Data Changed Successfully. ';
+            var head2 	= 'Oops...';
+            var title2 	= 'Something went wrong, please try again later.';
+
+            $.ajax({
+                url: 		"{{route('AppointmentServices.store')}}",
+                method: 	'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success : function(data)
+                    {
+                        $('.submit').prop('disabled', false);
+                        
+                        if (data['status'] == 'true')
+                        {
+                            Swal.fire(
+                                    head1,
+                                    title1,
+                                    'success'
+                                    )
+                            setTimeout(function() {window.location.reload();}, 2000);
+                        }
+                        else if (data['status'] == 'false')
+                        {
+                            Swal.fire(
+                                    head2,
+                                    title2,
+                                    'error'
+                                    )
+                        }
+                    },
+                    error : function(reject)
+                    {
+                        $('.submit').prop('disabled', false);
+
+                        var response = $.parseJSON(reject.responseText);
+                        $.each(response.errors, function(key, val)
+                        {
+                            Swal.fire(
+                                    head2,
+                                    val[0],
+                                    'error'
+                                    )
+                        });
+                    }
+                
+                
+            });
+
+        });                
+            });
+    </script>
 @endsection

@@ -14,6 +14,7 @@ use App\Models\appointmentServices;
 use App\Http\Requests\Appointment\AddRequest;
 use App\Http\Requests\Appointment\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
+use Auth;
 
 class AppointmentController extends Controller
 {
