@@ -8,6 +8,8 @@ use App\Models\Appointment;
 use App\Models\Branches;
 use App\Models\Sector;
 use App\Models\User;
+use App\Models\Services;
+use App\Models\appointmentServices;
 use App\Http\Requests\Appointment\AddRequest;
 use App\Http\Requests\Appointment\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
@@ -29,6 +31,19 @@ class AppointmentController extends Controller
         ]);
     }
 
+
+    //-------------- Get Single Data ---------------\\    
+
+    public function show(Appointment $appointment)
+    {
+        $appointmentServices = appointmentServices::where('appointment_id',$appointment->id)->get();
+        $services = Services::where('sector_id',$appointment->sector_id)->get();
+        return view('admin.appointment.show',[
+            'appointment' => $appointment,
+            'appointmentServices'    => $appointmentServices ,
+            'services'    => $services ,
+        ]);
+    }     
     
     //-------------- Create New Data Page ---------------\\
 

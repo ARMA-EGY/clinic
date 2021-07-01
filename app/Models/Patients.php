@@ -8,5 +8,9 @@ class Patients extends Model
 {
     protected $table = 'patient';
     
-    protected $fillable = ['name', 'phone', 'identifiation', 'dateofbirth', 'age', 'gender', 'nationality'];
+    protected $fillable = ['name', 'phone', 'identifiation', 'dateofbirth', 'age', 'gender', 'nationality' , 'medical_history'];
+
+    public function Appointment(){
+        return $this->hasMany('App\Appointment','patient_id');
+    }
 }

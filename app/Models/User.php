@@ -46,6 +46,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    public function Appointment(){
+        return $this->hasMany('App\Appointment','doctor_id');
+    }    
+
     public function isAdmin()
     {
         return $this->role == 'Admin';

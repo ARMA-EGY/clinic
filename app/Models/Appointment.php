@@ -10,4 +10,20 @@ class Appointment extends Model
     
     protected $fillable = ['branch_id', 'sector_id', 'doctor_id', 'patient_id'];
 
+    public function patient(){
+        return $this->belongsTo('App\Models\Patients','patient_id');
+    } 
+
+    public function doctor(){
+        return $this->belongsTo('App\Models\User','doctor_id');
+    }     
+
+    public function sector(){
+        return $this->belongsTo('App\Models\Sector','sector_id');
+    } 
+
+    public function branch(){
+        return $this->belongsTo('App\Models\Branches','branch_id');
+    } 
+
 }
