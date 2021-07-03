@@ -210,7 +210,6 @@ return [
     "all branches" => "كل الفروع",
     "active branches" => "الفروع النشطة",
     "deactivated branches" => "الفروع المعطلة",
-
     "create sectors" => "إنشاء قطاعات",
     "edit sectors" => "تعديل قطاعات",
     "all sectors" => "كل قطاعات",

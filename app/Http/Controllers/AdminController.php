@@ -46,16 +46,39 @@ class AdminController extends Controller
     public function index()
     {
         $user = auth()->user();
-        
-        //$user->assignRole('staff');
+        if( $user->role == 'Admin')
+        {
+            return view('admin.home', [
+                'branches_count' => Branches::where('disable', 0)->count(),
+                'sectors_count' => Sector::where('disable', 0)->count(),
+                'staff_count' => User::where('disable', 0)->where('role', 'Staff')->count(),
+                'doctors_count' => User::where('disable', 0)->where('role', 'Doctor')->count(),
+                'patients_count' => Patients::all()->count(),
+            ]);
+        }
+        else if( $user->role == 'Staff')
+        {
+            return view('staff.home', [
+                'branches_count' => Branches::where('disable', 0)->count(),
+                'sectors_count' => Sector::where('disable', 0)->count(),
+                'staff_count' => User::where('disable', 0)->where('role', 'Staff')->count(),
+                'doctors_count' => User::where('disable', 0)->where('role', 'Doctor')->count(),
+                'patients_count' => Patients::all()->count(),
+            ]);
 
-        return view('admin.home', [
-            'branches_count' => Branches::where('disable', 0)->count(),
-            'sectors_count' => Sector::where('disable', 0)->count(),
-            'staff_count' => User::where('disable', 0)->where('role', 'Staff')->count(),
-            'doctors_count' => User::where('disable', 0)->where('role', 'Doctor')->count(),
-            'patients_count' => Patients::all()->count(),
-        ]);
+        }
+        else if( $user->role == 'Doctor')
+        {
+            return view('doctor.home', [
+                'branches_count' => Branches::where('disable', 0)->count(),
+                'sectors_count' => Sector::where('disable', 0)->count(),
+                'staff_count' => User::where('disable', 0)->where('role', 'Staff')->count(),
+                'doctors_count' => User::where('disable', 0)->where('role', 'Doctor')->count(),
+                'patients_count' => Patients::all()->count(),
+            ]);
+
+        }
+
     }
 
     //======== Members Page ======== 

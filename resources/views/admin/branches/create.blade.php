@@ -80,7 +80,7 @@
                             <!--=================  Phone  =================-->
                             <div class="form-group col-md-6 mb-4 {{$text}}">
                                 <label class="font-weight-bold text-uppercase">{{__('admin.PHONE')}} </label>
-                                <input type="text" name="phone" class="@error('phone') is-invalid @enderror form-control" placeholder="{{__('admin.PHONE')}}" value="{{ isset($item) ? $item->phone : old('phone') }}" required>
+                                <input type="number" name="phone" class="@error('phone') is-invalid @enderror form-control" placeholder="{{__('admin.PHONE')}}" value="{{ isset($item) ? $item->phone : old('phone') }}" required>
                             
                                 @error('phone')
                                     <div>

@@ -61,7 +61,7 @@
 
 
     <!-- Page content -->
-    @include('reusable._appointments')
+    @include('include._appointments')
   
 
 @endsection

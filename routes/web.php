@@ -41,40 +41,64 @@ Auth::routes();
 
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'auth','localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function () 
 {
-    Route::get('/members', 'AdminController@members')->name('admin-members'); 
+
     Route::get('/home', 'AdminController@index')->name('home');
-    Route::get('/logo', 'AdminController@logo')->name('admin-logo');
-    Route::get('/setting', 'AdminController@setting')->name('admin-setting');
     Route::get('/calendar', 'AdminController@calendar')->name('calendar');
-    Route::resource('/branches', 'Branches\BranchesController'); 
-    Route::get('/activebranches', 'Branches\BranchesController@active')->name('active-branches');
-    Route::get('/deactivebranches', 'Branches\BranchesController@deactive')->name('deactive-branches');
-    Route::resource('/patients', 'Patients\PatientsController'); 
-    Route::resource('/permissions', 'Permissions\PermissionsController'); 
-    Route::resource('/sectors', 'Sectors\SectorsController'); 
-    Route::get('/activesectors', 'Sectors\SectorsController@active')->name('active-sectors');
-    Route::get('/deactivesectors', 'Sectors\SectorsController@deactive')->name('deactive-sectors');
-    Route::resource('/services', 'Services\ServicesController');
 
-    Route::resource('/servicescategory', 'servicescategory\ServicesCategoryController');
+    Route::group(['middleware' => [ 'admin' ]], function () 
+    {
+        Route::resource('/branches', 'Admin\Branches\BranchesController'); 
+        Route::get('/activebranches', 'Admin\Branches\BranchesController@active')->name('active-branches');
+        Route::get('/deactivebranches', 'Admin\Branches\BranchesController@deactive')->name('deactive-branches');
+        Route::resource('/patients', 'Admin\Patients\PatientsController'); 
+        Route::resource('/permissions', 'Admin\Permissions\PermissionsController'); 
+        Route::resource('/sectors', 'Admin\Sectors\SectorsController'); 
+        Route::get('/activesectors', 'Admin\Sectors\SectorsController@active')->name('active-sectors');
+        Route::get('/deactivesectors', 'Admin\Sectors\SectorsController@deactive')->name('deactive-sectors');
+        Route::resource('/services', 'Admin\Services\ServicesController');
+        Route::resource('/servicescategory', 'Admin\servicescategory\ServicesCategoryController');
+        Route::resource('/doctors', 'Admin\Doctors\DoctorsController'); 
+        Route::get('/activedoctors', 'Admin\Doctors\DoctorsController@active')->name('active-doctors');
+        Route::get('/deactivedoctors', 'Admin\Doctors\DoctorsController@deactive')->name('deactive-doctors');
+        Route::get('/doctor/{id}/profile', 'Admin\Doctors\DoctorsController@profile')->name('doctors.profile');
+        Route::resource('/staff', 'Admin\Staff\StaffController'); 
+        Route::get('/activestaff', 'Admin\Staff\StaffController@active')->name('active-staff');
+        Route::get('/deactivestaff', 'Admin\Staff\StaffController@deactive')->name('deactive-staff');
+        Route::get('/staff/{id}/profile', 'Admin\Staff\StaffController@profile')->name('staff.profile');
+        Route::resource('/appointment', 'Admin\Appointment\AppointmentController'); 
+        Route::resource('/AppointmentServices', 'Admin\AppointmentServices\AppointmentServicesController'); 
+        Route::get('/appointment-today', 'Admin\Appointment\AppointmentController@today')->name('appointment.today');
+        Route::get('/appointment-done', 'Admin\Appointment\AppointmentController@done')->name('appointment.done');
+        Route::get('/appointment-cancelled', 'Admin\Appointment\AppointmentController@cancelled')->name('appointment.cancelled');
+        Route::post('/appointmentnext', 'Admin\Appointment\AppointmentController@next')->name('appointment.next');
+        Route::post('/appointmentprev', 'Admin\Appointment\AppointmentController@prev')->name('appointment.prev');
+        Route::post('/patientinfo', 'Admin\Appointment\AppointmentController@patientinfo')->name('patient-info');
+        Route::post('/appointmentschedule', 'Admin\Appointment\AppointmentController@schedule')->name('appointment.schedule');
+        Route::post('/disablebranch', 'Admin\Branches\BranchesController@disablebranch')->name('branch-disable');
+        Route::post('/disablesector', 'Admin\Sectors\SectorsController@disable')->name('sector-disable');
+        Route::post('/disabledoctor', 'Admin\Doctors\DoctorsController@disable')->name('doctor-disable');
+        Route::post('/disablestaff', 'Admin\Staff\StaffController@disable')->name('staff-disable');
+        Route::get('/logo', 'AdminController@logo')->name('admin-logo');
+        Route::get('/setting', 'AdminController@setting')->name('admin-setting');
+    });
 
-    Route::resource('/doctors', 'Doctors\DoctorsController'); 
-    Route::get('/activedoctors', 'Doctors\DoctorsController@active')->name('active-doctors');
-    Route::get('/deactivedoctors', 'Doctors\DoctorsController@deactive')->name('deactive-doctors');
-    Route::get('/doctor/{id}/profile', 'Doctors\DoctorsController@profile')->name('doctors.profile');
-    Route::resource('/staff', 'Staff\StaffController'); 
-    Route::get('/activestaff', 'Staff\StaffController@active')->name('active-staff');
-    Route::get('/deactivestaff', 'Staff\StaffController@deactive')->name('deactive-staff');
-    Route::get('/staff/{id}/profile', 'Staff\StaffController@profile')->name('staff.profile');
-    Route::resource('/appointment', 'Appointment\AppointmentController'); 
-    Route::resource('/AppointmentServices', 'AppointmentServices\AppointmentServicesController'); 
-    Route::get('/appointment-today', 'Appointment\AppointmentController@today')->name('appointment.today');
-    Route::get('/appointment-done', 'Appointment\AppointmentController@done')->name('appointment.done');
-    Route::get('/appointment-cancelled', 'Appointment\AppointmentController@cancelled')->name('appointment.cancelled');
 
-    Route::post('/appointmentnext', 'Appointment\AppointmentController@next')->name('appointment.next');
-    Route::post('/appointmentprev', 'Appointment\AppointmentController@prev')->name('appointment.prev');
-    Route::post('/patientinfo', 'Appointment\AppointmentController@patientinfo')->name('patient-info');
+    Route::group(['middleware' => [ 'Staff' ]], function () 
+    {
+
+    });
+
+
+    Route::group(['middleware' => [ 'Doctor' ]], function () 
+    {
+
+    });
+        
+
+
+
+
+
 });
 
 
@@ -88,12 +112,7 @@ Route::post('/changelogo', 'AdminController@changelogo')->name('changelogo');
 Route::post('/editinfo', 'AdminController@editinfo')->name('edit-info');
 Route::post('/changepassword', 'AdminController@changepassword')->name('change-password');
 Route::post('/enableuser', 'AdminController@enableuser')->name('enable-user');
-Route::post('/appointmentschedule', 'Appointment\AppointmentController@schedule')->name('appointment.schedule');
 
-Route::post('/disablebranch', 'Branches\BranchesController@disablebranch')->name('branch-disable');
-Route::post('/disablesector', 'Sectors\SectorsController@disable')->name('sector-disable');
-Route::post('/disabledoctor', 'Doctors\DoctorsController@disable')->name('doctor-disable');
-Route::post('/disablestaff', 'Staff\StaffController@disable')->name('staff-disable');
 
     //------------------------------- To-Do List --------------------------\\
     //----------------------------------------------------------------------\\
