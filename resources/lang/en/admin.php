@@ -127,6 +127,7 @@ return [
     "ALL-RAYS" => "All Rays",
 
     "ROLES" => "Roles & Permissions",
+    "PERMISSIONS" => "Permissions",
     "ADD-NEW-ROLE" => "Add New Role",
     "ALL-ROLES" => "All Roles",
 
@@ -235,6 +236,8 @@ return [
     "all services" => "all services",
     "doctors profile" => "doctors profile",
     "staff profile" => "staff profile",
+
+    "INVENTORY" => "Inventory",
    
 
 ];

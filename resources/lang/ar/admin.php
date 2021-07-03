@@ -127,6 +127,7 @@ return [
     "ALL-RAYS" => "جميع الاشاعات",
 
     "ROLES" => "الادوار والصلاحيات",
+    "PERMISSIONS" => "صلاحيات",
     "ADD-NEW-ROLE" => "اضافة دور جديد",
     "ALL-ROLES" => "جميع الادوار",
 
@@ -234,4 +235,6 @@ return [
     "all services" => "كل الخدمات",
     "doctors profile" => "ملف للأطباء",
     "staff profile" => "ملف الموظفين",
+
+    "INVENTORY" => "مستودع",
 ];

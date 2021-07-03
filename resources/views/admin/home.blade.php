@@ -153,7 +153,7 @@
                     <div class="row">
                       <div class="col">
                         <h5 class="card-title text-uppercase text-muted mb-0">{{__('admin.ALL-APPOINTMENTS')}}</h5>
-                        <span class="h2 font-weight-bold mb-0">0</span>
+                        <span class="h2 font-weight-bold mb-0">{{number_format($total_appointments)}}</span>
                       </div>
                       <div class="col-auto">
                         <div class="icon icon-shape bg-gradient-pink text-white rounded-circle shadow">
@@ -174,7 +174,7 @@
                     <div class="row">
                       <div class="col">
                         <h5 class="card-title text-uppercase text-muted mb-0">{{__('admin.DONE-APPOINTMENTS')}}</h5>
-                        <span class="h2 font-weight-bold mb-0">0</span>
+                        <span class="h2 font-weight-bold mb-0">{{number_format($done_appointments)}}</span>
                       </div>
                       <div class="col-auto">
                         <div class="icon icon-shape bg-gradient-light text-white rounded-circle shadow">
@@ -195,7 +195,7 @@
                     <div class="row">
                       <div class="col">
                         <h5 class="card-title text-uppercase text-muted mb-0">{{__('admin.TODAY-APPOINTMENTS')}}</h5>
-                        <span class="h2 font-weight-bold mb-0">0</span>
+                        <span class="h2 font-weight-bold mb-0">{{number_format($today_appointments)}}</span>
                       </div>
                       <div class="col-auto">
                         <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">

@@ -380,7 +380,16 @@
                     </div>
                 </li>
 
+
                 <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa fa-cubes"></i>
+                        <span class="nav-link-text">{{__('admin.INVENTORY')}}</span>
+                        <span class="badge badge-warning fs-9 p-1 mx-2">{{__('admin.PENDING')}}</span>
+                    </a>
+                </li>
+
+                {{-- <li class="nav-item">
                     <a class="nav-link collapsed" href="#navbar-rays" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-x-ray"></i>
                       <span class="nav-link-text">{{__('admin.RAYS')}}</span>
@@ -405,13 +414,12 @@
                         
                       </ul>
                     </div>
-                </li>
+                </li> --}}
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#navbar-roles" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-user-tag"></i>
                       <span class="nav-link-text"> {{__('admin.ROLES')}}</span>
-                      <span class="badge badge-info fs-9 p-1 mx-2">{{__('admin.INPROGRESS')}}</span>
                     </a>
                     <div class="collapse" id="navbar-roles" style="">
                       <ul class="nav nav-sm flex-column">

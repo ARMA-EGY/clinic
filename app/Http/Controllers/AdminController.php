@@ -19,6 +19,8 @@ use App\Models\Branches;
 use App\Models\Sector;
 use App\Models\Patients;
 
+use App\Models\Appointment;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -46,8 +48,9 @@ class AdminController extends Controller
     public function index()
     {
         $user = auth()->user();
-        
         //$user->assignRole('staff');
+
+        $today                = date('Y-m-d');
 
         return view('admin.home', [
             'branches_count' => Branches::where('disable', 0)->count(),
@@ -55,6 +58,9 @@ class AdminController extends Controller
             'staff_count' => User::where('disable', 0)->where('role', 'Staff')->count(),
             'doctors_count' => User::where('disable', 0)->where('role', 'Doctor')->count(),
             'patients_count' => Patients::all()->count(),
+            'today_appointments' => Appointment::where('appointment_date', $today)->count(),
+            'done_appointments' => Appointment::where('appointment_date', '<', $today)->count(),
+            'total_appointments' => Appointment::where('cancelled', 0)->count(),
         ]);
     }
 
