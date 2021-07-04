@@ -1,20 +1,4 @@
-@if (LaravelLocalization::getCurrentLocale() == 'ar')
-    @php
-    $dir   = 'rtl';
-    $text  = 'text-right';
-    $inverse_text  = 'text-left';
-    $lang  = 'ar';
-    @endphp
-@elseif (LaravelLocalization::getCurrentLocale() == 'en')  
-    @php
-    $dir    = 'ltr';
-    $text   = '';
-    $inverse_text  = 'text-right';
-    $lang   = 'en';
-    @endphp
-@endif
-
-@extends('layouts.admin')
+@extends('layouts.master')
 
 @section('style')
     
@@ -30,12 +14,12 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
 
-            <div class="col-lg-6 col-7 {{$text}}">
+            <div class="col-lg-12 text-left">
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('admin.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">{{__('admin.ACTIVE-BRANCHES')}}</li>
+                  <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{__('master.ACTIVE-BRANCHES')}}</li>
                 </ol>
               </nav>
             </div>
@@ -55,7 +39,7 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">{{__('admin.ACTIVE-BRANCHES')}} <span class="badge badge-primary p-2">{{$total_rows}}</span></h3>
+                  <h3 class="mb-0">{{__('master.ACTIVE-BRANCHES')}} <span class="badge badge-primary p-2">{{$total_rows}}</span></h3>
                 </div>
               </div>
             </div>
@@ -68,11 +52,11 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col" class="sort" >{{__('admin.NAME')}}</th>
-                    <th scope="col" class="sort" >{{__('admin.PHONE')}}</th>
-                    <th scope="col" class="sort" >{{__('admin.CITY')}}</th>
-                    <th scope="col" class="sort" >{{__('admin.ADDRESS')}} </th>
-                    <th scope="col">{{__('admin.STATUS')}}</th>
+                    <th scope="col" class="sort" >{{__('master.NAME')}}</th>
+                    <th scope="col" class="sort" >{{__('master.PHONE')}}</th>
+                    <th scope="col" class="sort" >{{__('master.CITY')}}</th>
+                    <th scope="col" class="sort" >{{__('master.ADDRESS')}} </th>
+                    <th scope="col">{{__('master.STATUS')}}</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -92,7 +76,7 @@
                       </div>
                     </td>
                     <td>
-                      <a href="{{ route('branches.edit', $item->id)}}" class="btn btn-primary btn-sm mx-1"> <i class="fa fa-edit"></i> {{__('admin.EDIT')}} </a>
+                      <a href="{{ route('branches.edit', $item->id)}}" class="btn btn-primary btn-sm mx-1"> <i class="fa fa-edit"></i> {{__('master.EDIT')}} </a>
                     </td>
                   </tr>
 
@@ -104,7 +88,7 @@
 
 
             @else 
-                <p class="text-center"> {{__('admin.NO-BRANCHES-AVAILABLE')}} </p>
+                <p class="text-center"> {{__('master.NO-BRANCHES-AVAILABLE')}} </p>
             @endif
 
             <!-- Card footer -->
@@ -136,25 +120,6 @@
 $('#example').DataTable( {
     "pagingType": "numbers"
   } );
-
-
-  $(document).on("change",".item_check", function()
-    {
-        var id 	  = $(this).attr('data-id');
-        var url 	= $(this).attr('data-url');
-
-        $.ajax({
-                url: url,
-                type:"POST",
-                dataType: 'text',
-                data:    {"_token": "{{ csrf_token() }}",
-                            id: id},
-                success : function(response)
-                    {
-                      
-                    }  
-              })
-    });
 
 </script>
     

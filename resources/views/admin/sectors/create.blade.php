@@ -1,20 +1,4 @@
-@if (LaravelLocalization::getCurrentLocale() == 'ar')
-    @php
-    $dir   = 'rtl';
-    $text  = 'text-right';
-    $inverse_text  = 'text-left';
-    $lang  = 'ar';
-    @endphp
-@elseif (LaravelLocalization::getCurrentLocale() == 'en')  
-    @php
-    $dir    = 'ltr';
-    $text   = '';
-    $inverse_text  = 'text-right';
-    $lang   = 'en';
-    @endphp
-@endif
-
-@extends('layouts.admin')
+@extends('layouts.master')
 
 @section('style')
 
@@ -22,24 +6,23 @@
 
 @section('content')
 
-
     <!-- Header -->
     <div class="header bg-gradient-primary pb-6">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
-            <div class="col-lg-6 col-7 {{$text}}">
+
+            <div class="col-lg-12 text-left">
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('admin.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('sectors.index')}}">{{__('admin.SECTORS')}}</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">{{ isset($item) ? __('admin.EDIT-SECTOR') : __('admin.ADD-NEW-SECTOR') }}</li>
+                  <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
+                  <li class="breadcrumb-item"><a href="{{route('sectors.index')}}">{{__('master.SECTORS')}}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{ isset($item) ? __('master.EDIT-SECTOR') : __('master.ADD-NEW-SECTOR') }}</li>
                 </ol>
               </nav>
             </div>
-            <div class="col-lg-6 col-5 {{$inverse_text}}">
-            </div>
+            
           </div>
         </div>
       </div>
@@ -63,15 +46,15 @@
               <div class="col-xl-8">
 
                   <div class="card card-defualt">
-                      <div class="card-header"><i class="fa fa-info-circle"></i> {{__('admin.INFORMATION')}} </div>
+                      <div class="card-header"><i class="fa fa-info-circle"></i> {{__('master.INFORMATION')}} </div>
                       <div class="card-body">
                               
                               <div class="row">
 
                                   <!--=================  Name  =================-->
-                                  <div class="form-group col-md-12 mb-2 {{$text}}">
-                                      <label class="font-weight-bold text-uppercase">{{__('admin.NAME')}}</label>
-                                      <input type="text" name="name" class="@error('name') is-invalid @enderror form-control" placeholder="{{__('admin.NAME')}}" value="{{ isset($item) ? $item->name : old('name') }}" required>
+                                  <div class="form-group col-md-12 mb-2 text-left">
+                                      <label class="font-weight-bold text-uppercase">{{__('master.NAME')}}</label>
+                                      <input type="text" name="name" class="@error('name') is-invalid @enderror form-control" placeholder="{{__('master.NAME')}}" value="{{ isset($item) ? $item->name : old('name') }}" required>
                                   
                                       @error('name')
                                           <div>
@@ -87,8 +70,8 @@
                               <div class="row">
 
                                   <!--=================  Description  =================-->
-                                  <div class="form-group col-md-12 mb-2 {{$text}}">
-                                      <label class="font-weight-bold text-uppercase">{{__('admin.DESCRIPTION')}}</label>
+                                  <div class="form-group col-md-12 mb-2 text-left">
+                                      <label class="font-weight-bold text-uppercase">{{__('master.DESCRIPTION')}}</label>
                                       <textarea name="description" class="form-control" cols="30" rows="10">{{ isset($item) ? $item->description : old('description') }}</textarea>
                                   
                                       @error('description')
@@ -109,11 +92,11 @@
               <div class="col-xl-4">
 
                   <div class="card card-defualt">
-                      <div class="card-header"><i class="far fa-image"></i> {{__('admin.PICTURE')}} </div>
+                      <div class="card-header"><i class="far fa-image"></i> {{__('master.PICTURE')}} </div>
                       <div class="card-body px-3">
                           <div class="avatar-preview" style="background-image: url({{ isset($item) ?  asset($item->image)  : asset('images/sector.png') }})"></div>
-                          <div class="my-2 {{$text}}">
-                            <small> {!! __('admin.IMAGE-INFO') !!} </small> 
+                          <div class="my-2 text-left">
+                            <small> {!! __('master.IMAGE-INFO') !!} </small> 
                           </div>
                           <input class="btn-info form-control form-control-sm" type="file" accept="image/*" id="image" name="image" multiple="false" />
                       </div>
@@ -126,7 +109,7 @@
           <div class="card card-defualt">
               <div class="card-body">
                   <div class="form-group mb-0">
-                      <button type="submit" class="btn btn-success btn-block">{{ isset($item) ?  __('admin.SAVE'):__('admin.ADD') }}</button>
+                      <button type="submit" class="btn btn-success btn-block">{{ isset($item) ?  __('master.SAVE'):__('master.ADD') }}</button>
                   </div>
               </div>
           </div>

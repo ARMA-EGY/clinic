@@ -1,14 +1,3 @@
-<div class="container-fluid mt--6">
-      <div class="row">
-        <div class="col-xl-12">
-          <div class="card">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0">{{__('admin.ALL-APPOINTMENTS')}} <span class="badge badge-primary p-2">{{$total_rows}}</span></h3>
-                </div>
-              </div>
-            </div>
 
             @if ($items->count() > 0)
 
@@ -18,12 +7,12 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col" class="sort" >{{__('admin.PATIENT-NAME')}}</th>
-                    <th scope="col" class="sort" >{{__('admin.DOCTOR-NAME')}}</th>
-                    <th scope="col" class="sort" >{{__('admin.APPOINTMENT-NUMBER')}}</th>
-                    <th scope="col" class="sort" >{{__('admin.APPOINTMENT-DATE')}}</th>
-                    <th scope="col" class="sort" >{{__('admin.BRANCH')}}</th>
-                    <th scope="col" class="sort" >{{__('admin.SECTOR')}}</th>
+                    <th scope="col" class="sort" >{{__('master.PATIENT-NAME')}}</th>
+                    <th scope="col" class="sort" >{{__('master.DOCTOR-NAME')}}</th>
+                    <th scope="col" class="sort" >{{__('master.APPOINTMENT-NUMBER')}}</th>
+                    <th scope="col" class="sort" >{{__('master.APPOINTMENT-DATE')}}</th>
+                    <th scope="col" class="sort" >{{__('master.BRANCH')}}</th>
+                    <th scope="col" class="sort" >{{__('master.SECTOR')}}</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -40,8 +29,8 @@
                     <td><b> {{$item->branch->name}} </b></td>
                     <td><b> {{$item->sector->name}} </b></td>
                     <td>
-                      <a data-toggle="tooltip" data-placement="top" title="{{__('admin.DETAILS')}}" href="{{route('appointment.show',$item->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
-                      <a data-toggle="tooltip" data-placement="top" title="{{__('admin.CANCEL')}}" href="#" class="btn btn-danger btn-sm mx-1 px-3"> <i class="fa fa-trash"></i> </a>
+                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="{{route('appointment.show',$item->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
+                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.CANCEL')}}" href="#" class="btn btn-danger btn-sm mx-1 px-3"> <i class="fa fa-trash"></i> </a>
                     </td>
                   </tr>
 
@@ -53,17 +42,9 @@
 
 
             @else 
-                <p class="text-center"> {{__('admin.NO-SECTORS-AVAILABLE')}} </p>
+                <p class="text-center"> {{__('master.NO-APPOINTMENTS-AVAILABLE')}} </p>
             @endif
 
             <!-- Card footer -->
             <div class="card-footer py-2">
             </div>
-
-          </div>
-        </div>
-      </div>
-      <!-- Footer -->
-      <footer class="footer pt-0">
-      </footer>
-    </div>

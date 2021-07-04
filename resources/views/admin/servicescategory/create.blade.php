@@ -1,23 +1,7 @@
-@if (LaravelLocalization::getCurrentLocale() == 'ar')
-    @php
-    $dir   = 'rtl';
-    $text  = 'text-right';
-    $inverse_text  = 'text-left';
-    $lang  = 'ar';
-    @endphp
-@elseif (LaravelLocalization::getCurrentLocale() == 'en')  
-    @php
-    $dir    = 'ltr';
-    $text   = '';
-    $inverse_text  = 'text-right';
-    $lang   = 'en';
-    @endphp
-@endif
-
-@extends('layouts.admin')
+@extends('layouts.master')
 
 @section('style')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
 @endsection
 
 @section('content')
@@ -28,18 +12,18 @@
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
-            <div class="col-lg-6 col-7 {{$text}}">
+
+            <div class="col-lg-12 text-left">
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('admin.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('services.index')}}">{{__('admin.SERVICES')}}</a></li>
+                  <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
+                  <li class="breadcrumb-item"><a href="{{route('services.index')}}">{{__('master.SERVICES')}}</a></li>
                   <li class="breadcrumb-item active" aria-current="page">{{ isset($item) ? "Edit Category" : "Add New Category" }}</li>
                 </ol>
               </nav>
             </div>
-            <div class="col-lg-6 col-5 {{$inverse_text}}">
-            </div>
+            
           </div>
         </div>
       </div>
@@ -66,8 +50,8 @@
                         <div class="row">
 
                             <!--=================  Name  =================-->
-                            <div class="form-group col-md-6 mb-4 {{$text}}">
-                                <label class="font-weight-bold text-uppercase">Name</label>
+                            <div class="form-group col-md-6 mb-4 text-left">
+                                <label class="font-weight-bold text-uppercase">{{__('master.NAME')}}</label>
                                 <input type="text" name="name" class="@error('name') is-invalid @enderror form-control" placeholder="Category Name" value="{{ isset($item) ? $item->name : old('name') }}" required>
                             
                                 @error('name')
@@ -75,14 +59,12 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     </div>
                                 @enderror
-            
                             </div>
-
 
                         </div>
         
                         <div class="form-group card-footer">
-                        <button type="submit" class="btn btn-success">{{ isset($item) ?  __('admin.SAVE'):__('admin.ADD') }}</button>
+                        <button type="submit" class="btn btn-success">{{ isset($item) ?  __('master.SAVE'):__('master.ADD') }}</button>
                         </div>
         
                     </form>
@@ -100,10 +82,5 @@
 
 
 @section('script')
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-  <script>
-        $(document).ready(function() {
-                $('.select2').select2();
-            });
-    </script>
+
 @endsection

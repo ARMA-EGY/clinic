@@ -1,20 +1,4 @@
-@if (LaravelLocalization::getCurrentLocale() == 'ar')
-    @php
-    $dir   = 'rtl';
-    $text  = 'text-right';
-    $inverse_text  = 'text-left';
-    $lang  = 'ar';
-    @endphp
-@elseif (LaravelLocalization::getCurrentLocale() == 'en')  
-    @php
-    $dir    = 'ltr';
-    $text   = '';
-    $inverse_text  = 'text-right';
-    $lang   = 'en';
-    @endphp
-@endif
-
-@extends('layouts.admin')
+@extends('layouts.master')
 
 @section('style')
 
@@ -125,18 +109,18 @@
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
-            <div class="col-lg-12 {{$text}}">
+
+            <div class="col-lg-12 text-left">
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('admin.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('appointment.index')}}">{{__('admin.APPOINTMENTS')}}</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">{{  __('admin.CREATEE-NEW-APPOINTMENT') }}</li>
+                  <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
+                  <li class="breadcrumb-item"><a href="{{route('appointment.index')}}">{{__('master.APPOINTMENTS')}}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{  __('master.CREATEE-NEW-APPOINTMENT') }}</li>
                 </ol>
               </nav>
             </div>
-            <div class="col-lg-6 col-5 {{$inverse_text}}">
-            </div>
+            
           </div>
         </div>
       </div>
@@ -164,7 +148,7 @@
                                     </div>
                                     <div class="box-tag box-tag-right"></div>
                                 </div>
-                                <span class="box-label">{{__('admin.BRANCH')}}</span>
+                                <span class="box-label">{{__('master.BRANCH')}}</span>
                             </div>
 
                             <div class="box">
@@ -175,7 +159,7 @@
                                     </div>
                                     <div class="box-tag box-tag-right"></div>
                                 </div>
-                                <span class="box-label">{{__('admin.SECTOR')}}</span>
+                                <span class="box-label">{{__('master.SECTOR')}}</span>
                             </div>
 
                             <div class="box">
@@ -186,7 +170,7 @@
                                     </div>
                                     <div class="box-tag box-tag-right"></div>
                                 </div>
-                                <span class="box-label">{{__('admin.DOCTOR')}}</span>
+                                <span class="box-label">{{__('master.DOCTOR')}}</span>
                             </div>
 
                             <div class="box">
@@ -197,14 +181,14 @@
                                     </div>
                                     <div class="box-tag box-tag-right"></div>
                                 </div>
-                                <span class="box-label">{{__('admin.APPOINTMENT')}}</span>
+                                <span class="box-label">{{__('master.APPOINTMENT')}}</span>
                             </div>
                             
                         </div>
                       </div>
 
-                      <div class="card-body mt-3 {{$text}}" id="card-body">
-                            <label class="font-weight-bold text-uppercase">{{__('admin.SELECT-BRANCH')}}</label>
+                      <div class="card-body mt-3 text-left" id="card-body">
+                            <label class="font-weight-bold text-uppercase">{{__('master.SELECT-BRANCH')}}</label>
                             <div class="row justify-content-center">
                                 <!--=================  Branches  =================-->
 
@@ -221,7 +205,7 @@
                                                             <b>{{$branch->name}}</b>
                                                         </h3>
                                                         <div class="my-2">
-                                                            <small> <b> <i class="fas fa-tooth"></i> {{__('admin.SECTORS')}} :  {{$branch->sectors()->count()}}  </b> </small>
+                                                            <small> <b> <i class="fas fa-tooth"></i> {{__('master.SECTORS')}} :  {{$branch->sectors()->count()}}  </b> </small>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -252,7 +236,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">{{__('admin.ALL-PATIENTS')}}</h5>
+          <h5 class="modal-title">{{__('master.ALL-PATIENTS')}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -264,7 +248,7 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="mb-0">{{__('admin.ALL-PATIENTS')}} <span class="badge badge-primary p-2">{{$patients_count}}</span></h3>
+                        <h3 class="mb-0">{{__('master.ALL-PATIENTS')}} <span class="badge badge-primary p-2">{{$patients_count}}</span></h3>
                     </div>
                     </div>
                 </div>
@@ -277,8 +261,8 @@
                         <thead class="thead-light">
                             <tr>
                             <th scope="col">#</th>
-                            <th scope="col" class="sort" >{{__('admin.NAME')}}</th>
-                            <th scope="col" class="sort" >{{__('admin.PHONE')}}</th>                   
+                            <th scope="col" class="sort" >{{__('master.NAME')}}</th>
+                            <th scope="col" class="sort" >{{__('master.PHONE')}}</th>                   
                             <th scope="col"></th>
                             </tr>
                         </thead>
@@ -291,7 +275,7 @@
                             <td><b> {{  $patient->name }} </b></td>
                             <td>{{ $patient->phone }}</td>
                             <td>
-                                <a class="btn btn-primary btn-sm mx-1 select_patient" data-id="{{ $patient->id }}"> {{__('admin.SELECT')}}  </a>
+                                <a class="btn btn-primary btn-sm mx-1 select_patient" data-id="{{ $patient->id }}"> {{__('master.SELECT')}}  </a>
                             </td>
                             </tr>
         
@@ -302,7 +286,7 @@
                     </div>
 
                 @else 
-                    <p class="text-center"> {{__('admin.NO-PATIENTS-AVAILABLE')}} </p>
+                    <p class="text-center"> {{__('master.NO-PATIENTS-AVAILABLE')}} </p>
                 @endif
     
                 <!-- Card footer -->
@@ -315,7 +299,7 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('master.CANCEL')}}</button>
         </div>
       </div>
     </div>
@@ -434,10 +418,10 @@
             let formData = new FormData(this);
             $('.submit').prop('disabled', true);
             
-            var head1 	= "{{__('admin.DONE')}}";
-            var title1 	= "{{__('admin.APPOINTMENT-FINISHED')}}";
-            var head2 	= "{{__('admin.OOPS')}}";
-            var title2 	= "{{__('admin.SOMETHING-WRONG')}}";
+            var head1 	= "{{__('master.DONE')}}";
+            var title1 	= "{{__('master.APPOINTMENT-FINISHED')}}";
+            var head2 	= "{{__('master.OOPS')}}";
+            var title2 	= "{{__('master.SOMETHING-WRONG')}}";
 
             $.ajax({
                 url: 		"{{route('appointment.store')}}",

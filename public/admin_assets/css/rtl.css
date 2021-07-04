@@ -3,6 +3,16 @@ body
     direction: rtl;
 }
 
+.text-left
+{
+    text-align: right !important;
+}
+
+.text-right
+{
+    text-align: left !important;
+}
+
 .col-auto 
 {
     order: -1;

@@ -1,22 +1,7 @@
-@if (LaravelLocalization::getCurrentLocale() == 'ar')
-    @php
-    $dir   = 'rtl';
-    $text  = 'text-right';
-    $inverse_text  = 'text-left';
-    $lang  = 'ar';
-    @endphp
-@elseif (LaravelLocalization::getCurrentLocale() == 'en')  
-    @php
-    $dir    = 'ltr';
-    $text   = '';
-    $inverse_text  = 'text-right';
-    $lang   = 'en';
-    @endphp
-@endif
 
 @if ($request->step == 1)
 
-    <label class="font-weight-bold text-uppercase">{{__('admin.SELECT-BRANCH')}}</label>
+    <label class="font-weight-bold text-uppercase">{{__('master.SELECT-BRANCH')}}</label>
     <div class="row justify-content-center">
     <!--=================  Branches  =================-->
     
@@ -31,7 +16,7 @@
                                 <b>{{$branch->name}}</b>
                             </h3>
                             <div class="my-2">
-                                <small> <b> <i class="fas fa-tooth"></i> {{__('admin.SECTORS')}} :  {{$branch->sectors()->count()}}  </b> </small>
+                                <small> <b> <i class="fas fa-tooth"></i> {{__('master.SECTORS')}} :  {{$branch->sectors()->count()}}  </b> </small>
                             </div>
                         </div>
                     </div>
@@ -44,7 +29,7 @@
 
 @elseif ($request->step == 2)
 
-    <label class="font-weight-bold text-uppercase">{{__('admin.SELECT-SECTOR')}}</label>
+    <label class="font-weight-bold text-uppercase">{{__('master.SELECT-SECTOR')}}</label>
     <div class="row justify-content-center">
     <!--=================  Sectors  =================-->
 
@@ -61,7 +46,7 @@
                                         <b>{{$sector->name}}</b>
                                     </h3>
                                     <div class="my-2">
-                                        <small> <b> <i class="fas fa-stethoscope"></i> {{__('admin.DOCTORS')}} : {{$sector->user()->where('disable', 0)->where('role', 'Doctor')->where('branch_id', $request->branch)->count()}} </b> </small>
+                                        <small> <b> <i class="fas fa-stethoscope"></i> {{__('master.DOCTORS')}} : {{$sector->user()->where('disable', 0)->where('role', 'Doctor')->where('branch_id', $request->branch)->count()}} </b> </small>
                                     </div>
                                 </div>
                             </div>
@@ -76,13 +61,13 @@
 
     <div class="card-footer">
         <div class="form-group mb-0">
-            <a class="btn btn-info prev-step" data-step="1" data-all='{"step":"1"}'>{{ __('admin.BACK') }}</a>
+            <a class="btn btn-info prev-step" data-step="1" data-all='{"step":"1"}'>{{ __('master.BACK') }}</a>
         </div>
     </div>
 
 @elseif ($request->step == 3)
 
-    <label class="font-weight-bold text-uppercase">{{__('admin.SELECT-DOCTOR')}}</label>
+    <label class="font-weight-bold text-uppercase">{{__('master.SELECT-DOCTOR')}}</label>
     <div class="row justify-content-center">
     <!--=================  Doctors  =================-->
 
@@ -107,7 +92,7 @@
 
     <div class="card-footer">
         <div class="form-group mb-0">
-            <a class="btn btn-info prev-step" data-step="2" data-all='{"step":"2", "branch":"{{$branch->id}}"}'>{{ __('admin.BACK') }}</a>
+            <a class="btn btn-info prev-step" data-step="2" data-all='{"step":"2", "branch":"{{$branch->id}}"}'>{{ __('master.BACK') }}</a>
         </div>
     </div>
 

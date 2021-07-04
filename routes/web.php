@@ -16,34 +16,39 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Front Routes (Website Pages)
+| Front Routes 
 |--------------------------------------------------------------------------
 */
 
-
 Route::get('/', function () {return redirect('/login');});
 Route::get('/admin', function () {return redirect('/login');});
-
 
 /*
 |--------------------------------------------------------------------------
 | Auth Routes
 |--------------------------------------------------------------------------
 */
+
 Auth::routes();
 
 /*
 |--------------------------------------------------------------------------
-| Back Routes (Admin Dashboard Pages)
+| Roles Routes 
 |--------------------------------------------------------------------------
 */
-
 
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'auth','localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function () 
 {
 
-    Route::get('/home', 'AdminController@index')->name('home');
-    Route::get('/calendar', 'AdminController@calendar')->name('calendar');
+    Route::get('/home', 'MasterController@index')->name('home');
+    Route::get('/profile', 'MasterController@profile')->name('profile');
+    Route::get('/calendar', 'MasterController@calendar')->name('calendar');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Routes 
+    |--------------------------------------------------------------------------
+    */
 
     Route::group(['middleware' => [ 'admin' ]], function () 
     {
@@ -78,26 +83,30 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
         Route::post('/disablesector', 'Admin\Sectors\SectorsController@disable')->name('sector-disable');
         Route::post('/disabledoctor', 'Admin\Doctors\DoctorsController@disable')->name('doctor-disable');
         Route::post('/disablestaff', 'Admin\Staff\StaffController@disable')->name('staff-disable');
-        Route::get('/logo', 'AdminController@logo')->name('admin-logo');
-        Route::get('/setting', 'AdminController@setting')->name('admin-setting');
+        Route::get('/logo', 'MasterController@logo')->name('admin-logo');
     });
 
+    /*
+    |--------------------------------------------------------------------------
+    | Staff Routes 
+    |--------------------------------------------------------------------------
+    */
 
     Route::group(['middleware' => [ 'Staff' ]], function () 
     {
 
     });
 
+    /*
+    |--------------------------------------------------------------------------
+    | Doctor Routes 
+    |--------------------------------------------------------------------------
+    */
 
     Route::group(['middleware' => [ 'Doctor' ]], function () 
     {
 
     });
-        
-
-
-
-
 
 });
 
@@ -108,41 +117,47 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
 |--------------------------------------------------------------------------
 */
 
-Route::post('/changelogo', 'AdminController@changelogo')->name('changelogo');
-Route::post('/editinfo', 'AdminController@editinfo')->name('edit-info');
-Route::post('/changepassword', 'AdminController@changepassword')->name('change-password');
-Route::post('/enableuser', 'AdminController@enableuser')->name('enable-user');
+Route::post('/changelogo', 'MasterController@changelogo')->name('changelogo');
+Route::post('/editinfo', 'MasterController@editinfo')->name('edit-info');
+Route::post('/changepassword', 'MasterController@changepassword')->name('change-password');
+Route::post('/enableuser', 'MasterController@enableuser')->name('enable-user');
 
+/*
+|--------------------------------------------------------------------------
+| To-Do List
+|--------------------------------------------------------------------------
+*/
 
-    //------------------------------- To-Do List --------------------------\\
-    //----------------------------------------------------------------------\\
+Route::post('/addtodo', 'MasterController@addtodo')->name('add-todo');
+Route::post('/gettodo', 'MasterController@gettodo')->name('get-todo');
+Route::post('/edittodo', 'MasterController@edittodo')->name('edit-todo');
+Route::post('/removetodo', 'MasterController@removetodo')->name('remove-todo');
 
-Route::post('/addtodo', 'AdminController@addtodo')->name('add-todo');
-Route::post('/gettodo', 'AdminController@gettodo')->name('get-todo');
-Route::post('/edittodo', 'AdminController@edittodo')->name('edit-todo');
-Route::post('/removetodo', 'AdminController@removetodo')->name('remove-todo');
-
-
-    //------------------------------- Notes --------------------------\\
-    //-----------------------------------------------------------------\\
+/*
+|--------------------------------------------------------------------------
+| Notes
+|--------------------------------------------------------------------------
+*/
     
-Route::post('/createnote', 'AdminController@createnote')->name('create-note');
-Route::post('/addnote', 'AdminController@addnote')->name('add-note');
-Route::post('/getnote', 'AdminController@getnote')->name('get-note');
-Route::post('/shownote', 'AdminController@shownote')->name('show-note');
-Route::post('/editnote', 'AdminController@editnote')->name('edit-note');
-Route::post('/removenote', 'AdminController@removenote')->name('remove-note');
+Route::post('/createnote', 'MasterController@createnote')->name('create-note');
+Route::post('/addnote', 'MasterController@addnote')->name('add-note');
+Route::post('/getnote', 'MasterController@getnote')->name('get-note');
+Route::post('/shownote', 'MasterController@shownote')->name('show-note');
+Route::post('/editnote', 'MasterController@editnote')->name('edit-note');
+Route::post('/removenote', 'MasterController@removenote')->name('remove-note');
 
-
-    //------------------------------- Calendar --------------------------\\
-    //--------------------------------------------------------------------\\
+/*
+|--------------------------------------------------------------------------
+| Calendar
+|--------------------------------------------------------------------------
+*/
     
-Route::get('/getevent/{user}', 'AdminController@getevent')->name('get-event');
-Route::post('/addevent', 'AdminController@addevent')->name('add-event');
-Route::post('/updateevent', 'AdminController@updateevent')->name('update-event');
-Route::post('/showevent', 'AdminController@showevent')->name('show-event');
-Route::post('/editnevent', 'AdminController@editevent')->name('edit-event');
-Route::post('/removeevent', 'AdminController@removeevent')->name('remove-event');
+Route::get('/getevent/{user}', 'MasterController@getevent')->name('get-event');
+Route::post('/addevent', 'MasterController@addevent')->name('add-event');
+Route::post('/updateevent', 'MasterController@updateevent')->name('update-event');
+Route::post('/showevent', 'MasterController@showevent')->name('show-event');
+Route::post('/editnevent', 'MasterController@editevent')->name('edit-event');
+Route::post('/removeevent', 'MasterController@removeevent')->name('remove-event');
 
 
 /*

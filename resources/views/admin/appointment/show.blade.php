@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.master')
 
 @section('style')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
@@ -14,8 +14,8 @@
                         <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('admin.DASHBOARD')}}</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('appointment.index')}}">{{__('admin.APPOINTMENTS')}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('appointment.index')}}">{{__('master.APPOINTMENTS')}}</a></li>
                             <li class="breadcrumb-item active" aria-current="page">number</li>
                             </ol>
                         </nav>
@@ -95,10 +95,10 @@
                             <thead class="thead-dark">
                             <tr>
                                 <th scope="col" class="sort">#</th>
-                                <th scope="col" class="sort" >{{__('admin.NAME')}}</th>
-                                <th scope="col" class="sort" >{{__('admin.SERVICE-NUMBER')}}</th>
-                                <th scope="col" class="sort" >{{__('admin.PRICE')}}</th>
-                                <th scope="col" class="sort" >{{__('admin.SECTOR')}} </th>
+                                <th scope="col" class="sort" >{{__('master.NAME')}}</th>
+                                <th scope="col" class="sort" >{{__('master.SERVICE-NUMBER')}}</th>
+                                <th scope="col" class="sort" >{{__('master.PRICE')}}</th>
+                                <th scope="col" class="sort" >{{__('master.SECTOR')}} </th>
                                 <th scope="col" class="sort" >Status </th>
                                 <th scope="col" class="sort" >Body Part </th>
                             </tr>

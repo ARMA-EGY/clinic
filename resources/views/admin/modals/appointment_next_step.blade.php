@@ -1,22 +1,7 @@
-@if (LaravelLocalization::getCurrentLocale() == 'ar')
-    @php
-    $dir   = 'rtl';
-    $text  = 'text-right';
-    $inverse_text  = 'text-left';
-    $lang  = 'ar';
-    @endphp
-@elseif (LaravelLocalization::getCurrentLocale() == 'en')  
-    @php
-    $dir    = 'ltr';
-    $text   = '';
-    $inverse_text  = 'text-right';
-    $lang   = 'en';
-    @endphp
-@endif
 
 @if ($request->step == 1)
 
-    <label class="font-weight-bold text-uppercase">{{__('admin.SELECT-SECTOR')}}</label>
+    <label class="font-weight-bold text-uppercase">{{__('master.SELECT-SECTOR')}}</label>
     <div class="row justify-content-center">
     <!--=================  Sectors  =================-->
 
@@ -33,7 +18,7 @@
                                         <b>{{$sector->name}}</b>
                                     </h3>
                                     <div class="my-2">
-                                        <small> <b> <i class="fas fa-stethoscope"></i> {{__('admin.DOCTORS')}} : {{$sector->user()->where('disable', 0)->where('role', 'Doctor')->where('branch_id', $request->branch)->count()}} </b> </small>
+                                        <small> <b> <i class="fas fa-stethoscope"></i> {{__('master.DOCTORS')}} : {{$sector->user()->where('disable', 0)->where('role', 'Doctor')->where('branch_id', $request->branch)->count()}} </b> </small>
                                     </div>
                                 </div>
                             </div>
@@ -48,13 +33,13 @@
 
     <div class="card-footer">
         <div class="form-group mb-0">
-            <a class="btn btn-info prev-step" data-step="1" data-all='{"step":"1"}'>{{ __('admin.BACK') }}</a>
+            <a class="btn btn-info prev-step" data-step="1" data-all='{"step":"1"}'>{{ __('master.BACK') }}</a>
         </div>
     </div>
 
 @elseif ($request->step == 2)
 
-    <label class="font-weight-bold text-uppercase">{{__('admin.SELECT-DOCTOR')}}</label>
+    <label class="font-weight-bold text-uppercase">{{__('master.SELECT-DOCTOR')}}</label>
     <div class="row justify-content-center">
     <!--=================  Doctors  =================-->
 
@@ -79,7 +64,7 @@
 
     <div class="card-footer">
         <div class="form-group mb-0">
-            <a class="btn btn-info prev-step" data-step="2" data-all='{"step":"2", "branch":"{{$branch->id}}"}'>{{ __('admin.BACK') }}</a>
+            <a class="btn btn-info prev-step" data-step="2" data-all='{"step":"2", "branch":"{{$branch->id}}"}'>{{ __('master.BACK') }}</a>
         </div>
     </div>
     
@@ -107,7 +92,7 @@
             <div class="col-xl-9 col-md-8 col-10">
 
                 <div class="form-group col-md-12 mb-4">
-                    <label class="font-weight-bold text-uppercase">{{__('admin.SELECT-DATE')}}</label>
+                    <label class="font-weight-bold text-uppercase">{{__('master.SELECT-DATE')}}</label>
                     <input type="date" name="appointment_date" class="form-control doctor_date" value="{{$today}}" data-doctor="{{$doctor->id}}" required>
                     <input type="hidden" name="appointment_number" id="appointment_number">
                     <input type="hidden" name="branch_id" value="{{$branch->id}}">
@@ -116,7 +101,7 @@
                 </div>
 
                 <div class="form-group col-md-12 mb-4">
-                    <label class="font-weight-bold text-uppercase">{{__('admin.AVAILABLE-SCHEDULE')}}</label>
+                    <label class="font-weight-bold text-uppercase">{{__('master.AVAILABLE-SCHEDULE')}}</label>
                     <div class="time-serial-parent mt-3" id="available-schedule">
                         @foreach(range(1, 50) as $n)
                             @if (in_array($n, $appointments))
@@ -131,30 +116,30 @@
             </div>
 
             <div class="col-xl-12">
-                <h3><i class="fa fa-info-circle"></i> {{__('admin.PATIENT-INFORMATION')}}</h3>
+                <h3><i class="fa fa-info-circle"></i> {{__('master.PATIENT-INFORMATION')}}</h3>
 
-                <div class="col-12 {{$inverse_text}}">
-                    <a class="btn btn-sm btn-primary" data-toggle="modal" data-target="#patientsModal"> {{__('admin.EXIST-PATIENT')}}</a>
+                <div class="col-12 text-right">
+                    <a class="btn btn-sm btn-primary" data-toggle="modal" data-target="#patientsModal"> {{__('master.EXIST-PATIENT')}}</a>
                 </div>
 
                 <div class="p-4" id="patient_info">
                         <div class="row">
                             <!--=================  Name  =================-->
                             <div class="form-group col-md-4 mb-2">
-                                <label class="font-weight-bold text-uppercase">{{__('admin.NAME')}}</label>
-                                <input type="text" name="name" class="form-control" placeholder="{{__('admin.NAME')}}" required>
+                                <label class="font-weight-bold text-uppercase">{{__('master.NAME')}}</label>
+                                <input type="text" name="name" class="form-control" placeholder="{{__('master.NAME')}}" required>
                             </div>
 
                             <!--=================  Phone  =================-->
                             <div class="form-group col-md-4 mb-2">
-                                <label class="font-weight-bold text-uppercase">{{__('admin.PHONE')}}</label>
-                                <input type="number" name="phone" class="form-control" placeholder="{{__('admin.PHONE')}}" required>
+                                <label class="font-weight-bold text-uppercase">{{__('master.PHONE')}}</label>
+                                <input type="number" name="phone" class="form-control" placeholder="{{__('master.PHONE')}}" required>
                             </div>
 
                             <!--================= identifiation  =================-->
                             <div class="form-group col-md-4 mb-2">
-                                <label class="font-weight-bold text-uppercase">{{__('admin.IDENTIFICATION')}}</label>
-                                <input type="text" name="identifiation" class="form-control" placeholder="{{__('admin.IDENTIFICATION')}}" required>
+                                <label class="font-weight-bold text-uppercase">{{__('master.IDENTIFICATION')}}</label>
+                                <input type="text" name="identifiation" class="form-control" placeholder="{{__('master.IDENTIFICATION')}}" required>
                             </div>
 
 
@@ -165,23 +150,23 @@
 
                             <!--=================  dateofbirth  =================-->
                             <div class="form-group col-md-4 mb-2">
-                                <label class="font-weight-bold text-uppercase">{{__('admin.BIRTHDATE')}}</label>
-                                <input type="date" name="dateofbirth" class="form-control" placeholder="{{__('admin.BIRTHDATE')}}" required>
+                                <label class="font-weight-bold text-uppercase">{{__('master.BIRTHDATE')}}</label>
+                                <input type="date" name="dateofbirth" class="form-control" placeholder="{{__('master.BIRTHDATE')}}" required>
                             </div>
 
                             <!--================= gender  =================-->
                             <div class="form-group col-md-4 mb-2">
-                                <label class="font-weight-bold text-uppercase">{{__('admin.GENDER')}}</label>
+                                <label class="font-weight-bold text-uppercase">{{__('master.GENDER')}}</label>
                                 <select class="form-control" name="gender" required>
-                                    <option value="Male"> {{__('admin.MALE')}} </option>
-                                    <option value="Female">{{__('admin.FEMALE')}} </option>                                   
+                                    <option value="Male"> {{__('master.MALE')}} </option>
+                                    <option value="Female">{{__('master.FEMALE')}} </option>                                   
                                 </select>
                             </div>
 
                             <!--=================  age  =================-->
                             <div class="form-group col-md-4 mb-2">
-                                <label class="font-weight-bold text-uppercase">{{__('admin.AGE')}}</label>
-                                <input type="number" name="age" class="form-control" placeholder="{{__('admin.AGE')}}" required>
+                                <label class="font-weight-bold text-uppercase">{{__('master.AGE')}}</label>
+                                <input type="number" name="age" class="form-control" placeholder="{{__('master.AGE')}}" required>
                             </div>
 
                         </div>
@@ -191,24 +176,24 @@
 
                             <!--================= nationality  =================-->
                             <div class="form-group col-md-4 mb-2">
-                                <label class="font-weight-bold text-uppercase">{{__('admin.NATIONALITY')}}</label>
-                                <input type="text" name="nationality" class="form-control" placeholder="{{__('admin.NATIONALITY')}}" required>
+                                <label class="font-weight-bold text-uppercase">{{__('master.NATIONALITY')}}</label>
+                                <input type="text" name="nationality" class="form-control" placeholder="{{__('master.NATIONALITY')}}" required>
                             </div>
 
                             <!--================= relationship  =================-->
                             <div class="form-group col-md-4 mb-2">
-                                <label class="font-weight-bold text-uppercase">{{__('admin.RELATIONSHIP-STATUS')}}</label>
+                                <label class="font-weight-bold text-uppercase">{{__('master.RELATIONSHIP-STATUS')}}</label>
                                 <select class="form-control" name="relationship" required>
-                                    <option value="Single">{{__('admin.SINGLE')}}</option>    
-                                    <option value="Engaged">{{__('admin.ENGAGED')}}</option>                                 
-                                    <option value="Married">{{__('admin.MARRIED')}}</option>                                                              
+                                    <option value="Single">{{__('master.SINGLE')}}</option>    
+                                    <option value="Engaged">{{__('master.ENGAGED')}}</option>                                 
+                                    <option value="Married">{{__('master.MARRIED')}}</option>                                                              
                                 </select>
                             </div>
 
                             <!--================= job  =================-->
                             <div class="form-group col-md-4 mb-2">
-                                <label class="font-weight-bold text-uppercase">{{__('admin.JOB')}}</label>
-                                <input type="text" name="job" class="form-control" placeholder="{{__('admin.JOB')}}" required>
+                                <label class="font-weight-bold text-uppercase">{{__('master.JOB')}}</label>
+                                <input type="text" name="job" class="form-control" placeholder="{{__('master.JOB')}}" required>
                             </div>
 
                         </div>
@@ -218,7 +203,7 @@
 
                             <!--================= Medical History  =================-->
                             <div class="form-group col-md-12 mb-2">
-                                <label class="font-weight-bold text-uppercase">{{__('admin.MEDICAL-HISTORY')}}</label>
+                                <label class="font-weight-bold text-uppercase">{{__('master.MEDICAL-HISTORY')}}</label>
                                 <input id="x" type="hidden" name="medical_history">
                                 <trix-editor input="x"></trix-editor>
                             </div>
@@ -232,8 +217,8 @@
 
         <div class="card-footer">
             <div class="form-group mb-0 d-flex justify-content-between">
-                <a class="btn btn-info prev-step" data-step="3" data-all='{"step":"3", "branch":"{{$branch->id}}", "sector": "{{$sector->id}}"}'>{{ __('admin.BACK') }}</a>
-                <button type="submit" class="btn btn-success submit" >{{ __('admin.FINISH') }}</button>
+                <a class="btn btn-info prev-step" data-step="3" data-all='{"step":"3", "branch":"{{$branch->id}}", "sector": "{{$sector->id}}"}'>{{ __('master.BACK') }}</a>
+                <button type="submit" class="btn btn-success submit" >{{ __('master.FINISH') }}</button>
             </div>
         </div>
     </form>
