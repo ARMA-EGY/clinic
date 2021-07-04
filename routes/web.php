@@ -92,7 +92,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
     |--------------------------------------------------------------------------
     */
 
-    Route::group(['prefix' => 'staff','middleware' => [ 'Staff' ]], function () 
+    Route::group(['prefix' => 'staff','middleware' => [ 'staff' ]], function () 
     {
 
     });
@@ -103,10 +103,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
     |--------------------------------------------------------------------------
     */
 
-    Route::group(['prefix' => 'doctor','middleware' => [ 'Doctor' ]], function () 
+    Route::group(['prefix' => 'doctor','middleware' => [ 'doctor' ]], function () 
     {
         Route::get('/doctor/{id}/profile', 'Doctor\Doctors\DoctorsController@profile')->name('doctor-doctors.profile');
-        Route::resource('/appointment', 'Doctor\Appointment\AppointmentController'); 
+        Route::resource('/doctor-appointment', 'Doctor\Appointment\AppointmentController'); 
         Route::get('/appointment-today', 'Doctor\Appointment\AppointmentController@today')->name('doctor-appointment.today');
         Route::get('/appointment-done', 'Doctor\Appointment\AppointmentController@done')->name('doctor-appointment.done');
         Route::get('/appointment-cancelled', 'Doctor\Appointment\AppointmentController@cancelled')->name('doctor-appointment.cancelled');

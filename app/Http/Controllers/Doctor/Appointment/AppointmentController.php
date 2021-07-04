@@ -23,7 +23,7 @@ class AppointmentController extends Controller
 
     public function index()
     {
-        $user = Auth::user();
+        $user        = Auth::user();
 		$items       = Appointment::where('doctor_id',$user->id)->orderBy('id','desc')->get();
 		
         return view('doctor.appointment.index', [

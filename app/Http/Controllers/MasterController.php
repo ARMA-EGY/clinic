@@ -86,6 +86,9 @@ class MasterController extends Controller
                 'staff_count' => User::where('disable', 0)->where('role', 'Staff')->count(),
                 'doctors_count' => User::where('disable', 0)->where('role', 'Doctor')->count(),
                 'patients_count' => Patients::all()->count(),
+                'today_appointments' => Appointment::where('doctor_id', $user->id)->where('appointment_date', $today)->count(),
+                'done_appointments' => Appointment::where('doctor_id', $user->id)->where('appointment_date', '<', $today)->count(),
+                'total_appointments' => Appointment::where('doctor_id', $user->id)->where('cancelled', 0)->count(),
             ]);
 
         }
