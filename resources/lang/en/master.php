@@ -244,6 +244,7 @@ return [
     "INVENTORY" => "Inventory",
     "ADMINS" => "Admins",
     "CATEGORY" => "Category",
+    "CATEGORIES" => "Categories",
     "ALL-CATEGORIES" => "All Categories",
     "ADD-NEW-CATEGORY" => "Add New Category",
     "NO-CATEGORIES-AVAILABLE" => "No Categories Available",

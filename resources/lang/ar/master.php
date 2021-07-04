@@ -241,6 +241,7 @@ return [
     "INVENTORY" => "مستودع",
     "ADMINS" => "الأعضاء المشرفون",
     "CATEGORY" => "الفئة",
+    "CATEGORIES" => "الفئات",
     "ALL-CATEGORIES" => "كل الفئات",
     "ADD-NEW-CATEGORY" => "اضافة فئة جديدة",
     "NO-CATEGORIES-AVAILABLE" => "لا يوجد فئات متاحة",

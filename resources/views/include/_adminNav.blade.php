@@ -292,6 +292,21 @@
                       </a>
                       <div class="collapse" id="navbar-services" style="">
                         <ul class="nav nav-sm flex-column">
+
+                          <li class="nav-item">
+                            <a href="{{ route('servicescategory.create')}}" class="nav-link nav-link-sub {{request()->routeIs('servicescategory.create') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> {{__('master.ADD-NEW-CATEGORY')}} </span>
+                            </a>
+                          </li>
+                          
+                          <li class="nav-item">
+                            <a href="{{ route('servicescategory.index')}}" class="nav-link nav-link-sub {{request()->routeIs('servicescategory.index') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> {{__('master.ALL-CATEGORIES')}} </span>
+                            </a>
+                          </li>
+
                         @if(auth()->user()->can('create services'))
                           <li class="nav-item">
                             <a href="{{ route('services.create')}}" class="nav-link nav-link-sub {{request()->routeIs('services.create') ? 'active' : '' }}">
