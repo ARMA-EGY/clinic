@@ -31,35 +31,28 @@
                       <ul class="nav nav-sm flex-column">
 
                         <li class="nav-item">
-                          <a href="{{route('appointment.create')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.create') ? 'active' : '' }}">
-                            <i class="far fa-dot-circle"></i>
-                            <span class="sidenav-normal"> {{__('master.CREATEE')}}  </span>
-                          </a>
-                        </li>
-
-                        <li class="nav-item">
-                          <a href="{{route('appointment.today')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.today') ? 'active' : '' }}">
+                          <a href="{{route('doctor-appointment.today')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.today') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.TODAY')}}  </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="{{route('appointment.done')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.done') ? 'active' : '' }}">
+                          <a href="{{route('doctor-appointment.done')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.done') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.DONE')}}  </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="{{route('appointment.cancelled')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.cancelled') ? 'active' : '' }}">
+                          <a href="{{route('doctor-appointment.cancelled')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.cancelled') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.CANCELLED')}}  </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="{{route('appointment.index')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.index') ? 'active' : '' }}">
+                          <a href="{{route('doctor-appointment.index')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.ALL')}}  </span>
                           </a>
@@ -69,34 +62,7 @@
                     </div>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#navbar-services" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
-                      <i class="fas fa-briefcase-medical"></i>
-                      <span class="nav-link-text">{{__('master.SERVICES')}}</span>
-                    </a>
-                    <div class="collapse" id="navbar-services" style="">
-                      <ul class="nav nav-sm flex-column">
-                      @if(auth()->user()->can('create services'))
-                        <li class="nav-item">
-                          <a href="{{ route('services.create')}}" class="nav-link nav-link-sub {{request()->routeIs('services.create') ? 'active' : '' }}">
-                            <i class="far fa-dot-circle"></i>
-                            <span class="sidenav-normal"> {{__('master.ADD-NEW-SERVICE')}} </span>
-                          </a>
-                        </li>
-                      @endif
 
-                      @if(auth()->user()->can('all services'))
-                        <li class="nav-item">
-                          <a href="{{ route('services.index')}}" class="nav-link nav-link-sub {{request()->routeIs('services.index') ? 'active' : '' }}">
-                            <i class="far fa-dot-circle"></i>
-                            <span class="sidenav-normal"> {{__('master.ALL-SERVICES')}} </span>
-                          </a>
-                        </li>
-                      @endif
-                        
-                      </ul>
-                    </div>
-                </li>
                 
             </ul>
             <!-- Divider -->

@@ -64,17 +64,22 @@ class MasterController extends Controller
         }
         else if( $user->role == 'Staff')
         {
+            $today                = date('Y-m-d');
             return view('staff.home', [
                 'branches_count' => Branches::where('disable', 0)->count(),
                 'sectors_count' => Sector::where('disable', 0)->count(),
                 'staff_count' => User::where('disable', 0)->where('role', 'Staff')->count(),
                 'doctors_count' => User::where('disable', 0)->where('role', 'Doctor')->count(),
                 'patients_count' => Patients::all()->count(),
+                'today_appointments' => Appointment::where('appointment_date', $today)->count(),
+                'done_appointments' => Appointment::where('appointment_date', '<', $today)->count(),
+                'total_appointments' => Appointment::where('cancelled', 0)->count(),
             ]);
 
         }
         else if( $user->role == 'Doctor')
         {
+            $today                = date('Y-m-d');
             return view('doctor.home', [
                 'branches_count' => Branches::where('disable', 0)->count(),
                 'sectors_count' => Sector::where('disable', 0)->count(),
