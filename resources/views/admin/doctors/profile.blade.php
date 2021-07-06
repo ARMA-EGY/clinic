@@ -261,7 +261,7 @@
                                     <!--=================  Nationality  =================-->
                                     <div class="form-group col-md-6 mb-2 text-left">
                                         <label class="font-weight-bold text-uppercase">{{__('master.NATIONALITY')}}</label>
-                                        <input type="text" class="form-control" value="{{ $item->nationality }}" disabled>
+                                        <input type="text" class="form-control" value="{{__('nationality.'.$item->nationality)}}" disabled>
                                     </div>
 
                                 </div>

@@ -3,6 +3,22 @@ body
     direction: rtl;
 }
 
+.ml-auto 
+{
+    margin-right: auto !important;
+    margin-left:  unset !important;
+}
+
+.dropdown-menu .inner
+{
+    text-align: right !important;
+}
+
+.filter-option
+{
+    text-align: right !important;
+}
+
 .text-left
 {
     text-align: right !important;

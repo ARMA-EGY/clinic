@@ -1,22 +1,3 @@
-@if (LaravelLocalization::getCurrentLocale() == 'ar')
-    @php
-    $dir   = 'rtl';
-    $text  = 'text-right';
-    $inverse_text  = 'text-left';
-    $lang  = 'ar';
-    $margin  = 'mr-auto';
-    @endphp
-@elseif (LaravelLocalization::getCurrentLocale() == 'en')  
-    @php
-    $dir    = 'ltr';
-    $text   = '';
-    $inverse_text  = 'text-right';
-    $lang   = 'en';
-    $margin  = 'ml-auto';
-    @endphp
-@endif
-
-
 <!DOCTYPE html>
 <html>
 
@@ -46,7 +27,8 @@
   <!-- Material Design Bootstrap -->
   {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet"> --}}
   <link rel="stylesheet" href="{{ asset('admin_assets/css/mdbootstrap.css') }}" type="text/css">
- 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
   {{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> --}}
   <!-- JQUERY UI -->
   <link rel="stylesheet" href="{{ asset('admin_assets/css/jquery-ui.css') }}" type="text/css">
@@ -88,7 +70,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar links -->
                 
-                <ul class="navbar-nav align-items-center {{$margin}}">
+                <ul class="navbar-nav align-items-center ml-auto">
 
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -268,9 +250,6 @@
 
 
     <script src="{{ asset('admin_assets/vendor/jquery/dist/jquery.min.js') }}" ></script>
-
-    {{-- <script type="application/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script> --}}
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="{{ asset('admin_assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
@@ -286,12 +265,10 @@
     
     <!--Bootstrap switch files-->
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
     <script src="https://cdn.tiny.cloud/1/mq6umcdg6y938v1c32lokocdpgrgp5g2yl794h4y1braa6j6/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
-    {{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script> --}}
-   
     <!-- JQUERY UI -->
     <script src="{{ asset('admin_assets/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('admin_assets/js/jquery.ui.touch-punch.min.js') }}"></script>
@@ -300,49 +277,17 @@
     <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
 
     <script>
+
+        $(function() 
+        {
+            $('.selectpicker').selectpicker();
+        });
+
         $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
-        // =============  Remove Item =============
-        $(document).on('click', '.remove_item', function() {
-            
-            var item 	= $(this).attr('data-id');
-            var url 	= $(this).attr('data-url');
-
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                Swal.fire(
-                    'Deleted!',
-                    'Item has been deleted.',
-                    'success'
-                )
-
-                $.ajax({
-                            url: 		url,
-                            method: 	'POST',
-                            dataType: 	'json',
-                            data:		{id: item}	
-                    });
-
-                    $(this).parents('.parent').remove();
-                }
-            })
-            
-        });
-
-
-
 
         $(document).on("change",".item_check", function()
         {
@@ -361,6 +306,7 @@
                         }  
                   })
         });
+
     </script>
 
     @yield('script')

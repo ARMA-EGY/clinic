@@ -8,6 +8,7 @@ use App\Models\Appointment;
 use App\Models\Branches;
 use App\Models\Sector;
 use App\Models\Patients;
+use App\Models\Countries;
 use App\Models\User;
 use App\Models\Services;
 use App\Models\appointmentServices;
@@ -244,6 +245,7 @@ class AppointmentController extends Controller
                 'doctor'       => $doctor,
                 'today'        => $today,
                 'appointments'        => $appointment_array,
+                'countries'   => Countries::all(),
             ]);
         }
 
@@ -318,6 +320,7 @@ class AppointmentController extends Controller
 		
         return view('admin.modals.patient_info', [
             'patient'        => $patient,
+            'countries'   => Countries::all(),
         ]);
     }
    

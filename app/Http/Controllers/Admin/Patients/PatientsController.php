@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Patients;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Patients;
+use App\Models\Countries;
 use App\Http\Requests\Patients\AddRequest;
 use Illuminate\Support\Facades\Storage;
 
@@ -54,7 +55,9 @@ class PatientsController extends Controller
         {
             return redirect(route('home'));
         }
-        return view('admin.patients.create');
+        return view('admin.patients.create', [
+            'countries'   => Countries::all(),
+            ]);
     }
 
 
@@ -95,7 +98,10 @@ class PatientsController extends Controller
         {
             return redirect(route('home'));
         }
-		return view('admin.patients.create', ['patient' => $patient]);
+		return view('admin.patients.create', [
+            'patient' => $patient,
+            'countries'   => Countries::all(),
+            ]);
     }
 
     

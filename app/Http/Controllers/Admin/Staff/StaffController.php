@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Sector;
 use App\Models\Branches;
+use App\Models\Countries;
 use App\Models\Roles;
 use App\Http\Requests\Staff\AddRequest;
 use App\Http\Requests\Staff\UpdateRequest;
@@ -91,6 +92,7 @@ class StaffController extends Controller
             'branches'   => Branches::where('disable', 0)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
             'roles'    => Roles::where('name', '!=', 'Doctor')->orderBy('id','desc')->get(),
+            'countries'   => Countries::all(),
             ]);
     }
 
@@ -188,6 +190,7 @@ class StaffController extends Controller
             'item' => $doctor,
             'branches'   => Branches::where('disable', 0)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
+            'countries'   => Countries::all(),
         ]);
     }
 

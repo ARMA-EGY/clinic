@@ -132,7 +132,11 @@
                                     <!--=================  Nationality  =================-->
                                     <div class="form-group col-md-6 mb-2 text-left">
                                         <label class="font-weight-bold text-uppercase">{{__('master.NATIONALITY')}}</label>
-                                        <input type="text" name="nationality" class="@error('nationality') is-invalid @enderror form-control" placeholder="{{__('master.NATIONALITY')}}" value="{{ isset($item) ? $item->nationality : old('nationality') }}" >
+                                        <select class="@error('nationality') is-invalid @enderror form-control selectpicker" name="nationality" data-live-search="true" required>
+                                            @foreach ($countries as $country)
+                                                <option value="{{$country->country_Nationality}}" @if (isset($item))  @if ($item->nationality == $country->country_Nationality ) selected @endif @endif>{{__('nationality.'.$country->country_Nationality)}}</option>
+                                            @endforeach
+                                        </select>
                                     
                                         @error('nationality')
                                             <div>

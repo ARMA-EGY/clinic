@@ -90,6 +90,7 @@
                     <div class="card-header bg-transparent border-0 ">
                         <h3 class="text-white mb-0">Services</h3>
                     </div>
+
                     <div class="table-responsive">
                         <table class="table align-items-center table-dark table-flush">
                             <thead class="thead-dark">
@@ -119,6 +120,7 @@
                             </tbody>
                         </table>
                     </div>
+                    
                 </div>
             </div>
 

@@ -20,12 +20,15 @@ use App\Models\Sector;
 use App\Models\Patients;
 
 use App\Models\Appointment;
+use App\Models\Countries;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+
+use Image;
 
 class MasterController extends Controller
 {
@@ -101,7 +104,9 @@ class MasterController extends Controller
         $user = auth()->user();
         if( $user->role == 'Admin')
         {
-            return view('admin.profile', []);
+            return view('admin.profile', [
+                'countries'   => Countries::all(),
+                ]);
         }
         else if( $user->role == 'Staff')
         {
@@ -121,6 +126,20 @@ class MasterController extends Controller
 
         return view('admin.logo', [
             'logo'    => $logo
+        ]);
+    }
+    
+    //-------------- Patient Profile---------------\\
+    public function patientProfile($id)
+    {
+        $patient            = Patients::where('id', $id)->first();
+        $sectors            = Sector::where('disable', 0)->orderBy('id','desc')->get();
+        $appointments       = Appointment::where('patient_id', $id)->orderBy('id','desc')->get();
+
+        return view('common.patient_profile', [
+            'patient'           => $patient,
+            'sectors'           => $sectors,
+            'appointments'      => $appointments,
         ]);
     }
     
@@ -156,20 +175,48 @@ class MasterController extends Controller
     {
             $user            = User::where('id', $request->id)->first();
 
-            $data = $request->only(['name', 'email', 'gender', 'phone']);
+            $data = $request->only(['name', 'email', 'gender', 'phone', 'birthdate', 'nationality']);
 
-            if($request->gender == 'Male')
+            $user->update($data);
+
+            if($user)
             {
-                $avatar = 'admin_assets/img/theme/avatar.png';
+                return response()->json([
+                    'status' => 'true',
+                    'msg' => 'success'
+                ]) ;
             }
             else
             {
-                $avatar = 'admin_assets/img/theme/avatar2.png';
+                return response()->json([
+                    'status' => 'false',
+                    'msg' => 'error'
+                ]) ;
             }
+    }
 
-            $data['avatar'] = $avatar;
+    //-------------- Change Profile Picture ---------------\\
+    public function changeProfilePicture(Request $request)
+    {
+            $user            = User::where('id', $request->id)->first();
+            $image_path      = public_path().'/'.$user->avatar;
 
-            $user->update($data);
+            $image = $request->file('avatar');
+            $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+        
+            $destinationPath = public_path('/images/avatars');
+            ini_set('memory_limit', '256M');
+            $img = Image::make($image->getRealPath());
+            $img->resize(400, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$input['imagename']);
+
+            $avatar = 'images/avatars/'.$input['imagename'];
+
+            $user->avatar     = $avatar;
+            $user->save();
+
+            unlink($image_path);
 
             if($user)
             {
