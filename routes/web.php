@@ -43,6 +43,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
     Route::get('/home', 'MasterController@index')->name('home');
     Route::get('/profile', 'MasterController@profile')->name('profile');
     Route::get('/calendar', 'MasterController@calendar')->name('calendar');
+    Route::get('/patient/{id}/profile', 'MasterController@patientProfile')->name('patient.profile');
 
     /*
     |--------------------------------------------------------------------------
@@ -125,6 +126,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
 
 Route::post('/changelogo', 'MasterController@changelogo')->name('changelogo');
 Route::post('/editinfo', 'MasterController@editinfo')->name('edit-info');
+Route::post('/changeProfilePicture', 'MasterController@changeProfilePicture')->name('change-profile-picture');
 Route::post('/changepassword', 'MasterController@changepassword')->name('change-password');
 Route::post('/enableuser', 'MasterController@enableuser')->name('enable-user');
 

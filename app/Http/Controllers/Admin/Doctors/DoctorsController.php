@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Sector;
 use App\Models\Branches;
+use App\Models\Countries;
 use App\Http\Requests\Doctors\AddRequest;
 use App\Http\Requests\Doctors\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
@@ -89,6 +90,7 @@ class DoctorsController extends Controller
         return view('admin.doctors.create', [
             'branches'   => Branches::where('disable', 0)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
+            'countries'   => Countries::all(),
             ]);
     }
 
@@ -188,6 +190,7 @@ class DoctorsController extends Controller
             'item' => $doctor,
             'branches'   => Branches::where('disable', 0)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
+            'countries'   => Countries::all(),
         ]);
     }
 

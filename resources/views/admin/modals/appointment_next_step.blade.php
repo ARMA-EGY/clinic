@@ -177,7 +177,11 @@
                             <!--================= nationality  =================-->
                             <div class="form-group col-md-4 mb-2">
                                 <label class="font-weight-bold text-uppercase">{{__('master.NATIONALITY')}}</label>
-                                <input type="text" name="nationality" class="form-control" placeholder="{{__('master.NATIONALITY')}}" required>
+                                <select class="@error('nationality') is-invalid @enderror form-control selectpicker" name="nationality" data-live-search="true" required>
+                                    @foreach ($countries as $country)
+                                        <option value="{{$country->country_Nationality}}" @if (isset($patient))  @if ($patient->nationality == $country->country_Nationality ) selected @endif @endif>{{__('nationality.'.$country->country_Nationality)}}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <!--================= relationship  =================-->
@@ -222,5 +226,13 @@
             </div>
         </div>
     </form>
+
+
+    <script>
+        $(function() 
+        {
+            $('.selectpicker').selectpicker();
+        });
+    </script>
     
 @endif

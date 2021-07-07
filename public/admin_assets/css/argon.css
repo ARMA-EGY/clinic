@@ -7,6 +7,20 @@
 =========================================================
 */
 
+.bootstrap-select button
+{
+    font-size: .875rem !important;
+    height: calc(1.0em + 1.25rem + 5px) !important;
+    transition: all .15s ease-in-out !important;
+    box-shadow: unset !important;
+    background-color: unset !important;
+    color: inherit !important;
+    border: 1px solid #dee2e6 !important;
+    text-transform: inherit !important;
+    font-weight: 400 !important;
+    padding: .5rem .75rem;
+}
+
 .doctor-img
 {
     border-radius: 50%;

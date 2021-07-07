@@ -39,6 +39,8 @@ return [
 
     "MALE" => "ذكر",       
     "FEMALE" => "انثى",
+    "Male" => "ذكر",       
+    "Female" => "انثى",
     "LANGUAGE" => "اللغة",
     "ENGLISH" => "الانجليزية",
     "ARABIC" => "العربية",
@@ -52,6 +54,7 @@ return [
     "STATUS" => "الحالة",
     "EDIT" => "تعديل",
     "SAVE" => "حفظ",
+    "SAVE-CHANGES" => "حفظ التغييرات",
     "ADD" => "اضافة",
     "NEXT" => "التالي",
     "PREV" => "السابق",
@@ -88,7 +91,8 @@ return [
     "NO-DOCTORS-AVAILABLE" => "لا يوجد أطباء متاحين",
 
     "STAFF" => "الموظفون",
-    "ADD-NEW-STAFF" => "اضافة عامل جديد",
+    "STAFF-DETAILS" => "بيانات الموظف",
+    "ADD-NEW-STAFF" => "اضافة موظف جديد",
     "EDIT-STAFF" => "تعديل بيانات العامل",
     "ALL-STAFF" => "جميع الموظفون",
     "ACTIVE-STAFF" => "الموظفون المتاحين",
@@ -124,6 +128,7 @@ return [
     "NO-SERVICES-AVAILABLE" => "لا توجد خدمات متاحة",
 
     "RAYS" => "الاشاعات",
+    "NO-RAYS" => "لا توجد اشاعات.",
     "ADD-NEW-RAYS" => "اضافة اشعة جديدة",
     "ALL-RAYS" => "جميع الاشاعات",
 
@@ -141,6 +146,9 @@ return [
     "EMAIL" => "البريد الالكتروني",
     "GENDER" => "الجنس",
     "PASSWORD" => "كلمة المرور",
+    "CHANGE-PASSWORD" => "تغيير كلمة المرور",
+    "CURRENT-PASSWORD" => "كلمة المرور الحالية",
+    "NEW-PASSWORD" => "كلمة المرور الجديدة",
     "CONFIRM-PASSWORD" => "تأكيد كلمة المرور",
     "ROLE" => "الوظيفة",
     "NATIONALITY" => "الجنسية",
@@ -157,6 +165,7 @@ return [
     "IDENTIFICATION" => "الهوية",
     "AGE" => "العمر",
     "PROFILE-PICTURE" => "الصورة الشخصية",
+    "CHANGE-PROFILE-PICTURE" => "تغيير الصورة الشخصية",
     "INFORMATION" => "البيانات",
     "PERSONAL-INFORMATION" => "بيانات شخصية",
     "WORK-INFORMATION" => "بيانات العمل",
@@ -206,6 +215,7 @@ return [
     "DONE" => "تم",
     "OOPS" => "عفواً",
     "APPOINTMENT-FINISHED" => "تم الانتهاء من الحجز بنجاح",
+    "DATA-CHANGED-SUCCESSFULLY" => "تم تغيير البيانات بنجاح.",
     "SOMETHING-WRONG" => "هناك شئ خاطئ، يرجى المحاولة فى وقت لاحق.",
 
 
@@ -245,4 +255,7 @@ return [
     "ALL-CATEGORIES" => "كل الفئات",
     "ADD-NEW-CATEGORY" => "اضافة فئة جديدة",
     "NO-CATEGORIES-AVAILABLE" => "لا يوجد فئات متاحة",
+   
+    "PLEDGES" => "التعهدات",
+    "NO-PLEDGES" => "لا توجد تعهدات.",
 ];

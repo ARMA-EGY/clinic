@@ -120,94 +120,6 @@
 
                 <div class="col-xl-8">
 
-                    <div class="row justify-content-center">
-        
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.PATIENTS')}}</h5>
-                                    <span class="h2 font-weight-bold mb-0">0</span>
-                                    </div>
-                                    <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
-                                        <i class="fas fa-syringe"></i>
-                                    </div>
-                                    </div>
-                                </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                </p>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.PATIENTS')}}</h5>
-                                    <span class="h2 font-weight-bold mb-0">0</span>
-                                    </div>
-                                    <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
-                                        <i class="fas fa-syringe"></i>
-                                    </div>
-                                    </div>
-                                </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                </p>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.TODAY-APPOINTMENTS')}}</h5>
-                                    <span class="h2 font-weight-bold mb-0">0</span>
-                                    </div>
-                                    <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">
-                                        <i class="fas fa-notes-medical"></i>
-                                    </div>
-                                    </div>
-                                </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                </p>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.TODAY-APPOINTMENTS')}}</h5>
-                                    <span class="h2 font-weight-bold mb-0">0</span>
-                                    </div>
-                                    <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">
-                                        <i class="fas fa-notes-medical"></i>
-                                    </div>
-                                    </div>
-                                </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                </p>
-                                </div>
-                            </div>
-                        </div>
-        
-                    </div>
-
                     <div class="card card-defualt">
                         <div class="card-header"><i class="fa fa-info-circle"></i> {{__('master.PERSONAL-INFORMATION')}} </div>
                         <div class="card-body">
@@ -261,7 +173,7 @@
                                     <!--=================  Nationality  =================-->
                                     <div class="form-group col-md-6 mb-2 text-left">
                                         <label class="font-weight-bold text-uppercase">{{__('master.NATIONALITY')}}</label>
-                                        <input type="text" class="form-control" value="{{ $item->nationality }}" disabled>
+                                        <input type="text" class="form-control" value="{{__('nationality.'.$item->nationality)}}" disabled>
                                     </div>
 
                                 </div>
@@ -280,12 +192,12 @@
                                         <label class="font-weight-bold text-uppercase">{{__('master.BRANCH')}}</label>
                                         <input type="text" class="form-control" value="{{ $item->branch->name }}" disabled>
                                     </div>
-                
-                                    <!--=================  Sector  =================-->
+
+                                    <!--=================  Role  =================-->
                                     <div class="form-group col-md-6 mb-2 text-left">
-                                        <label class="font-weight-bold text-uppercase">{{__('master.SECTOR')}}</label>
-                                        <input type="text" class="form-control" value="{{ $item->sector->name }}" disabled>
-                                    </div>
+                                        <label class="font-weight-bold text-uppercase">{{__('master.ROLE')}}</label>
+                                        <input type="text" class="form-control" value="{{ $item->roleName->name }}" disabled>                    
+                                    </div> 
 
                                 </div>
                                 <hr class="my-2">
@@ -356,17 +268,6 @@
                                             <option value="19" @if ($item->profit_ratio == 19) selected @endif >19%</option>
                                             <option value="20" @if ($item->profit_ratio == 20) selected @endif >20%</option>
                                         </select>
-                                    </div>
-
-                                </div>
-                                <hr class="my-2">
-
-                                <div class="row">
-
-                                    <!--=================  License Number  =================-->
-                                    <div class="form-group col-md-12 mb-2 text-left">
-                                        <label class="font-weight-bold text-uppercase">{{__('master.LICENSE-NUMBER')}}</label>
-                                        <input type="text" class="form-control" value="{{ $item->license_number }}" disabled>
                                     </div>
 
                                 </div>

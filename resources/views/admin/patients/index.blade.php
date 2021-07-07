@@ -80,7 +80,6 @@
               <table class="table align-items-center table-flush display nowrap" id="example">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col"></th>
                     <th scope="col">#</th>
                     <th scope="col" class="sort" >{{__('master.NAME')}}</th>
                     <th scope="col" class="sort" >{{__('master.PHONE')}}</th>
@@ -97,17 +96,17 @@
                   @foreach ($patients as $patient)
 
                   <tr class="parent" data-index="{{ $patient->id }}">
-                    <td class="pointer"><i class="fas fa-arrows-alt-v"></i></td>
                     <td>{{ $loop->iteration }}</td>
                     <td><b> {{  $patient->name }} </b></td>
                     <td>{{ $patient->phone }}</td>
                     <td>{{ $patient->identifiation }}</td>
                     <td>{{ $patient->dateofbirth }}  </td>
                     <td>{{ $patient->age }}  </td>
-                    <td> {{ $patient->gender }} </td>
-                    <td>{{ $patient->nationality }}  </td>
+                    <td>{{__('master.'.$patient->gender )}} </td>
+                    <td>{{__('nationality.'.$patient->nationality )}} </td>
                     <td>
-                      <a href="{{ route('patients.edit', $patient->id)}}" class="btn btn-primary btn-sm mx-1"><i class="fa fa-edit"></i> {{__('master.EDIT')}}  </a>
+                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.EDIT')}}" href="{{ route('patients.edit', $patient->id)}}" class="btn btn-secondary btn-sm mx-1 px-3"> <i class="fa fa-edit"></i> </a>
+                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="{{ route('patient.profile', $patient->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
                     </td>
                   </tr>
 

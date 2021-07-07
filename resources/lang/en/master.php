@@ -39,6 +39,8 @@ return [
    
     "MALE" => "Male",       
     "FEMALE" => "Female",
+    "Male" => "Male",       
+    "Female" => "Female",
     "LANGUAGE" => "Language",
     "ENGLISH" => "English",
     "ARABIC" => "Arabic",
@@ -52,6 +54,7 @@ return [
     "STATUS" => "Status",
     "EDIT" => "Edit",
     "SAVE" => "Save",
+    "SAVE-CHANGES" => "Save Changes",
     "ADD" => "Add",
     "NEXT" => "Next",
     "PREV" => "Previous",
@@ -124,9 +127,10 @@ return [
     "ALL-SERVICES" => "All Services",
     "NO-SERVICES-AVAILABLE" => "No Services Available",
 
-    "RAYS" => "Rays",
-    "ADD-NEW-RAYS" => "Add New Rays",
-    "ALL-RAYS" => "All Rays",
+    "RAYS" => "X-Rays",
+    "NO-RAYS" => "There is no X-Rays.",
+    "ADD-NEW-RAYS" => "Add New X-Rays",
+    "ALL-RAYS" => "All X-Rays",
 
     "ROLES" => "Roles & Permissions",
     "PERMISSIONS" => "Permissions",
@@ -142,6 +146,9 @@ return [
     "EMAIL" => "Email",
     "GENDER" => "Gender",
     "PASSWORD" => "Password",
+    "CHANGE-PASSWORD" => "Change Password",
+    "CURRENT-PASSWORD" => "Current Password",
+    "NEW-PASSWORD" => "New Password",
     "CONFIRM-PASSWORD" => "Confirm Password",
     "ROLE" => "Role",
     "NATIONALITY" => "Nationality",
@@ -158,6 +165,7 @@ return [
     "IDENTIFICATION" => "Identification",
     "AGE" => "Age",
     "PROFILE-PICTURE" => "Profile Picture",
+    "CHANGE-PROFILE-PICTURE" => "Change Profile Picture",
     "INFORMATION" => "Information",
     "PERSONAL-INFORMATION" => "Personal Information",
     "WORK-INFORMATION" => "Work Information",
@@ -207,6 +215,7 @@ return [
     "DONE" => "Done",
     "OOPS" => "Oops",
     "APPOINTMENT-FINISHED" => "Appointment Finished Successfully",
+    "DATA-CHANGED-SUCCESSFULLY" => "Data Changed Successfully.",
     "SOMETHING-WRONG" => "Something went wrong, please try again later",
 
 
@@ -249,5 +258,7 @@ return [
     "ADD-NEW-CATEGORY" => "Add New Category",
     "NO-CATEGORIES-AVAILABLE" => "No Categories Available",
    
+    "PLEDGES" => "Pledges",
+    "NO-PLEDGES" => "There is no pledges.",
 
 ];
