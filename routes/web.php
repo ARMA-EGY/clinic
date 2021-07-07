@@ -105,7 +105,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
 
     Route::group(['prefix' => 'doctor','middleware' => [ 'doctor' ]], function () 
     {
-        Route::get('/doctor/{id}/profile', 'Doctor\Doctors\DoctorsController@profile')->name('doctor-doctors.profile');
+        Route::get('/profile', 'Doctor\Doctors\DoctorsController@profile')->name('doctor-doctors.profile');
+        Route::post('/changepassword', 'Doctor\Doctors\DoctorsController@changepassword')->name('doctor-changepassword');
         Route::resource('/doctor-appointment', 'Doctor\Appointment\AppointmentController'); 
         Route::get('/appointment-today', 'Doctor\Appointment\AppointmentController@today')->name('doctor-appointment.today');
         Route::get('/appointment-done', 'Doctor\Appointment\AppointmentController@done')->name('doctor-appointment.done');

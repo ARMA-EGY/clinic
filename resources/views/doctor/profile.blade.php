@@ -17,11 +17,19 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('doctors.index')}}">{{__('master.DOCTORS')}}</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">{{__('master.DOCTOR-DETAILS')}}</li>
+                  <li class="breadcrumb-item active" aria-current="page">Profile</li>
                 </ol>
               </nav>
             </div>
+
+            @if(session()->has('success'))	
+                <div class="alert alert-success alert-dismissible fade show m-auto" role="alert">
+                    {{ session()->get('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+            @endif
             
           </div>
         </div>
@@ -39,8 +47,11 @@
 
                     <div class="card card-defualt">
                         <div class="card-body px-3">
-                            <div class="avatar-preview" style="background-image: url({{ asset($item->avatar)}})"></div>
-
+                        <div class="avatar-preview" style="background-image: url({{   asset($item->avatar)  }})"></div>
+                            <div class="my-2 text-left">
+                              <small> {!! __('master.IMAGE-INFO') !!} </small> 
+                            </div>
+                            <input class="btn-info form-control form-control-sm" type="file" accept="image/*" id="avatar" name="avatar" multiple="false" />
                             <div class="text-center">
                                 <h3 class="mt-2">
                                     <b>{{$item->name}}</b>
@@ -122,89 +133,6 @@
 
                     <div class="row justify-content-center">
         
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.PATIENTS')}}</h5>
-                                    <span class="h2 font-weight-bold mb-0">0</span>
-                                    </div>
-                                    <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
-                                        <i class="fas fa-syringe"></i>
-                                    </div>
-                                    </div>
-                                </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                </p>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.PATIENTS')}}</h5>
-                                    <span class="h2 font-weight-bold mb-0">0</span>
-                                    </div>
-                                    <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
-                                        <i class="fas fa-syringe"></i>
-                                    </div>
-                                    </div>
-                                </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                </p>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.TODAY-APPOINTMENTS')}}</h5>
-                                    <span class="h2 font-weight-bold mb-0">0</span>
-                                    </div>
-                                    <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">
-                                        <i class="fas fa-notes-medical"></i>
-                                    </div>
-                                    </div>
-                                </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                </p>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.TODAY-APPOINTMENTS')}}</h5>
-                                    <span class="h2 font-weight-bold mb-0">0</span>
-                                    </div>
-                                    <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">
-                                        <i class="fas fa-notes-medical"></i>
-                                    </div>
-                                    </div>
-                                </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                </p>
-                                </div>
-                            </div>
-                        </div>
         
                     </div>
 
@@ -374,6 +302,61 @@
                         </div>
                     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="card card-defualt">
+                        <div class="card-header"><i class="fas fa-briefcase"></i> Change Password </div>
+                        <div class="card-body">
+
+                        <form method="post" action="{{ route('doctor-changepassword') }}" class="">
+                            @csrf
+                            <!-- password -->
+                            <h6 class="heading-small text-muted mb-4 ">Change Password</h6>
+                            <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-md-6">
+                                <div class="form-group ">
+                                    <label class="form-control-label" for="input-password">Password</label>
+                                    <input id="input-password" class="form-control" name="password" type="password" required>
+                                    @error('password')
+                                    <div>
+                                        <span class="text-danger">{{ $message }}</span>
+                                    </div>
+                                    @enderror
+                                </div>
+                                </div>
+                                <div class="col-md-6">
+                                <div class="form-group ">
+                                    <label class="form-control-label" for="input-password2">Confirm Password</label>
+                                    <input id="input-password2" class="form-control" name="password_confirmation" type="password" required>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                            <hr class="my-4" />
+                            <!-- Save -->
+                            <div class="col-12 ">
+                            <button type="submit" class="btn btn-sm btn-danger submit">Save Changes</button>
+                            </div>
+                        </form>
+
+                        </div>
+                    </div>
                 </div>
 
             </div>

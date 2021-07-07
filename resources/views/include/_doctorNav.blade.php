@@ -120,7 +120,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{request()->routeIs('profile') ? 'active' : '' }}" href="{{route('profile')}}">
+                    <a class="nav-link {{request()->routeIs('doctor-doctors.profile') ? 'active' : '' }}" href="{{route('doctor-doctors.profile')}}">
                         <i class="fa fa-user-circle"></i>
                         <span class="nav-link-text">{{__('master.PROFILE')}}</span>
                     </a>

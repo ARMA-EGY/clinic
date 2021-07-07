@@ -30,8 +30,10 @@
                     <td><b> {{$item->sector->name}} </b></td>
                     <td>
                       <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="{{route('appointment.show',$item->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
-                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.CANCEL')}}" href="#" class="btn btn-danger btn-sm mx-1 px-3"> <i class="fa fa-trash"></i> </a>
-                    </td>
+                      @if(auth()->user()->role != "Doctor")
+                        <a data-toggle="tooltip" data-placement="top" title="{{__('master.CANCEL')}}" href="#" class="btn btn-danger btn-sm mx-1 px-3"> <i class="fa fa-trash"></i> </a>
+                      @endif
+                       </td>
                   </tr>
 
                   @endforeach
