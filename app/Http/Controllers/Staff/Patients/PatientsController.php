@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Patients;
+namespace App\Http\Controllers\Staff\Patients;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Patients;
+use App\Models\Countries;
 use App\Http\Requests\Patients\AddRequest;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,7 +23,7 @@ class PatientsController extends Controller
         }
 		$patients       = Patients::orderBy('id','desc')->get();
 		
-        return view('admin.patients.index', [
+        return view('staff.patients.index', [
             'patients' => $patients,
             'patients_count' => count($patients),
         ]);
@@ -54,7 +55,9 @@ class PatientsController extends Controller
         {
             return redirect(route('home'));
         }
-        return view('admin.patients.create');
+        return view('staff.patients.create', [
+            'countries'   => Countries::all(),
+            ]);
     }
 
 
@@ -82,7 +85,7 @@ class PatientsController extends Controller
             
             $request->session()->flash('success', 'Patient created successfully');
             
-            return redirect(route('patients.index'));
+            return redirect(route('staff-patients.index'));
     }
 
 
@@ -95,7 +98,10 @@ class PatientsController extends Controller
         {
             return redirect(route('home'));
         }
-		return view('admin.patients.create', ['patient' => $patient]);
+		return view('staff.patients.create', [
+            'patient' => $patient,
+            'countries'   => Countries::all(),
+            ]);
     }
 
     
@@ -123,7 +129,7 @@ class PatientsController extends Controller
 		
 		session()->flash('success', 'Patient updated successfully');
 		
-		return redirect(route('patients.index'));
+		return redirect(route('staff-patients.index'));
     }
 
 

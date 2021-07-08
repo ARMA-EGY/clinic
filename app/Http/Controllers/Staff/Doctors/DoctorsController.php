@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Doctors;
+namespace App\Http\Controllers\Staff\Doctors;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Sector;
 use App\Models\Branches;
+use App\Models\Countries;
 use App\Http\Requests\Doctors\AddRequest;
 use App\Http\Requests\Doctors\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
@@ -32,11 +33,11 @@ class DoctorsController extends Controller
         {
             return redirect(route('home'));
         } 
-		$items       = User::where('role', 'Doctor')->orderBy('id','desc')->get();
+		$items       = User::where('role', 'Doctor')->where('branch_id', $user->branch_id)->orderBy('id','desc')->get();
 		
-        return view('admin.doctors.index', [
+        return view('staff.doctors.index', [
             'items' => $items,
-            'total_rows' => User::where('role', 'Doctor')->count(),
+            'total_rows' => User::where('role', 'Doctor')->where('branch_id', $user->branch_id)->count(),
         ]);
     }
 
@@ -50,11 +51,11 @@ class DoctorsController extends Controller
         {
             return redirect(route('home'));
         } 
-		$items       = User::where('role', 'Doctor')->where('disable', 0)->orderBy('id','desc')->get();
+		$items       = User::where('role', 'Doctor')->where('disable', 0)->where('branch_id', $user->branch_id)->orderBy('id','desc')->get();
 		
-        return view('admin.doctors.active', [
+        return view('staff.doctors.active', [
             'items' => $items,
-            'total_rows' => User::where('role', 'Doctor')->where('disable', 0)->count(),
+            'total_rows' => User::where('role', 'Doctor')->where('disable', 0)->where('branch_id', $user->branch_id)->count(),
         ]);
     }
 
@@ -68,11 +69,11 @@ class DoctorsController extends Controller
         {
             return redirect(route('home'));
         } 
-		$items       = User::where('role', 'Doctor')->where('disable', 1)->orderBy('id','desc')->get();
+		$items       = User::where('role', 'Doctor')->where('disable', 1)->where('branch_id', $user->branch_id)->orderBy('id','desc')->get();
 		
-        return view('admin.doctors.deactive', [
+        return view('staff.doctors.deactive', [
             'items' => $items,
-            'total_rows' => User::where('role', 'Doctor')->where('disable', 1)->count(),
+            'total_rows' => User::where('role', 'Doctor')->where('disable', 1)->where('branch_id', $user->branch_id)->count(),
         ]);
     }
 
@@ -86,9 +87,10 @@ class DoctorsController extends Controller
         {
             return redirect(route('home'));
         } 
-        return view('admin.doctors.create', [
-            'branches'   => Branches::where('disable', 0)->orderBy('id','desc')->get(),
+        return view('staff.doctors.create', [
+            'branches'   => Branches::where('disable', 0)->where('id', $user->branch_id)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
+            'countries'   => Countries::all(),
             ]);
     }
 
@@ -171,7 +173,7 @@ class DoctorsController extends Controller
             
             $request->session()->flash('success', 'Doctor Added successfully');
             
-            return redirect(route('doctors.index'));
+            return redirect(route('staff-doctors.index'));
     }
 
 
@@ -184,10 +186,11 @@ class DoctorsController extends Controller
         {
             return redirect(route('home'));
         } 
-		return view('admin.doctors.create', [
+		return view('staff.doctors.create', [
             'item' => $doctor,
-            'branches'   => Branches::where('disable', 0)->orderBy('id','desc')->get(),
+            'branches'   => Branches::where('disable', 0)->where('id', $user->branch_id)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
+            'countries'   => Countries::all(),
         ]);
     }
 
@@ -237,7 +240,7 @@ class DoctorsController extends Controller
 		
 		session()->flash('success', 'Doctor updated successfully');
 		
-		return redirect(route('doctors.index'));
+		return redirect(route('staff-doctors.index'));
     }
 
 
@@ -252,7 +255,7 @@ class DoctorsController extends Controller
         } 
         $item     = User::where('id', $id)->first();
 
-        return view('admin.doctors.profile', [
+        return view('staff.doctors.profile', [
             'item' => $item,
         ]);
     }

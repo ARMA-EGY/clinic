@@ -15,7 +15,7 @@
                             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('appointment.index')}}">{{__('master.APPOINTMENTS')}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('appointment.index')}}">{{__('master.INTERNAL-APPOINTMENTS')}}</a></li>
                             <li class="breadcrumb-item active" aria-current="page">number</li>
                             </ol>
                         </nav>
@@ -90,6 +90,7 @@
                     <div class="card-header bg-transparent border-0 ">
                         <h3 class="text-white mb-0">Services</h3>
                     </div>
+
                     <div class="table-responsive">
                         <table class="table align-items-center table-dark table-flush">
                             <thead class="thead-dark">
@@ -119,6 +120,7 @@
                             </tbody>
                         </table>
                     </div>
+                    
                 </div>
             </div>
 

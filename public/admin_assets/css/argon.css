@@ -152,11 +152,6 @@
     right: 0px;
 }
 
-/* .edit-section:hover {
-  background: rgba(99, 99, 99, 0.3);
-    border-radius: 10px;
-} */
-
 .edit-section:hover .edit, .edit-section:hover .edit2, .edit-section:hover .edit3 {
   opacity: 1 !important;
 }

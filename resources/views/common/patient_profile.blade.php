@@ -151,7 +151,7 @@
 
             <!-- Appointments -->
             <div class="card card-defualt">
-                <div class="card-header"><i class="fas fa-notes-medical"></i> {{__('master.APPOINTMENTS')}} </div>
+                <div class="card-header"><i class="fas fa-notes-medical"></i> {{__('master.APPOINTMENTS-HISTORY')}} </div>
 
                 <div class="card-body">
                     

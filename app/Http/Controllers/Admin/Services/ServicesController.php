@@ -19,10 +19,6 @@ class ServicesController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if(!$user->hasPermissionTo('all services'))
-        {
-            return redirect(route('home'));
-        }
 		$items       = Services::orderBy('id','desc')->get();
 		
         return view('admin.services.index', [
@@ -63,10 +59,6 @@ class ServicesController extends Controller
     public function create()
     {
         $user = auth()->user();
-        if(!$user->hasPermissionTo('create services'))
-        {
-            return redirect(route('home'));
-        }
         $Categories = Categories::all();
         return view('admin.services.create', [
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
@@ -80,10 +72,6 @@ class ServicesController extends Controller
     public function store(AddRequest $request)
     {
             $user = auth()->user();
-            if(!$user->hasPermissionTo('create services'))
-            {
-                return redirect(route('home'));
-            }
             $service =  Services::create([
                 'name' => $request->name,
                 'number' => $request->number,
@@ -103,10 +91,6 @@ class ServicesController extends Controller
     public function edit(Services $service)
     {
         $user = auth()->user();
-        if(!$user->hasPermissionTo('edit services'))
-        {
-            return redirect(route('home'));
-        }
         $Categories = Categories::all();
 		return view('admin.services.create', [
             'item' => $service,
@@ -121,10 +105,6 @@ class ServicesController extends Controller
     public function update(UpdateRequest $request, Services $service)
     {
         $user = auth()->user();
-        if(!$user->hasPermissionTo('edit services'))
-        {
-            return redirect(route('home'));
-        }
         $service->update([
             'name' => $request->name,
             'number' => $request->number,

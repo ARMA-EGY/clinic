@@ -18,10 +18,6 @@ class BranchesController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if(!$user->hasPermissionTo('all branches'))
-        {
-            return redirect(route('home'));
-        }
 		$items       = Branches::orderBy('id','desc')->get();
 		
         return view('admin.branches.index', [
@@ -36,10 +32,6 @@ class BranchesController extends Controller
     public function active()
     {
         $user = auth()->user();
-        if(!$user->hasPermissionTo('active branches'))
-        {
-            return redirect(route('home'));
-        }
 		$items       = Branches::where('disable', 0)->orderBy('id','desc')->get();
 		
         return view('admin.branches.active', [
@@ -54,10 +46,6 @@ class BranchesController extends Controller
     public function deactive()
     {
         $user = auth()->user();
-        if(!$user->hasPermissionTo('deactivated branches'))
-        {
-            return redirect(route('home'));
-        }
 		$items       = Branches::where('disable', 1)->orderBy('id','desc')->get();
 		
         return view('admin.branches.deactive', [
@@ -72,10 +60,6 @@ class BranchesController extends Controller
     public function create()
     {
         $user = auth()->user();
-        if(!$user->hasPermissionTo('create branch'))
-        {
-            return redirect(route('home'));
-        }
         
         return view('admin.branches.create', [
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
@@ -88,10 +72,6 @@ class BranchesController extends Controller
     public function store(AddRequest $request)
     {
             $user = auth()->user();
-            if(!$user->hasPermissionTo('create branch'))
-            {
-                return redirect(route('home'));
-            }
             $branch =  Branches::create([
                 'name' => $request->name,
                 'phone' => $request->phone,
@@ -115,10 +95,6 @@ class BranchesController extends Controller
     public function edit(Branches $branch)
     {
         $user = auth()->user();
-        if(!$user->hasPermissionTo('edit branch'))
-        {
-            return redirect(route('home'));
-        }
 		return view('admin.branches.create', [
             'item' => $branch,
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
@@ -131,10 +107,6 @@ class BranchesController extends Controller
     public function update(UpdateRequest $request, Branches $branch)
     {
         $user = auth()->user();
-        if(!$user->hasPermissionTo('edit branch'))
-        {
-            return redirect(route('home'));
-        }
         $branch->update([
             'name' => $request->name,
             'phone' => $request->phone,

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\AppointmentServices;
+namespace App\Http\Controllers\Staff\AppointmentServices;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -23,7 +23,7 @@ class AppointmentServicesController extends Controller
     {
 		$items       = Appointment::orderBy('id','desc')->get();
 		
-        return view('admin.appointment.index', [
+        return view('staff.appointment.index', [
             'items' => $items,
             'total_rows' => Appointment::all()->count(),
         ]);
@@ -38,7 +38,7 @@ class AppointmentServicesController extends Controller
         $today          = date('Y-m-d');
 		$items       = Appointment::where('appointment_date', $today)->orderBy('id','desc')->get();
 		
-        return view('admin.appointment.today', [
+        return view('staff.appointment.today', [
             'items' => $items,
             'total_rows' => Appointment::where('appointment_date', $today)->count(),
         ]);
@@ -51,7 +51,7 @@ class AppointmentServicesController extends Controller
         $today          = date('Y-m-d');
 		$items       = Appointment::where('appointment_date', '<', $today)->orderBy('id','desc')->get();
 		
-        return view('admin.appointment.done', [
+        return view('staff.appointment.done', [
             'items' => $items,
             'total_rows' => Appointment::where('appointment_date', '<', $today)->count(),
         ]);
@@ -63,7 +63,7 @@ class AppointmentServicesController extends Controller
     {
 		$items       = Appointment::where('cancelled', 1)->orderBy('id','desc')->get();
 		
-        return view('admin.appointment.cancelled', [
+        return view('staff.appointment.cancelled', [
             'items' => $items,
             'total_rows' => Appointment::where('cancelled', 1)->count(),
         ]);
@@ -105,7 +105,7 @@ class AppointmentServicesController extends Controller
     
     public function edit(Appointment $appointment)
     {
-		return view('admin.appointment.create', ['item' => $appointment]);
+		return view('staff.appointment.create', ['item' => $appointment]);
     }
 
     
@@ -120,7 +120,7 @@ class AppointmentServicesController extends Controller
 		
 		session()->flash('success', 'Appointment updated successfully');
 		
-		return redirect(route('appointment.index'));
+		return redirect(route('staff-appointment.index'));
     }
 
 

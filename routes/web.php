@@ -95,7 +95,35 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
 
     Route::group(['prefix' => 'staff','middleware' => [ 'staff' ]], function () 
     {
-
+        Route::resource('/staff-patients', 'Staff\Patients\PatientsController'); 
+        Route::resource('/staff-services', 'Staff\Services\ServicesController');
+        Route::resource('/staff-servicescategory', 'Staff\servicescategory\ServicesCategoryController');
+        Route::resource('/staff-doctors', 'Staff\Doctors\DoctorsController'); 
+        Route::get('/staff-activedoctors', 'Staff\Doctors\DoctorsController@active')->name('staff-active-doctors');
+        Route::get('/staff-deactivedoctors', 'Staff\Doctors\DoctorsController@deactive')->name('staff-deactive-doctors');
+        Route::get('/staff-doctor/{id}/profile', 'Staff\Doctors\DoctorsController@profile')->name('staff-doctors.profile');
+        Route::resource('/staff-staff', 'Staff\Staff\StaffController'); 
+        Route::get('/staff-activestaff', 'Staff\Staff\StaffController@active')->name('staff-active-staff');
+        Route::get('/staff-deactivestaff', 'Staff\Staff\StaffController@deactive')->name('staff-deactive-staff');
+        Route::get('/staff/{id}/profile', 'Staff\Staff\StaffController@profile')->name('staff-staff.profile');
+        Route::resource('/staff-AppointmentServices', 'Staff\AppointmentServices\AppointmentServicesController'); 
+        Route::resource('/staff-appointment', 'Staff\Appointment\AppointmentController'); 
+        Route::get('/staff-appointment-today', 'Staff\Appointment\AppointmentController@today')->name('staff-appointment.today');
+        Route::get('/staff-appointment-done', 'Staff\Appointment\AppointmentController@done')->name('staff-appointment.done');
+        Route::get('/staff-appointment-cancelled', 'Staff\Appointment\AppointmentController@cancelled')->name('staff-appointment.cancelled');
+        Route::post('/staff-appointmentnext', 'Staff\Appointment\AppointmentController@next')->name('staff-appointment.next');
+        Route::post('/staff-appointmentprev', 'Staff\Appointment\AppointmentController@prev')->name('staff-appointment.prev');
+        Route::resource('/staff-external-appointment', 'Staff\ExternalAppointment\ExternalAppointmentController'); 
+        Route::get('/staff-external-appointment-today', 'Staff\ExternalAppointment\ExternalAppointmentController@today')->name('staff-external-appointment.today');
+        Route::get('/staff-external-appointment-done', 'Staff\ExternalAppointment\ExternalAppointmentController@done')->name('staff-external-appointment.done');
+        Route::get('/staff-external-appointment-cancelled', 'Staff\ExternalAppointment\ExternalAppointmentController@cancelled')->name('staff-external-appointment.cancelled');
+        Route::post('/staff-external-appointmentnext', 'Staff\ExternalAppointment\ExternalAppointmentController@next')->name('staff-external-appointment.next');
+        Route::post('/staff-external-appointmentprev', 'Staff\ExternalAppointment\ExternalAppointmentController@prev')->name('staff-external-appointment.prev');
+        Route::post('/staff-patientinfo', 'Staff\Appointment\AppointmentController@patientinfo')->name('staff-patient-info');
+        Route::post('/staff-appointmentschedule', 'Staff\Appointment\AppointmentController@schedule')->name('staff-appointment.schedule');
+        Route::post('/staff-disablesector', 'Staff\Sectors\SectorsController@disable')->name('staff-sector-disable');
+        Route::post('/staff-disabledoctor', 'Staff\Doctors\DoctorsController@disable')->name('staff-doctor-disable');
+        Route::post('/staff-disablestaff', 'Staff\Staff\StaffController@disable')->name('staff-staff-disable');
     });
 
     /*

@@ -69,6 +69,7 @@
                     <th scope="col" class="sort" >{{__('master.PHONE')}}</th>
                     <th scope="col" class="sort" >{{__('master.CITY')}}</th>
                     <th scope="col" class="sort" >{{__('master.ADDRESS')}} </th>
+                    <th scope="col" class="sort" >{{__('master.SECTORS')}} </th>
                     <th scope="col">{{__('master.STATUS')}}</th>
                     <th scope="col"></th>
                   </tr>
@@ -83,6 +84,7 @@
                     <td>{{ $item->phone }}</td>
                     <td>{{ $item->city }} </td>
                     <td>{{ $item->address }} </td>
+                    <td>{{ $item->sectors()->count() }} </td>
                     <td>
                       <div class="col-3">
                         <input type="checkbox" class="check_off item_check" data-id="{{$item->id}}" data-url="{{route('branch-disable')}}" data-toggle="toggle" data-size="sm"  @if ($item->disable == '0') checked @endif>

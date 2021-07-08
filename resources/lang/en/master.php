@@ -108,6 +108,9 @@ return [
 
     "APPOINTMENTS" => "Appointments",
     "APPOINTMENT" => "Appointment",
+    "INTERNAL-APPOINTMENTS" => "Internal Appointments",
+    "EXTERNAL-APPOINTMENTS" => "External Appointments",
+    "APPOINTMENTS-HISTORY" => "Appointments History",
     "CREATEE-APPOINTMENT" => "Create Appointment",
     "CREATEE-NEW-APPOINTMENT" => "Create New Appointment",
     "TODAY-APPOINTMENTS" => "Today Appointments",

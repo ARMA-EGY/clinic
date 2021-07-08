@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Staff;
+namespace App\Http\Controllers\Staff\Staff;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Sector;
 use App\Models\Branches;
+use App\Models\Countries;
 use App\Models\Roles;
 use App\Http\Requests\Staff\AddRequest;
 use App\Http\Requests\Staff\UpdateRequest;
@@ -33,11 +34,11 @@ class StaffController extends Controller
         {
             return redirect(route('home'));
         } 
-		$items       = User::where('role', 'Staff')->orderBy('id','desc')->get();
+		$items       = User::where('role', 'Staff')->where('branch_id', $user->branch_id)->orderBy('id','desc')->get();
 
-        return view('admin.staff.index', [
+        return view('satff.staff.index', [
             'items' => $items,
-            'total_rows' => User::where('role', 'Staff')->count(),
+            'total_rows' => User::where('role', 'Staff')->where('branch_id', $user->branch_id)->count(),
         ]);
     }
 
@@ -51,11 +52,11 @@ class StaffController extends Controller
         {
             return redirect(route('home'));
         } 
-		$items       = User::where('role', 'Staff')->where('disable', 0)->orderBy('id','desc')->get();
+		$items       = User::where('role', 'Staff')->where('disable', 0)->where('branch_id', $user->branch_id)->orderBy('id','desc')->get();
 		
-        return view('admin.staff.active', [
+        return view('satff.staff.active', [
             'items' => $items,
-            'total_rows' => User::where('role', 'Staff')->where('disable', 0)->count(),
+            'total_rows' => User::where('role', 'Staff')->where('disable', 0)->where('branch_id', $user->branch_id)->count(),
         ]);
     }
 
@@ -69,11 +70,11 @@ class StaffController extends Controller
         {
             return redirect(route('home'));
         }
-		$items       = User::where('role', 'Staff')->where('disable', 1)->orderBy('id','desc')->get();
+		$items       = User::where('role', 'Staff')->where('disable', 1)->where('branch_id', $user->branch_id)->orderBy('id','desc')->get();
 		
-        return view('admin.staff.deactive', [
+        return view('satff.staff.deactive', [
             'items' => $items,
-            'total_rows' => User::where('role', 'Staff')->where('disable', 1)->count(),
+            'total_rows' => User::where('role', 'Staff')->where('disable', 1)->where('branch_id', $user->branch_id)->count(),
         ]);
     }
 
@@ -87,10 +88,11 @@ class StaffController extends Controller
         {
             return redirect(route('home'));
         }
-        return view('admin.staff.create', [
-            'branches'   => Branches::where('disable', 0)->orderBy('id','desc')->get(),
+        return view('satff.staff.create', [
+            'branches'   => Branches::where('disable', 0)->where('id', $user->branch_id)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
             'roles'    => Roles::where('name', '!=', 'Doctor')->orderBy('id','desc')->get(),
+            'countries'   => Countries::all(),
             ]);
     }
 
@@ -171,7 +173,7 @@ class StaffController extends Controller
             
             $request->session()->flash('success', 'Staff Added successfully');
             
-            return redirect(route('staff.index'));
+            return redirect(route('satff-staff.index'));
     }
 
 
@@ -184,10 +186,11 @@ class StaffController extends Controller
         {
             return redirect(route('home'));
         }
-		return view('admin.staff.create', [
+		return view('satff.staff.create', [
             'item' => $doctor,
-            'branches'   => Branches::where('disable', 0)->orderBy('id','desc')->get(),
+            'branches'   => Branches::where('disable', 0)->where('id', $user->branch_id)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
+            'countries'   => Countries::all(),
         ]);
     }
 
@@ -237,7 +240,7 @@ class StaffController extends Controller
 		
 		session()->flash('success', 'Staff updated successfully');
 		
-		return redirect(route('staff.index'));
+		return redirect(route('satff-staff.index'));
     }
 
 
@@ -252,7 +255,7 @@ class StaffController extends Controller
         }
         $item     = User::where('id', $id)->first();
 
-        return view('admin.staff.profile', [
+        return view('satff.staff.profile', [
             'item' => $item,
         ]);
     }
