@@ -7,7 +7,7 @@ use App\Models\User;
 
 class Event extends Model
 {
-    protected $table = 'events';
+    protected $table = 'inventory';
     
     protected $fillable = [
         'user_id','title','description','class_name','start_date','end_date',

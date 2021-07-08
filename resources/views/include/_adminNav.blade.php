@@ -331,12 +331,46 @@
 
 
                   <li class="nav-item">
-                      <a class="nav-link" href="#">
+                      <a class="nav-link collapsed" href="#navbar-inventory" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                           <i class="fa fa-cubes"></i>
                           <span class="nav-link-text">{{__('master.INVENTORY')}}</span>
-                          <span class="badge badge-warning fs-9 p-1 mx-2">{{__('master.PENDING')}}</span>
                       </a>
+                      <div class="collapse" id="navbar-inventory" style="">
+                        <ul class="nav nav-sm flex-column">
+
+                          <li class="nav-item">
+                            <a href="{{ route('inventory.index')}}" class="nav-link nav-link-sub {{request()->routeIs('inventory.index') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> All Items </span>
+                            </a>
+                          </li>
+                          
+                          <li class="nav-item">
+                            <a href="{{ route('inventory.create')}}" class="nav-link nav-link-sub {{request()->routeIs('inventory.create') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> Add New Item </span>
+                            </a>
+                          </li>
+
+
+                          <li class="nav-item">
+                            <a href="{{ route('index-adjustment')}}" class="nav-link nav-link-sub {{request()->routeIs('index-adjustment') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal">All Adjustments </span>
+                            </a>
+                          </li>
+                    
+                          <li class="nav-item">
+                            <a href="{{ route('create-adjustment')}}" class="nav-link nav-link-sub {{request()->routeIs('create-adjustment') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal">Add New Adjustment </span>
+                            </a>
+                          </li>
+                          
+                        </ul>
+                      </div>
                   </li>
+
 
                   <li class="nav-item">
                       <a class="nav-link collapsed" href="#navbar-roles" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">

@@ -54,6 +54,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
     Route::group(['prefix' => 'admin','middleware' => [ 'admin' ]], function () 
     {
         Route::resource('/branches', 'Admin\Branches\BranchesController'); 
+        Route::resource('/inventory', 'Admin\Inventory\InventoryController'); 
+        Route::get('/inventory/adjustment/index', 'Admin\Inventory\InventoryController@adjustmentIndex')->name('index-adjustment');
+        Route::get('/inventory/adjustment/create', 'Admin\Inventory\InventoryController@adjustmentCreate')->name('create-adjustment');
+        Route::post('/inventory/adjustment/store', 'Admin\Inventory\InventoryController@adjustmentStore')->name('store-adjustment');
         Route::get('/activebranches', 'Admin\Branches\BranchesController@active')->name('active-branches');
         Route::get('/deactivebranches', 'Admin\Branches\BranchesController@deactive')->name('deactive-branches');
         Route::resource('/patients', 'Admin\Patients\PatientsController'); 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Permissions;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Patients;
-use App\Http\Requests\Patients\AddRequest;
+use App\Http\Requests\Permissions\AddRequest;
 use Illuminate\Support\Facades\Storage;
 
 use Spatie\Permission\Models\Role;
@@ -35,7 +35,7 @@ class PermissionsController extends Controller
 
     public function create()
     {
-       /* return view('admin.patients.create');*/
+        return view('admin.permissions.create');
     }
 
 
@@ -43,19 +43,11 @@ class PermissionsController extends Controller
 
     public function store(AddRequest $request)
     {
-          /*  $patients =  Patients::create([
-                'name' => $request->name,
-                'phone' => $request->phone,
-                'identifiation' => $request->identifiation,
-                'dateofbirth' => $request->dateofbirth,
-                'age' => $request->age,
-                'gender' => $request->gender,
-                'nationality' => $request->nationality,
-            ]);
+        $role = Role::create(['name' => $request->name]);
             
-            $request->session()->flash('success', 'Patient created successfully');
-            
-            return redirect(route('patients.index'));*/
+        $request->session()->flash('success', 'Role created successfully');
+        
+        return redirect(route('permissions.index'));
     }
 
 
