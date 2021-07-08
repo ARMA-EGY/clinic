@@ -17,8 +17,7 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('staff.index')}}">{{__('master.STAFF')}}</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">{{__('master.STAFF-DETAILS')}}</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{__('master.PROFILE')}}</li>
                 </ol>
               </nav>
             </div>
@@ -38,26 +37,20 @@
                 <div class="col-xl-4">
 
                     <div class="card card-defualt">
+                      <div class="card-header"><i class="far fa-id-badge"></i> {{__('master.PROFILE-PICTURE')}} </div>
                         <div class="card-body px-3">
-                            <div class="avatar-preview" style="background-image: url({{ asset($item->avatar)}})"></div>
-
-                            <div class="text-center">
-                                <h3 class="mt-2">
-                                    <b>{{$item->name}}</b>
-                                </h3>
-
-                                <div class="my-2">
-                                    <small> <b>{{__('master.HIRING-DATE')}}</b>  {{ date('d M, Y', strtotime($item->hiring_date)) }}</small>
-                                </div>
-                                
-                                @if ($item->disable == 0)
-                                    <div class="btn btn-sm btn-success">{{__('master.ACTIVE')}}</div>
-                                @else
-                                    <div class="btn btn-sm btn-danger">{{__('master.BANNED')}}</div>
-                                @endif
-                                    
+                            <div class="avatar-preview" style="background-image: url({{ asset(Auth::user()->avatar)}})"></div>
+        
+                            <div class="my-2 text-left">
+                              <small> {!! __('master.IMAGE-INFO') !!} </small> 
                             </div>
-                            
+        
+                            <form class="profile_picture_form">
+                              @csrf
+                              <input class="d-none" type="file" accept="image/*" id="avatar" name="avatar" multiple="false" />
+                              <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+                              <label for="avatar" class="btn btn-info btn-block btn-sm"><i class="fa fa-image"></i> {{__('master.CHANGE-PROFILE-PICTURE')}}</label>
+                            </form>
                         </div>
                     </div>
 
@@ -71,31 +64,29 @@
                                     <label class="font-weight-bold text-uppercase">{{__('master.CONTRACT-DURATION')}}</label>
 
                                     <select class="form-control" name="contract_duration" disabled>
-                                        <option value="1" @if (isset($item))  @if ($item->contract_duration == 1) selected @endif @endif>{{__('master.1-YEAR')}}</option>
-                                        <option value="2" @if (isset($item))  @if ($item->contract_duration == 2) selected @endif @endif>{{__('master.2-YEARS')}}</option>
-                                        <option value="3" @if (isset($item))  @if ($item->contract_duration == 3) selected @endif @endif>{{__('master.3-YEARS')}}</option>
-                                        <option value="4" @if (isset($item))  @if ($item->contract_duration == 4) selected @endif @endif>{{__('master.4-YEARS')}}</option>
-                                        <option value="5" @if (isset($item))  @if ($item->contract_duration == 5) selected @endif @endif>{{__('master.5-YEARS')}}</option>
+                                        <option value="1" @if (Auth::user()->contract_duration == 1) selected @endif >{{__('master.1-YEAR')}}</option>
+                                        <option value="2" @if (Auth::user()->contract_duration == 2) selected @endif >{{__('master.2-YEARS')}}</option>
+                                        <option value="3" @if (Auth::user()->contract_duration == 3) selected @endif >{{__('master.3-YEARS')}}</option>
+                                        <option value="4" @if (Auth::user()->contract_duration == 4) selected @endif >{{__('master.4-YEARS')}}</option>
+                                        <option value="5" @if (Auth::user()->contract_duration == 5) selected @endif >{{__('master.5-YEARS')}}</option>
                                     </select>
                                 </div>
 
                                 <!--=================  Contract End Date  =================-->
                                 <div class="form-group col-md-12 mb-2 text-left">
                                     <label class="font-weight-bold text-uppercase">{{__('master.CONTRACT-END-DATE')}}</label>
-                                    <input type="date" name="contract_end_date" class="@error('contract_end_date') is-invalid @enderror form-control" placeholder="{{__('master.CONTRACT-END-DATE')}}" value="{{ isset($item) ? $item->contract_end_date : old('contract_end_date') }}" disabled>
+                                    <input type="date" name="contract_end_date" class="form-control" value="{{ Auth::user()->contract_end_date }}" disabled>
                                 </div>
 
                                 <!--=================  Contract File  =================-->
                                 <div class="form-group col-md-12 mb-2 text-left">
                                     <label class="font-weight-bold text-uppercase">{{__('master.CONTRACT-FILE')}}</label>
 
-                                    @if (isset($item))
-                                        @if ($item->contract_file != '')
-                                            <a href="{{asset('storage/'.$item->contract_file)}}" target="_blank" class="btn btn-secondary btn-block mb-3">{{__('master.SHOW-FILE')}}</a>
+                                        @if (Auth::user()->contract_file != '')
+                                            <a href="{{asset('storage/'.Auth::user()->contract_file)}}" target="_blank" class="btn btn-secondary btn-block mb-3">{{__('master.SHOW-FILE')}}</a>
                                         @else
                                             <p class="text-center">{{__('master.NO-FILE')}}</p>
                                         @endif
-                                    @endif
                 
                                 </div>
 
@@ -106,13 +97,11 @@
                     <div class="card card-defualt">
                         <div class="card-header"><i class="fas fa-graduation-cap"></i> {{__('master.CERTIFICATE-FILE')}} </div>
                         <div class="card-body px-3">
-                            @if (isset($item))
-                                @if ($item->certificate_file != '')
-                                    <a href="{{asset('storage/'.$item->certificate_file)}}" target="_blank" class="btn btn-secondary btn-block mb-3">{{__('master.SHOW-FILE')}}</a>
+                                @if (Auth::user()->certificate_file != '')
+                                    <a href="{{asset('storage/'.Auth::user()->certificate_file)}}" target="_blank" class="btn btn-secondary btn-block mb-3">{{__('master.SHOW-FILE')}}</a>
                                 @else
                                     <p class="text-center">{{__('master.NO-FILE')}}</p>
                                 @endif
-                            @endif
                         </div>
                     </div>
 
@@ -120,154 +109,80 @@
 
                 <div class="col-xl-8">
 
-                    <div class="row justify-content-center">
-        
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.PATIENTS')}}</h5>
-                                    <span class="h2 font-weight-bold mb-0">0</span>
-                                    </div>
-                                    <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
-                                        <i class="fas fa-syringe"></i>
-                                    </div>
-                                    </div>
-                                </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                </p>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.PATIENTS')}}</h5>
-                                    <span class="h2 font-weight-bold mb-0">0</span>
-                                    </div>
-                                    <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
-                                        <i class="fas fa-syringe"></i>
-                                    </div>
-                                    </div>
-                                </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                </p>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.TODAY-APPOINTMENTS')}}</h5>
-                                    <span class="h2 font-weight-bold mb-0">0</span>
-                                    </div>
-                                    <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">
-                                        <i class="fas fa-notes-medical"></i>
-                                    </div>
-                                    </div>
-                                </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                </p>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.TODAY-APPOINTMENTS')}}</h5>
-                                    <span class="h2 font-weight-bold mb-0">0</span>
-                                    </div>
-                                    <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">
-                                        <i class="fas fa-notes-medical"></i>
-                                    </div>
-                                    </div>
-                                </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                </p>
-                                </div>
-                            </div>
-                        </div>
-        
-                    </div>
-
-                    <div class="card card-defualt">
-                        <div class="card-header"><i class="fa fa-info-circle"></i> {{__('master.PERSONAL-INFORMATION')}} </div>
-                        <div class="card-body">
-                                
-                                <div class="row">
-
-                                    <!--=================  Name  =================-->
-                                    <div class="form-group col-md-6 mb-2 text-left">
-                                        <label class="font-weight-bold text-uppercase">{{__('master.NAME')}}</label>
-                                        <input type="text" class="form-control" value="{{ $item->name }}" disabled>
-                                    </div>
-                
-                                    <!--=================  Phone  =================-->
-                                    <div class="form-group col-md-6 mb-2 text-left">
-                                        <label class="font-weight-bold text-uppercase">{{__('master.PHONE')}} </label>
-                                        <input type="text" class="form-control" value="{{ $item->phone }}" disabled>
-                                    </div>
-
-                                </div>
-                                <hr class="my-2">
-
-                                <div class="row">
-
-                                    <!--=================  E-mail  =================-->
-                                    <div class="form-group col-md-6 mb-2 text-left">
-                                        <label class="font-weight-bold text-uppercase">{{__('master.EMAIL')}}</label>
-                                        <input type="text" class="form-control" value="{{ $item->email }}" disabled>
-                                    </div>
-                
-                                    <!--=================  Gender  =================-->
-                                    <div class="form-group col-md-6 mb-2 text-left">
-                                        <label class="font-weight-bold text-uppercase">{{__('master.GENDER')}}</label>
-
-                                        <select class="form-control" disabled>
-                                            <option value="Male" @if ($item->gender == 'Male') selected @endif>{{__('master.MALE')}}</option>
-                                            <option value="Female" @if ($item->gender == 'Female') selected @endif>{{__('master.FEMALE')}}</option>
+                    <form class="user_info_form">
+                      @csrf
+                      <div class="card card-defualt">
+                          <div class="card-header"><i class="fa fa-info-circle"></i> {{__('master.PERSONAL-INFORMATION')}} </div>
+                          <div class="card-body">
+                                  
+                                  <div class="row">
+          
+                                      <!--=================  Name  =================-->
+                                      <div class="form-group col-md-6 mb-2 text-left">
+                                          <label class="font-weight-bold text-uppercase">{{__('master.NAME')}}</label>
+                                          <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}" >
+                                      </div>
+                  
+                                      <!--=================  Phone  =================-->
+                                      <div class="form-group col-md-6 mb-2 text-left">
+                                          <label class="font-weight-bold text-uppercase">{{__('master.PHONE')}} </label>
+                                          <input type="number" name="phone" class="form-control" value="{{ Auth::user()->phone }}" >
+                                      </div>
+          
+                                  </div>
+                                  <hr class="my-2">
+          
+                                  <div class="row">
+          
+                                      <!--=================  E-mail  =================-->
+                                      <div class="form-group col-md-6 mb-2 text-left">
+                                          <label class="font-weight-bold text-uppercase">{{__('master.EMAIL')}}</label>
+                                          <input type="email" name="email" class="form-control" value="{{ Auth::user()->email }}">
+                                      </div>
+                  
+                                      <!--=================  Gender  =================-->
+                                      <div class="form-group col-md-6 mb-2 text-left">
+                                          <label class="font-weight-bold text-uppercase">{{__('master.GENDER')}}</label>
+          
+                                          <select class="form-control" name="gender">
+                                              <option value="Male" @if (Auth::user()->gender == 'Male') selected @endif>{{__('master.MALE')}}</option>
+                                              <option value="Female" @if (Auth::user()->gender == 'Female') selected @endif>{{__('master.FEMALE')}}</option>
+                                          </select>
+                                      </div>
+          
+                                  </div>
+                                  <hr class="my-2">
+          
+                                  <div class="row">
+          
+                                      <!--=================   Birthdate  =================-->
+                                      <div class="form-group col-md-6 mb-2 text-left">
+                                          <label class="font-weight-bold text-uppercase">{{__('master.BIRTHDATE')}}</label>
+                                          <input type="date" name="birthdate" class="form-control" value="{{ Auth::user()->birthdate }}" >
+                                      </div>
+          
+                                      <!--=================  Nationality  =================-->
+                                      <div class="form-group col-md-6 mb-2 text-left">
+                                          <label class="font-weight-bold text-uppercase">{{__('master.NATIONALITY')}}</label>
+                                          <select class="form-control selectpicker" name="nationality" data-live-search="true" required>
+                                            @foreach ($countries as $country)
+                                                <option value="{{$country->country_Nationality}}"  @if (Auth::user()->nationality == $country->country_Nationality ) selected @endif >{{__('nationality.'.$country->country_Nationality)}}</option>
+                                            @endforeach
                                         </select>
-                                    </div>
-
-                                </div>
-                                <hr class="my-2">
-
-                                <div class="row">
-
-                                    <!--=================   Birthdate  =================-->
-                                    <div class="form-group col-md-6 mb-2 text-left">
-                                        <label class="font-weight-bold text-uppercase">{{__('master.BIRTHDATE')}}</label>
-                                        <input type="date" class="form-control" value="{{ $item->birthdate }}" disabled>
-                                    </div>
-
-                                    <!--=================  Nationality  =================-->
-                                    <div class="form-group col-md-6 mb-2 text-left">
-                                        <label class="font-weight-bold text-uppercase">{{__('master.NATIONALITY')}}</label>
-                                        <input type="text" class="form-control" value="{{ $item->nationality }}" disabled>
-                                    </div>
-
-                                </div>
-
-                        </div>
-                    </div>
+                                      </div>
+          
+                                  </div>
+                          </div>
+                          
+                          <!-- Save -->
+                          <div class="card-footer">
+                            <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+                            <div class="col-12 text-right">
+                              <button type="submit" class="btn btn-sm btn-success submit">{{__('master.SAVE-CHANGES')}}</button>
+                            </div>
+                          </div>
+                      </div>
+                    </form>
 
                     <div class="card card-defualt">
                         <div class="card-header"><i class="fas fa-briefcase"></i> {{__('master.WORK-INFORMATION')}} </div>
@@ -278,14 +193,14 @@
                                     <!--=================  Branches  =================-->
                                     <div class="form-group col-md-6 mb-2 text-left">
                                         <label class="font-weight-bold text-uppercase">{{__('master.BRANCH')}}</label>
-                                        <input type="text" class="form-control" value="{{ $item->branch->name }}" disabled>
+                                        <input type="text" class="form-control" value="{{ Auth::user()->branch->name }}" disabled>
                                     </div>
-                
-                                    <!--=================  Sector  =================-->
+
+                                    <!--=================  Role  =================-->
                                     <div class="form-group col-md-6 mb-2 text-left">
-                                        <label class="font-weight-bold text-uppercase">{{__('master.SECTOR')}}</label>
-                                        <input type="text" class="form-control" value="{{ $item->sector->name }}" disabled>
-                                    </div>
+                                        <label class="font-weight-bold text-uppercase">{{__('master.ROLE')}}</label>
+                                        <input type="text" class="form-control" value="{{ Auth::user()->roleName->name }}" disabled>                    
+                                    </div> 
 
                                 </div>
                                 <hr class="my-2">
@@ -297,25 +212,25 @@
                                         <label class="font-weight-bold text-uppercase">{{__('master.WORKING-HOURS')}}</label>
 
                                         <select class="form-control" disabled>
-                                            <option value="1" @if ($item->working_hours == 1) selected @endif >{{__('master.1-HOUR')}}</option>
-                                            <option value="2" @if ($item->working_hours == 2) selected @endif >{{__('master.2-HOURS')}}</option>
-                                            <option value="3" @if ($item->working_hours == 3) selected @endif >{{__('master.3-HOURS')}}</option>
-                                            <option value="4" @if ($item->working_hours == 4) selected @endif >{{__('master.4-HOURS')}}</option>
-                                            <option value="5" @if ($item->working_hours == 5) selected @endif >{{__('master.5-HOURS')}}</option>
-                                            <option value="6" @if ($item->working_hours == 6) selected @endif >{{__('master.6-HOURS')}}</option>
-                                            <option value="7" @if ($item->working_hours == 7) selected @endif >{{__('master.7-HOURS')}}</option>
-                                            <option value="8" @if ($item->working_hours == 8) selected @endif >{{__('master.8-HOURS')}}</option>
-                                            <option value="9" @if ($item->working_hours == 9) selected @endif >{{__('master.9-HOURS')}}</option>
-                                            <option value="10" @if ($item->working_hours == 10) selected @endif >{{__('master.10-HOURS')}}</option>
-                                            <option value="11" @if ($item->working_hours == 11) selected @endif >{{__('master.11-HOURS')}}</option>
-                                            <option value="12" @if ($item->working_hours == 12) selected @endif >{{__('master.12-HOURS')}}</option>
+                                            <option value="1" @if (Auth::user()->working_hours == 1) selected @endif >{{__('master.1-HOUR')}}</option>
+                                            <option value="2" @if (Auth::user()->working_hours == 2) selected @endif >{{__('master.2-HOURS')}}</option>
+                                            <option value="3" @if (Auth::user()->working_hours == 3) selected @endif >{{__('master.3-HOURS')}}</option>
+                                            <option value="4" @if (Auth::user()->working_hours == 4) selected @endif >{{__('master.4-HOURS')}}</option>
+                                            <option value="5" @if (Auth::user()->working_hours == 5) selected @endif >{{__('master.5-HOURS')}}</option>
+                                            <option value="6" @if (Auth::user()->working_hours == 6) selected @endif >{{__('master.6-HOURS')}}</option>
+                                            <option value="7" @if (Auth::user()->working_hours == 7) selected @endif >{{__('master.7-HOURS')}}</option>
+                                            <option value="8" @if (Auth::user()->working_hours == 8) selected @endif >{{__('master.8-HOURS')}}</option>
+                                            <option value="9" @if (Auth::user()->working_hours == 9) selected @endif >{{__('master.9-HOURS')}}</option>
+                                            <option value="10" @if (Auth::user()->working_hours == 10) selected @endif >{{__('master.10-HOURS')}}</option>
+                                            <option value="11" @if (Auth::user()->working_hours == 11) selected @endif >{{__('master.11-HOURS')}}</option>
+                                            <option value="12" @if (Auth::user()->working_hours == 12) selected @endif >{{__('master.12-HOURS')}}</option>
                                         </select>
                                     </div>
                 
                                     <!--=================  Salary  =================-->
                                     <div class="form-group col-md-6 mb-2 text-left">
                                         <label class="font-weight-bold text-uppercase">{{__('master.SALARY')}}</label>
-                                        <input type="text" class="form-control" value="{{ $item->salary }}" disabled>
+                                        <input type="text" class="form-control" value="{{ Auth::user()->salary }}" disabled>
                                     </div>
 
                                 </div>
@@ -326,53 +241,55 @@
                                     <!--=================  Hiring Date  =================-->
                                     <div class="form-group col-md-6 mb-2 text-left">
                                         <label class="font-weight-bold text-uppercase">{{__('master.HIRING-DATE')}}</label>
-                                        <input type="date" class="form-control" value="{{ $item->hiring_date }}" disabled>
+                                        <input type="date" class="form-control" value="{{ Auth::user()->hiring_date }}" disabled>
                                     </div>
                 
                                     <!--=================  Profit Ratio  =================-->
                                     <div class="form-group col-md-6 mb-2 text-left">
                                         <label class="font-weight-bold text-uppercase">{{__('master.PROFIT-RATIO')}}</label>
-
-                                        <select class="form-control" disabled>
-                                            <option value="0" @if ($item->profit_ratio == 0) selected @endif >0%</option>
-                                            <option value="1" @if ($item->profit_ratio == 1) selected @endif >1%</option>
-                                            <option value="2" @if ($item->profit_ratio == 2) selected @endif >2%</option>
-                                            <option value="3" @if ($item->profit_ratio == 3) selected @endif >3%</option>
-                                            <option value="4" @if ($item->profit_ratio == 4) selected @endif >4%</option>
-                                            <option value="5" @if ($item->profit_ratio == 5) selected @endif >5%</option>
-                                            <option value="6" @if ($item->profit_ratio == 6) selected @endif >6%</option>
-                                            <option value="7" @if ($item->profit_ratio == 7) selected @endif >7%</option>
-                                            <option value="8" @if ($item->profit_ratio == 8) selected @endif >8%</option>
-                                            <option value="9" @if ($item->profit_ratio == 9) selected @endif >9%</option>
-                                            <option value="10" @if ($item->profit_ratio == 10) selected @endif >10%</option>
-                                            <option value="11" @if ($item->profit_ratio == 11) selected @endif >11%</option>
-                                            <option value="12" @if ($item->profit_ratio == 12) selected @endif >12%</option>
-                                            <option value="13" @if ($item->profit_ratio == 13) selected @endif >13%</option>
-                                            <option value="14" @if ($item->profit_ratio == 14) selected @endif >14%</option>
-                                            <option value="15" @if ($item->profit_ratio == 15) selected @endif >15%</option>
-                                            <option value="16" @if ($item->profit_ratio == 16) selected @endif >16%</option>
-                                            <option value="17" @if ($item->profit_ratio == 17) selected @endif >17%</option>
-                                            <option value="18" @if ($item->profit_ratio == 18) selected @endif >18%</option>
-                                            <option value="19" @if ($item->profit_ratio == 19) selected @endif >19%</option>
-                                            <option value="20" @if ($item->profit_ratio == 20) selected @endif >20%</option>
-                                        </select>
-                                    </div>
-
-                                </div>
-                                <hr class="my-2">
-
-                                <div class="row">
-
-                                    <!--=================  License Number  =================-->
-                                    <div class="form-group col-md-12 mb-2 text-left">
-                                        <label class="font-weight-bold text-uppercase">{{__('master.LICENSE-NUMBER')}}</label>
-                                        <input type="text" class="form-control" value="{{ $item->license_number }}" disabled>
+                                        <input type="text" class="form-control" value="{{Auth::user()->profit_ratio}}%" disabled>
                                     </div>
 
                                 </div>
 
                         </div>
                     </div>
+
+
+                    <form class="change_password_form">
+                      @csrf
+                      <div class="card card-defualt">
+                          <div class="card-header"><i class="fas fa-lock"></i> {{__('master.PASSWORD')}} </div>
+                          <div class="card-body">
+                              <div class="row">
+          
+                                  <!--=================  Current Password  =================-->
+                                  <div class="form-group col-md-6 mb-2 text-left">
+                                      <label for="password" class="form-control-label" for="input-phone">{{__('master.CURRENT-PASSWORD')}}</label>
+                                      <input id="password" type="password" class="form-control" name="oldpassword" required autocomplete="new-password">
+                                  </div>
+          
+                                  <!--================= New Password  =================-->
+                                  <div class="form-group col-md-6 mb-2 text-left">
+                                      <label for="password-new" class="form-control-label">{{__('master.NEW-PASSWORD')}}</label>
+                                      <input id="password-new" type="password" class="form-control" name="newpassword" required autocomplete="new-password">
+                                  </div>
+          
+                              </div>
+                              <div class="my-2 text-info text-left">
+                                  <small> {!! __('master.PASSWORD-INFO') !!} </small> 
+                              </div>
+                          </div>
+                          
+                          <!-- Save -->
+                          <div class="card-footer">
+                            <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+                            <div class="col-12 text-right">
+                              <button type="submit" class="btn btn-sm btn-danger submit">{{__('master.CHANGE-PASSWORD')}}</button>
+                            </div>
+                          </div>
+                      </div>  
+                    </form>
 
                 </div>
 
@@ -387,32 +304,198 @@
 @endsection
 
 
+
 @section('script')
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-  <script>
-        $(document).ready(function() 
-        {
-            $('.select2').select2();
-        });
+<script>
 
-        function readURL(input) 
-        {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                
-                reader.onload = function (e) 
+  // ==========================  Edit User Info ==========================
+  $(document).on('submit', '.user_info_form', function(e)
+	{
+        e.preventDefault();
+        let formData = new FormData(this);
+        $('.submit').prop('disabled', true);
+
+        $.ajax({
+            url: 		"{{route('edit-info')}}",
+            method: 	'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success : function(data)
                 {
-                    $('.avatar-preview').css('background-image','url('+e.target.result+')');
-                };
-                
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        
-        $("#avatar").change(function()
-        {
-            readURL(this);
+                    $('.submit').prop('disabled', false);
+                    
+                    if (data['status'] == 'true')
+                    {
+                        Swal.fire(
+                                "{{__('master.DONE')}}",
+                                "{{__('master.DATA-CHANGED-SUCCESSFULLY')}}",
+                                'success'
+                                )
+                    }
+                    else if (data['status'] == 'false')
+                    {
+                        Swal.fire(
+                                "{{__('master.OOPS')}}",
+                                "{{__('master.SOMETHING-WRONG')}}",
+                                'error'
+                                )
+                    }
+                },
+                error : function(reject)
+                {
+                    $('.submit').prop('disabled', false);
+
+                    var response = $.parseJSON(reject.responseText);
+                    $.each(response.errors, function(key, val)
+                    {
+                        Swal.fire(
+                                head2,
+                                val[0],
+                                'error'
+                                )
+                    });
+                }
+            
+            
         });
 
-    </script>
+  });
+
+  // ==========================  Change Passowrd ==========================
+  $(document).on('submit', '.change_password_form', function(e)
+	{
+        e.preventDefault();
+        let formData = new FormData(this);
+        $('.submit').prop('disabled', true);
+
+        var head1 	= 'Done';
+        var title1 	= 'Data Changed Successfully. ';
+        var head2 	= 'Oops...';
+        var title2 	= 'Something went wrong, please try again later.';
+
+        $.ajax({
+            url: 		"{{route('change-password')}}",
+            method: 	'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success : function(data)
+                {
+                    $('.submit').prop('disabled', false);
+                    
+                    if (data['status'] == 'true')
+                    {
+                        Swal.fire(
+                                head1,
+                                title1,
+                                'success'
+                                )
+                    }
+                    else if (data['status'] == 'false')
+                    {
+                        Swal.fire(
+                                head2,
+                                title2,
+                                'error'
+                                )
+                    }
+                    else if (data['status'] == 'error')
+                    {
+                        Swal.fire(
+                                head2,
+                                data['msg'],
+                                'error'
+                                )
+                    }
+                },
+                error : function(reject)
+                {
+                    $('.submit').prop('disabled', false);
+
+                    var response = $.parseJSON(reject.responseText);
+                    $.each(response.errors, function(key, val)
+                    {
+                        Swal.fire(
+                                head2,
+                                val[0],
+                                'error'
+                                )
+                    });
+                }
+            
+            
+        });
+
+  });
+
+  // ==========================  Change Avatar ==========================
+  function readURL(input) 
+  {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          
+          reader.onload = function (e) 
+          {
+              $('.avatar-preview').css('background-image','url('+e.target.result+')');
+          };
+          
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+  
+  $("#avatar").change(function()
+  {
+      readURL(this);
+      $('.profile_picture_form').submit();
+
+  });
+  
+  $(document).on('submit', '.profile_picture_form', function(e)
+	{
+        e.preventDefault();
+        let formData = new FormData(this);
+
+        $.ajax({
+            url: 		"{{route('change-profile-picture')}}",
+            method: 	'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success : function(data)
+                {
+                    if (data['status'] == 'true')
+                    {
+                        Swal.fire(
+                                "{{__('master.DONE')}}",
+                                "{{__('master.DATA-CHANGED-SUCCESSFULLY')}}",
+                                'success'
+                                )
+                    }
+                    else if (data['status'] == 'false')
+                    {
+                        Swal.fire(
+                                "{{__('master.OOPS')}}",
+                                "{{__('master.SOMETHING-WRONG')}}",
+                                'error'
+                                )
+                    }
+                },
+                error : function(reject)
+                {
+                    var response = $.parseJSON(reject.responseText);
+                    $.each(response.errors, function(key, val)
+                    {
+                        Swal.fire(
+                                head2,
+                                val[0],
+                                'error'
+                                )
+                    });
+                }
+            
+        });
+  });
+
+</script>
 @endsection

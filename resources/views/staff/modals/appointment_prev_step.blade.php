@@ -1,0 +1,67 @@
+
+
+@if ($request->step == 1)
+
+    <label class="font-weight-bold text-uppercase">{{__('master.SELECT-SECTOR')}}</label>
+    <div class="row justify-content-center">
+    <!--=================  Sectors  =================-->
+
+        @foreach ($sectors as $sector)
+
+            @if ($branch->hasSector($sector->id))
+                    
+                    <div class="col-xl-3 col-md-4 col-10">
+                        <div class="card card-defualt choose-card" data-step="1" data-all='{"step":"1", "branch":"{{$branch->id}}", "sector": "{{$sector->id}}"}'>
+                            <div class="card-body px-3">
+                                <img class="img-fluid px-4" src="{{asset($sector->image)}}" alt="">
+                                <div class="text-center">
+                                    <h3 class="mt-2">
+                                        <b>{{$sector->name}}</b>
+                                    </h3>
+                                    <div class="my-2">
+                                        <small> <b> <i class="fas fa-stethoscope"></i> {{__('master.DOCTORS')}} : {{$sector->user()->where('disable', 0)->where('role', 'Doctor')->where('branch_id', $request->branch)->count()}} </b> </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+            @endif 
+            
+        @endforeach
+
+    </div>
+
+@elseif ($request->step == 2)
+
+    <label class="font-weight-bold text-uppercase">{{__('master.SELECT-DOCTOR')}}</label>
+    <div class="row justify-content-center">
+    <!--=================  Doctors  =================-->
+
+        @foreach ($doctors as $doctor)
+                    
+                <div class="col-xl-3 col-md-4 col-10">
+                    <div class="card card-defualt choose-card" data-step="2" data-all='{"step":"2", "branch":"{{$branch->id}}", "sector": "{{$sector->id}}", "doctor": "{{$doctor->id}}"}'>
+                        <div class="card-body px-3 text-center">
+                            <img class="doctor-img px-4" src="{{asset($doctor->avatar)}}" alt="">
+                            <div class="text-center">
+                                <h3 class="mt-2">
+                                    <b>{{$doctor->name}}</b>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        @endforeach
+
+    </div>
+
+    <div class="card-footer">
+        <div class="form-group mb-0">
+            <a class="btn btn-info prev-step" data-step="1" data-all='{"step":"1", "branch":"{{$branch->id}}"}'>{{ __('master.BACK') }}</a>
+        </div>
+    </div>
+
+    
+@endif

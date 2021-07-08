@@ -29,41 +29,33 @@
                       </a>
                       <div class="collapse" id="navbar-branches" style="">
                         <ul class="nav nav-sm flex-column">
-                        @if(auth()->user()->can('create branch'))
                           <li class="nav-item">
                               <a href="{{ route('branches.create')}}" class="nav-link nav-link-sub {{request()->routeIs('branches.create') ? 'active' : '' }}">
                                 <i class="far fa-dot-circle"></i>
                                 <span class="sidenav-normal"> {{__('master.ADD-NEW-BRANCH')}} </span>
                               </a>
                           </li>
-                        @endif
 
-                        @if(auth()->user()->can('all branches'))
                           <li class="nav-item">
                             <a href="{{route('branches.index')}}" class="nav-link nav-link-sub {{request()->routeIs('branches.index') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.ALL-BRANCHES')}} </span>
                             </a>
                           </li>
-                        @endif
 
-                        @if(auth()->user()->can('active branches'))
                           <li class="nav-item">
                             <a href="{{ route('active-branches')}}" class="nav-link nav-link-sub {{request()->routeIs('active-branches') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.ACTIVE-BRANCHES')}} </span>
                             </a>
                           </li>
-                        @endif  
 
-                        @if(auth()->user()->can('deactivated branches'))
                           <li class="nav-item">
                               <a href="{{ route('deactive-branches')}}" class="nav-link nav-link-sub {{request()->routeIs('deactive-branches') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.DEACTIVATED-BRANCHES')}} </span>
                             </a>
                           </li>
-                        @endif  
                           
                         </ul>
                       </div>
@@ -76,41 +68,33 @@
                       </a>
                       <div class="collapse" id="navbar-sectors" style="">
                         <ul class="nav nav-sm flex-column">
-                        @if(auth()->user()->can('create sectors'))
                           <li class="nav-item">
                             <a href="{{route('sectors.create')}}" class="nav-link nav-link-sub {{request()->routeIs('sectors.create') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.ADD-NEW-SECTOR')}} </span>
                             </a>
                           </li>
-                        @endif 
 
-                        @if(auth()->user()->can('all sectors'))
                           <li class="nav-item">
                             <a href="{{route('sectors.index')}}" class="nav-link nav-link-sub {{request()->routeIs('sectors.index') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.ALL-SECTORS')}} </span>
                             </a>
                           </li>
-                        @endif
 
-                        @if(auth()->user()->can('active sectors'))
                           <li class="nav-item">
                             <a href="{{ route('active-sectors')}}" class="nav-link nav-link-sub {{request()->routeIs('active-sectors') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.ACTIVE-SECTORS')}} </span>
                             </a>
                           </li>
-                        @endif
 
-                        @if(auth()->user()->can('deactivated sectors'))
                           <li class="nav-item">
                             <a href="{{ route('deactive-sectors')}}" class="nav-link nav-link-sub {{request()->routeIs('deactive-sectors') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.DEACTIVATED-SECTORS')}} </span>
                             </a>
                           </li>
-                        @endif  
                         </ul>
                       </div>
                   </li>
@@ -122,41 +106,33 @@
                       </a>
                       <div class="collapse" id="navbar-doctors" style="">
                         <ul class="nav nav-sm flex-column">
-                        @if(auth()->user()->can('create doctors'))
                           <li class="nav-item">
                             <a href="{{ route('doctors.create')}}" class="nav-link nav-link-sub {{request()->routeIs('doctors.create') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.ADD-NEW-DOCTOR')}} </span>
                             </a>
                           </li>
-                        @endif 
 
-                        @if(auth()->user()->can('all doctors'))
                           <li class="nav-item">
                             <a href="{{ route('doctors.index')}}" class="nav-link nav-link-sub {{request()->routeIs('doctors.index') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.ALL-DOCTORS')}} </span>
                             </a>
                           </li>
-                        @endif 
 
-                        @if(auth()->user()->can('active doctors'))
                           <li class="nav-item">
                             <a href="{{ route('active-doctors')}}" class="nav-link nav-link-sub {{request()->routeIs('active-doctors') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.ACTIVE-DOCTORS')}} </span>
                             </a>
                           </li>
-                        @endif
 
-                        @if(auth()->user()->can('deactivated doctors'))
                           <li class="nav-item">
                             <a href="{{ route('deactive-doctors')}}" class="nav-link nav-link-sub {{request()->routeIs('deactive-doctors') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.BANNED-DOCTORS')}} </span>
                             </a>
                           </li>
-                        @endif  
 
                         </ul>
                       </div>
@@ -169,41 +145,33 @@
                       </a>
                       <div class="collapse" id="navbar-staff" style="">
                         <ul class="nav nav-sm flex-column">
-                        @if(auth()->user()->can('create staff'))
                           <li class="nav-item">
                             <a href="{{ route('staff.create')}}" class="nav-link nav-link-sub {{request()->routeIs('staff.create') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.ADD-NEW-STAFF')}} </span>
                             </a>
                           </li>
-                        @endif
-
-                        @if(auth()->user()->can('all staff'))                      
+                   
                           <li class="nav-item">
                             <a href="{{route('staff.index')}}" class="nav-link nav-link-sub {{request()->routeIs('staff.index') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.ALL-STAFF')}} </span>
                             </a>
                           </li>
-                        @endif
 
-                        @if(auth()->user()->can('active staff')) 
                           <li class="nav-item">
                             <a href="{{ route('active-staff')}}" class="nav-link nav-link-sub {{request()->routeIs('active-staff') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.ACTIVE-STAFF')}} </span>
                             </a>
                           </li>
-                        @endif
 
-                        @if(auth()->user()->can('deactivated staff')) 
                           <li class="nav-item">
                             <a href="{{ route('deactive-staff')}}" class="nav-link nav-link-sub {{request()->routeIs('deactive-staff') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.BANNED-STAFF')}} </span>
                             </a>
                           </li>
-                        @endif
 
                         </ul>
                       </div>
@@ -216,23 +184,19 @@
                       </a>
                       <div class="collapse" id="navbar-patients" style="">
                         <ul class="nav nav-sm flex-column">
-                        @if(auth()->user()->can('create patients')) 
                           <li class="nav-item">
                             <a href="{{route('patients.create')}}" class="nav-link nav-link-sub {{request()->routeIs('patients.create') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.ADD-NEW-PATIENT')}} </span>
                             </a>
                           </li>
-                        @endif
-
-                        @if(auth()->user()->can('all patients'))                       
+                     
                           <li class="nav-item">
                             <a href="{{route('patients.index')}}" class="nav-link nav-link-sub {{request()->routeIs('patients.index') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.ALL-PATIENTS')}} </span>
                             </a>
                           </li>
-                        @endif
                           
                         </ul>
                       </div>
@@ -307,23 +271,19 @@
                             </a>
                           </li>
 
-                        @if(auth()->user()->can('create services'))
                           <li class="nav-item">
                             <a href="{{ route('services.create')}}" class="nav-link nav-link-sub {{request()->routeIs('services.create') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.ADD-NEW-SERVICE')}} </span>
                             </a>
                           </li>
-                        @endif
 
-                        @if(auth()->user()->can('all services'))
                           <li class="nav-item">
                             <a href="{{ route('services.index')}}" class="nav-link nav-link-sub {{request()->routeIs('services.index') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.ALL-SERVICES')}} </span>
                             </a>
                           </li>
-                        @endif
                           
                         </ul>
                       </div>
@@ -453,8 +413,6 @@
               </h6>
               <!-- Navigation -->
               <ul class="navbar-nav mb-md-3">
-
-
                   <li class="nav-item">
                       <a class="nav-link collapsed" href="#navbar-lang" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                         <i class="fas fa-language"></i>

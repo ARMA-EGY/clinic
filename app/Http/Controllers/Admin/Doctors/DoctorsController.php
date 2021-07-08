@@ -29,10 +29,6 @@ class DoctorsController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if(!$user->hasPermissionTo('all doctors'))
-        {
-            return redirect(route('home'));
-        } 
 		$items       = User::where('role', 'Doctor')->orderBy('id','desc')->get();
 		
         return view('admin.doctors.index', [
@@ -47,10 +43,6 @@ class DoctorsController extends Controller
     public function active()
     {
         $user = auth()->user();
-        if(!$user->hasPermissionTo('active doctors'))
-        {
-            return redirect(route('home'));
-        } 
 		$items       = User::where('role', 'Doctor')->where('disable', 0)->orderBy('id','desc')->get();
 		
         return view('admin.doctors.active', [
@@ -65,10 +57,6 @@ class DoctorsController extends Controller
     public function deactive()
     {
         $user = auth()->user();
-        if(!$user->hasPermissionTo('deactivated doctors'))
-        {
-            return redirect(route('home'));
-        } 
 		$items       = User::where('role', 'Doctor')->where('disable', 1)->orderBy('id','desc')->get();
 		
         return view('admin.doctors.deactive', [
@@ -83,10 +71,6 @@ class DoctorsController extends Controller
     public function create()
     {
         $user = auth()->user();
-        if(!$user->hasPermissionTo('create doctors'))
-        {
-            return redirect(route('home'));
-        } 
         return view('admin.doctors.create', [
             'branches'   => Branches::where('disable', 0)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
@@ -101,10 +85,6 @@ class DoctorsController extends Controller
     {
 
             $user = auth()->user();
-            if(!$user->hasPermissionTo('create doctors'))
-            {
-                return redirect(route('home'));
-            } 
             $certificate_file   = '';
             $contract_file      = '';
 
@@ -182,10 +162,6 @@ class DoctorsController extends Controller
     public function edit(User $doctor)
     {
         $user = auth()->user();
-        if(!$user->hasPermissionTo('edit doctors'))
-        {
-            return redirect(route('home'));
-        } 
 		return view('admin.doctors.create', [
             'item' => $doctor,
             'branches'   => Branches::where('disable', 0)->orderBy('id','desc')->get(),
@@ -201,10 +177,6 @@ class DoctorsController extends Controller
     {
 
         $user = auth()->user();
-        if(!$user->hasPermissionTo('edit doctors'))
-        {
-            return redirect(route('home'));
-        } 
         $data = $request->only(['name', 'phone', 'email', 'gender', 'birthdate', 'nationality', 'branch_id', 'sector_id', 'working_hours', 'salary', 'hiring_date', 'profit_ratio', 'license_number', 'contract_duration', 'contract_end_date']);
 
         if($request->hasfile('avatar'))
@@ -249,10 +221,6 @@ class DoctorsController extends Controller
     public function profile($id)
     {
         $user = auth()->user();
-        if(!$user->hasPermissionTo('doctors profile'))
-        {
-            return redirect(route('home'));
-        } 
         $item     = User::where('id', $id)->first();
 
         return view('admin.doctors.profile', [

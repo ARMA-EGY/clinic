@@ -22,99 +22,10 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#navbar-branches" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
-                      <i class="fas fa-clinic-medical"></i>
-                      <span class="nav-link-text">{{__('master.BRANCHES')}}</span>
-                    </a>
-                    <div class="collapse" id="navbar-branches" style="">
-                      <ul class="nav nav-sm flex-column">
-                      @if(auth()->user()->can('create branch'))
-                        <li class="nav-item">
-                            <a href="{{ route('branches.create')}}" class="nav-link nav-link-sub {{request()->routeIs('branches.create') ? 'active' : '' }}">
-                              <i class="far fa-dot-circle"></i>
-                              <span class="sidenav-normal"> {{__('master.ADD-NEW-BRANCH')}} </span>
-                            </a>
-                        </li>
-                      @endif
-
-                      @if(auth()->user()->can('all branches'))
-                        <li class="nav-item">
-                          <a href="{{route('branches.index')}}" class="nav-link nav-link-sub {{request()->routeIs('branches.index') ? 'active' : '' }}">
-                            <i class="far fa-dot-circle"></i>
-                            <span class="sidenav-normal"> {{__('master.ALL-BRANCHES')}} </span>
-                          </a>
-                        </li>
-                      @endif
-
-                      @if(auth()->user()->can('active branches'))
-                        <li class="nav-item">
-                          <a href="{{ route('active-branches')}}" class="nav-link nav-link-sub {{request()->routeIs('active-branches') ? 'active' : '' }}">
-                            <i class="far fa-dot-circle"></i>
-                            <span class="sidenav-normal"> {{__('master.ACTIVE-BRANCHES')}} </span>
-                          </a>
-                        </li>
-                      @endif  
-
-                      @if(auth()->user()->can('deactivated branches'))
-                        <li class="nav-item">
-                            <a href="{{ route('deactive-branches')}}" class="nav-link nav-link-sub {{request()->routeIs('deactive-branches') ? 'active' : '' }}">
-                            <i class="far fa-dot-circle"></i>
-                            <span class="sidenav-normal"> {{__('master.DEACTIVATED-BRANCHES')}} </span>
-                          </a>
-                        </li>
-                      @endif  
-                        
-                      </ul>
-                    </div>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#navbar-sectors" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
-                      <i class="fas fa-tooth"></i>
-                      <span class="nav-link-text">{{__('master.SECTORS')}}</span>
-                    </a>
-                    <div class="collapse" id="navbar-sectors" style="">
-                      <ul class="nav nav-sm flex-column">
-                      @if(auth()->user()->can('create sectors'))
-                        <li class="nav-item">
-                          <a href="{{route('sectors.create')}}" class="nav-link nav-link-sub {{request()->routeIs('sectors.create') ? 'active' : '' }}">
-                            <i class="far fa-dot-circle"></i>
-                            <span class="sidenav-normal"> {{__('master.ADD-NEW-SECTOR')}} </span>
-                          </a>
-                        </li>
-                      @endif 
-
-                      @if(auth()->user()->can('all sectors'))
-                        <li class="nav-item">
-                          <a href="{{route('sectors.index')}}" class="nav-link nav-link-sub {{request()->routeIs('sectors.index') ? 'active' : '' }}">
-                            <i class="far fa-dot-circle"></i>
-                            <span class="sidenav-normal"> {{__('master.ALL-SECTORS')}} </span>
-                          </a>
-                        </li>
-                      @endif
-
-                      @if(auth()->user()->can('active sectors'))
-                        <li class="nav-item">
-                          <a href="{{ route('active-sectors')}}" class="nav-link nav-link-sub {{request()->routeIs('active-sectors') ? 'active' : '' }}">
-                            <i class="far fa-dot-circle"></i>
-                            <span class="sidenav-normal"> {{__('master.ACTIVE-SECTORS')}} </span>
-                          </a>
-                        </li>
-                      @endif
-
-                      @if(auth()->user()->can('deactivated sectors'))
-                        <li class="nav-item">
-                          <a href="{{ route('deactive-sectors')}}" class="nav-link nav-link-sub {{request()->routeIs('deactive-sectors') ? 'active' : '' }}">
-                            <i class="far fa-dot-circle"></i>
-                            <span class="sidenav-normal"> {{__('master.DEACTIVATED-SECTORS')}} </span>
-                          </a>
-                        </li>
-                      @endif  
-                      </ul>
-                    </div>
-                </li>
-
+                @if(auth()->user()->can('create doctors') 
+                || auth()->user()->can('all doctors') 
+                || auth()->user()->can('active doctors') 
+                || auth()->user()->can('deactivated doctors'))
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#navbar-doctors" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-stethoscope"></i>
@@ -124,7 +35,7 @@
                       <ul class="nav nav-sm flex-column">
                       @if(auth()->user()->can('create doctors'))
                         <li class="nav-item">
-                          <a href="{{ route('doctors.create')}}" class="nav-link nav-link-sub {{request()->routeIs('doctors.create') ? 'active' : '' }}">
+                          <a href="{{ route('staff-doctors.create')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-doctors.create') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.ADD-NEW-DOCTOR')}} </span>
                           </a>
@@ -133,7 +44,7 @@
 
                       @if(auth()->user()->can('all doctors'))
                         <li class="nav-item">
-                          <a href="{{ route('doctors.index')}}" class="nav-link nav-link-sub {{request()->routeIs('doctors.index') ? 'active' : '' }}">
+                          <a href="{{ route('staff-doctors.index')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-doctors.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.ALL-DOCTORS')}} </span>
                           </a>
@@ -142,7 +53,7 @@
 
                       @if(auth()->user()->can('active doctors'))
                         <li class="nav-item">
-                          <a href="{{ route('active-doctors')}}" class="nav-link nav-link-sub {{request()->routeIs('active-doctors') ? 'active' : '' }}">
+                          <a href="{{ route('staff-active-doctors')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-active-doctors') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.ACTIVE-DOCTORS')}} </span>
                           </a>
@@ -151,7 +62,7 @@
 
                       @if(auth()->user()->can('deactivated doctors'))
                         <li class="nav-item">
-                          <a href="{{ route('deactive-doctors')}}" class="nav-link nav-link-sub {{request()->routeIs('deactive-doctors') ? 'active' : '' }}">
+                          <a href="{{ route('staff-deactive-doctors')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-deactive-doctors') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.BANNED-DOCTORS')}} </span>
                           </a>
@@ -161,7 +72,12 @@
                       </ul>
                     </div>
                 </li>
+                @endif 
 
+                @if(auth()->user()->can('create staff') 
+                || auth()->user()->can('all staff') 
+                || auth()->user()->can('active staff') 
+                || auth()->user()->can('deactivated staff'))
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#navbar-staff" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fa fa-users"></i>
@@ -171,7 +87,7 @@
                       <ul class="nav nav-sm flex-column">
                       @if(auth()->user()->can('create staff'))
                         <li class="nav-item">
-                          <a href="{{ route('staff.create')}}" class="nav-link nav-link-sub {{request()->routeIs('staff.create') ? 'active' : '' }}">
+                          <a href="{{ route('staff-staff.create')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-staff.create') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.ADD-NEW-STAFF')}} </span>
                           </a>
@@ -180,7 +96,7 @@
 
                       @if(auth()->user()->can('all staff'))                      
                         <li class="nav-item">
-                          <a href="{{route('staff.index')}}" class="nav-link nav-link-sub {{request()->routeIs('staff.index') ? 'active' : '' }}">
+                          <a href="{{route('staff-staff.index')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-staff.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.ALL-STAFF')}} </span>
                           </a>
@@ -189,7 +105,7 @@
 
                       @if(auth()->user()->can('active staff')) 
                         <li class="nav-item">
-                          <a href="{{ route('active-staff')}}" class="nav-link nav-link-sub {{request()->routeIs('active-staff') ? 'active' : '' }}">
+                          <a href="{{ route('staff-active-staff')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-active-staff') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.ACTIVE-STAFF')}} </span>
                           </a>
@@ -198,7 +114,7 @@
 
                       @if(auth()->user()->can('deactivated staff')) 
                         <li class="nav-item">
-                          <a href="{{ route('deactive-staff')}}" class="nav-link nav-link-sub {{request()->routeIs('deactive-staff') ? 'active' : '' }}">
+                          <a href="{{ route('staff-deactive-staff')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-deactive-staff') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.BANNED-STAFF')}} </span>
                           </a>
@@ -208,7 +124,10 @@
                       </ul>
                     </div>
                 </li>
+                @endif 
 
+                @if(auth()->user()->can('create patients') 
+                || auth()->user()->can('all patients') )
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#navbar-patients" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-syringe"></i>
@@ -218,7 +137,7 @@
                       <ul class="nav nav-sm flex-column">
                       @if(auth()->user()->can('create patients')) 
                         <li class="nav-item">
-                          <a href="{{route('patients.create')}}" class="nav-link nav-link-sub {{request()->routeIs('patients.create') ? 'active' : '' }}">
+                          <a href="{{route('staff-patients.create')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-patients.create') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.ADD-NEW-PATIENT')}} </span>
                           </a>
@@ -227,7 +146,7 @@
 
                       @if(auth()->user()->can('all patients'))                       
                         <li class="nav-item">
-                          <a href="{{route('patients.index')}}" class="nav-link nav-link-sub {{request()->routeIs('patients.index') ? 'active' : '' }}">
+                          <a href="{{route('staff-patients.index')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-patients.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.ALL-PATIENTS')}} </span>
                           </a>
@@ -237,45 +156,46 @@
                       </ul>
                     </div>
                 </li>
+                @endif 
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#navbar-appointment" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-notes-medical"></i>
-                      <span class="nav-link-text">{{__('master.APPOINTMENTS')}}</span>
+                      <span class="nav-link-text">{{__('master.INTERNAL-APPOINTMENTS')}}</span>
                     </a>
                     <div class="collapse" id="navbar-appointment" style="">
                       <ul class="nav nav-sm flex-column">
 
                         <li class="nav-item">
-                          <a href="{{route('appointment.create')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.create') ? 'active' : '' }}">
+                          <a href="{{route('staff-appointment.create')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-appointment.create') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.CREATEE')}}  </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="{{route('appointment.today')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.today') ? 'active' : '' }}">
+                          <a href="{{route('staff-appointment.today')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-appointment.today') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.TODAY')}}  </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="{{route('appointment.done')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.done') ? 'active' : '' }}">
+                          <a href="{{route('staff-appointment.done')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-appointment.done') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.DONE')}}  </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="{{route('appointment.cancelled')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.cancelled') ? 'active' : '' }}">
+                          <a href="{{route('staff-appointment.cancelled')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-appointment.cancelled') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.CANCELLED')}}  </span>
                           </a>
                         </li>
 
                         <li class="nav-item">
-                          <a href="{{route('appointment.index')}}" class="nav-link nav-link-sub {{request()->routeIs('appointment.index') ? 'active' : '' }}">
+                          <a href="{{route('staff-appointment.index')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-appointment.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.ALL')}}  </span>
                           </a>
@@ -286,15 +206,79 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link collapsed" href="#navbar-external-appointment" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
+                      <i class="fas fa-notes-medical"></i>
+                      <span class="nav-link-text">{{__('master.EXTERNAL-APPOINTMENTS')}}</span>
+                    </a>
+                    <div class="collapse" id="navbar-external-appointment" style="">
+                      <ul class="nav nav-sm flex-column">
+
+                        <li class="nav-item">
+                          <a href="{{route('staff-external-appointment.create')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-external-appointment.create') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle"></i>
+                            <span class="sidenav-normal"> {{__('master.CREATEE')}}  </span>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="{{route('staff-external-appointment.today')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-external-appointment.today') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle"></i>
+                            <span class="sidenav-normal"> {{__('master.TODAY')}}  </span>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="{{route('staff-external-appointment.done')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-external-appointment.done') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle"></i>
+                            <span class="sidenav-normal"> {{__('master.DONE')}}  </span>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="{{route('staff-external-appointment.cancelled')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-external-appointment.cancelled') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle"></i>
+                            <span class="sidenav-normal"> {{__('master.CANCELLED')}}  </span>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="{{route('staff-external-appointment.index')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-external-appointment.index') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle"></i>
+                            <span class="sidenav-normal"> {{__('master.ALL')}}  </span>
+                          </a>
+                        </li>
+
+                      </ul>
+                    </div>
+                </li>
+
+                @if(auth()->user()->can('create services') 
+                || auth()->user()->can('all services') )
+                <li class="nav-item">
                     <a class="nav-link collapsed" href="#navbar-services" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-briefcase-medical"></i>
                       <span class="nav-link-text">{{__('master.SERVICES')}}</span>
                     </a>
                     <div class="collapse" id="navbar-services" style="">
                       <ul class="nav nav-sm flex-column">
+
+                        <li class="nav-item">
+                          <a href="{{ route('staff-servicescategory.create')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-servicescategory.create') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle"></i>
+                            <span class="sidenav-normal"> {{__('master.ADD-NEW-CATEGORY')}} </span>
+                          </a>
+                        </li>
+                        
+                        <li class="nav-item">
+                          <a href="{{ route('staff-servicescategory.index')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-servicescategory.index') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle"></i>
+                            <span class="sidenav-normal"> {{__('master.ALL-CATEGORIES')}} </span>
+                          </a>
+                        </li>
+
                       @if(auth()->user()->can('create services'))
                         <li class="nav-item">
-                          <a href="{{ route('services.create')}}" class="nav-link nav-link-sub {{request()->routeIs('services.create') ? 'active' : '' }}">
+                          <a href="{{ route('staff-services.create')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-services.create') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.ADD-NEW-SERVICE')}} </span>
                           </a>
@@ -303,7 +287,7 @@
 
                       @if(auth()->user()->can('all services'))
                         <li class="nav-item">
-                          <a href="{{ route('services.index')}}" class="nav-link nav-link-sub {{request()->routeIs('services.index') ? 'active' : '' }}">
+                          <a href="{{ route('staff-services.index')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-services.index') ? 'active' : '' }}">
                             <i class="far fa-dot-circle"></i>
                             <span class="sidenav-normal"> {{__('master.ALL-SERVICES')}} </span>
                           </a>
@@ -313,6 +297,7 @@
                       </ul>
                     </div>
                 </li>
+                @endif 
 
 
                 <li class="nav-item">
@@ -321,79 +306,6 @@
                         <span class="nav-link-text">{{__('master.INVENTORY')}}</span>
                         <span class="badge badge-warning fs-9 p-1 mx-2">{{__('master.PENDING')}}</span>
                     </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#navbar-roles" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
-                      <i class="fas fa-user-tag"></i>
-                      <span class="nav-link-text"> {{__('master.ROLES')}}</span>
-                    </a>
-                    <div class="collapse" id="navbar-roles" style="">
-                      <ul class="nav nav-sm flex-column">
-                        
-                        <li class="nav-item">
-                            <a href="{{ route('permissions.create')}}" class="nav-link nav-link-sub {{request()->routeIs('permissions.create') ? 'active' : '' }}">
-                              <i class="far fa-dot-circle"></i>
-                              <span class="sidenav-normal"> {{__('master.ADD-NEW-ROLE')}} </span>
-                            </a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a href="{{route('permissions.index')}}" class="nav-link nav-link-sub {{request()->routeIs('permissions.index') ? 'active' : '' }}">
-                              <i class="far fa-dot-circle"></i>
-                              <span class="sidenav-normal"> {{__('master.ALL-ROLES')}} </span>
-                            </a>
-                        </li>
-                        
-                      </ul>
-                    </div>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#navbar-reports" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
-                      <i class="far fa-chart-bar"></i>
-                      <span class="nav-link-text"> {{__('master.REPORTS')}}</span>
-                      <span class="badge badge-warning fs-9 p-1 mx-2">{{__('master.PENDING')}}</span>
-                    </a>
-                    <div class="collapse" id="navbar-reports" style="">
-                      <ul class="nav nav-sm flex-column">
-                        
-                        <li class="nav-item">
-                            <a href="#" class="nav-link nav-link-sub">
-                              <i class="far fa-dot-circle"></i>
-                              <span class="sidenav-normal"> Report 1 </span>
-                            </a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a href="#" class="nav-link nav-link-sub">
-                              <i class="far fa-dot-circle"></i>
-                              <span class="sidenav-normal"> Report 2 </span>
-                            </a>
-                        </li>
-                        
-                      </ul>
-                    </div>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#navbar-settings" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
-                      <i class="ni ni-settings"></i>
-                      <span class="nav-link-text"> {{__('master.SETTINGS')}}</span>
-                      <span class="badge badge-warning fs-9 p-1 mx-2">{{__('master.PENDING')}}</span>
-                    </a>
-                    <div class="collapse" id="navbar-settings" style="">
-                      <ul class="nav nav-sm flex-column">
-                        
-                        <li class="nav-item">
-                          <a class="nav-link nav-link-sub {{request()->routeIs('admin-logo') ? 'active' : '' }}" href="{{route('admin-logo')}}">
-                              <i class="ni ni-planet text-pink"></i>
-                              <span class="nav-link-text">{{__('master.LOGO')}}</span>
-                          </a>
-                        </li>
-                        
-                      </ul>
-                    </div>
                 </li>
                 
             </ul>
@@ -404,8 +316,6 @@
             </h6>
             <!-- Navigation -->
             <ul class="navbar-nav mb-md-3">
-
-
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#navbar-lang" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-language"></i>

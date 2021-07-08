@@ -68,15 +68,15 @@ class MasterController extends Controller
         else if( $user->role == 'Staff')
         {
             $today                = date('Y-m-d');
+            $branch               = Branches::where('id', $user->branch_id)->first();
             return view('staff.home', [
-                'branches_count' => Branches::where('disable', 0)->count(),
-                'sectors_count' => Sector::where('disable', 0)->count(),
-                'staff_count' => User::where('disable', 0)->where('role', 'Staff')->count(),
-                'doctors_count' => User::where('disable', 0)->where('role', 'Doctor')->count(),
+                'sectors_count' => $branch->sectors()->count(),
+                'staff_count' => User::where('disable', 0)->where('role', 'Staff')->where('branch_id', $branch->id)->count(),
+                'doctors_count' => User::where('disable', 0)->where('role', 'Doctor')->where('branch_id', $branch->id)->count(),
                 'patients_count' => Patients::all()->count(),
-                'today_appointments' => Appointment::where('appointment_date', $today)->count(),
-                'done_appointments' => Appointment::where('appointment_date', '<', $today)->count(),
-                'total_appointments' => Appointment::where('cancelled', 0)->count(),
+                'today_appointments' => Appointment::where('appointment_date', $today)->where('branch_id', $branch->id)->count(),
+                'done_appointments' => Appointment::where('appointment_date', '<', $today)->where('branch_id', $branch->id)->count(),
+                'total_appointments' => Appointment::where('cancelled', 0)->where('branch_id', $branch->id)->count(),
             ]);
 
         }
@@ -84,11 +84,6 @@ class MasterController extends Controller
         {
             $today                = date('Y-m-d');
             return view('doctor.home', [
-                'branches_count' => Branches::where('disable', 0)->count(),
-                'sectors_count' => Sector::where('disable', 0)->count(),
-                'staff_count' => User::where('disable', 0)->where('role', 'Staff')->count(),
-                'doctors_count' => User::where('disable', 0)->where('role', 'Doctor')->count(),
-                'patients_count' => Patients::all()->count(),
                 'today_appointments' => Appointment::where('doctor_id', $user->id)->where('appointment_date', $today)->count(),
                 'done_appointments' => Appointment::where('doctor_id', $user->id)->where('appointment_date', '<', $today)->count(),
                 'total_appointments' => Appointment::where('doctor_id', $user->id)->where('cancelled', 0)->count(),
@@ -110,11 +105,15 @@ class MasterController extends Controller
         }
         else if( $user->role == 'Staff')
         {
-            return view('staff.profile', []);
+            return view('staff.profile', [
+                'countries'   => Countries::all(),
+                ]);
         }
         else if( $user->role == 'Doctor')
         {
-            return view('doctor.profile', []);
+            return view('doctor.profile', [
+                'countries'   => Countries::all(),
+                ]);
         }
         
     }
@@ -256,6 +255,13 @@ class MasterController extends Controller
                 return response()->json([
                 'status' => 'error',
                 'msg' => 'New Password Required'
+                ]) ;
+            }
+            elseif(strlen($request->newpassword)  < 8)
+            {
+                return response()->json([
+                'status' => 'error',
+                'msg' => 'The password must be at least 8 characters.'
                 ]) ;
             }
             elseif(!$check)

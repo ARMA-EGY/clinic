@@ -25,7 +25,7 @@
             </div>
 
             <div class="col-lg-6 col-5 text-right">
-              <a href="{{ route('appointment.create')}}" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> {{__('master.CREATEE-NEW-APPOINTMENT')}}</a>
+              <a href="{{ route('staff-appointment.create')}}" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> {{__('master.CREATEE-NEW-APPOINTMENT')}}</a>
             </div>
 
             @if(session()->has('success'))	

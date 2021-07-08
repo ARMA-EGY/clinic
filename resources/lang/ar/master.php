@@ -108,6 +108,9 @@ return [
 
     "APPOINTMENTS" => "الحجوزات",
     "APPOINTMENT" => "حجز",
+    "INTERNAL-APPOINTMENTS" => "الحجوزات الداخلية",
+    "EXTERNAL-APPOINTMENTS" => "الحجوزات الخارجية",
+    "APPOINTMENTS-HISTORY" => "تاريخ الحجوزات",
     "CREATEE-APPOINTMENT" => "انشاء حجز جديد",
     "CREATEE-NEW-APPOINTMENT" => "انشاء حجز جديد",
     "TODAY-APPOINTMENTS" => "حجوزات اليوم",

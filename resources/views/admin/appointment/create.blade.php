@@ -2,107 +2,14 @@
 
 @section('style')
 
+<!-- DATATABLE CSS -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-
-<style>
-
-    .box-row 
-    {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin: auto;
-    }
-
-    .box-button 
-    {
-    display: flex;
-    align-items: center;
-    }
-
-    .box-label 
-    {
-    text-align: center;
-    }
-
-    .box 
-    {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    transition: all 0.3s linear;
-    }
-
-    .box-icon 
-    {
-    width: 48px;
-    height: 48px;
-    padding: 8px;
-    margin-bottom: 8px;
-    border-radius: 50%;
-    border: 3px solid #ccc;
-    color: #000;
-    transition: all 0.3s linear;
-    }
-
-    .box.active .box-icon
-    {
-    border: 3px solid #2bbaff;
-    }
-
-    .box-tag 
-    {
-    flex-grow: 1;
-    min-width: 20px;
-    height: 4px;
-    background-color: #ccc;
-    transition: all 0.3s linear;
-    }
-
-    .box.active .box-tag 
-    {
-    background-color: #2bbaff;
-    }
-
-    .box:first-child .box-tag-left 
-    {
-    background-color: white;
-    }
-
-    .box:last-child .box-tag-right 
-    {
-    background-color: white;
-    }
-
-    @media (max-width: 480px) 
-    {
-    .box 
-    {
-        width: 16px;
-        height: 16px;
-    }
-
-    .box-icon 
-    {
-        width: unset;
-        height: unset; 
-        font-size: 10px;
-        padding: 5px;
-    }
-
-    body 
-    {
-        font-size: 0.8em;
-    }
-
-    }
-
-</style>
+<!-- APPOINTMENT CSS -->
+<link rel="stylesheet" href="{{ asset('admin_assets/css/appointment.css') }}" type="text/css">
 
 @endsection
 
 @section('content')
-
 
     <!-- Header -->
     <div class="header bg-gradient-primary pb-6">
