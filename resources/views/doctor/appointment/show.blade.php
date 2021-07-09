@@ -162,11 +162,12 @@
                             <label class="font-weight-bold text-uppercase" for="body_part">Body Part</label>
                                 <select class="form-control selectpicker" data-live-search="true" name="body_part">
                                     <option>-SELECT-</option>
-                                  
-                                        <option value="leg">Leg</option>
-                                        <option value="arm">Arm</option>
-                                        <option value="back">Back</option>
-                                   
+                                    @foreach($bodyparts as $bodypart)
+                                        @if ($appointment->sector->hasBodyparts($bodypart->id))
+                                           <option value="{{$bodypart->name}}">{{$bodypart->name}}</option>
+                                        @endif
+                                    @endforeach
+
                                 </select>
 
                                 @error('body_part')

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Appointment;
 use App\Models\Branches;
 use App\Models\Sector;
+use App\Models\BodyParts;
 use App\Models\Patients;
 use App\Models\User;
 use App\Models\Services;
@@ -35,16 +36,19 @@ class AppointmentController extends Controller
 
     //-------------- Get Single Data ---------------\\    
 
-    public function show(Appointment $appointment)
+    public function show($id)
     {
+        $appointment = appointment::find($id);
         $user = Auth::user();
         $appointmentServices = appointmentServices::where('appointment_id',$appointment->id)->get();
         $services = Services::where('sector_id',$appointment->sector_id)->get();
-        dd($appointment);
-        return view('admin.appointment.show',[
+        $bodyparts = BodyParts::all();
+        
+        return view('doctor.appointment.show',[
             'appointment' => $appointment,
             'appointmentServices'    => $appointmentServices ,
             'services'    => $services ,
+            'bodyparts'    => $bodyparts ,
         ]);
     }     
     //-------------- Get Today Data ---------------\\
@@ -58,7 +62,7 @@ class AppointmentController extends Controller
         ->orderBy('id','desc')
         ->get();
 		
-        return view('admin.appointment.today', [
+        return view('doctor.appointment.today', [
             'items' => $items,
             'total_rows' => count($items),
         ]);
@@ -75,7 +79,7 @@ class AppointmentController extends Controller
         ->orderBy('id','desc')
         ->get();
 		
-        return view('admin.appointment.done', [
+        return view('doctor.appointment.done', [
             'items' => $items,
             'total_rows' => count($items),
         ]);
@@ -91,7 +95,7 @@ class AppointmentController extends Controller
         ->orderBy('id','desc')
         ->get();
 		
-        return view('admin.appointment.cancelled', [
+        return view('doctor.appointment.cancelled', [
             'items' => $items,
             'total_rows' => count($items),
         ]);

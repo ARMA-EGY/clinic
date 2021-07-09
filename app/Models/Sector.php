@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\Models\Branches;
 use App\Models\Services;
+use App\Models\BodyParts;
 use App\Models\User;
 
 use Illuminate\Database\Eloquent\Model;
@@ -26,5 +27,16 @@ class Sector extends Model
     public function user()
     {
         return $this->hasMany(User::class);
+    }
+
+    public function bodyparts()
+    {
+        return $this->belongsToMany(BodyParts::class);
+    }
+    
+    public function hasBodyparts($bodypart_id)
+    {
+        $bodyparts = $this->bodyparts->pluck('id')->toArray();
+        return in_array($bodypart_id, $bodyparts);
     }
 }

@@ -9,6 +9,7 @@ use App\Models\Branches;
 use App\Models\Sector;
 use App\Models\Patients;
 use App\Models\Countries;
+use App\Models\BodyParts;
 use App\Models\User;
 use App\Models\Services;
 use App\Models\appointmentServices;
@@ -39,10 +40,13 @@ class AppointmentController extends Controller
     {
         $appointmentServices = appointmentServices::where('appointment_id',$appointment->id)->get();
         $services = Services::where('sector_id',$appointment->sector_id)->get();
+        $bodyparts = BodyParts::all();
+
         return view('admin.appointment.show',[
             'appointment' => $appointment,
             'appointmentServices'    => $appointmentServices ,
             'services'    => $services ,
+            'bodyparts'    => $bodyparts ,
         ]);
     }     
     //-------------- Get Today Data ---------------\\
