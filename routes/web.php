@@ -47,6 +47,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
     Route::post('/patientinfo', 'Admin\Appointment\AppointmentController@patientinfo')->name('patient-info');
     Route::post('/patientinfotable', 'Admin\Xrays\XraysController@patientinfotable')->name('patient-info-table');
     Route::post('/appointmentinfotable', 'Admin\Xrays\XraysController@appointmentinfotable')->name('appointment-info-table');
+    Route::post('/removeXrayImage', 'Admin\Xrays\XraysController@removeImage')->name('remove-xray-image');
 
     /*
     |--------------------------------------------------------------------------

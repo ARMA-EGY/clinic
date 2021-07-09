@@ -170,7 +170,8 @@
                                                     </div>
 
                                                     <div class="form-group col-md-12 m-auto text-center">
-                                                        <a class="btn btn-sm btn-danger remove_image text-white" data-id="{{$xray_image->id}}"><i class="fa fa-trash "></i></a>
+                                                        <a href="{{asset($xray_image->image)}}" target="_blank" class="btn btn-sm btn-warning text-white"><i class="fa fa-eye "></i></a>
+                                                        <a class="btn btn-sm btn-danger remove_item text-white" data-id="{{$xray_image->id}}" data-url="{{route('remove-xray-image')}}"><i class="fa fa-trash "></i></a>
                                                     </div>
 
                                                 </div>
@@ -403,7 +404,6 @@
             });
 
         });
-
 
     </script>
 @endsection

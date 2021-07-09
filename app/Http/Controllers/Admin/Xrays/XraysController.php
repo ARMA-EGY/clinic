@@ -186,5 +186,15 @@ class XraysController extends Controller
             'appointments'        => $appointments,
         ]);
     }
+
+    //-------------- Remove Image ---------------\\
+    public function removeImage(Request $request)
+    {
+        $item           = XrayImages::where('id', $request->id)->first();
+        $image_path     = public_path().'/'.$item->image;
+
+        unlink($image_path);
+        $item->delete();
+    }
    
 }

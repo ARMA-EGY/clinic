@@ -307,6 +307,41 @@
                   })
         });
 
+        // =============  Remove Item =============
+        $(document).on('click', '.remove_item', function() {
+            
+            var item 	= $(this).attr('data-id');
+            var url 	= $(this).attr('data-url');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Item has been deleted.',
+                    'success'
+                )
+
+                $.ajax({
+                            url: 		url,
+                            method: 	'POST',
+                            dataType: 	'json',
+                            data:		{id: item}	
+                    });
+
+                    $(this).parents('.parent').remove();
+                }
+            })
+            
+        });
+
     </script>
 
     @yield('script')
