@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\AppointmentServices;
+namespace App\Http\Controllers\Doctor\AppointmentServices;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

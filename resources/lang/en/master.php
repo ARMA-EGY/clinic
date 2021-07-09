@@ -277,4 +277,11 @@ return [
     "PLEDGES" => "Pledges",
     "NO-PLEDGES" => "There is no pledges.",
 
+    "STOCK" => "Stock",
+    "QUANTITY" => "Quantity",
+    "EXPIRE-DATE" => "Expire Date",
+    "EDIT-ITEM" => "Edit Item",
+    "ADD-NEW-ITEM" => "Add New Item",
+    "ALL-ITEMS" => "All Items",
+
 ];

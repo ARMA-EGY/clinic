@@ -10,7 +10,7 @@ class Inventory extends Model
     protected $table = 'inventory';
     
     protected $fillable = [
-        'name_en','name_ar','stock'
+        'name','stock','price','expire_date',
     ];
 
     public function InventoryHistory(){

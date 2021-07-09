@@ -18,8 +18,8 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('inventory.index')}}">{{__('master.BRANCHES')}}</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">{{ isset($item) ? 'Edit Item' : 'Add New Item' }}</li>
+                  <li class="breadcrumb-item"><a href="{{route('inventory.index')}}">{{__('master.INVENTORY')}}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{ isset($item) ? __('master.EDIT-ITEM') : __('master.ADD-NEW-ITEM') }}</li>
                 </ol>
               </nav>
             </div>
@@ -36,7 +36,7 @@
       <div class="row">
         <div class="col-xl-12">
             <div class="card card-defualt">
-                <div class="card-header">{{ isset($item) ? 'Edit Item' : 'Add New Item' }} </div>
+                <div class="card-header">{{ isset($item) ? __('master.EDIT-ITEM') : __('master.ADD-NEW-ITEM') }} </div>
         
                 <div class="card-body">
                     <form action="{{ isset($item) ? route('inventory.update', $item->id) : route('inventory.store')  }}" method="post" enctype="multipart/form-data">
@@ -50,10 +50,10 @@
 
                             <!--=================  Name  =================-->
                             <div class="form-group col-md-6 mb-4 text-left">
-                                <label class="font-weight-bold text-uppercase">English Name</label>
-                                <input type="text" name="name_en" class="@error('name_en') is-invalid @enderror form-control" placeholder="English Name" value="{{ isset($item) ? $item->name_en : old('name_en') }}" required>
+                                <label class="font-weight-bold text-uppercase">{{__('master.NAME')}}</label>
+                                <input type="text" name="name" class="@error('name_en') is-invalid @enderror form-control" placeholder="{{__('master.NAME')}}" value="{{ isset($item) ? $item->name : old('name') }}" required>
                             
-                                @error('name_en')
+                                @error('name')
                                     <div>
                                         <span class="text-danger">{{ $message }}</span>
                                     </div>
@@ -61,30 +61,43 @@
             
                             </div>
         
-                            <!--=================  Phone  =================-->
+                            <!--=================  Stock  =================-->
                             <div class="form-group col-md-6 mb-4 text-left">
-                                <label class="font-weight-bold text-uppercase">Arabic Name</label>
-                                    <input type="text" name="name_ar" class="@error('namname_are') is-invalid @enderror form-control" placeholder="Arabic Name" value="{{ isset($item) ? $item->name_ar : old('name_ar') }}" required>
-                                
-                                    @error('name_ar')
-                                        <div>
-                                            <span class="text-danger">{{ $message }}</span>
-                                        </div>
-                                    @enderror
-            
-                            </div>
+                              <label class="font-weight-bold text-uppercase">{{__('master.STOCK')}}</label>
+                              <input type="number" name="stock" class="@error('stock') is-invalid @enderror form-control"  value="{{ isset($item) ? $item->stock : old('stock') }}" >
+                          
+                              @error('stock')
+                                  <div>
+                                      <span class="text-danger">{{ $message }}</span>
+                                  </div>
+                              @enderror
+          
+                          </div>
 
                         </div>
                         <hr class="my-3">
 
                         <div class="row">
 
-                            <!--=================  Stock  =================-->
+                            <!--=================  Price  =================-->
                             <div class="form-group col-md-6 mb-4 text-left">
-                                <label class="font-weight-bold text-uppercase">Stock</label>
-                                <input type="number" name="stock" class="@error('stock') is-invalid @enderror form-control"  value="{{ isset($item) ? $item->stock : old('stock') }}" >
+                                <label class="font-weight-bold text-uppercase">{{__('master.PRICE')}}</label>
+                                <input type="number" step="0.1" name="price" class="@error('price') is-invalid @enderror form-control"  value="{{ isset($item) ? $item->price : old('price') }}" >
                             
-                                @error('stock')
+                                @error('price')
+                                    <div>
+                                        <span class="text-danger">{{ $message }}</span>
+                                    </div>
+                                @enderror
+            
+                            </div>
+
+                            <!--=================  Expire Date  =================-->
+                            <div class="form-group col-md-6 mb-4 text-left">
+                                <label class="font-weight-bold text-uppercase">{{__('master.EXPIRE-DATE')}}</label>
+                                <input type="date" name="expire_date" class="@error('expire_date') is-invalid @enderror form-control"  value="{{ isset($item) ? $item->expire_date : old('expire_date') }}" >
+                            
+                                @error('expire_date')
                                     <div>
                                         <span class="text-danger">{{ $message }}</span>
                                     </div>

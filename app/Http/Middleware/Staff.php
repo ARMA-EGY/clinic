@@ -15,7 +15,7 @@ class Staff
      */
     public function handle($request, Closure $next)
     {
-        if(!auth()->user()->role == 'Staff')
+        if(auth()->user()->role != 'Staff')
         {
             return redirect(route('home'));
         }

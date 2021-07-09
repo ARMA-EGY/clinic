@@ -54,7 +54,7 @@
                                     <label class="font-weight-bold text-uppercase" for="sectors">items</label>
                                     <select id="item" class=" form-control item" name="item">
                                         @foreach ($items as $item)
-                                            <option value="{{$item->id}}" data-url="{{route('inventory.show',$item->id)}}">{{$item->name_en}}</option>
+                                            <option value="{{$item->id}}" data-url="{{route('inventory.show',$item->id)}}">{{$item->name}}</option>
                                         @endforeach
                                     </select>
             
@@ -129,8 +129,10 @@
                 $('.select2').select2();
             });
 
-        $(document).ready(function() {
-            $('#item').change(function() {
+        $(document).ready(function() 
+        {
+            $('#item').change(function() 
+            {
                 var url = $(this).find(':selected').data('url');
                 $.ajax({
                     url: url,
@@ -138,7 +140,6 @@
                     dataType: 'text',
                     success : function(response)
                         {
-                            
                             $('#changed_items').append(response)
                         }  
                   })

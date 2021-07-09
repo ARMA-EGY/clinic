@@ -15,7 +15,7 @@ class Doctor
      */
     public function handle($request, Closure $next)
     {
-        if(!auth()->user()->role == 'Doctor')
+        if(auth()->user()->role != 'Doctor')
         {
             return redirect(route('home'));
         }

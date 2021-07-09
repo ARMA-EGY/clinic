@@ -15,8 +15,7 @@ class AddRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_en' => 'required|unique:inventory',
-            'name_ar' => 'required|unique:inventory',
+            'name' => 'required|unique:inventory',
             'stock' => 'required',
         ];
     }
@@ -24,10 +23,8 @@ class AddRequest extends FormRequest
     public function messages()
     {
         return [
-            'name_en.required' => 'Item Name is required.',
-            'name_en.unique' => 'This Item  Already Exist.',
-            'name_ar.required' => 'Item Name is required.',
-            'name_ar.unique' => 'This Item  Already Exist.',
+            'name.required' => 'Item Name is required.',
+            'name.unique' => 'This Item  Already Exist.',
             'stock.required' => 'stock is required.',
         ];
     }
@@ -35,9 +32,7 @@ class AddRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name_en' => 'Item English Name',
-            'name_ar' => 'Item Arabic Name',
-            'stock' => 'stock',
+            'name' => 'Item Name',
         ];
     }
 }

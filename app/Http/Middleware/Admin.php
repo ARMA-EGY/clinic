@@ -15,7 +15,8 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if(!auth()->user()->role == 'Admin')
+        
+        if(auth()->user()->role != 'Admin')
         {
             return redirect(route('home'));
         }

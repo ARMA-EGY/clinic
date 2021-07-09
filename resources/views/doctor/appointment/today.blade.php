@@ -24,19 +24,6 @@
               </nav>
             </div>
 
-            <div class="col-lg-6 col-5 text-right">
-              <a href="{{ route('appointment.create')}}" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> {{__('master.CREATEE-NEW-APPOINTMENT')}}</a>
-            </div>
-
-            @if(session()->has('success'))	
-                <div class="alert alert-success alert-dismissible fade show m-auto" role="alert">
-                    {{ session()->get('success') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-            @endif
-
           </div>
         </div>
       </div>

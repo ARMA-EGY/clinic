@@ -38,10 +38,9 @@ class AppointmentController extends Controller
     public function show(Appointment $appointment)
     {
         $user = Auth::user();
-        $appointmentServices = appointmentServices::where('appointment_id',$appointment->id)
-        ->where('doctor_id',$user->id)
-        ->get();
+        $appointmentServices = appointmentServices::where('appointment_id',$appointment->id)->get();
         $services = Services::where('sector_id',$appointment->sector_id)->get();
+        dd($appointment);
         return view('admin.appointment.show',[
             'appointment' => $appointment,
             'appointmentServices'    => $appointmentServices ,

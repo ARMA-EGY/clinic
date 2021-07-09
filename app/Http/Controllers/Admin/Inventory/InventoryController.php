@@ -35,7 +35,7 @@ class InventoryController extends Controller
         $row = '<tr class="parent">
         <input type="hidden" name="inventory_id[]" value="'.$inventory->id.'" >
                     <td>'.$inventory->id.'</td>
-                    <td>'.$inventory->name_en.'</td>
+                    <td>'.$inventory->name.'</td>
                     <td id="stock_'.$inventory->id.'">'.$inventory->stock.'</td>
                     <td><input type="number" min="1" id="quantity_'.$inventory->id.'" name="quantity[]" class=" form-control"   > </td>
                     <td>
@@ -65,9 +65,10 @@ class InventoryController extends Controller
     public function store(AddRequest $request)
     {
             $patients =  Inventory::create([
-                'name_en' => $request->name_en,
-                'name_ar' => $request->name_ar,
+                'name' => $request->name,
                 'stock' => $request->stock,
+                'price' => $request->price,
+                'expire_date' => $request->expire_date,
             ]);
             
             $request->session()->flash('success', 'Item created successfully');
@@ -92,8 +93,10 @@ class InventoryController extends Controller
     {
 
         $inventory->update([
-            'name_en' => $request->name_en,
-            'name_ar' => $request->name_ar,
+            'name' => $request->name,
+            'stock' => $request->stock,
+            'price' => $request->price,
+            'expire_date' => $request->expire_date,
         ]);
 		
 		session()->flash('success', 'Item updated successfully');
@@ -154,13 +157,13 @@ class InventoryController extends Controller
             if($request->type[$i] == "addition")
             {
                 $inventory = Inventory::find($id);
-                $stock = $inventory->quantity + $request->quantity[$i];
+                $stock = $inventory->stock + $request->quantity[$i];
                 $inventory->update([
                     'stock' => $stock,
                 ]);
             }elseif($request->type[$i] == "subtraction"){
                 $inventory = Inventory::find($id);
-                $stock = $inventory->quantity - $request->quantity[$i];
+                $stock = $inventory->stock - $request->quantity[$i];
                 $inventory->update([
                     'stock' => $stock,
                 ]);

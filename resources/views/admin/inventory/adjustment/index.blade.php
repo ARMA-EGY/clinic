@@ -77,10 +77,10 @@
 
                   <tr class="parent">
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->created_at }}</td>
+                    <td>{{ $item->created_at->format('d-m-Y') }}</td>
                     <td>{{ $item->items_num }} </td>
                     <td>
-                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.EDIT')}}" href="{{ route('inventory.edit', $item->id)}}" class="btn btn-secondary btn-sm mx-1 px-3"> <i class="fa fa-edit"></i> </a>
+                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="{{ route('inventory.edit', $item->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
                     </td>
                   </tr>
 
