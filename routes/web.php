@@ -44,6 +44,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
     Route::get('/profile', 'MasterController@profile')->name('profile');
     Route::get('/calendar', 'MasterController@calendar')->name('calendar');
     Route::get('/patient/{id}/profile', 'MasterController@patientProfile')->name('patient.profile');
+    Route::post('/patientinfo', 'Admin\Appointment\AppointmentController@patientinfo')->name('patient-info');
+    Route::post('/patientinfotable', 'Admin\Xrays\XraysController@patientinfotable')->name('patient-info-table');
+    Route::post('/appointmentinfotable', 'Admin\Xrays\XraysController@appointmentinfotable')->name('appointment-info-table');
 
     /*
     |--------------------------------------------------------------------------
@@ -53,6 +56,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
 
     Route::group(['prefix' => 'admin','middleware' => [ 'admin' ]], function () 
     {
+        Route::resource('/xrays', 'Admin\Xrays\XraysController'); 
         Route::resource('/branches', 'Admin\Branches\BranchesController'); 
         Route::resource('/inventory', 'Admin\Inventory\InventoryController'); 
         Route::get('/inventory/adjustment/index', 'Admin\Inventory\InventoryController@adjustmentIndex')->name('index-adjustment');
@@ -82,7 +86,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
         Route::get('/appointment-cancelled', 'Admin\Appointment\AppointmentController@cancelled')->name('appointment.cancelled');
         Route::post('/appointmentnext', 'Admin\Appointment\AppointmentController@next')->name('appointment.next');
         Route::post('/appointmentprev', 'Admin\Appointment\AppointmentController@prev')->name('appointment.prev');
-        Route::post('/patientinfo', 'Admin\Appointment\AppointmentController@patientinfo')->name('patient-info');
         Route::post('/appointmentschedule', 'Admin\Appointment\AppointmentController@schedule')->name('appointment.schedule');
         Route::post('/disablebranch', 'Admin\Branches\BranchesController@disablebranch')->name('branch-disable');
         Route::post('/disablesector', 'Admin\Sectors\SectorsController@disable')->name('sector-disable');

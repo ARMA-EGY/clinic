@@ -289,6 +289,58 @@
                       </div>
                   </li>
 
+                  <li class="nav-item">
+                      <a class="nav-link collapsed" href="#navbar-xrays" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
+                        <i class="fas fa-x-ray"></i>
+                        <span class="nav-link-text">{{__('master.RAYS')}}</span>
+                      </a>
+                      <div class="collapse" id="navbar-xrays" style="">
+                        <ul class="nav nav-sm flex-column">
+
+                          <li class="nav-item">
+                            <a href="{{ route('xrays.create')}}" class="nav-link nav-link-sub {{request()->routeIs('xrays.create') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> {{__('master.ADD-NEW-RAYS')}} </span>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="{{ route('xrays.index')}}" class="nav-link nav-link-sub {{request()->routeIs('xrays.index') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> {{__('master.ALL-RAYS')}} </span>
+                            </a>
+                          </li>
+                          
+                        </ul>
+                      </div>
+                  </li>
+
+                  <li class="nav-item">
+                      <a class="nav-link collapsed" href="#navbar-pledges" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
+                        <i class="fas fa-file-contract"></i>
+                        <span class="nav-link-text">{{__('master.PLEDGES')}}</span>
+                        <span class="badge badge-warning fs-9 p-1 mx-2">{{__('master.PENDING')}}</span>
+                      </a>
+                      <div class="collapse" id="navbar-pledges" style="">
+                        <ul class="nav nav-sm flex-column">
+
+                          <li class="nav-item">
+                            <a href="{{ route('services.create')}}" class="nav-link nav-link-sub {{request()->routeIs('services.create') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> {{__('master.ADD-NEW-PLEDGE')}} </span>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="{{ route('services.index')}}" class="nav-link nav-link-sub {{request()->routeIs('services.index') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> {{__('master.ALL-PLEDGES')}} </span>
+                            </a>
+                          </li>
+                          
+                        </ul>
+                      </div>
+                  </li>
 
                   <li class="nav-item">
                       <a class="nav-link collapsed" href="#navbar-inventory" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
@@ -330,7 +382,6 @@
                         </ul>
                       </div>
                   </li>
-
 
                   <li class="nav-item">
                       <a class="nav-link collapsed" href="#navbar-roles" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">

@@ -32,6 +32,7 @@ return [
     "PATIENT-INFORMATION" => "بيانات المريض",
     "NEW-PATIENT" => "مريض جديد",
     "EXIST-PATIENT" => "مريض سابق",
+    "SELECT-PATIENT" => "اختار المريض",
     "PATIENT-NAME" => "اسم المريض",
     "DOCTOR-NAME" => "اسم الطبيب",
     "APPOINTMENT-NUMBER" => "رقم الحجز",
@@ -61,6 +62,8 @@ return [
     "BACK" => "السابق",
     "FINISH" => "انهاء",
     "CANCEL" => "الغاء",
+    "IMAGES" => "الصور",
+    "IMAGE" => "صورة",
 
     "BRANCHES" => "الفروع",
     "BRANCH" => "الفرع",
@@ -133,7 +136,15 @@ return [
     "RAYS" => "الاشاعات",
     "NO-RAYS" => "لا توجد اشاعات.",
     "ADD-NEW-RAYS" => "اضافة اشعة جديدة",
+    "EDIT-RAY" => "تعديل الاشعة",
     "ALL-RAYS" => "جميع الاشاعات",
+    "XRAY-NAME" => "اسم الاشعة",
+    "NO-XRAYS-AVAILABLE" => "لا يوجد اشاعات متاحة.",
+
+    "PLEDGES" => "التعهدات",
+    "NO-PLEDGES" => "لا يوجد تعهدات",
+    "ADD-NEW-PLEDGE" => "اضافة تعهد جديد.",
+    "ALL-PLEDGES" => "جميع التعهدات",
 
     "ROLES" => "الادوار والصلاحيات",
     "PERMISSIONS" => "صلاحيات",

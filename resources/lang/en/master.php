@@ -32,6 +32,7 @@ return [
     "PATIENT-INFORMATION" => "Patient Information",
     "NEW-PATIENT" => "New Patient",
     "EXIST-PATIENT" => "Exist Patient",
+    "SELECT-PATIENT" => "Select Patient",
     "PATIENT-NAME" => "Patient Name",
     "DOCTOR-NAME" => "Doctor Name",
     "APPOINTMENT-NUMBER" => "Appointment Number",
@@ -61,6 +62,8 @@ return [
     "BACK" => "Back",
     "FINISH" => "Finish",
     "CANCEL" => "Cancel",
+    "IMAGES" => "Images",
+    "IMAGE" => "Image",
 
     "BRANCHES" => "Branches",
     "BRANCH" => "Branch",
@@ -133,7 +136,17 @@ return [
     "RAYS" => "X-Rays",
     "NO-RAYS" => "There is no X-Rays.",
     "ADD-NEW-RAYS" => "Add New X-Rays",
+    "EDIT-RAY" => "Edit X-Ray",
     "ALL-RAYS" => "All X-Rays",
+    "XRAY-NAME" => "X-Ray Name",
+    "NO-XRAYS-AVAILABLE" => "No X-rays available",
+    "XRAYS-FINISHED" => "Xrays Added Successfully",
+    
+
+    "PLEDGES" => "Pledges",
+    "NO-PLEDGES" => "There is no Pledges.",
+    "ADD-NEW-PLEDGE" => "Add New Pledge",
+    "ALL-PLEDGES" => "All Pledges",
 
     "ROLES" => "Roles & Permissions",
     "PERMISSIONS" => "Permissions",

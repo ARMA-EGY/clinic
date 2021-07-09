@@ -91,8 +91,8 @@ class StaffController extends Controller
         return view('satff.staff.create', [
             'branches'   => Branches::where('disable', 0)->where('id', $user->branch_id)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
-            'roles'    => Roles::where('name', '!=', 'Doctor')->orderBy('id','desc')->get(),
-            'countries'   => Countries::all(),
+            'roles'      => Roles::where('name', '!=', 'Doctor')->orderBy('id','desc')->get(),
+            'countries'  => Countries::all(),
             ]);
     }
 
@@ -145,7 +145,7 @@ class StaffController extends Controller
                 $contract_file = $request->contract_file->store('files/contract', 'public');
             }
 
-            $doctor =  User::create([
+            $staff =  User::create([
                 'name' => $request->name,
                 'phone' => $request->phone,
                 'email' => $request->email,
@@ -179,7 +179,7 @@ class StaffController extends Controller
 
     //-------------- Edit Data Page ---------------\\
     
-    public function edit(User $doctor)
+    public function edit(User $staff)
     {
         $user = auth()->user();
         if(!$user->hasPermissionTo('edit patients'))
@@ -187,17 +187,18 @@ class StaffController extends Controller
             return redirect(route('home'));
         }
 		return view('satff.staff.create', [
-            'item' => $doctor,
+            'item' => $staff,
             'branches'   => Branches::where('disable', 0)->where('id', $user->branch_id)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
-            'countries'   => Countries::all(),
+            'roles'      => Roles::where('name', '!=', 'Doctor')->orderBy('id','desc')->get(),
+            'countries'  => Countries::all(),
         ]);
     }
 
     
     //-------------- Update Data  ---------------\\
 
-    public function update(UpdateRequest $request, User $doctor)
+    public function update(UpdateRequest $request, User $staff)
     {
 
         $user = auth()->user();
@@ -236,7 +237,7 @@ class StaffController extends Controller
             $data['contract_file'] = $contract_file;
         }
 
-        $doctor->update($data);
+        $staff->update($data);
 		
 		session()->flash('success', 'Staff updated successfully');
 		
