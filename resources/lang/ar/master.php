@@ -108,6 +108,7 @@ return [
     "EDIT-PATIENT" => "تعديل مريض",
     "ALL-PATIENTS" => "جميع المرضى ",
     "NO-PATIENTS-AVAILABLE" => "لا يوجد مرضى متاحين",
+    "PATIENT-REQUIRED" => "بيانات المريض مطلوبة، يرجى اختيار المريض",
 
     "APPOINTMENTS" => "الحجوزات",
     "APPOINTMENT" => "حجز",
@@ -143,7 +144,7 @@ return [
 
     "PLEDGES" => "التعهدات",
     "NO-PLEDGES" => "لا يوجد تعهدات",
-    "ADD-NEW-PLEDGE" => "اضافة تعهد جديد.",
+    "ADD-NEW-PLEDGE" => "اضافة تعهد جديد",
     "ALL-PLEDGES" => "جميع التعهدات",
 
     "ROLES" => "الادوار والصلاحيات",
@@ -272,6 +273,7 @@ return [
    
     "PLEDGES" => "التعهدات",
     "NO-PLEDGES" => "لا توجد تعهدات.",
+    "PLEDGE-FILE" => "ملف التعهد",
 
     "STOCK" => "المخزون",
     "QUANTITY" => "الكمية",

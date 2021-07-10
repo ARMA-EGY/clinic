@@ -19,4 +19,9 @@ class Patients extends Model
     {
         return $this->hasMany('App\Models\Xrays','patient_id');
     }
+
+    public function pledges()
+    {
+        return $this->hasMany('App\Models\Pledges','patient_id');
+    }
 }

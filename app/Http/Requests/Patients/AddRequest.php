@@ -16,7 +16,7 @@ class AddRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:patient',
-            'phone' => 'required',
+            'phone' => 'required|unique:patient',
             'identifiation' => 'required',
             'dateofbirth' => 'required',
             'age' => 'required',
@@ -30,6 +30,7 @@ class AddRequest extends FormRequest
         return [
             'name.required' => 'Patient Name is required.',
             'name.unique' => 'This Patient Name is Already Exist.',
+            'phone.unique' => 'This Phone Number is Already Exist.',
             'phone.required' => 'Phone is required.',
             'identifiation.required' => 'Identifiation is required.',
             'dateofbirth.required' => 'Date of Birth is required.',

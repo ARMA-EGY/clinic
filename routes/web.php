@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {return redirect('/login');});
 Route::get('/admin', function () {return redirect('/login');});
+Route::get('/pledgefile/{id}', 'Admin\Pledges\PledgesController@file')->name('pledgefile');
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
     Route::post('/patientinfotable', 'Admin\Xrays\XraysController@patientinfotable')->name('patient-info-table');
     Route::post('/appointmentinfotable', 'Admin\Xrays\XraysController@appointmentinfotable')->name('appointment-info-table');
     Route::post('/removeXrayImage', 'Admin\Xrays\XraysController@removeImage')->name('remove-xray-image');
+    Route::resource('/pledges', 'Admin\Pledges\PledgesController'); 
 
     /*
     |--------------------------------------------------------------------------

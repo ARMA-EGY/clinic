@@ -108,6 +108,7 @@ return [
     "EDIT-PATIENT" => "Edit Patient",
     "ALL-PATIENTS" => "All Patients",
     "NO-PATIENTS-AVAILABLE" => "No Patients Available",
+    "PATIENT-REQUIRED" => "Patient Information is required, Please select patient.",
 
     "APPOINTMENTS" => "Appointments",
     "APPOINTMENT" => "Appointment",
@@ -276,6 +277,7 @@ return [
    
     "PLEDGES" => "Pledges",
     "NO-PLEDGES" => "There is no pledges.",
+    "PLEDGE-FILE" => "Pledge File",
 
     "STOCK" => "Stock",
     "QUANTITY" => "Quantity",
