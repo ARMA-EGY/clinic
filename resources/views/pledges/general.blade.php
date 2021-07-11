@@ -52,7 +52,7 @@
                 <br>
 
             <form class="pledge_form">
-
+                @csrf
                 <!--=================  Name  =================-->
                 <div class="row">
                     <div class="form-group col-md-4 mb-2 text-left">
@@ -65,7 +65,12 @@
                 <div class="row">
                     <div class="form-group col-md-4 mb-2 text-left">
                         <label class="font-weight-bold text-uppercase">التوقيع</label>
-                        <input type="text" name="signature" class="form-control" required>
+                        @if ($pledge->status == 0)
+                            <input type="text" name="signature" class="form-control" required>
+                        @elseif ($pledge->status == 1)  
+                            <input type="text" name="signature" class="form-control" value="{{$pledge->signature}}" disabled>
+                        @endif
+                        
                     </div>
                 </div>
 
@@ -78,9 +83,10 @@
                 </div>
                 <hr class="my-3">  
                 
+                <input type="hidden" name="id" value="{{$pledge->id}}">
                 <div class="form-group text-center">
                 @if ($pledge->status == 0)
-                    <button type="submit" class="btn btn-primary">موافق</button>
+                    <button type="submit" class="btn btn-primary submit">موافق</button>
                 @elseif ($pledge->status == 1)  
                     <button type="submit" class="btn btn-primary" disabled>تمت الموافقة</button>
                 @endif
@@ -97,12 +103,77 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="{{ asset('admin_assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
     <script>
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+
+
+        // =============  Pledges Form =============
+        $(document).on('submit', '.pledge_form', function(e)
+        {
+            e.preventDefault();
+            let formData = new FormData(this);
+            $('.submit').prop('disabled', true);
+            
+            var head1 	= "تمت الموافقة";
+            var title1 	= "تم توقيع الاقرار بنجاح";
+            var head2 	= "عفواً";
+            var title2 	= "هناك شئ خاطئ، يرجى المحاولة فى وقت لاحق.";
+
+            $.ajax({
+                url: 		"{{route('pledge.agree')}}",
+                method: 	'POST',
+                data: formData,
+                dataType: 	'json',
+                contentType: false,
+                processData: false,
+                success : function(data)
+                    {
+                        $('.submit').prop('disabled', false);
+                        
+                        if (data['status'] == 'true')
+                        {
+                            Swal.fire(
+                                    head1,
+                                    title1,
+                                    'success'
+                                    )
+                            window.setTimeout(function() 
+                            {
+                                location.reload();
+                            }, 1000);
+                        }
+                        else if (data['status'] == 'false')
+                        {
+                            Swal.fire(
+                                    head2,
+                                    title2,
+                                    'error'
+                                    )
+                        }
+                    },
+                    error : function(reject)
+                    {
+                        $('.submit').prop('disabled', false);
+
+                        var response = $.parseJSON(reject.responseText);
+                        $.each(response.errors, function(key, val)
+                        {
+                            Swal.fire(
+                                    head2,
+                                    val[0],
+                                    'error'
+                                    )
+                        });
+                    }
+                
+            });
+
         });
 
     </script>

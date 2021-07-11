@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {return redirect('/login');});
 Route::get('/admin', function () {return redirect('/login');});
 Route::get('/pledgefile/{id}', 'Admin\Pledges\PledgesController@file')->name('pledgefile');
+Route::post('/agreement', 'Admin\Pledges\PledgesController@agree')->name('pledge.agree');
 
 /*
 |--------------------------------------------------------------------------

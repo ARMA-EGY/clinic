@@ -60,7 +60,7 @@ class PledgesController extends Controller
                 $pledge = Pledges::create([
                     'patient_id' => $request->patient_id,
                     'file_id' => $request->file_id,
-                    'signature' => $patient->name,
+                    'signature' => '',
                 ]);
             }
 
@@ -88,9 +88,38 @@ class PledgesController extends Controller
     {
 		$pledge       = Pledges::where('id', $id)->first();
 		
-        return view('pledges.general', [
+        return view('pledges.'.$pledge->file->filename, [
             'pledge'        => $pledge,
         ]);
+    }
+
+
+    //-------------- Agreement of pledge ---------------\\
+
+    public function agree(Request $request)
+    {
+        $pledge     = Pledges::where('id', $request->id)->first();
+        
+        $pledge->update([
+            'signature' => $request->signature,
+            'status' => 1,
+        ]);
+
+        if($pledge)
+        {
+            return response()->json([
+                'status' => 'true',
+                'msg' => 'success'
+            ]) ;
+        }
+        else
+        {
+            return response()->json([
+                'status' => 'false',
+                'msg' => 'error'
+            ]) ;
+        }
+        
     }
    
 }
