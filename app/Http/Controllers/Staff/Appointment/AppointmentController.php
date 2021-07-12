@@ -163,29 +163,15 @@ class AppointmentController extends Controller
             }
     }
 
-
-    //-------------- Edit Data Page ---------------\\
     
-    public function edit(Appointment $appointment)
+    //-------------- Cancel Data  ---------------\\
+
+    public function cancel(Request $request)
     {
-        $user = auth()->user();
-		return view('staff.appointment.create', ['item' => $appointment]);
-    }
+        $item     = Appointment::where('id', $request->id)->first();
 
-    
-    //-------------- Update Data  ---------------\\
-
-    public function update(UpdateRequest $request, Appointment $appointment)
-    {
-        $user = auth()->user();
-
-        $data = $request->only(['name', 'description']);
-
-        $appointment->update($data);
-		
-		session()->flash('success', 'Appointment updated successfully');
-		
-		return redirect(route('staff-appointment.index'));
+        $item->cancel = 1;
+        $item->save();
     }
 
 

@@ -19,14 +19,14 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('inventory.index')}}">Inventory</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Adjustment</li>
+                  <li class="breadcrumb-item"><a href="{{route('inventory.index')}}">{{__('master.INVENTORY')}}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{__('master.ADJUSTMENTS')}}</li>
                 </ol>
               </nav>
             </div>
 
             <div class="col-lg-6 col-5 text-right">
-              <a href="{{ route('create-adjustment')}}" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> Add New Adjustment</a>
+              <a href="{{ route('create-adjustment')}}" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> {{__('master.ADD-NEW-ADJUSTMENT')}}</a>
             </div>
 
             @if(session()->has('success'))	
@@ -53,7 +53,7 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">All Items <span class="badge badge-primary p-2">{{$items_count}}</span></h3>
+                  <h3 class="mb-0">{{__('master.ALL-ITEMS')}} <span class="badge badge-primary p-2">{{$items_count}}</span></h3>
                 </div>
               </div>
             </div>
@@ -66,8 +66,8 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col" class="sort" >Date</th>
-                    <th scope="col" class="sort" >Total Items</th>
+                    <th scope="col" class="sort" >{{__('master.DATE')}}</th>
+                    <th scope="col" class="sort" >{{__('master.TOTAL-ITEMS')}}</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -80,7 +80,7 @@
                     <td>{{ $item->created_at->format('d-m-Y') }}</td>
                     <td>{{ $item->items_num }} </td>
                     <td>
-                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="{{ route('inventory.edit', $item->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
+                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="#" class="btn btn-warning btn-sm mx-1 px-3 show-adjustment" data-id="{{$item->id}}"> <i class="fa fa-tv"></i> </a>
                     </td>
                   </tr>
 
@@ -92,7 +92,7 @@
 
 
             @else 
-                <p class="text-center"> No Items Available </p>
+                <p class="text-center"> {{__('master.NO-ITEMS-AVAILABLE')}} </p>
             @endif
 
             <!-- Card footer -->
@@ -124,6 +124,29 @@
 $('#example').DataTable( {
     "pagingType": "numbers"
   } );
+
+// =============  Get Checkout Data =============
+$('.show-adjustment').click(function()
+{
+    var id 	        = $(this).attr('data-id');
+    var loader 	    = $('#loader2').attr('data-load');
+
+    $('#popup').modal('show');
+    $('#modal_body').html(loader);
+
+    $.ajax({
+        url:"{{route('adjustment.show')}}",
+        type:"POST",
+        dataType: 'text',
+        data:    {"_token": "{{ csrf_token() }}",
+                    id: id},
+        success : function(response)
+            {
+            $('#modal_body').html(response);
+            }  
+        })
+
+});
 
 </script>
     

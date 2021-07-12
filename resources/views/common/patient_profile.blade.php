@@ -174,6 +174,7 @@
                                             <th scope="col" class="sort">#</th>
                                             <th scope="col" class="sort" >{{__('master.APPOINTMENT-DATE')}}</th>
                                             <th scope="col" class="sort" >{{__('master.APPOINTMENT-NUMBER')}}</th>
+                                            <th scope="col" class="sort" >{{__('master.NO.SERVICES')}}</th>
                                             <th scope="col" class="sort" >{{__('master.DOCTOR-NAME')}}</th>
                                             <th scope="col" class="sort" >{{__('master.BRANCH')}}</th>
                                             <th scope="col"></th>
@@ -187,6 +188,7 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td><b> {{$appointment->appointment_date}} </b></td>
                                                     <td><b> {{$appointment->appointment_number}} </b></td>
+                                                    <td><b> {{$appointment->AppointmentServices()->count()}} </b></td>
                                                     <td><b> {{$appointment->doctor->name}} </b></td>
                                                     <td><b> {{$appointment->branch->name}} </b></td>
                                                     <td>

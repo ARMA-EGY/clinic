@@ -96,6 +96,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
         Route::post('/disabledoctor', 'Admin\Doctors\DoctorsController@disable')->name('doctor-disable');
         Route::post('/disablestaff', 'Admin\Staff\StaffController@disable')->name('staff-disable');
         Route::get('/logo', 'MasterController@logo')->name('admin-logo');
+        Route::get('/setting', 'MasterController@setting')->name('admin-setting');
+        Route::post('/appointment-checkout', 'Admin\Appointment\AppointmentController@showCheckout')->name('appointment.checkout');
+        Route::post('/appointment-cancel', 'Admin\Appointment\AppointmentController@cancel')->name('appointment.cancel');
+        Route::post('/adjustment-show', 'Admin\Inventory\InventoryController@showAdjustment')->name('adjustment.show');
     });
 
     /*

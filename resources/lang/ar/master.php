@@ -82,6 +82,7 @@ return [
     "ACTIVE-SECTORS" => "الاقسام المتاحة",
     "DEACTIVATED-SECTORS" => " اقسام غير متاحة",
     "NO-SECTORS-AVAILABLE" => "لا يوجد اقسام متاحة",
+    "BODY-PARTS" => "اجزاء الجسم",
 
     "DOCTORS" => "الاطباء",
     "DOCTOR" => "الطبيب",
@@ -129,6 +130,7 @@ return [
     "NO-APPOINTMENTS-AVAILABLE" => "لا يوجد حجوزات متاحة",
 
     "SERVICES" => "الخدمات",
+    "NO.SERVICES" => "عدد الخدمات",
     "ADD-NEW-SERVICE" => "اضافة خدمة جديدة",
     "EDIT-SERVICE" => "تعديل الخدمة",
     "ALL-SERVICES" => "جميع الخدمات",
@@ -262,8 +264,14 @@ return [
     "all services" => "كل الخدمات",
     "doctors profile" => "ملف للأطباء",
     "staff profile" => "ملف الموظفين",
+    
+    "addition" => "اضافة",
+    "subtraction" => "طرح",
 
     "INVENTORY" => "مستودع",
+    "ADJUSTMENT" => "تعديل",
+    "ADJUSTMENTS" => "تعديلات",
+    "ADD-NEW-ADJUSTMENT" => "اضافة تعديل جديد",
     "ADMINS" => "الأعضاء المشرفون",
     "CATEGORY" => "الفئة",
     "CATEGORIES" => "الفئات",
@@ -280,5 +288,15 @@ return [
     "EXPIRE-DATE" => "تاريخ انتهاء الصلاحية",
     "EDIT-ITEM" => "تعديل العنصر",
     "ADD-NEW-ITEM" => "اضافة عنصر جديد",
+    "ITEM" => "العنصر",
+    "ITEMS" => "العناصر",
+    "TYPE" => "النوع",
     "ALL-ITEMS" => "جميع العناصر",
+    "TOTAL-ITEMS" => "اجمالي العناصر",
+    "NO-ITEMS-AVAILABLE" => "لا توجد عناصر متاحة",
+
+    "CHECKOUT" => "الدفع",
+    "CONFIRM" => "تأكيد",
+    "PAYMENT-METHOD" => "طريقة الدفع",
+    "SELECT-PAYMENT-METHOD" => "اختر طريقة الدفع",
 ];

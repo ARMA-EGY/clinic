@@ -14,11 +14,13 @@ use App\Models\Logo;
 use App\Models\Todo;
 use App\Models\Note;
 use App\Models\Event;
+use App\Models\Setting;
 
 use App\Models\Branches;
 use App\Models\Sector;
 use App\Models\Patients;
 
+use App\Models\appointmentServices;
 use App\Models\Appointment;
 use App\Models\Countries;
 
@@ -125,6 +127,16 @@ class MasterController extends Controller
 
         return view('admin.logo', [
             'logo'    => $logo
+        ]);
+    }
+    
+    //-------------- Setting Page ---------------\\
+    public function setting()
+    {
+        $setting     = Setting::first();
+
+        return view('admin.setting', [
+            'setting'    => $setting
         ]);
     }
     

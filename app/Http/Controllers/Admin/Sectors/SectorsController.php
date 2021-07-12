@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Sectors;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sector;
+use App\Models\BodyParts;
 use App\Http\Requests\Sectors\AddRequest;
 use App\Http\Requests\Sectors\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
@@ -61,7 +62,11 @@ class SectorsController extends Controller
     public function create()
     {
         $user = auth()->user();
-        return view('admin.sectors.create');
+        $bodyparts = BodyParts::all();
+
+        return view('admin.sectors.create',[
+            'bodyparts'    => $bodyparts 
+        ]);
     }
 
 
@@ -94,6 +99,11 @@ class SectorsController extends Controller
                 'description' => $request->description,
                 'image' => $image,
             ]);
+
+            if($request->bodyparts)
+            {
+                $sector->bodyparts()->attach($request->bodyparts);
+            }
             
             $request->session()->flash('success', 'Sector created successfully');
             
@@ -106,7 +116,12 @@ class SectorsController extends Controller
     public function edit(Sector $sector)
     {
         $user = auth()->user();
-		return view('admin.sectors.create', ['item' => $sector]);
+        $bodyparts = BodyParts::all();
+
+		return view('admin.sectors.create', [
+            'item' => $sector,
+            'bodyparts'    => $bodyparts 
+            ]);
     }
 
     
@@ -136,6 +151,11 @@ class SectorsController extends Controller
         }
 
         $sector->update($data);
+
+        if($request->bodyparts)
+        {
+            $sector->bodyparts()->sync($request->bodyparts);
+        }
 		
 		session()->flash('success', 'Sector updated successfully');
 		
