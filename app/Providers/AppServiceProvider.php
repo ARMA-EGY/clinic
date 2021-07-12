@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
 use App\Models\Logo;
+use App\Models\Setting;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,7 +27,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $logo    = Logo::first();
-        View::share('logo', $logo);
+        $logo       = Logo::first();
+        $setting    = Setting::first();
+        
+        $data = array(
+            'logo' => $logo,
+            'setting' => $setting,
+        );
+
+        View::share('setting', $setting);
     }
 }

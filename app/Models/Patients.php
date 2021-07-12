@@ -15,6 +15,11 @@ class Patients extends Model
         return $this->hasMany('App\Models\Appointment','patient_id');
     }
 
+    public function Transaction()
+    {
+        return $this->hasMany('App\Models\Transaction','patient_id');
+    } 
+
     public function xrays()
     {
         return $this->hasMany('App\Models\Xrays','patient_id');

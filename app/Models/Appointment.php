@@ -31,4 +31,9 @@ class Appointment extends Model
         return $this->belongsTo('App\Models\appointmentServices','appointment_id');
     } 
 
+    public function Transaction()
+    {
+        return $this->belongsTo('App\Models\Transaction','appointment_id');
+    } 
+
 }

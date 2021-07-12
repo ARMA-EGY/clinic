@@ -304,4 +304,13 @@ return [
     "PAYMENT-METHOD" => "Payment Method",
     "SELECT-PAYMENT-METHOD" => "Select Payment Method",
 
+    "CASH" => "Cash",
+    "VISA" => "Visa",
+    "MADA" => "Mada",
+    "SADAD" => "Sadad",
+
+    "SUB-TOTAL" => "Sub Total",
+    "TAX" => "Tax",
+    "TOTAL" => "Total",
+
 ];

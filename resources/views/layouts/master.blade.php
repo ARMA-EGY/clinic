@@ -7,7 +7,7 @@
   <meta name="author" content="ARMA Software">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Clinic System</title>
+  <title>{{$setting->project_name}}</title>
   <!-- Favicon -->
   <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/png">
   <!-- Fonts -->

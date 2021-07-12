@@ -299,4 +299,13 @@ return [
     "CONFIRM" => "تأكيد",
     "PAYMENT-METHOD" => "طريقة الدفع",
     "SELECT-PAYMENT-METHOD" => "اختر طريقة الدفع",
+
+    "CASH" => "كاش",
+    "VISA" => "فيزا",
+    "MADA" => "مدى",
+    "SADAD" => "سداد",
+
+    "SUB-TOTAL" => "المجموع الفرعي",
+    "TAX" => "ضريبة",
+    "TOTAL" => "الاجمالي",
 ];
