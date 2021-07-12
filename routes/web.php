@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {return redirect('/login');});
 Route::get('/admin', function () {return redirect('/login');});
+Route::get('/pledgefile/{id}', 'Admin\Pledges\PledgesController@file')->name('pledgefile');
+Route::post('/agreement', 'Admin\Pledges\PledgesController@agree')->name('pledge.agree');
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +50,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
     Route::post('/patientinfotable', 'Admin\Xrays\XraysController@patientinfotable')->name('patient-info-table');
     Route::post('/appointmentinfotable', 'Admin\Xrays\XraysController@appointmentinfotable')->name('appointment-info-table');
     Route::post('/removeXrayImage', 'Admin\Xrays\XraysController@removeImage')->name('remove-xray-image');
+    Route::resource('/pledges', 'Admin\Pledges\PledgesController'); 
 
     /*
     |--------------------------------------------------------------------------
@@ -93,6 +96,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
         Route::post('/disabledoctor', 'Admin\Doctors\DoctorsController@disable')->name('doctor-disable');
         Route::post('/disablestaff', 'Admin\Staff\StaffController@disable')->name('staff-disable');
         Route::get('/logo', 'MasterController@logo')->name('admin-logo');
+        Route::get('/setting', 'MasterController@setting')->name('admin-setting');
+        Route::post('/appointment-checkout', 'Admin\Appointment\AppointmentController@showCheckout')->name('appointment.checkout');
+        Route::post('/appointment-cancel', 'Admin\Appointment\AppointmentController@cancel')->name('appointment.cancel');
+        Route::post('/adjustment-show', 'Admin\Inventory\InventoryController@showAdjustment')->name('adjustment.show');
     });
 
     /*

@@ -82,6 +82,7 @@ return [
     "ACTIVE-SECTORS" => "Active Sectors",
     "DEACTIVATED-SECTORS" => "Deactivated Sectors",
     "NO-SECTORS-AVAILABLE" => "No Sectors Available",
+    "BODY-PARTS" => "Body Parts",
 
     "DOCTORS" => "Doctors",
     "DOCTOR" => "Doctor",
@@ -108,6 +109,7 @@ return [
     "EDIT-PATIENT" => "Edit Patient",
     "ALL-PATIENTS" => "All Patients",
     "NO-PATIENTS-AVAILABLE" => "No Patients Available",
+    "PATIENT-REQUIRED" => "Patient Information is required, Please select patient.",
 
     "APPOINTMENTS" => "Appointments",
     "APPOINTMENT" => "Appointment",
@@ -128,6 +130,7 @@ return [
     "NO-APPOINTMENTS-AVAILABLE" => "No Appointments Available",
 
     "SERVICES" => "Services",
+    "NO.SERVICES" => "No. Services",
     "ADD-NEW-SERVICE" => "Add New Service",
     "EDIT-SERVICE" => "Edit Service",
     "ALL-SERVICES" => "All Services",
@@ -266,7 +269,13 @@ return [
     "doctors profile" => "doctors profile",
     "staff profile" => "staff profile",
 
+    "addition" => "Addition",
+    "subtraction" => "Subtraction",
+
     "INVENTORY" => "Inventory",
+    "ADJUSTMENT" => "Adjustment",
+    "ADJUSTMENTS" => "Adjustments",
+    "ADD-NEW-ADJUSTMENT" => "Add New Adjustment",
     "ADMINS" => "Admins",
     "CATEGORY" => "Category",
     "CATEGORIES" => "Categories",
@@ -276,12 +285,23 @@ return [
    
     "PLEDGES" => "Pledges",
     "NO-PLEDGES" => "There is no pledges.",
+    "PLEDGE-FILE" => "Pledge File",
 
     "STOCK" => "Stock",
     "QUANTITY" => "Quantity",
     "EXPIRE-DATE" => "Expire Date",
     "EDIT-ITEM" => "Edit Item",
     "ADD-NEW-ITEM" => "Add New Item",
+    "ITEM" => "Item",
+    "ITEMS" => "Items",
+    "TYPE" => "Type",
     "ALL-ITEMS" => "All Items",
+    "TOTAL-ITEMS" => "Total Items",
+    "NO-ITEMS-AVAILABLE" => "No Items Available",
+
+    "CHECKOUT" => "Checkout",
+    "CONFIRM" => "Confirm",
+    "PAYMENT-METHOD" => "Payment Method",
+    "SELECT-PAYMENT-METHOD" => "Select Payment Method",
 
 ];

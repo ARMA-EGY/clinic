@@ -1,8 +1,9 @@
 @extends('layouts.master')
 
 @section('style')
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
+
 
 @section('content')
 
@@ -49,9 +50,9 @@
                       <div class="card-header"><i class="fa fa-info-circle"></i> {{__('master.INFORMATION')}} </div>
                       <div class="card-body">
                               
-                              <div class="row">
 
-                                  <!--=================  Name  =================-->
+                              <!--=================  Name  =================-->
+                              <div class="row">
                                   <div class="form-group col-md-12 mb-2 text-left">
                                       <label class="font-weight-bold text-uppercase">{{__('master.NAME')}}</label>
                                       <input type="text" name="name" class="@error('name') is-invalid @enderror form-control" placeholder="{{__('master.NAME')}}" value="{{ isset($item) ? $item->name : old('name') }}" required>
@@ -67,9 +68,8 @@
                               </div>
                               <hr class="my-2">
 
+                              <!--=================  Description  =================-->
                               <div class="row">
-
-                                  <!--=================  Description  =================-->
                                   <div class="form-group col-md-12 mb-2 text-left">
                                       <label class="font-weight-bold text-uppercase">{{__('master.DESCRIPTION')}}</label>
                                       <textarea name="description" class="form-control" cols="30" rows="10">{{ isset($item) ? $item->description : old('description') }}</textarea>
@@ -82,6 +82,21 @@
                   
                                   </div>
 
+                              </div>
+                              <hr class="my-3">
+      
+                              <!--=================  Body Parts  =================-->
+                              <div class="row">
+                                  <div class="form-group col-md-12 mb-4 text-left">
+                                      <label class="font-weight-bold text-uppercase" for="bodyparts">{{__('master.BODY-PARTS')}}</label>
+                                      <select id="sectors" class="select2 form-control" name="bodyparts[]" multiple="multiple">
+                                          @foreach ($bodyparts as $bodypart)
+                                              <option value="{{$bodypart->id}}" @if (isset($item))  @if ($item->hasBodyparts($bodypart->id)) selected @endif @endif>{{$bodypart->name}}</option>
+                                          @endforeach
+                                      </select>
+              
+                                  </div>
+                                  
                               </div>
 
                       </div>
@@ -124,6 +139,7 @@
 
 
 @section('script')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script>
   $(document).ready(function() 
   {

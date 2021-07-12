@@ -48,7 +48,23 @@ class AppointmentController extends Controller
             'services'    => $services ,
             'bodyparts'    => $bodyparts ,
         ]);
-    }     
+    }  
+    
+    //-------------- Get Checkout Data ---------------\\    
+
+    public function showCheckout(Request $request)
+    {
+		$appointment            = Appointment::where('id',$request->id)->first();
+        $appointmentServices    = appointmentServices::where('appointment_id',$appointment->id)->get();
+        $services               = Services::where('sector_id',$appointment->sector_id)->get();
+
+        return view('admin.modals.appointment_checkout',[
+            'appointment'            => $appointment,
+            'appointmentServices'    => $appointmentServices ,
+            'services'               => $services ,
+        ]);
+    }  
+    
     //-------------- Get Today Data ---------------\\
 
     public function today()
@@ -155,45 +171,13 @@ class AppointmentController extends Controller
     }
 
 
-    //-------------- Edit Data Page ---------------\\
-    
-    public function edit(Appointment $appointment)
+    //-------------- Cancel Data  ---------------\\
+
+    public function cancel(Request $request)
     {
-		return view('admin.appointment.create', ['item' => $appointment]);
-    }
+        $item     = Appointment::where('id', $request->id)->first();
 
-    
-    //-------------- Update Data  ---------------\\
-
-    public function update(UpdateRequest $request, Appointment $appointment)
-    {
-
-        $data = $request->only(['name', 'description']);
-
-        $appointment->update($data);
-		
-		session()->flash('success', 'Appointment updated successfully');
-		
-		return redirect(route('appointment.index'));
-    }
-
-
-    //-------------- Disable Data  ---------------\\
-
-    public function disable(Request $request)
-    {
-        $item     = Sector::where('id', $request->id)->first();
-
-        if($item->disable == 1)
-        {
-            $disable = 0;
-        }
-        elseif($item->disable == 0)
-        {
-            $disable = 1;
-        }
-
-        $item->disable = $disable;
+        $item->cancelled = 1;
         $item->save();
     }
 

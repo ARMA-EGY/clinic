@@ -26,4 +26,9 @@ class Appointment extends Model
         return $this->belongsTo('App\Models\Branches','branch_id');
     } 
 
+    public function AppointmentServices()
+    {
+        return $this->belongsTo('App\Models\appointmentServices','appointment_id');
+    } 
+
 }

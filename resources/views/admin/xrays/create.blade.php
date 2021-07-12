@@ -19,7 +19,7 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('services.index')}}">{{__('master.RAYS')}}</a></li>
+                  <li class="breadcrumb-item"><a href="{{route('xrays.index')}}">{{__('master.RAYS')}}</a></li>
                   <li class="breadcrumb-item active" aria-current="page">{{ isset($item) ? __('master.EDIT-RAY') : __('master.ADD-NEW-RAYS') }}</li>
                 </ol>
               </nav>
@@ -94,6 +94,14 @@
                                                     <td>{{__('nationality.'.$patient->nationality )}} </td>
                                                 </tr>
                                                 <input type="hidden" name="patient_id" value="{{$patient->id}}">
+                                            @else
+                                                <tr class="parent">
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                </tr>
                                             @endif
                                         </tbody>
                                     </table>
@@ -139,6 +147,16 @@
                                                         </td>
                                                     </tr>
                                                 @endforeach
+                                            @else
+                                                <tr class="parent">
+                                                    <td></td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                </tr>
                                             @endif
                                         </tbody>
                                     </table>

@@ -51,6 +51,19 @@ class InventoryController extends Controller
                     </td>
                 </tr>';
         return $row;
+    }  
+    
+    //-------------- Get Adjustment Data ---------------\\    
+
+    public function showAdjustment(Request $request)
+    {
+		$transaction            = InventoryTransaction::where('id',$request->id)->first();
+        $adjustments            = InventoryHistory::where('transaction_id',$transaction->id)->get();
+
+        return view('admin.modals.show_adjustment',[
+            'transaction'    => $transaction,
+            'adjustments'    => $adjustments ,
+        ]);
     }   
 
     //-------------- Create New Data ---------------\\

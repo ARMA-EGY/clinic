@@ -86,6 +86,65 @@ $('#example').DataTable( {
     "pagingType": "numbers"
   } );
 
+  // =============  Get Checkout Data =============
+  $('.get-checkout').click(function()
+  {
+      var id 	        = $(this).attr('data-id');
+      var loader 	    = $('#loader2').attr('data-load');
+
+      $('#popup').modal('show');
+      $('#modal_body').html(loader);
+
+      $.ajax({
+          url:"{{route('appointment.checkout')}}",
+          type:"POST",
+          dataType: 'text',
+          data:    {"_token": "{{ csrf_token() }}",
+                      id: id},
+          success : function(response)
+              {
+              $('#modal_body').html(response);
+              }  
+          })
+
+  });
+
+
+  // =============  Cancel Appintment =============
+  $(document).on('click', '.cancel-appointment', function() {
+      
+      var item 	= $(this).attr('data-id');
+      var url 	= $(this).attr('data-url');
+
+      Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, Cancel it!'
+      }).then((result) => {
+          if (result.isConfirmed) {
+          Swal.fire(
+              'Cancelled!',
+              'Appointment has been Cancelled.',
+              'success'
+          )
+
+          $.ajax({
+                      url: 		"{{route('appointment.cancel')}}",
+                      method: 	'POST',
+                      dataType: 	'json',
+                      data:		{id: item}	
+              });
+              
+              $(this).prop('disabled', true);
+          }
+      })
+      
+  });
+
 </script>
     
 @endsection

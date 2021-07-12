@@ -47,7 +47,8 @@ class User extends Authenticatable
     ];
 
 
-    public function Appointment(){
+    public function Appointment()
+    {
         return $this->hasMany('App\Appointment','doctor_id');
     }    
 

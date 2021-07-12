@@ -2,10 +2,10 @@
     <nav class="sidenav navbar navbar-vertical  fixed-left navbar-expand-xs navbar-dark bg-dark" id="sidenav-main">
         <div class="scrollbar-inner">
           <!-- Brand -->
-          <div class="sidenav-header  align-items-center">
+          <div class="sidenav-header align-items-center">
               <a class="navbar-brand" href="javascript:void(0)">
                   @isset($logo)
-                  <img src="{{ asset('storage/'.$logo->logo) }}" class="navbar-brand-img" alt="Logo" style="width: 130px;">
+                      <img src="{{ asset('storage/'.$logo->logo) }}" class="navbar-brand-img" alt="Logo" style="width: 130px;">
                   @else
                       <h3 class="text-white"> Clinic System</h3>
                   @endisset
@@ -319,20 +319,19 @@
                       <a class="nav-link collapsed" href="#navbar-pledges" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                         <i class="fas fa-file-contract"></i>
                         <span class="nav-link-text">{{__('master.PLEDGES')}}</span>
-                        <span class="badge badge-warning fs-9 p-1 mx-2">{{__('master.PENDING')}}</span>
                       </a>
                       <div class="collapse" id="navbar-pledges" style="">
                         <ul class="nav nav-sm flex-column">
 
                           <li class="nav-item">
-                            <a href="{{ route('services.create')}}" class="nav-link nav-link-sub {{request()->routeIs('services.create') ? 'active' : '' }}">
+                            <a href="{{ route('pledges.create')}}" class="nav-link nav-link-sub {{request()->routeIs('pledges.create') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.ADD-NEW-PLEDGE')}} </span>
                             </a>
                           </li>
 
                           <li class="nav-item">
-                            <a href="{{ route('services.index')}}" class="nav-link nav-link-sub {{request()->routeIs('services.index') ? 'active' : '' }}">
+                            <a href="{{ route('pledges.index')}}" class="nav-link nav-link-sub {{request()->routeIs('pledges.index') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
                               <span class="sidenav-normal"> {{__('master.ALL-PLEDGES')}} </span>
                             </a>
