@@ -8,7 +8,7 @@ class appointmentServices extends Model
 {
     protected $table = 'appointment_service';
     
-    protected $fillable = ['appointment_id', 'service_id', 'body_part', 'status'];
+    protected $fillable = ['appointment_id', 'service_id', 'body_part', 'status','notes'];
 
     public function Appointment(){
         return $this->belongsTo('App\Models\Appointment','appointment_id');

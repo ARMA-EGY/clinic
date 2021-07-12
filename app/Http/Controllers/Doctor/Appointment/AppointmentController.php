@@ -132,5 +132,31 @@ class AppointmentController extends Controller
             'patient'        => $patient,
         ]);
     }
+
+    //-------------- Get Patient Info ---------------\\
+
+    public function addNotes(Request $request)
+    {
+		$appointment = appointment::find($request->appointment_id);
+		
+        $appointment->update([
+            'notes' => $request->notes,
+        ]);
+
+        if($appointment)
+        {
+            return response()->json([
+                'status' => 'true',
+                'msg' => 'success'
+            ]) ;
+        }
+        else
+        {
+            return response()->json([
+                'status' => 'false',
+                'msg' => 'error'
+            ]) ;
+        }        
+    }    
    
 }

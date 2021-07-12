@@ -16,7 +16,7 @@
                             <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
                             <li class="breadcrumb-item"><a href="{{route('appointment.index')}}">{{__('master.APPOINTMENTS')}}</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">number</li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ $appointment->id }}</li>
                             </ol>
                         </nav>
                     </div>
@@ -60,7 +60,7 @@
                             </tr>
                             <tr>
                                 <th scope="col">Patient Name: </th>
-                                <td style="background-color: #fff; font-weight: bold;">{{ $appointment->patient->name }}</td>
+                                <td style="background-color: #fff; font-weight: bold;"><a class="font-weight-bold text-primary" href="{{ route('patient.profile',$appointment->patient->id) }}">{{ $appointment->patient->name }}</a></td>
                             </tr>
                             <tr>
                                 <th scope="col">Patient Gender: </th>
@@ -101,6 +101,8 @@
                                 <th scope="col" class="sort" >{{__('master.SECTOR')}} </th>
                                 <th scope="col" class="sort" >Status </th>
                                 <th scope="col" class="sort" >Body Part </th>
+                                <th scope="col" class="sort" >Notes</th>
+                                <th scope="col" class="sort" ></th>
                             </tr>
                             </thead>
                             <tbody class="list">
@@ -114,6 +116,10 @@
                                     <td>{{$appointmentService->service->sector->name}}</td>
                                     <td>{{$appointmentService->status}}</td>
                                     <td>{{$appointmentService->body_part}}</td>
+                                    <td>{{$appointmentService->notes}}</td>
+                                    @if($appointmentService->status == "pending")
+                                    <td> <a data-toggle="tooltip" data-url="{{ route('doctor-AppointmentServicesController.remove') }}" data-id="{{ $appointmentService->id }}" data-placement="top" title="{{__('master.CANCEL')}}" href="#" class="btn btn-danger btn-sm mx-1 px-3 remove_item"> <i class="fa fa-trash"></i> </a></td>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>
@@ -141,9 +147,9 @@
                         <div class="row">
 
                             <!--=================  Service  =================-->
-                            <div class="form-group col-md-6 mb-2">
+                            <div class="form-group col-md-4 mb-2">
                             <label class="font-weight-bold text-uppercase" for="service">Service</label>
-                                <select id="service" class="select2 form-control" name="service[]" multiple="multiple">
+                                <select id="service" class="form-control" name="service" >
                                         @foreach($services as $service)
                                             <option value="{{ $service->id }}">{{ $service->name }}</option>
                                         @endforeach
@@ -158,7 +164,7 @@
                             </div>
 
                             <!--=================  Body Part  =================-->
-                            <div class="form-group col-md-6 mb-2">
+                            <div class="form-group col-md-4 mb-2">
                             <label class="font-weight-bold text-uppercase" for="body_part">Body Part</label>
                                 <select class="form-control selectpicker" data-live-search="true" name="body_part">
                                     <option>-SELECT-</option>
@@ -177,6 +183,19 @@
                                 @enderror
 
                             </div>
+
+                            <!--=================  Notes  =================-->
+                            <div class="form-group col-md-4 mb-4 text-left">
+                                <label class="font-weight-bold text-uppercase">Notes</label>
+                                <input type="text" name="notes" placeholder="Add notes" class="@error('name') is-invalid @enderror form-control" >
+                            
+                                @error('notes')
+                                    <div>
+                                        <span class="text-danger">{{ $message }}</span>
+                                    </div>
+                                @enderror
+            
+                            </div>
                         </div>
                       
                         <div class="form-group col-md-6 mb-1">
@@ -188,6 +207,40 @@
             </div>
           </div>
         </div>
+
+        <div class="col-xl-12 order-xl-1">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Add New Notes</h3>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+                    <form  class="add_notes_form" enctype="multipart/form-data">
+                        @csrf
+
+                        <input type="hidden" name="appointment_id" value="{{ $appointment->id }}">
+
+                        <div class="row">
+                            <!--=================  Notes  =================-->
+                            <div class="form-group col-md-12 mb-2">
+                                <label class="font-weight-bold text-uppercase" for="notes">Notes</label>
+                                <input id="x" type="hidden" name="notes" value="{{$appointment->notes}}">
+                                    <trix-editor input="x"></trix-editor>
+                            </div>
+                        </div>
+                      
+                        <div class="form-group col-md-6 mb-1">
+                                <button type="submit" class="btn btn-success">Add</button>
+                            </div>
+
+
+                    </form>              
+            </div>
+          </div>
+        </div>        
 
 
         </div>
@@ -266,7 +319,67 @@
                 
             });
 
-        });                
+        });
+        
+        $(document).on('submit', '.add_notes_form', function(e)
+        {
+            e.preventDefault();
+            let formData = new FormData(this);
+            $('.submit').prop('disabled', true);
+
+            var head1 	= 'Done';
+            var title1 	= 'Data Changed Successfully. ';
+            var head2 	= 'Oops...';
+            var title2 	= 'Something went wrong, please try again later.';
+
+            $.ajax({
+                url: 		"{{route('doctor-appointment-addnotes')}}",
+                method: 	'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success : function(data)
+                    {
+                        $('.submit').prop('disabled', false);
+                        
+                        if (data['status'] == 'true')
+                        {
+                            Swal.fire(
+                                    head1,
+                                    title1,
+                                    'success'
+                                    )
+                            setTimeout(function() {window.location.reload();}, 2000);
+                        }
+                        else if (data['status'] == 'false')
+                        {
+                            Swal.fire(
+                                    head2,
+                                    title2,
+                                    'error'
+                                    )
+                        }
+                    },
+                    error : function(reject)
+                    {
+                        $('.submit').prop('disabled', false);
+
+                        var response = $.parseJSON(reject.responseText);
+                        $.each(response.errors, function(key, val)
+                        {
+                            Swal.fire(
+                                    head2,
+                                    val[0],
+                                    'error'
+                                    )
+                        });
+                    }
+                
+                
+            });
+
+        });        
+
             });
     </script>
 @endsection

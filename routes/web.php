@@ -145,10 +145,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
         Route::get('/profile', 'Doctor\Doctors\DoctorsController@profile')->name('doctor-doctors.profile');
         Route::post('/changepassword', 'Doctor\Doctors\DoctorsController@changepassword')->name('doctor-changepassword');
         Route::resource('/doctor-appointment', 'Doctor\Appointment\AppointmentController'); 
+        Route::post('/doctor-appointment-addnotes', 'Doctor\Appointment\AppointmentController@addNotes')->name('doctor-appointment-addnotes');
         Route::get('/appointment-today', 'Doctor\Appointment\AppointmentController@today')->name('doctor-appointment.today');
         Route::get('/appointment-done', 'Doctor\Appointment\AppointmentController@done')->name('doctor-appointment.done');
         Route::get('/appointment-cancelled', 'Doctor\Appointment\AppointmentController@cancelled')->name('doctor-appointment.cancelled');
         Route::resource('/AppointmentServices', 'Doctor\AppointmentServices\AppointmentServicesController'); 
+        Route::post('/AppointmentServices', 'Doctor\AppointmentServices\AppointmentServicesController@remove')->name('doctor-AppointmentServicesController.remove');
+        
     });
 
 });

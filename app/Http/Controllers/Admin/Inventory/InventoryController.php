@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Inventory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Inventory;
+use App\Models\Branches;
 use App\Models\InventoryHistory;
 use App\Models\InventoryTransaction;
 use App\Http\Requests\Inventory\AddRequest;
@@ -32,6 +33,7 @@ class InventoryController extends Controller
 
     public function show(Inventory $inventory)
     {
+        $url = route('inventory.show',$inventory->id);
         $row = '<tr class="parent">
         <input type="hidden" name="inventory_id[]" value="'.$inventory->id.'" >
                     <td>'.$inventory->id.'</td>
@@ -45,7 +47,7 @@ class InventoryController extends Controller
                     </select> 
                     </td>
                     <td>
-                    <a data-toggle="tooltip" data-placement="top" title=""  class="btn btn-secondary btn-sm mx-1 px-3 trash-item"> <i class="fa fa-trash"></i> </a>
+                    <a data-toggle="tooltip" data-placement="top" title="" data-id="'.$inventory->id.'" data-itemname="'.$inventory->name.'" data-url="'.$url.'" class="btn btn-secondary btn-sm mx-1 px-3 trash-item"> <i class="fa fa-trash"></i> </a>
                     </td>
                 </tr>';
         return $row;
@@ -55,8 +57,8 @@ class InventoryController extends Controller
 
     public function create()
     {
-
-        return view('admin.inventory.create');
+		$items       = Branches::orderBy('id','desc')->get();
+        return view('admin.inventory.create',['items' => $items]);
     }
 
 

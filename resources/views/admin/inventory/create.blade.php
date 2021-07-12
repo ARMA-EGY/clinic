@@ -107,6 +107,29 @@
         
 
                         </div>
+
+
+                        <div class="row">
+                            <!--=================  Body Part  =================-->
+                            <div class="form-group col-md-6 mb-2">
+                            <label class="font-weight-bold text-uppercase" for="body_part">Branch</label>
+                                <select class="form-control selectpicker" data-live-search="true" name="branch_id">
+                                    <option>-SELECT-</option>
+                                  
+                                    @foreach($items as $item)
+                                      <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                   
+                                </select>
+
+                                @error('body_part')
+                                <div>
+                                    <span class="text-danger">{{ $message }}</span>
+                                </div>
+                                @enderror
+
+                            </div>
+                        </div>                        
                         <hr class="my-3">
         
                         <div class="form-group card-footer">

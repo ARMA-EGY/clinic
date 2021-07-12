@@ -133,7 +133,9 @@
         {
             $('#item').change(function() 
             {
+                
                 var url = $(this).find(':selected').data('url');
+                $('option:selected', this).remove();
                 $.ajax({
                     url: url,
                     type:"GET",
@@ -176,7 +178,12 @@
 
 
             $(document).on("click",".trash-item", function()
-            {
+            { 
+                var id = $(this).data("id");
+                var name = $(this).data("itemname");
+                var url = $(this).data("url");
+                var option = '  <option value="'+id+'" data-url="'+url+'">'+name+'</option>';
+                $('#item').append(option);
                 $(this).parents('.parent').remove();
             });
 
