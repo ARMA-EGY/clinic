@@ -10,11 +10,13 @@ class appointmentServices extends Model
     
     protected $fillable = ['appointment_id', 'service_id', 'body_part', 'status','notes'];
 
-    public function Appointment(){
+    public function Appointment()
+    {
         return $this->belongsTo('App\Models\Appointment','appointment_id');
     } 
 
-    public function service(){
+    public function service()
+    {
         return $this->belongsTo('App\Models\Services','service_id');
     }     
 

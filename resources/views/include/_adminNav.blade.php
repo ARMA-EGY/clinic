@@ -4,10 +4,10 @@
           <!-- Brand -->
           <div class="sidenav-header align-items-center">
               <a class="navbar-brand" href="javascript:void(0)">
-                  @isset($logo)
-                      <img src="{{ asset('storage/'.$logo->logo) }}" class="navbar-brand-img" alt="Logo" style="width: 130px;">
+                  @isset($setting->logo)
+                      <img src="{{ asset('storage/'.$setting->logo) }}" class="navbar-brand-img" alt="Logo" style="width: 130px;">
                   @else
-                      <h3 class="text-white"> Clinic System</h3>
+                      <h3 class="text-white"> {{$setting->project_name}}</h3>
                   @endisset
               </a>
           </div>

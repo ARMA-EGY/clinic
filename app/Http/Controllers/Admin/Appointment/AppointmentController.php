@@ -17,6 +17,7 @@ use App\Http\Requests\Appointment\AddRequest;
 use App\Http\Requests\Appointment\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 class AppointmentController extends Controller
 {
@@ -57,11 +58,19 @@ class AppointmentController extends Controller
 		$appointment            = Appointment::where('id',$request->id)->first();
         $appointmentServices    = appointmentServices::where('appointment_id',$appointment->id)->get();
         $services               = Services::where('sector_id',$appointment->sector_id)->get();
+        $subtotal              = 0;
+
+        foreach ($appointmentServices as $appointmentService)
+        {
+            $sub        = $appointmentService->service->price;
+            $subtotal   = $subtotal + $sub;
+        }
 
         return view('admin.modals.appointment_checkout',[
             'appointment'            => $appointment,
             'appointmentServices'    => $appointmentServices ,
             'services'               => $services ,
+            'subtotal'               => $subtotal ,
         ]);
     }  
     

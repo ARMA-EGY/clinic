@@ -11,14 +11,14 @@
         <form class="checkout_form" enctype="multipart/form-data">
             @csrf
 
-                    <div class="table-responsive">
-                        <table class="table align-items-center table-dark table-flush">
+                    <div class="table-responsive rounded">
+                        <table class="table align-items-center table-dark table-flush rounded">
                             <thead class="thead-dark">
                             <tr>
                                 <th scope="col" class="sort">#</th>
                                 <th scope="col" class="sort" >{{__('master.NAME')}}</th>
-                                <th scope="col" class="sort" >{{__('master.SERVICE-NUMBER')}}</th>
                                 <th scope="col" class="sort" >{{__('master.SECTOR')}} </th>
+                                <th scope="col" class="sort" ></th>
                                 <th scope="col" class="sort" >{{__('master.PRICE')}}</th>
                             </tr>
                             </thead>
@@ -28,8 +28,8 @@
                                 <tr class="parent">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{$appointmentService->service->name}}</td>
-                                    <td>{{$appointmentService->service->number}}</td>
                                     <td>{{$appointmentService->service->sector->name}}</td>
+                                    <td></td>
                                     <td>{{$appointmentService->service->price}}</td>
                                 </tr>
                             @endforeach
@@ -37,14 +37,44 @@
                         </table>
                     </div>
 
+                    <div class="table-responsive rounded">
+                        <table class="table align-items-center table-light table-flush rounded">
+
+                            <tbody class="list">
+                                    <tr class="parent">
+                                        <td></td>
+                                        <td><b>{{__('master.SUB-TOTAL')}}</b></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{$subtotal}}</td>
+                                    </tr>
+                                    <tr class="parent">
+                                        <td></td>
+                                        <td><b>{{__('master.TAX')}}</b></td>
+                                        <td></td>
+                                        <td>{{$setting->tax}}%</td>
+                                        <td>{{$tax = $setting->tax*$subtotal/100}}</td>
+                                    </tr>
+                                    <tr class="parent">
+                                        <td></td>
+                                        <td><b>{{__('master.TOTAL')}}</b></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{$subtotal + $tax }}</td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
                     <div class="form-group col-md-6 mb-4 text-left">
                         <label class="font-weight-bold text-uppercase">{{__('master.PAYMENT-METHOD')}}</label>
 
                         <select class="form-control" name="payment_method" required>
                             <option value="">{{__('master.SELECT-PAYMENT-METHOD')}}</option>
-                            <option value="cash">Cash</option>
-                            <option value="visa">Visa</option>
+                            <option value="cash">{{__('master.CASH')}}</option>
+                            <option value="visa">{{__('master.VISA')}}</option>
+                            <option value="mada">{{__('master.MADA')}}</option>
+                            <option value="sadad">{{__('master.SADAD')}}</option>
                         </select>
     
                     </div>
