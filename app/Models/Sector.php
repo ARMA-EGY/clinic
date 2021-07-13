@@ -39,4 +39,9 @@ class Sector extends Model
         $bodyparts = $this->bodyparts->pluck('id')->toArray();
         return in_array($bodypart_id, $bodyparts);
     }
+
+    public function branchespv()
+    {
+        return $this->belongsToMany('App\Models\Branches', 'branches_sector');
+    }
 }

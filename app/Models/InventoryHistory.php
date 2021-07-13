@@ -10,7 +10,7 @@ class InventoryHistory extends Model
     protected $table = 'inventory_history';
     
     protected $fillable = [
-        'inventory_id','type','quantity','transaction_id'
+        'inventory_id','type','quantity','transaction_id','sector_id'
     ];
 
     public function InventoryTransaction(){

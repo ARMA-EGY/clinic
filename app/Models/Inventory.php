@@ -10,11 +10,15 @@ class Inventory extends Model
     protected $table = 'inventory';
     
     protected $fillable = [
-        'name','stock','price','expire_date',
+        'name','stock','price','expire_date','branch_id', 'disable'
     ];
 
     public function InventoryHistory(){
         return $this->hasMany('App\InventoryHistory','inventory_id');
     }  
+
+    public function branch(){
+        return $this->belongsTo('App\Models\Branches','branch_id');
+    }
 
 }

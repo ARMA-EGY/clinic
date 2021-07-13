@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Inventory;
 use App\Models\Branches;
+use App\Models\Sector;
 use App\Models\InventoryHistory;
 use App\Models\InventoryTransaction;
 use App\Http\Requests\Inventory\AddRequest;
@@ -20,11 +21,13 @@ class InventoryController extends Controller
     public function index()
     {
 
-		$inventories       = Inventory::orderBy('id','desc')->get();
-		
+		$inventories       = Inventory::orderBy('id','desc')
+        ->get();
+
         return view('admin.inventory.index', [
             'items' => $inventories,
             'items_count' => count($inventories),
+            'type' => 'all',
         ]);
     }
 
@@ -33,6 +36,15 @@ class InventoryController extends Controller
 
     public function show(Inventory $inventory)
     {
+        $branch = Branches::with('sectorspv')->find($inventory->branch_id);
+
+        $SectorsOption = "";
+        foreach($branch->sectorspv as $sector)
+        {
+            $SectorsOption = $SectorsOption . '<option value="'.$sector->id.'">'.$sector->name.'</option>';
+        }
+
+
         $url = route('inventory.show',$inventory->id);
         $row = '<tr class="parent">
         <input type="hidden" name="inventory_id[]" value="'.$inventory->id.'" >
@@ -42,10 +54,17 @@ class InventoryController extends Controller
                     <td><input type="number" min="1" id="quantity_'.$inventory->id.'" name="quantity[]" class=" form-control"   > </td>
                     <td>
                     <select class="typechs form-control item" name="type[]">            
-                            <option value="addition">addition</option>
+                            <option value="addition" data-id="'.$inventory->id.'">addition</option>
                             <option value="subtraction" data-id="'.$inventory->id.'">subtraction</option>
                     </select> 
                     </td>
+
+                    <td>
+                    <select id="sector_'.$inventory->id.'" class="form-control item d-none" name="sector[]">            
+                    '.$SectorsOption.'
+                    </select> 
+                    </td>
+
                     <td>
                     <a data-toggle="tooltip" data-placement="top" title="" data-id="'.$inventory->id.'" data-itemname="'.$inventory->name.'" data-url="'.$url.'" class="btn btn-secondary btn-sm mx-1 px-3 trash-item"> <i class="fa fa-trash"></i> </a>
                     </td>
@@ -70,8 +89,8 @@ class InventoryController extends Controller
 
     public function create()
     {
-		$items       = Branches::orderBy('id','desc')->get();
-        return view('admin.inventory.create',['items' => $items]);
+		$branches       = Branches::orderBy('id','desc')->get();
+        return view('admin.inventory.create',['branches' => $branches]);
     }
 
 
@@ -84,6 +103,7 @@ class InventoryController extends Controller
                 'stock' => $request->stock,
                 'price' => $request->price,
                 'expire_date' => $request->expire_date,
+                'branch_id' => $request->branch_id,
             ]);
             
             $request->session()->flash('success', 'Item created successfully');
@@ -96,8 +116,10 @@ class InventoryController extends Controller
     
     public function edit(Inventory $inventory)
     {
+        $branches       = Branches::orderBy('id','desc')->get();
 		return view('admin.inventory.create', [
             'item' => $inventory,
+            'branches' => $branches,
             ]);
     }
 
@@ -112,6 +134,7 @@ class InventoryController extends Controller
             'stock' => $request->stock,
             'price' => $request->price,
             'expire_date' => $request->expire_date,
+            'branch_id' => $request->branch_id,
         ]);
 		
 		session()->flash('success', 'Item updated successfully');
@@ -163,20 +186,28 @@ class InventoryController extends Controller
         foreach($request->inventory_id as $id)
         {
             
-            $InventoryHistory =  InventoryHistory::create([
-                'inventory_id' => $id,
-                'transaction_id' => $InventoryTransaction->id,
-                'type' => $request->type[$i],
-                'quantity' => $request->quantity[$i],
-            ]);
+
             if($request->type[$i] == "addition")
             {
+                $InventoryHistory =  InventoryHistory::create([
+                    'inventory_id' => $id,
+                    'transaction_id' => $InventoryTransaction->id,
+                    'type' => $request->type[$i],
+                    'quantity' => $request->quantity[$i],
+                ]);
                 $inventory = Inventory::find($id);
                 $stock = $inventory->stock + $request->quantity[$i];
                 $inventory->update([
                     'stock' => $stock,
                 ]);
             }elseif($request->type[$i] == "subtraction"){
+                $InventoryHistory =  InventoryHistory::create([
+                    'inventory_id' => $id,
+                    'transaction_id' => $InventoryTransaction->id,
+                    'type' => $request->type[$i],
+                    'quantity' => $request->quantity[$i],
+                    'sector_id' => $request->sector[$i]
+                ]);
                 $inventory = Inventory::find($id);
                 $stock = $inventory->stock - $request->quantity[$i];
                 $inventory->update([
@@ -191,5 +222,53 @@ class InventoryController extends Controller
         
         return redirect(route('index-adjustment'));
     }
+
+
+
+    //-------------- Disable Item  ---------------\\
+
+    public function disableinventory(Request $request)
+    {
+        $item     = Inventory::where('id', $request->id)->first();
+
+        if($item->disable == 1)
+        {
+            $disable = 0;
+        }
+        elseif($item->disable == 0)
+        {
+            $disable = 1;
+        }
+
+        $item->disable = $disable;
+        $item->save();
+    }
+
+
+    public function active()
+    {
+
+		$items       = Inventory::where('disable', 0)->orderBy('id','desc')->get();
+		
+        return view('admin.inventory.index', [
+            'items' => $items,
+            'items_count' => count($items),
+            'type' => 'active',
+        ]);
+    }
+
+
+    //-------------- Get Deactive Branches ---------------\\
+
+    public function deactive()
+    {
+		$items       = Inventory::where('disable', 1)->orderBy('id','desc')->get();
+		
+        return view('admin.inventory.index', [
+            'items' => $items,
+            'items_count' => count($items),
+            'type' => 'deactive',
+        ]);
+    }    
    
 }

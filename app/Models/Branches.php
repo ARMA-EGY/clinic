@@ -27,6 +27,15 @@ class Branches extends Model
     {
         return $this->hasMany(User::class, 'branch_id', 'id');
     }
+
+    public function inventory(){
+        return $this->hasMany('App\Inventory','branch_id');
+    }
+    
+    public function sectorspv()
+    {
+        return $this->belongsToMany('App\Models\Sector', 'branches_sector','branches_id', 'sector_id');
+    }
 }
 
 

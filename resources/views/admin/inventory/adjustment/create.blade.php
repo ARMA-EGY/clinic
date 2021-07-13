@@ -92,6 +92,7 @@
                                     <th scope="col" class="sort" >Stock</th>
                                     <th scope="col" class="sort" >Quantity</th>
                                     <th scope="col" class="sort" >Type</th>
+                                    <th scope="col" class="sort">Sector</th>
                                     <th scope="col"></th>
                                 </tr>
                                 </thead>
@@ -147,16 +148,6 @@
                   })
             });
 
-            $('.typechs').change(function() {
-                if($(this).val() == "subtraction")
-                {
-                    var id = $(this).find(':selected').data('id');
-                    var stock = $('#stock_'+id);
-                    $('#quantity_'+id).attr({
-                        "max" : stock
-                    });
-                }
-            });
 
             $(document).on("change",".typechs", function()
             {
@@ -171,8 +162,11 @@
                         {
                             $('#quantity_'+id).val(stock);
                         }
-                        
-                    }
+                        $('#sector_'+id).removeClass("d-none");
+                    }else{
+                    var id = $(this).find(':selected').data('id');
+                    $('#sector_'+id).addClass("d-none");
+                }
                 
             });
 

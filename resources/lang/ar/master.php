@@ -292,6 +292,8 @@ return [
     "ITEMS" => "العناصر",
     "TYPE" => "النوع",
     "ALL-ITEMS" => "جميع العناصر",
+    "ACTIVE-ITEMS" => "العناصرالمتاحة",
+    "DEACTIVE-ITEMS" => "العناصرغيرالمتاحة",
     "TOTAL-ITEMS" => "اجمالي العناصر",
     "NO-ITEMS-AVAILABLE" => "لا توجد عناصر متاحة",
 

@@ -108,21 +108,27 @@
 
                         </div>
 
-
+                        <hr class="my-3">
                         <div class="row">
-                            <!--=================  Body Part  =================-->
+                            <!--=================  Branch  =================-->
                             <div class="form-group col-md-6 mb-2">
                             <label class="font-weight-bold text-uppercase" for="body_part">Branch</label>
                                 <select class="form-control selectpicker" data-live-search="true" name="branch_id">
                                     <option>-SELECT-</option>
-                                  
-                                    @foreach($items as $item)
-                                      <option value="{{$item->id}}">{{$item->name}}</option>
-                                    @endforeach
-                                   
+                  
+                                    @if(isset($item))
+                                      @foreach($branches as $branch)
+                                        <option value="{{$branch->id}}" {{ $branch->id == $item->branch_id ? 'selected' : ''}}>{{$branch->name}}</option>
+                                      @endforeach
+                                    @else
+                                      @foreach($branches as $branch)
+
+                                        <option value="{{$branch->id}}" >{{$branch->name}}</option>
+                                      @endforeach
+                                    @endif
                                 </select>
 
-                                @error('body_part')
+                                @error('branch_id')
                                 <div>
                                     <span class="text-danger">{{ $message }}</span>
                                 </div>

@@ -296,6 +296,8 @@ return [
     "ITEMS" => "Items",
     "TYPE" => "Type",
     "ALL-ITEMS" => "All Items",
+    "ACTIVE-ITEMS" => "Active Items",
+    "DEACTIVE-ITEMS" => "Deactive Items",
     "TOTAL-ITEMS" => "Total Items",
     "NO-ITEMS-AVAILABLE" => "No Items Available",
 

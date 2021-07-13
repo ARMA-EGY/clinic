@@ -19,14 +19,23 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">{{__('master.INVENTORY')}}</li>
+
+                  @if($type == "all")
+                  <li class="breadcrumb-item active" aria-current="page">{{__('master.ALL-ITEMS')}}</li>
+                  @elseif($type == "active")
+                  <li class="breadcrumb-item active" aria-current="page">{{__('master.ACTIVE-ITEMS')}}</li>
+                  @elseif($type == "deactive")
+                  <li class="breadcrumb-item active" aria-current="page">{{__('master.DEACTIVE-ITEMS')}}</li>
+                  @endif
                 </ol>
               </nav>
             </div>
 
+            @if($type == "all")
             <div class="col-lg-6 col-5 text-right">
               <a href="{{ route('inventory.create')}}" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> {{__('master.ADD-NEW-ITEM')}}</a>
             </div>
+            @endif
 
             @if(session()->has('success'))	
                 <div class="alert alert-success alert-dismissible fade show m-auto" role="alert">
@@ -52,7 +61,14 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
+                @if($type == "all")
                   <h3 class="mb-0">{{__('master.ALL-ITEMS')}} <span class="badge badge-primary p-2">{{$items_count}}</span></h3>
+                  @elseif($type == "active")
+                  <h3 class="mb-0">{{__('master.ACTIVE-ITEMS')}} <span class="badge badge-primary p-2">{{$items_count}}</span></h3>
+                  @elseif($type == "deactive")
+                  <h3 class="mb-0">{{__('master.DEACTIVE-ITEMS')}} <span class="badge badge-primary p-2">{{$items_count}}</span></h3>
+                  @endif
+                 
                 </div>
               </div>
             </div>
@@ -69,6 +85,8 @@
                     <th scope="col" class="sort" >{{__('master.STOCK')}}</th>
                     <th scope="col" class="sort" >{{__('master.PRICE')}}</th>
                     <th scope="col" class="sort" >{{__('master.EXPIRE-DATE')}}</th>
+                    <th scope="col" class="sort" >{{__('master.BRANCH')}}</th>
+                    <th scope="col">{{__('master.STATUS')}}</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -82,6 +100,12 @@
                     <td>{{ $item->stock }} </td>
                     <td>{{ $item->price }} </td>
                     <td>{{ $item->expire_date }} </td>
+                    <td>{{ $item->branch->name }} </td>
+                    <td>
+                      <div class="col-3">
+                        <input type="checkbox" class="check_off item_check" data-id="{{$item->id}}" data-url="{{route('inventory-disable')}}" data-toggle="toggle" data-size="sm"  @if ($item->disable == '0') checked @endif>
+                      </div>
+                    </td>
                     <td>
                       <a data-toggle="tooltip" data-placement="top" title="{{__('master.EDIT')}}" href="{{ route('inventory.edit', $item->id)}}" class="btn btn-secondary btn-sm mx-1 px-3"> <i class="fa fa-edit"></i> </a>
                     </td>

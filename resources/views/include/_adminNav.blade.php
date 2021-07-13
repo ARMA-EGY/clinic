@@ -352,7 +352,21 @@
                           <li class="nav-item">
                             <a href="{{ route('inventory.index')}}" class="nav-link nav-link-sub {{request()->routeIs('inventory.index') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
-                              <span class="sidenav-normal"> All Items </span>
+                              <span class="sidenav-normal"> {{__('master.ALL-ITEMS')}} </span>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="{{ route('active-inventory')}}" class="nav-link nav-link-sub {{request()->routeIs('active-inventory') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> {{__('master.ACTIVE-ITEMS')}}  </span>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="{{ route('deactive-inventory')}}" class="nav-link nav-link-sub {{request()->routeIs('deactive-inventory') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> {{__('master.DEACTIVE-ITEMS')}} </span>
                             </a>
                           </li>
                           
