@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\XrayImages;
+use App\Models\XrayImages;
 
 class Xrays extends Model
 {
@@ -13,7 +13,7 @@ class Xrays extends Model
 
     public function images()
     {
-        return $this->hasMany(XrayImages::class);
+        return $this->hasMany(XrayImages::class, 'xray_id');
     }
 
     public function patient()

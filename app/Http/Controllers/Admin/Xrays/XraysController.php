@@ -103,6 +103,7 @@ class XraysController extends Controller
 		$patients           = Patients::select('id', 'name', 'phone')->orderBy('id','desc')->get();
 		$patient            = Patients::where('id', $xray->patient_id)->first();
 		$appointments       = Appointment::where('patient_id', $xray->patient_id)->orderBy('id','desc')->get();
+		$xray               = Xrays::with('images')->where('id', $xray->id)->first();
         $xray_images        = XrayImages::where('xray_id', $xray->id)->get();
 
 		return view('admin.xrays.create', [

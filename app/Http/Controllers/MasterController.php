@@ -19,6 +19,8 @@ use App\Models\Setting;
 use App\Models\Branches;
 use App\Models\Sector;
 use App\Models\Patients;
+use App\Models\Pledges;
+use App\Models\Xrays;
 
 use App\Models\appointmentServices;
 use App\Models\Appointment;
@@ -64,7 +66,7 @@ class MasterController extends Controller
                 'patients_count' => Patients::all()->count(),
                 'today_appointments' => Appointment::where('appointment_date', $today)->count(),
                 'done_appointments' => Appointment::where('appointment_date', '<', $today)->count(),
-                'total_appointments' => Appointment::where('cancelled', 0)->count(),
+                'total_appointments' => Appointment::where('status', 'cancelled')->count(),
             ]);
         }
         else if( $user->role == 'Staff')
@@ -78,7 +80,7 @@ class MasterController extends Controller
                 'patients_count' => Patients::all()->count(),
                 'today_appointments' => Appointment::where('appointment_date', $today)->where('branch_id', $branch->id)->count(),
                 'done_appointments' => Appointment::where('appointment_date', '<', $today)->where('branch_id', $branch->id)->count(),
-                'total_appointments' => Appointment::where('cancelled', 0)->where('branch_id', $branch->id)->count(),
+                'total_appointments' => Appointment::where('status', 'cancelled')->where('branch_id', $branch->id)->count(),
             ]);
 
         }
@@ -88,7 +90,7 @@ class MasterController extends Controller
             return view('doctor.home', [
                 'today_appointments' => Appointment::where('doctor_id', $user->id)->where('appointment_date', $today)->count(),
                 'done_appointments' => Appointment::where('doctor_id', $user->id)->where('appointment_date', '<', $today)->count(),
-                'total_appointments' => Appointment::where('doctor_id', $user->id)->where('cancelled', 0)->count(),
+                'total_appointments' => Appointment::where('doctor_id', $user->id)->where('status', 'cancelled')->count(),
             ]);
 
         }
@@ -146,11 +148,15 @@ class MasterController extends Controller
         $patient            = Patients::where('id', $id)->first();
         $sectors            = Sector::where('disable', 0)->orderBy('id','desc')->get();
         $appointments       = Appointment::where('patient_id', $id)->orderBy('id','desc')->get();
+        $pledges            = Pledges::where('patient_id', $id)->orderBy('id','desc')->get();		
+        $xrays              = Xrays::with('images')->where('patient_id', $id)->get();
 
         return view('common.patient_profile', [
             'patient'           => $patient,
             'sectors'           => $sectors,
             'appointments'      => $appointments,
+            'pledges'           => $pledges,
+            'xrays'             => $xrays,
         ]);
     }
     

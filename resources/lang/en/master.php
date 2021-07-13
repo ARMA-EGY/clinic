@@ -313,4 +313,7 @@ return [
     "TAX" => "Tax",
     "TOTAL" => "Total",
 
+    "NO-SERVICES-ADDED-YET" => "No Services Added Yet",
+    "PAYMENT-PAID-SUCCESSFULLY" => "Payment Paid Successfully",
+
 ];

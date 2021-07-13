@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Xrays;
+use App\Models\Xrays;
 
 class XrayImages extends Model
 {
@@ -15,6 +15,6 @@ class XrayImages extends Model
 
     public function xray()
     {
-        return $this->belongsTo(Xrays::class);
+        return $this->belongsTo(Xrays::class, 'xray_id');
     }
 }

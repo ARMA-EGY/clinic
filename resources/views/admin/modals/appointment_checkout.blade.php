@@ -11,6 +11,8 @@
         <form class="checkout_form" enctype="multipart/form-data">
             @csrf
 
+            @if ($appointmentServices->count() > 0)
+
                     <div class="table-responsive rounded">
                         <table class="table align-items-center table-dark table-flush rounded">
                             <thead class="thead-dark">
@@ -23,6 +25,7 @@
                             </tr>
                             </thead>
                             <tbody class="list">
+
 
                            @foreach($appointmentServices as $appointmentService)
                                 <tr class="parent">
@@ -39,7 +42,6 @@
 
                     <div class="table-responsive rounded">
                         <table class="table align-items-center table-light table-flush rounded">
-
                             <tbody class="list">
                                     <tr class="parent">
                                         <td></td>
@@ -53,19 +55,20 @@
                                         <td><b>{{__('master.TAX')}}</b></td>
                                         <td></td>
                                         <td>{{$setting->tax}}%</td>
-                                        <td>{{$tax = $setting->tax*$subtotal/100}}</td>
+                                        <td>{{$tax}}</td>
                                     </tr>
                                     <tr class="parent">
                                         <td></td>
                                         <td><b>{{__('master.TOTAL')}}</b></td>
                                         <td></td>
                                         <td></td>
-                                        <td>{{$subtotal + $tax }}</td>
+                                        <td>{{$total}}</td>
                                     </tr>
                             </tbody>
                         </table>
                     </div>
-
+                    
+                    <input type="hidden" name="appointment_id" value="{{$appointment->id}}">
                     <div class="form-group col-md-6 mb-4 text-left">
                         <label class="font-weight-bold text-uppercase">{{__('master.PAYMENT-METHOD')}}</label>
 
@@ -79,9 +82,15 @@
     
                     </div>
 
+            @else 
+                <p class="text-center"> {{__('master.NO-SERVICES-ADDED-YET')}} </p>
+            @endif
+
             <div class="modal-footer">
-                <button type="submit" class="btn btn-success btn-sm submit">{{__('master.CONFIRM')}}</button>
-                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">{{__('master.CANCEL')}}</button>
+                @if ($appointmentServices->count() > 0)
+                    <button type="submit" class="btn btn-success btn-sm submit">{{__('master.CONFIRM')}}</button>
+                @endif
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">{{__('master.CANCEL')}}</button>
             </div>
         </form>
     </div>

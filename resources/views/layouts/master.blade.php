@@ -29,6 +29,8 @@
   <link rel="stylesheet" href="{{ asset('admin_assets/css/mdbootstrap.css') }}" type="text/css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
   {{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> --}}
   <!-- JQUERY UI -->
   <link rel="stylesheet" href="{{ asset('admin_assets/css/jquery-ui.css') }}" type="text/css">
@@ -275,6 +277,8 @@
 
     <script src="{{ asset('admin_assets/js/trix.min.js') }}" ></script>
     <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
     <script>
 
