@@ -51,6 +51,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
     Route::post('/appointmentinfotable', 'Admin\Xrays\XraysController@appointmentinfotable')->name('appointment-info-table');
     Route::post('/removeXrayImage', 'Admin\Xrays\XraysController@removeImage')->name('remove-xray-image');
     Route::resource('/pledges', 'Admin\Pledges\PledgesController'); 
+    Route::resource('/staff-pledges', 'Staff\Pledges\PledgesController'); 
 
     /*
     |--------------------------------------------------------------------------
@@ -115,6 +116,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
 
     Route::group(['prefix' => 'staff','middleware' => [ 'staff' ]], function () 
     {
+        Route::resource('/staff-xrays', 'Staff\Xrays\XraysController'); 
+        Route::resource('/staff-inventory', 'Staff\Inventory\InventoryController'); 
+        Route::get('/staff-inventory/adjustment/index', 'Staff\Inventory\InventoryController@adjustmentIndex')->name('staff-index-adjustment');
+        Route::get('/staff-inventory/adjustment/create', 'Staff\Inventory\InventoryController@adjustmentCreate')->name('staff-create-adjustment');
+        Route::post('/staff-inventory/adjustment/store', 'Staff\Inventory\InventoryController@adjustmentStore')->name('staff-store-adjustment');
+        Route::post('/staff-disableinventory', 'Staff\Inventory\InventoryController@disableinventory')->name('staff-inventory-disable');
+        Route::get('/staff-activeinventory', 'Staff\Inventory\InventoryController@active')->name('staff-active-inventory');
+        Route::get('/staff-deactiveinventory', 'Staff\Inventory\InventoryController@deactive')->name('staff-deactive-inventory');
+
         Route::resource('/staff-patients', 'Staff\Patients\PatientsController'); 
         Route::resource('/staff-services', 'Staff\Services\ServicesController');
         Route::resource('/staff-servicescategory', 'Staff\servicescategory\ServicesCategoryController');
@@ -144,6 +154,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
         Route::post('/staff-disablesector', 'Staff\Sectors\SectorsController@disable')->name('staff-sector-disable');
         Route::post('/staff-disabledoctor', 'Staff\Doctors\DoctorsController@disable')->name('staff-doctor-disable');
         Route::post('/staff-disablestaff', 'Staff\Staff\StaffController@disable')->name('staff-staff-disable');
+        Route::post('/staff-appointment-checkout-show', 'Staff\Appointment\AppointmentController@showCheckout')->name('staff-appointment.checkout');
+        Route::post('/staff-appointment-checkout-confirm', 'Staff\Appointment\AppointmentController@confirmCheckout')->name('staff-appointment.checkout-confirm');
+        Route::post('/staff-appointment-cancel', 'Staff\Appointment\AppointmentController@cancel')->name('staff-appointment.cancel');
+        Route::post('/staff-external-appointment-checkout-show', 'Staff\ExternalAppointment\ExternalAppointmentController@showCheckout')->name('staff-external-appointment.checkout');
+        Route::post('/staff-external-appointment-checkout-confirm', 'Staff\ExternalAppointment\ExternalAppointmentController@confirmCheckout')->name('staff-external-appointment.checkout-confirm');
+        Route::post('/staff-external-appointment-cancel', 'Staff\ExternalAppointment\ExternalAppointmentController@cancel')->name('staff-external-appointment.cancel');
+        Route::get('/staff-transactions', 'Staff\Appointment\AppointmentController@transactions')->name('staff-index-transactions');
+        Route::post('/staff-adjustment-show', 'Staff\Inventory\InventoryController@showAdjustment')->name('staff-adjustment.show');
     });
 
     /*

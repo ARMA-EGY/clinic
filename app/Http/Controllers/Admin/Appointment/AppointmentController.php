@@ -101,6 +101,7 @@ class AppointmentController extends Controller
         $transaction =  Transaction::create([
             'appointment_id' => $appointment->id,
             'patient_id' => $appointment->patient_id,
+            'branch_id' => $appointment->branch_id,
             'payment_method' => $request->payment_method,
             'sub_total' => $subtotal,
             'tax' => $tax,

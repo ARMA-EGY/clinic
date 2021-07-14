@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Staff\Appointment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Appointment;
+use App\Models\Transaction;
 use App\Models\Branches;
 use App\Models\Sector;
 use App\Models\Patients;
@@ -50,7 +51,92 @@ class AppointmentController extends Controller
             'services'    => $services ,
             'bodyparts'    => $bodyparts ,
         ]);
-    }     
+    }   
+    
+    //-------------- Get Checkout Data ---------------\\    
+
+    public function showCheckout(Request $request)
+    {
+		$appointment            = Appointment::where('id',$request->id)->first();
+        $appointmentServices    = appointmentServices::where('appointment_id',$appointment->id)->get();
+        $setting                = Setting::first();
+        $subtotal               = 0;
+
+        foreach ($appointmentServices as $appointmentService)
+        {
+            $sub        = $appointmentService->service->price;
+            $subtotal   = $subtotal + $sub;
+        }
+
+        $tax            = $setting->tax*$subtotal/100;
+        $total          = $subtotal + $tax;
+
+        return view('staff.modals.appointment_checkout',[
+            'appointment'            => $appointment,
+            'appointmentServices'    => $appointmentServices ,
+            'subtotal'               => $subtotal ,
+            'tax'                    => $tax ,
+            'total'                  => $total ,
+        ]);
+    }  
+    
+    //-------------- Cofirm Checkout Data ---------------\\    
+
+    public function confirmCheckout(Request $request)
+    {
+		$appointment            = Appointment::where('id',$request->appointment_id)->first();
+        $appointmentServices    = appointmentServices::where('appointment_id',$appointment->id)->get();
+        $setting                = Setting::first();
+        $subtotal               = 0;
+
+        foreach ($appointmentServices as $appointmentService)
+        {
+            $sub        = $appointmentService->service->price;
+            $subtotal   = $subtotal + $sub;
+        }
+
+        $tax            = $setting->tax*$subtotal/100;
+        $total          = $subtotal + $tax;
+
+        $transaction =  Transaction::create([
+            'appointment_id' => $appointment->id,
+            'patient_id' => $appointment->patient_id,
+            'branch_id' => $appointment->branch_id,
+            'payment_method' => $request->payment_method,
+            'sub_total' => $subtotal,
+            'tax' => $tax,
+            'tax_percentage' => $setting->tax,
+            'total' => $total,
+        ]);
+
+        foreach ($appointmentServices as $appointmentService)
+        {
+            $appointmentService->update([
+                'status' => 'paid',
+            ]);
+        }
+
+        $appointment->update([
+            'status' => 'paid',
+        ]);
+
+        if($transaction)
+        {
+            return response()->json([
+                'status' => 'true',
+                'msg' => 'success'
+            ]) ;
+        }
+        else
+        {
+            return response()->json([
+                'status' => 'false',
+                'msg' => 'error'
+            ]) ;
+        }
+
+    } 
+
     //-------------- Get Today Data ---------------\\
 
     public function today()
@@ -84,11 +170,11 @@ class AppointmentController extends Controller
     public function cancelled()
     {
         $user = auth()->user();
-		$items       = Appointment::where('branch_id', $user->branch_id)->where('cancelled', 1)->orderBy('id','desc')->get();
+		$items       = Appointment::where('branch_id', $user->branch_id)->where('status', 'cancelled')->orderBy('id','desc')->get();
 		
         return view('staff.appointment.cancelled', [
             'items' => $items,
-            'total_rows' => Appointment::where('branch_id', $user->branch_id)->where('cancelled', 1)->count(),
+            'total_rows' => Appointment::where('branch_id', $user->branch_id)->where('status', 'cancelled')->count(),
         ]);
     }
 
@@ -170,7 +256,7 @@ class AppointmentController extends Controller
     {
         $item     = Appointment::where('id', $request->id)->first();
 
-        $item->cancel = 1;
+        $item->status = 'cancelled';
         $item->save();
     }
 
@@ -282,6 +368,20 @@ class AppointmentController extends Controller
         return view('staff.modals.patient_info', [
             'patient'        => $patient,
             'countries'   => Countries::all(),
+        ]);
+    }
+
+    
+    //-------------- Get Transactions ---------------\\
+
+    public function transactions()
+    {
+        $user               = auth()->user();
+        $transactions       = Transaction::where('branch_id', $user->branch_id)->orderBy('id','desc')->get();
+        
+        return view('staff.appointment.transactions', [
+            'items'        => $transactions,
+            'items_count'   => count($transactions),
         ]);
     }
    

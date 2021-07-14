@@ -252,6 +252,13 @@
                     </div>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link {{request()->routeIs('staff-index-transactions') ? 'active' : '' }}" href="{{route('staff-index-transactions')}}">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span class="nav-link-text">{{__('master.TRANSACTIONS')}}</span>
+                    </a>
+                </li>
+
                 @if(auth()->user()->can('create services') 
                 || auth()->user()->can('all services') )
                 <li class="nav-item">
@@ -301,11 +308,110 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link collapsed" href="#navbar-xrays" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
+                      <i class="fas fa-x-ray"></i>
+                      <span class="nav-link-text">{{__('master.RAYS')}}</span>
+                    </a>
+                    <div class="collapse" id="navbar-xrays" style="">
+                      <ul class="nav nav-sm flex-column">
+
+                        <li class="nav-item">
+                          <a href="{{ route('staff-xrays.create')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-xrays.create') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle"></i>
+                            <span class="sidenav-normal"> {{__('master.ADD-NEW-RAYS')}} </span>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="{{ route('staff-xrays.index')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-xrays.index') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle"></i>
+                            <span class="sidenav-normal"> {{__('master.ALL-RAYS')}} </span>
+                          </a>
+                        </li>
+                        
+                      </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#navbar-pledges" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
+                      <i class="fas fa-file-contract"></i>
+                      <span class="nav-link-text">{{__('master.PLEDGES')}}</span>
+                    </a>
+                    <div class="collapse" id="navbar-pledges" style="">
+                      <ul class="nav nav-sm flex-column">
+
+                        <li class="nav-item">
+                          <a href="{{ route('staff-pledges.create')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-pledges.create') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle"></i>
+                            <span class="sidenav-normal"> {{__('master.ADD-NEW-PLEDGE')}} </span>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="{{ route('staff-pledges.index')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-pledges.index') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle"></i>
+                            <span class="sidenav-normal"> {{__('master.ALL-PLEDGES')}} </span>
+                          </a>
+                        </li>
+                        
+                      </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#navbar-inventory" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                         <i class="fa fa-cubes"></i>
                         <span class="nav-link-text">{{__('master.INVENTORY')}}</span>
-                        <span class="badge badge-warning fs-9 p-1 mx-2">{{__('master.PENDING')}}</span>
                     </a>
+                    <div class="collapse" id="navbar-inventory" style="">
+                      <ul class="nav nav-sm flex-column">
+
+                        <li class="nav-item">
+                          <a href="{{ route('staff-inventory.index')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-inventory.index') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle"></i>
+                            <span class="sidenav-normal"> {{__('master.ALL-ITEMS')}} </span>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="{{ route('staff-active-inventory')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-active-inventory') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle"></i>
+                            <span class="sidenav-normal"> {{__('master.ACTIVE-ITEMS')}}  </span>
+                          </a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="{{ route('staff-deactive-inventory')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-deactive-inventory') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle"></i>
+                            <span class="sidenav-normal"> {{__('master.DEACTIVE-ITEMS')}} </span>
+                          </a>
+                        </li>
+                        
+                        <li class="nav-item">
+                          <a href="{{ route('staff-inventory.create')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-inventory.create') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle"></i>
+                            <span class="sidenav-normal"> Add New Item </span>
+                          </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                          <a href="{{ route('staff-index-adjustment')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-index-adjustment') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle"></i>
+                            <span class="sidenav-normal">All Adjustments </span>
+                          </a>
+                        </li>
+                  
+                        <li class="nav-item">
+                          <a href="{{ route('staff-create-adjustment')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-create-adjustment') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle"></i>
+                            <span class="sidenav-normal">Add New Adjustment </span>
+                          </a>
+                        </li>
+                        
+                      </ul>
+                    </div>
                 </li>
                 
             </ul>

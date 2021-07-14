@@ -46,7 +46,92 @@ class ExternalAppointmentController extends Controller
             'appointmentServices'    => $appointmentServices ,
             'services'    => $services ,
         ]);
-    }     
+    }    
+    
+    //-------------- Get Checkout Data ---------------\\    
+
+    public function showCheckout(Request $request)
+    {
+		$appointment            = Appointment::where('id',$request->id)->first();
+        $appointmentServices    = appointmentServices::where('appointment_id',$appointment->id)->get();
+        $setting                = Setting::first();
+        $subtotal               = 0;
+
+        foreach ($appointmentServices as $appointmentService)
+        {
+            $sub        = $appointmentService->service->price;
+            $subtotal   = $subtotal + $sub;
+        }
+
+        $tax            = $setting->tax*$subtotal/100;
+        $total          = $subtotal + $tax;
+
+        return view('staff.modals.appointment_checkout',[
+            'appointment'            => $appointment,
+            'appointmentServices'    => $appointmentServices ,
+            'subtotal'               => $subtotal ,
+            'tax'                    => $tax ,
+            'total'                  => $total ,
+        ]);
+    }  
+    
+    //-------------- Cofirm Checkout Data ---------------\\    
+
+    public function confirmCheckout(Request $request)
+    {
+		$appointment            = Appointment::where('id',$request->appointment_id)->first();
+        $appointmentServices    = appointmentServices::where('appointment_id',$appointment->id)->get();
+        $setting                = Setting::first();
+        $subtotal               = 0;
+
+        foreach ($appointmentServices as $appointmentService)
+        {
+            $sub        = $appointmentService->service->price;
+            $subtotal   = $subtotal + $sub;
+        }
+
+        $tax            = $setting->tax*$subtotal/100;
+        $total          = $subtotal + $tax;
+
+        $transaction =  Transaction::create([
+            'appointment_id' => $appointment->id,
+            'patient_id' => $appointment->patient_id,
+            'branch_id' => $appointment->branch_id,
+            'payment_method' => $request->payment_method,
+            'sub_total' => $subtotal,
+            'tax' => $tax,
+            'tax_percentage' => $setting->tax,
+            'total' => $total,
+        ]);
+
+        foreach ($appointmentServices as $appointmentService)
+        {
+            $appointmentService->update([
+                'status' => 'paid',
+            ]);
+        }
+
+        $appointment->update([
+            'status' => 'paid',
+        ]);
+
+        if($transaction)
+        {
+            return response()->json([
+                'status' => 'true',
+                'msg' => 'success'
+            ]) ;
+        }
+        else
+        {
+            return response()->json([
+                'status' => 'false',
+                'msg' => 'error'
+            ]) ;
+        }
+
+    } 
+
     //-------------- Get Today Data ---------------\\
 
     public function today()
@@ -157,29 +242,15 @@ class ExternalAppointmentController extends Controller
             }
     }
 
-
-    //-------------- Edit Data Page ---------------\\
     
-    public function edit(Appointment $appointment)
+    //-------------- Cancel Data  ---------------\\
+
+    public function cancel(Request $request)
     {
-        $user = auth()->user();
-		return view('staff.external-appointment.create', ['item' => $appointment]);
-    }
+        $item     = Appointment::where('id', $request->id)->first();
 
-    
-    //-------------- Update Data  ---------------\\
-
-    public function update(UpdateRequest $request, Appointment $appointment)
-    {
-        $user = auth()->user();
-
-        $data = $request->only(['name', 'description']);
-
-        $appointment->update($data);
-		
-		session()->flash('success', 'Appointment updated successfully');
-		
-		return redirect(route('external-appointment.index'));
+        $item->status = 'cancelled';
+        $item->save();
     }
 
 
