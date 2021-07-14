@@ -7293,22 +7293,19 @@ input[type='button'].btn-block
     border-bottom-right-radius: .25rem;
 }
 
+
 .badge
 {
     font-size: 85%;
     font-weight: 600;
     line-height: 1;
-
     display: inline-block;
-
-    padding:  .5rem;
-
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out; 
+    padding: .5rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     text-align: center;
     vertical-align: baseline;
     white-space: nowrap;
-
-    border-radius: .375rem;
+    border-radius: .375rem !important;
 }
 @media (prefers-reduced-motion: reduce)
 {
@@ -7343,8 +7340,8 @@ a.badge:focus
 
 .badge-primary
 {
-    color: #000;
-    background-color: #ced3ff;
+    color: #000 !important;
+    background-color: #ced3ff !important;
 }
 .badge-primary[href]:hover,
 .badge-primary[href]:focus
@@ -7357,8 +7354,8 @@ a.badge:focus
 
 .badge-secondary
 {
-    color: #cfe3f1;
-    background-color: white;
+    color: #cfe3f1 !important;
+    background-color: white !important;
 }
 .badge-secondary[href]:hover,
 .badge-secondary[href]:focus
@@ -7371,8 +7368,8 @@ a.badge:focus
 
 .badge-success
 {
-    color: #000;
-    background-color: #b0eed3;
+    color: #000 !important;
+    background-color: #b0eed3 !important;
 }
 .badge-success[href]:hover,
 .badge-success[href]:focus
@@ -7385,8 +7382,8 @@ a.badge:focus
 
 .badge-info
 {
-    color: #000;
-    background-color: #aaedf9;
+    color: #000 !important;
+    background-color: #aaedf9 !important;
 }
 .badge-info[href]:hover,
 .badge-info[href]:focus
@@ -7399,10 +7396,8 @@ a.badge:focus
 
 .badge-warning
 {
-    color: #ffffff;
-    background-color: #ffe636;
-    color: #ff3709;
-    background-color: #fee6e0;
+    color: #ff3709 !important;
+    background-color: #fee6e0 !important;
 }
 .badge-warning[href]:hover,
 .badge-warning[href]:focus
@@ -7415,8 +7410,8 @@ a.badge:focus
 
 .badge-yellow
 {
-    color: #000;
-    background-color: #ffe636;
+    color: #000 !important;
+    background-color: #ffe636 !important;
 }
 .badge-yellow[href]:hover,
 .badge-yellow[href]:focus
@@ -7429,8 +7424,8 @@ a.badge:focus
 
 .badge-danger
 {
-    color: #000;
-    background-color: #fdd1da;
+    color: #000 !important;
+    background-color: #fdd1da !important;
 }
 .badge-danger[href]:hover,
 .badge-danger[href]:focus
@@ -7443,8 +7438,8 @@ a.badge:focus
 
 .badge-light
 {
-    color: #879cb0;
-    background-color: white;
+    color: #879cb0 !important;
+    background-color: white !important;
 }
 .badge-light[href]:hover,
 .badge-light[href]:focus

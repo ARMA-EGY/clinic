@@ -19,6 +19,7 @@ return [
     "TO-DO" => "To-Do",
     "CALENDAR" => "Calendar",
     "PENDING" => "Pending",
+    "PAID" => "Paid",
     "INPROGRESS" => "Inprogress",
     "ACTIVE" => "Active",
     "DEACTIVE" => "Deactive",
@@ -121,6 +122,7 @@ return [
 
     "APPOINTMENTS" => "Appointments",
     "APPOINTMENT" => "Appointment",
+    "LATEST-APPOINTMENTS" => "Latest Appointments",
     "INTERNAL-APPOINTMENTS" => "Internal Appointments",
     "EXTERNAL-APPOINTMENTS" => "External Appointments",
     "APPOINTMENTS-HISTORY" => "Appointments History",

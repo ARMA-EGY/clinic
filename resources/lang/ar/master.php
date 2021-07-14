@@ -19,6 +19,7 @@ return [
     "TO-DO" => "قائمة الاعمال",
     "CALENDAR" => "النتيجة",
     "PENDING" => "معلق",
+    "PAID" => "تم الدفع",
     "INPROGRESS" => "جاري العمل",
     "ACTIVE" => "متاح",
     "DEACTIVE" => "غير متاح",
@@ -121,6 +122,7 @@ return [
 
     "APPOINTMENTS" => "الحجوزات",
     "APPOINTMENT" => "حجز",
+    "LATEST-APPOINTMENTS" => "احدث الحجوزات",
     "INTERNAL-APPOINTMENTS" => "الحجوزات الداخلية",
     "EXTERNAL-APPOINTMENTS" => "الحجوزات الخارجية",
     "APPOINTMENTS-HISTORY" => "تاريخ الحجوزات",
