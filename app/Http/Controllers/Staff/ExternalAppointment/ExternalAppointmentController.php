@@ -25,6 +25,10 @@ class ExternalAppointmentController extends Controller
     public function index()
     {
         $user = auth()->user();
+        if(!$user->hasPermissionTo('external all appointment'))
+        {
+            return redirect(route('home'));
+        }
 		$items       = Appointment::where('branch_id', '!=', $user->branch_id)->orderBy('id','desc')->get();
 		
         return view('staff.external-appointment.index', [
@@ -137,6 +141,10 @@ class ExternalAppointmentController extends Controller
     public function today()
     {
         $user = auth()->user();
+        if(!$user->hasPermissionTo('external today appointment'))
+        {
+            return redirect(route('home'));
+        }
         $today          = date('Y-m-d');
 		$items       = Appointment::where('branch_id', '!=', $user->branch_id)->where('appointment_date', $today)->orderBy('id','desc')->get();
 		
@@ -151,6 +159,10 @@ class ExternalAppointmentController extends Controller
     public function done()
     {
         $user = auth()->user();
+        if(!$user->hasPermissionTo('external done appointment'))
+        {
+            return redirect(route('home'));
+        }
         $today          = date('Y-m-d');
 		$items       = Appointment::where('branch_id', '!=', $user->branch_id)->where('appointment_date', '<', $today)->orderBy('id','desc')->get();
 		
@@ -165,6 +177,10 @@ class ExternalAppointmentController extends Controller
     public function cancelled()
     {
         $user = auth()->user();
+        if(!$user->hasPermissionTo('external cancelled appointment'))
+        {
+            return redirect(route('home'));
+        }
 		$items       = Appointment::where('branch_id', '!=', $user->branch_id)->where('cancelled', 1)->orderBy('id','desc')->get();
 		
         return view('staff.external-appointment.cancelled', [
@@ -179,6 +195,10 @@ class ExternalAppointmentController extends Controller
     public function create()
     {
         $user = auth()->user();
+        if(!$user->hasPermissionTo('external create appointment'))
+        {
+            return redirect(route('home'));
+        }
 		$patients       = Patients::select('id', 'name', 'phone')->orderBy('id','desc')->get();
 		$branches       = Branches::where('id', '!=', $user->branch_id)->where('disable', 0)->orderBy('id','desc')->get();
 
@@ -195,6 +215,10 @@ class ExternalAppointmentController extends Controller
     public function store(AddRequest $request)
     {
         $user = auth()->user();
+        if(!$user->hasPermissionTo('external create appointment'))
+        {
+            return redirect(route('home'));
+        }
         if(isset($request->patient_id))
         {
             $patient_id = $request->patient_id;

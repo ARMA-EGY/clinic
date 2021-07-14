@@ -19,7 +19,7 @@
                     <li class="breadcrumb-item"><a href="{{asset('/')}}"><i class="fas fa-home"></i></a></li>
                     <li class="breadcrumb-item"><a href="{{asset('/')}}">{{__('master.DASHBOARD')}}</a></li>
                     <li class="breadcrumb-item"><a href="{{route('permissions.index')}}">{{__('master.ROLES')}}</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Add New Role</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{__('master.ADD-NEW-ROLE')}}</li>
                 </ol>
               </nav>
             </div>
@@ -36,7 +36,7 @@
       <div class="row">
         <div class="col-xl-12">
             <div class="card card-defualt">
-                <div class="card-header">Add New Role</div>
+                <div class="card-header">{{__('master.ADD-NEW-ROLE')}}</div>
         
                 <div class="card-body">
 
@@ -50,7 +50,7 @@
                             <!--=================  Name  =================-->
                             <div class="form-group col-md-6 mb-4 text-left">
                                 <label class="font-weight-bold text-uppercase">{{__('master.NAME')}}</label>
-                                <input type="text" name="name" class="@error('name') is-invalid @enderror form-control" placeholder="Role Name" required>
+                                <input type="text" name="name" class="@error('name') is-invalid @enderror form-control" placeholder="{{__('master.ROLE-NAME')}}" required>
                             
                                 @error('name')
                                     <div>

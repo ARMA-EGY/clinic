@@ -380,7 +380,7 @@
                           <li class="nav-item">
                             <a href="{{ route('inventory.create')}}" class="nav-link nav-link-sub {{request()->routeIs('inventory.create') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
-                              <span class="sidenav-normal"> Add New Item </span>
+                              <span class="sidenav-normal"> {{__('master.ADD-NEW-ITEM')}} </span>
                             </a>
                           </li>
 
@@ -388,14 +388,14 @@
                           <li class="nav-item">
                             <a href="{{ route('index-adjustment')}}" class="nav-link nav-link-sub {{request()->routeIs('index-adjustment') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
-                              <span class="sidenav-normal">All Adjustments </span>
+                              <span class="sidenav-normal">{{__('master.ALL-ADJUSTMENT')}} </span>
                             </a>
                           </li>
                     
                           <li class="nav-item">
                             <a href="{{ route('create-adjustment')}}" class="nav-link nav-link-sub {{request()->routeIs('create-adjustment') ? 'active' : '' }}">
                               <i class="far fa-dot-circle"></i>
-                              <span class="sidenav-normal">Add New Adjustment </span>
+                              <span class="sidenav-normal">{{__('master.ADD-NEW-ADJUSTMENT')}} </span>
                             </a>
                           </li>
                           

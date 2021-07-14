@@ -18,8 +18,8 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('inventory.index')}}">Inventory</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Create Adjustment</li>
+                  <li class="breadcrumb-item"><a href="{{route('inventory.index')}}">{{__('master.INVENTORY')}}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{__('master.ADD-NEW-ADJUSTMENT')}}</li>
                 </ol>
               </nav>
             </div>
@@ -36,7 +36,7 @@
       <div class="row">
         <div class="col-xl-12">
             <div class="card card-defualt">
-                <div class="card-header">Create Adjustment </div>
+                <div class="card-header">{{__('master.ADD-NEW-ADJUSTMENT')}} </div>
         
                 <div class="card-body">
                     <form action="{{  route('store-adjustment')  }}" method="post" enctype="multipart/form-data">
@@ -51,7 +51,7 @@
                             <!--=================  Sectors  =================-->
                             @if ($items->count() > 0)
                                 <div class="form-group col-md-12 mb-4 text-left">
-                                    <label class="font-weight-bold text-uppercase" for="sectors">items</label>
+                                    <label class="font-weight-bold text-uppercase" for="sectors">{{__('master.ITEMS')}}</label>
                                     <select id="item" class=" form-control item" name="item">
                                         @foreach ($items as $item)
                                             <option value="{{$item->id}}" data-url="{{route('inventory.show',$item->id)}}">{{$item->name}}</option>
@@ -65,8 +65,8 @@
         
                             <!--=================  Notes  =================-->
                             <div class="form-group col-md-6 mb-4 text-left">
-                                <label class="font-weight-bold text-uppercase">Notes</label>
-                                <input type="text" name="notes" class="@error('notes') is-invalid @enderror form-control" placeholder="notes">
+                                <label class="font-weight-bold text-uppercase">{{__('master.NOTES')}}</label>
+                                <input type="text" name="notes" class="@error('notes') is-invalid @enderror form-control" placeholder="{{__('master.NOTES')}}">
                             
                                 @error('notes')
                                     <div>
@@ -87,12 +87,12 @@
                             <table class="table align-items-center table-flush display nowrap" id="example">
                                 <thead class="thead-light">
                                 <tr>
-                                    <th scope="col" class="sort" >Item Code</th>
-                                    <th scope="col" class="sort" >Item Name</th>
-                                    <th scope="col" class="sort" >Stock</th>
-                                    <th scope="col" class="sort" >Quantity</th>
-                                    <th scope="col" class="sort" >Type</th>
-                                    <th scope="col" class="sort">Sector</th>
+                                    <th scope="col" class="sort" >{{__('master.ITEM-CODE')}}</th>
+                                    <th scope="col" class="sort" >{{__('master.NAME')}}</th>
+                                    <th scope="col" class="sort" >{{__('master.STOCK')}}</th>
+                                    <th scope="col" class="sort" >{{__('master.QUANTITY')}}</th>
+                                    <th scope="col" class="sort" >{{__('master.TYPE')}}</th>
+                                    <th scope="col" class="sort">{{__('master.SECTOR')}}</th>
                                     <th scope="col"></th>
                                 </tr>
                                 </thead>

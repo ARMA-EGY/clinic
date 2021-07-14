@@ -18,6 +18,10 @@ class PledgesController extends Controller
     public function index()
     {
         $user        = auth()->user();
+        if(!$user->hasPermissionTo('all pledge'))
+        {
+            return redirect(route('home'));
+        }
 		$items       = Pledges::where('status', 1)->orderBy('id','desc')->get();
 		
         return view('staff.pledges.index', [
@@ -32,6 +36,10 @@ class PledgesController extends Controller
     public function create()
     {
         $user           = auth()->user();
+        if(!$user->hasPermissionTo('create pledge'))
+        {
+            return redirect(route('home'));
+        }
 		$patients       = Patients::select('id', 'name', 'phone')->orderBy('id','desc')->get();
 		$files          = PledgeFile::all();
         
@@ -48,6 +56,10 @@ class PledgesController extends Controller
     public function store(AddRequest $request)
     {
             $user       = auth()->user();
+            if(!$user->hasPermissionTo('create pledge'))
+            {
+                return redirect(route('home'));
+            }
             $patient    = Patients::where('id', $request->patient_id)->first();
             $exist      = Pledges::where('patient_id', $request->patient_id)->where('file_id', $request->file_id)->first();
 

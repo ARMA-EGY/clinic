@@ -21,6 +21,10 @@ class InventoryController extends Controller
     public function index()
     {
         $user              = auth()->user();
+        if(!$user->hasPermissionTo('inventory all items'))
+        {
+            return redirect(route('home'));
+        }
 		$inventories       = Inventory::where('branch_id', $user->branch_id)->orderBy('id','desc') ->get();
 
         return view('staff.inventory.index', [
@@ -91,6 +95,10 @@ class InventoryController extends Controller
     public function create()
     {
         $user              = auth()->user();
+        if(!$user->hasPermissionTo('inventory create items'))
+        {
+            return redirect(route('home'));
+        }
 		$branches       = Branches::orderBy('id','desc')->get();
         return view('staff.inventory.create',['branches' => $branches]);
     }
@@ -101,6 +109,10 @@ class InventoryController extends Controller
     public function store(AddRequest $request)
     {
             $user              = auth()->user();
+            if(!$user->hasPermissionTo('inventory create items'))
+            {
+                return redirect(route('home'));
+            }
             $patients =  Inventory::create([
                 'name' => $request->name,
                 'stock' => $request->stock,
@@ -120,6 +132,10 @@ class InventoryController extends Controller
     public function edit(Inventory $inventory)
     {
         $user           = auth()->user();
+        if(!$user->hasPermissionTo('inventory edit items'))
+        {
+            return redirect(route('home'));
+        }
         $branches       = Branches::orderBy('id','desc')->get();
 		return view('staff.inventory.create', [
             'item' => $inventory,
@@ -133,6 +149,10 @@ class InventoryController extends Controller
     public function update(UpdateRequest $request, Inventory $inventory)
     {
         $user              = auth()->user();
+        if(!$user->hasPermissionTo('inventory edit items'))
+        {
+            return redirect(route('home'));
+        }
         $inventory->update([
             'name' => $request->name,
             'stock' => $request->stock,
@@ -152,6 +172,10 @@ class InventoryController extends Controller
     public function adjustmentIndex()
     {
         $user              = auth()->user();
+        if(!$user->hasPermissionTo('inventory all adjustment'))
+        {
+            return redirect(route('home'));
+        }
         $transactions       = InventoryTransaction::orderBy('created_at','desc')->get();
         return view('staff.inventory.adjustment.index', [
             'items' => $transactions,
@@ -162,6 +186,10 @@ class InventoryController extends Controller
     public function adjustmentCreate()
     {
         $user              = auth()->user();
+        if(!$user->hasPermissionTo('all pledge'))
+        {
+            return redirect(route('home'));
+        }
         $inventories       = Inventory::orderBy('id','desc')->get();
         return view('staff.inventory.adjustment.create',[
             'items' => $inventories,
@@ -175,6 +203,10 @@ class InventoryController extends Controller
     public function adjustmentStore(Request $request)
     {
         $user              = auth()->user();
+        if(!$user->hasPermissionTo('inventory create adjustment'))
+        {
+            return redirect(route('home'));
+        }
         if(isset($request->notes))
         {
             $InventoryTransaction =  InventoryTransaction::create([
@@ -256,6 +288,10 @@ class InventoryController extends Controller
     {
 
         $user        = auth()->user();
+        if(!$user->hasPermissionTo('inventory active items'))
+        {
+            return redirect(route('home'));
+        }
 		$items       = Inventory::where('branch_id', $user->branch_id)->where('disable', 0)->orderBy('id','desc')->get();
 		
         return view('staff.inventory.index', [
@@ -271,6 +307,10 @@ class InventoryController extends Controller
     public function deactive()
     {
         $user        = auth()->user();
+        if(!$user->hasPermissionTo('inventory deactivated items'))
+        {
+            return redirect(route('home'));
+        }
 		$items       = Inventory::where('branch_id', $user->branch_id)->where('disable', 1)->orderBy('id','desc')->get();
 		
         return view('staff.inventory.index', [

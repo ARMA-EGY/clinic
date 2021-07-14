@@ -22,6 +22,10 @@ class XraysController extends Controller
     public function index()
     {
         $user        = auth()->user();
+        if(!$user->hasPermissionTo('all xrays'))
+        {
+            return redirect(route('home'));
+        }
 		$items       = Xrays::orderBy('id','desc')->get();
 		
         return view('staff.xrays.index', [
@@ -36,6 +40,10 @@ class XraysController extends Controller
     public function create()
     {
         $user = auth()->user();
+        if(!$user->hasPermissionTo('create xrays'))
+        {
+            return redirect(route('home'));
+        }
 		$patients       = Patients::select('id', 'name', 'phone')->orderBy('id','desc')->get();
         
         return view('staff.xrays.create', [
@@ -50,7 +58,10 @@ class XraysController extends Controller
     public function store(AddRequest $request)
     {
             $user = auth()->user();
-
+            if(!$user->hasPermissionTo('create xrays'))
+            {
+                return redirect(route('home'));
+            }
             $xray = Xrays::create([
                 'name' => $request->name,
                 'patient_id' => $request->patient_id,
@@ -99,7 +110,12 @@ class XraysController extends Controller
     
     public function edit(Xrays $xray)
     {
+        
         $user               = auth()->user();
+        if(!$user->hasPermissionTo('edit xrays'))
+        {
+            return redirect(route('home'));
+        }
 		$patients           = Patients::select('id', 'name', 'phone')->orderBy('id','desc')->get();
 		$patient            = Patients::where('id', $xray->patient_id)->first();
 		$appointments       = Appointment::where('patient_id', $xray->patient_id)->orderBy('id','desc')->get();
@@ -122,6 +138,10 @@ class XraysController extends Controller
     public function update(UpdateRequest $request, Xrays $xray)
     {
         $user = auth()->user();
+        if(!$user->hasPermissionTo('edit xrays'))
+        {
+            return redirect(route('home'));
+        }
 
         $data       = $request->only(['name', 'appointment_id', 'patient_id']);
         $xray_id    = $xray->id;

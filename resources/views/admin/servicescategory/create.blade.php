@@ -19,7 +19,7 @@
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
                   <li class="breadcrumb-item"><a href="{{route('services.index')}}">{{__('master.SERVICES')}}</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">{{ isset($item) ? "Edit Category" : "Add New Category" }}</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{ isset($item) ? __('master.EDIT-CATEGORY') : __('master.ADD-NEW-CATEGORY') }}</li>
                 </ol>
               </nav>
             </div>
@@ -36,7 +36,7 @@
       <div class="row">
         <div class="col-xl-12">
             <div class="card card-defualt">
-                <div class="card-header">{{ isset($item) ? "Edit Category" : "Add New Category" }} </div>
+                <div class="card-header">{{ isset($item) ? __('master.EDIT-CATEGORY') : __('master.ADD-NEW-CATEGORY') }} </div>
         
                 <div class="card-body">
 
@@ -52,7 +52,7 @@
                             <!--=================  Name  =================-->
                             <div class="form-group col-md-6 mb-4 text-left">
                                 <label class="font-weight-bold text-uppercase">{{__('master.NAME')}}</label>
-                                <input type="text" name="name" class="@error('name') is-invalid @enderror form-control" placeholder="Category Name" value="{{ isset($item) ? $item->name : old('name') }}" required>
+                                <input type="text" name="name" class="@error('name') is-invalid @enderror form-control" placeholder="{{__('master.EDIT-CATEGORY')}}" value="{{ isset($item) ? $item->name : old('name') }}" required>
                             
                                 @error('name')
                                     <div>

@@ -112,9 +112,9 @@
                         <div class="row">
                             <!--=================  Branch  =================-->
                             <div class="form-group col-md-6 mb-2">
-                            <label class="font-weight-bold text-uppercase" for="body_part">Branch</label>
+                            <label class="font-weight-bold text-uppercase" for="body_part">{{__('master.SELECT-BRANCH')}}</label>
                                 <select class="form-control selectpicker" data-live-search="true" name="branch_id">
-                                    <option>-SELECT-</option>
+                                    <option>-{{__('master.SELECT')}}-</option>
                   
                                     @if(isset($item))
                                       @foreach($branches as $branch)
