@@ -181,11 +181,10 @@ class ExternalAppointmentController extends Controller
         {
             return redirect(route('home'));
         }
-		$items       = Appointment::where('branch_id', '!=', $user->branch_id)->where('cancelled', 1)->orderBy('id','desc')->get();
-		
+		$items       = Appointment::where('branch_id', '!=', $user->branch_id)->where('status', 'cancelled')->orderBy('id','desc')->get();
         return view('staff.external-appointment.cancelled', [
             'items' => $items,
-            'total_rows' => Appointment::where('branch_id', '!=', $user->branch_id)->where('cancelled', 1)->count(),
+            'total_rows' => Appointment::where('branch_id', '!=', $user->branch_id)->where('status', 'cancelled')->count(),
         ]);
     }
 

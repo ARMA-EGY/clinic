@@ -171,7 +171,7 @@ class AppointmentController extends Controller
 		
         return view('admin.appointment.cancelled', [
             'items' => $items,
-            'total_rows' => Appointment::where('cancelled', 1)->count(),
+            'total_rows' => Appointment::where('status', 'cancelled')->count(),
         ]);
     }
 

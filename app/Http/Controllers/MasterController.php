@@ -56,8 +56,35 @@ class MasterController extends Controller
     {
         $user = auth()->user();
         if( $user->role == 'Admin')
-        {
-            $today                = date('Y-m-d');
+        {  
+
+            $currentMonth    = date('m');
+            $today           = date('Y-m-d');
+
+            $appointments           = Appointment::selectRaw('year(created_at) year, monthname(created_at) month, count(*) data')
+                                        ->groupBy('year', 'month')
+                                        ->orderBy('year', 'desc')
+                                        ->get();
+
+            $sectors                = Appointment::select('sector_id', DB::raw('count(*) as total'))
+                                        ->whereRaw('MONTH(created_at) = ?',[$currentMonth])
+                                        ->groupBy('sector_id')->orderBy('total','desc')
+                                        ->get();
+
+            $latest_appointments    = Appointment::orderBy('id','desc')->limit(10)->get();
+
+            foreach ($appointments as $appointment)
+            {
+                $appointment_months[]        = $appointment->month;
+                $appointment_month_count[]   = $appointment->data;
+            }
+
+            foreach ($sectors as $sector)
+            {
+                $sector_name[]                = $sector->sector->name;
+                $sector_appointment_count[]   = $sector->total;
+            }
+
             return view('admin.home', [
                 'branches_count' => Branches::where('disable', 0)->count(),
                 'sectors_count' => Sector::where('disable', 0)->count(),
@@ -67,6 +94,11 @@ class MasterController extends Controller
                 'today_appointments' => Appointment::where('appointment_date', $today)->count(),
                 'done_appointments' => Appointment::where('appointment_date', '<', $today)->count(),
                 'total_appointments' => Appointment::where('status', 'cancelled')->count(),
+                'appointment_months' => $appointment_months,
+                'appointment_month_count' => $appointment_month_count,
+                'sector_name' => $sector_name,
+                'sector_appointment_count' => $sector_appointment_count,
+                'latest_appointments' => $latest_appointments,
             ]);
         }
         else if( $user->role == 'Staff')
