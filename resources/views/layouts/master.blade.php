@@ -173,7 +173,7 @@
         </div>
     </div>
 
-
+    <!-- Apps -->
     <div class="row justify-content-center">
 
             <!--============== Start To-Do List App ==============-->
@@ -187,24 +187,24 @@
                         <div class="counts">
                             <div class="left float-left">
                                 <p id="total"></p>
-                                <p>Total</p>
+                                <p>{{__('master.TOTAL')}}</p>
                             </div>
                             
                             <div class="middle">
                                 <p id="remain"></p>
-                                <p>Remain</p>
+                                <p>{{__('master.REMAIN')}}</p>
                             </div>
                             
                             <div class="right float-right">
                                 <p id="done"></p>
-                                <p>Done</p>
+                                <p>{{__('master.DONE')}}</p>
                             </div>
                         </div>
 
                     </div>
 
                     <div class="todo-body">
-                        <p class="todo-title">To-Do List</p>
+                        <p class="todo-title">{{__('master.TO-DO')}}</p>
                         <ul id="todo_list" data-url="{{route('get-todo')}}" data-id="{{ Auth::user()->id }}">
                         
                         
@@ -213,9 +213,9 @@
 
                     <div class="todo-footer mt-3">
                         <form id="todo-form" data-url="{{route('add-todo')}}">
-                            <input id="todo-task"  class="form-control" type="text" name="task" placeholder="Write New Task"  required>
+                            <input id="todo-task"  class="form-control" type="text" name="task" placeholder="{{__('master.WRITE-NEW-TASK')}}"  required>
                             <input  type="hidden" name="user_id" value="{{ Auth::user()->id }}" >
-                            <button class="btn btn-primary" type="submit">Add</button>	
+                            <button class="btn btn-primary" type="submit">{{__('master.ADD')}}</button>	
                         </form>
                     </div>	
 
@@ -229,11 +229,11 @@
                 <div id="notes" class="resizable">
                 <div class="close1"><i class="fa fa-times-circle"></i></div>
                 <div class="move"><i class="fas fa-arrows-alt"></i></div>
-                <h3 class="text-center"><strong>Notes</strong></h3> 
+                <h3 class="text-center"><strong>{{__('master.NOTES')}}</strong></h3> 
                     
                 <div class="notes-header">
-                    <h6>Take a note... </h6>
-                    <button type="submit" class="btn btn-warning btn-sm float-right create-note" data-url="{{route('create-note')}}"><i class="fa fa-plus"></i></button>
+                    <h6>{{__('master.TAKE-NOTE')}} </h6>
+                    <button type="submit" class="btn btn-warning btn-sm create-note" data-url="{{route('create-note')}}"><i class="fa fa-plus"></i></button>
                 </div>
                 <div class="notes-body">
                     <div id="get-notes" data-url="{{route('get-note')}}" data-id="{{ Auth::user()->id }}">

@@ -176,6 +176,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
 */
 
 Route::post('/changelogo', 'MasterController@changelogo')->name('changelogo');
+Route::post('/editsetting', 'MasterController@editsetting')->name('edit-setting');
 Route::post('/editinfo', 'MasterController@editinfo')->name('edit-info');
 Route::post('/changeProfilePicture', 'MasterController@changeProfilePicture')->name('change-profile-picture');
 Route::post('/changepassword', 'MasterController@changepassword')->name('change-password');

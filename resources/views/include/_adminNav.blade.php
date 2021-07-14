@@ -450,23 +450,10 @@
                   </li>
 
                   <li class="nav-item">
-                      <a class="nav-link collapsed" href="#navbar-settings" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
-                        <i class="ni ni-settings"></i>
-                        <span class="nav-link-text"> {{__('master.SETTINGS')}}</span>
-                        <span class="badge badge-warning fs-9 p-1 mx-2">{{__('master.PENDING')}}</span>
+                      <a class="nav-link {{request()->routeIs('admin-setting') ? 'active' : '' }}" href="{{route('admin-setting')}}">
+                          <i class="ni ni-settings"></i>
+                          <span class="nav-link-text">{{__('master.SETTINGS')}}</span>
                       </a>
-                      <div class="collapse" id="navbar-settings" style="">
-                        <ul class="nav nav-sm flex-column">
-                          
-                          <li class="nav-item">
-                            <a class="nav-link nav-link-sub {{request()->routeIs('admin-logo') ? 'active' : '' }}" href="{{route('admin-logo')}}">
-                                <i class="ni ni-planet text-pink"></i>
-                                <span class="nav-link-text">{{__('master.LOGO')}}</span>
-                            </a>
-                          </li>
-                          
-                        </ul>
-                      </div>
                   </li>
 
                   <li class="nav-item">

@@ -17,6 +17,7 @@
                         <th scope="col" class="sort" >{{__('master.ITEM')}}</th>
                         <th scope="col" class="sort" >{{__('master.QUANTITY')}}</th>
                         <th scope="col" class="sort" >{{__('master.TYPE')}} </th>
+                        <th scope="col" class="sort" >{{__('master.SECTOR')}} </th>
                     </tr>
                     </thead>
                     <tbody class="list">
@@ -27,6 +28,13 @@
                             <td>{{$adjustment->Inventory->name}}</td>
                             <td>{{$adjustment->quantity}}</td>
                             <td>{{__('master.'.$adjustment->type) }}</td>
+                            <td>
+                                @if ($adjustment->sector_id == 0)
+                                    -
+                                @else
+                                    {{$adjustment->Sector->name}}
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

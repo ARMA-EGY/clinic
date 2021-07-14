@@ -13,12 +13,19 @@ class InventoryHistory extends Model
         'inventory_id','type','quantity','transaction_id','sector_id'
     ];
 
-    public function InventoryTransaction(){
+    public function InventoryTransaction()
+    {
         return $this->belongsTo('App\Models\InventoryTransaction','transaction_id');
     } 
 
-    public function Inventory(){
+    public function Inventory()
+    {
         return $this->belongsTo('App\Models\Inventory','inventory_id');
+    } 
+
+    public function Sector()
+    {
+        return $this->belongsTo('App\Models\Sector','sector_id');
     } 
 
 }

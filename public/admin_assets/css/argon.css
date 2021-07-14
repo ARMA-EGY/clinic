@@ -83,6 +83,26 @@
     width: 100%;
 }
 
+.logo-preview
+{
+    width: 100%;
+    height: 120px;
+    display: block;
+    border: 3px solid #f1f1f1;
+    box-shadow: 0 0 5px 0 rgb(0 0 0 / 25%);
+    border-radius: 10px;
+    background-size: cover !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-preview img
+{
+    width: 100%;
+}
+
 .fs-9
 {
     font-size: 9px !important;
@@ -448,6 +468,7 @@
 	border-bottom: 1px solid #f1f1f1;
     align-items: center;
     display: flex;
+    justify-content: space-between;
     width: 100%;
 }
 
@@ -461,11 +482,11 @@
 }
 
 
-#notes .notes-header .btn {
+/* #notes .notes-header .btn {
 	position: absolute;
 	right: 5px;
 	color: #fff;
-}
+} */
 
 #notes .notes-body {
 	height: calc(100% - 120px);

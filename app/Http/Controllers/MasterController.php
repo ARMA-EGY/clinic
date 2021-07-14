@@ -187,6 +187,39 @@ class MasterController extends Controller
         return redirect(route('admin-logo'));
     }
 
+    //-------------- Edit Setting Data ---------------\\
+    public function editsetting(Request $request)
+    {
+            
+        $setting     = Setting::first();
+
+        $data = $request->only(['project_name', 'contract_alert', 'tax']);
+           
+        if($request->hasfile('logo'))
+        {
+            Storage::disk('public')->delete($old_setting->logo);
+            $logo           = $request->logo->store('images/logo', 'public');
+            $data['logo']   = $logo;
+        }
+
+        $setting->update($data);
+
+        if($setting)
+        {
+            return response()->json([
+                'status' => 'true',
+                'msg' => 'success'
+            ]) ;
+        }
+        else
+        {
+            return response()->json([
+                'status' => 'false',
+                'msg' => 'error'
+            ]) ;
+        }
+    }
+
     //-------------- Edit User Info ---------------\\
     public function editinfo(UpdateUserRequest $request)
     {

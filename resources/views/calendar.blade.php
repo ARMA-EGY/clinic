@@ -89,30 +89,30 @@
         <div class="container-fluid">
           <div class="header-body">
             <div class="row align-items-center py-4">
-              <div class="col-lg-6">
+              <div class="col-lg-6 text-left">
                 <nav aria-label="breadcrumb" class="d-none d-lg-inline-block ml-lg-4">
                   <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                     <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
-                    <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Calendar</li>
+                    <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{__('master.CALENDAR')}}</li>
                   </ol>
                 </nav>
               </div>
             </div>
             <div class="row align-items-center pb-4">
-              <div class="col-lg-6">
+              <div class="col-lg-6 text-left">
                 <h6 class="fullcalendar-title h2 text-white d-inline-block mb-0">Full calendar</h6>
               </div>
-              <div class="col-lg-6 mt-3 mt-lg-0 text-lg-right">
+              <div class="col-lg-6 mt-3 mt-lg-0 text-right" dir="ltr">
                 <a href="#" class="fullcalendar-btn-prev btn btn-sm btn-neutral">
                   <i class="fas fa-angle-left"></i>
                 </a>
                 <a href="#" class="fullcalendar-btn-next btn btn-sm btn-neutral">
                   <i class="fas fa-angle-right"></i>
                 </a>
-                <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="month">Month</a>
-                <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="basicWeek">Week</a>
-                <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="basicDay">Day</a>
+                <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="month">{{__('master.MONTH')}}</a>
+                <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="basicWeek">{{__('master.WEEK')}}</a>
+                <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="basicDay">{{__('master.DAY')}}</a>
               </div>
             </div>
           </div>
@@ -130,7 +130,7 @@
               <!-- Card header -->
               <div class="card-header">
                 <!-- Title -->
-                <h5 class="h3 mb-0">Calendar</h5>
+                <h5 class="h3 mb-0">{{__('master.CALENDAR')}}</h5>
               </div>
               <!-- Card body -->
               <div class="card-body p-0">
@@ -148,12 +148,12 @@
                 <form class="new-event--form">
                   <!-- Modal body -->
                   <div class="modal-body">
-                      <div class="form-group">
-                        <label class="form-control-label">Event title</label>
-                        <input type="text" name="title" class="form-control form-control-alternative new-event--title" placeholder="Event Title" required>
+                      <div class="form-group text-left">
+                        <label class="form-control-label">{{__('master.TITLE')}}</label>
+                        <input type="text" name="title" class="form-control form-control-alternative new-event--title" placeholder="{{__('master.TITLE')}}" required>
                       </div>
-                      <div class="form-group mb-0">
-                        <label class="form-control-label d-block mb-3">Status color</label>
+                      <div class="form-group mb-0 text-left">
+                        <label class="form-control-label d-block mb-3">{{__('master.COLOR')}}</label>
                         <div class="btn-group btn-group-toggle btn-group-colors event-tag" data-toggle="buttons">
                           <label class="btn bg-info active"><input type="radio" name="class_name" value="bg-info" autocomplete="off" checked></label>
                           <label class="btn bg-primary"><input type="radio" name="class_name" value="bg-primary" autocomplete="off"></label>
@@ -175,8 +175,8 @@
                   </div>
                   <!-- Modal footer -->
                   <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary new-event--add">Add event</button>
-                    <button type="button" class="btn btn-link ml-auto" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary btn-sm new-event--add">{{__('master.ADD')}}</button>
+                    <button type="button" class="btn btn-secondary btn-sm ml-auto" data-dismiss="modal">{{__('master.CANCEL')}}</button>
                   </div>
                 </form>
                 </div>
@@ -192,12 +192,12 @@
                 <form class="edit-event--form">
                   <!-- Modal body -->
                   <div class="modal-body">
-                      <div class="form-group">
-                        <label class="form-control-label">Event title</label>
-                        <input type="text" name="title" class="form-control form-control-alternative edit-event--title" placeholder="Event Title">
+                      <div class="form-group text-left">
+                        <label class="form-control-label">{{__('master.TITLE')}}</label>
+                        <input type="text" name="title" class="form-control form-control-alternative edit-event--title" placeholder="{{__('master.TITLE')}}">
                       </div>
-                      <div class="form-group">
-                        <label class="form-control-label d-block mb-3">Status color</label>
+                      <div class="form-group text-left">
+                        <label class="form-control-label d-block mb-3">{{__('master.COLOR')}}</label>
                         <div class="btn-group btn-group-toggle btn-group-colors event-tag mb-0" data-toggle="buttons">
                             <label class="btn bg-info active"><input type="radio" name="class_name" value="bg-info" autocomplete="off" checked></label>
                             <label class="btn bg-primary"><input type="radio" name="class_name" value="bg-primary" autocomplete="off"></label>
@@ -213,18 +213,18 @@
                             <label class="btn bg-yellow"><input type="radio" name="class_name" value="bg-yellow" autocomplete="off"></label>
                         </div>
                       </div>
-                      <div class="form-group">
-                        <label class="form-control-label">Description</label>
-                        <textarea name="description" class="form-control form-control-alternative edit-event--description textarea-autosize" placeholder="Event Desctiption"></textarea>
+                      <div class="form-group text-left">
+                        <label class="form-control-label">{{__('master.DESCRIPTION')}}</label>
+                        <textarea name="description" class="form-control form-control-alternative edit-event--description textarea-autosize" placeholder="{{__('master.DESCRIPTION')}}"></textarea>
                         <i class="form-group--bar"></i>
                       </div>
                       <input type="hidden" name="event_id" class="edit-event--id">
                   </div>
                   <!-- Modal footer -->
                   <div class="modal-footer">
-                    <button class="btn btn-primary" data-calendar="update"><i class="fa fa-edit"></i> Update</button>
-                    <button class="btn btn-danger" data-calendar="delete"><i class="fa fa-trash-alt"></i> Delete</button>
-                    <button class="btn btn-link ml-auto" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary btn-sm" data-calendar="update"><i class="fa fa-edit"></i> {{__('master.UPDATE')}}</button>
+                    <button class="btn btn-danger btn-sm" data-calendar="delete"><i class="fa fa-trash-alt"></i> {{__('master.REMOVE')}}</button>
+                    <button class="btn btn-secondary btn-sm ml-auto" data-dismiss="modal">{{__('master.CANCEL')}}</button>
                   </div>
                 </form>
                 </div>
