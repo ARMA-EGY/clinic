@@ -134,7 +134,43 @@
                 <div class="card-header"><i class="fas fa-file-contract"></i> {{__('master.PLEDGES')}} </div>
 
                 <div class="card-body">
+
+                    @if ($pledges->count() > 0)
+
+                        <div class="table-responsive">
+                        <!-- Pledges table -->
+                            <table class="table align-items-center table-flush display nowrap" id="example">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col" class="sort" >{{__('master.PLEDGE-FILE')}}</th>
+                                    <th scope="col" class="sort" >{{__('master.DATE')}} </th>
+                                    <th scope="col"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                @foreach ($pledges as $pledge)
+
+                                <tr class="parent">
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td><b> {{  $pledge->file->name }} </b></td>
+                                    <td><b>{{ $pledge->created_at->format('d-m-Y')}} </b></td>
+                                    <td>
+                                    <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="{{route('pledgefile', $pledge->id)}}" target="_blank" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
+                                    </td>
+                                </tr>
+
+                                @endforeach
+                                
+                                </tbody>
+                            </table>
+                        </div>
+
+                    @else 
                         <p class="text-center"> {{__('master.NO-PLEDGES')}} </p>
+                    @endif
+                        
                 </div>
 
             </div>
@@ -144,7 +180,51 @@
                 <div class="card-header"><i class="fas fa-x-ray"></i> {{__('master.RAYS')}} </div>
 
                 <div class="card-body">
+                    @if ($xrays->count() > 0)
+
+                        <div class="table-responsive">
+                        <!-- Xrays table -->
+                            <table class="table align-items-center table-flush display nowrap" id="example">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col" class="sort" >{{__('master.XRAY-NAME')}}</th>
+                                    <th scope="col" class="sort" >{{__('master.DATE')}} </th>
+                                    <th scope="col"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                
+                                @foreach ($xrays as $xray)
+                
+                                <tr class="parent">
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td><b> {{  $xray->name }} </b></td>
+                                    <td><b>{{ $xray->created_at->format('d-m-Y')}} </b></td>
+                                    <td>
+                                        @foreach ($xray->images as $image)
+                                            @if($loop->index == 0) 
+                                                <a data-toggle="tooltip" data-fancybox="{{$xray->name}}" href="{{asset($image->image)}}" data-placement="top" title="{{__('master.DETAILS')}}"  class="btn btn-warning btn-sm mx-1 px-3">
+                                                    <i class="fa fa-tv"></i> 
+                                                </a>
+                                            @else 
+                                                <a data-fancybox="{{$xray->name}}" href="{{asset($image->image)}}"></a>
+                                            @endif 
+                                        @endforeach
+                                    </td>
+                                </tr>
+                
+                                @endforeach
+                                
+                                </tbody>
+                            </table>
+                        </div>
+        
+        
+                    @else 
                         <p class="text-center"> {{__('master.NO-RAYS')}} </p>
+                    @endif
+
                 </div>
 
             </div>

@@ -30,13 +30,16 @@
                     <td><b> {{$item->sector->name}} </b></td>
                     <td>
                       @if(auth()->user()->role == "Admin")
-                        <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="{{route('appointment.show',$item->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
-                        <a data-toggle="tooltip" data-placement="top" title="{{__('master.CHECKOUT')}}" href="#" class="btn btn-success btn-sm mx-1 px-3 get-checkout" data-id="{{$item->id}}"> <i class="fas fa-money-bill-wave"></i> </a>
-                        <button data-toggle="tooltip" data-placement="top" title="{{__('master.CANCEL')}}" href="#" class="btn btn-danger btn-sm mx-1 px-3 cancel-appointment" data-id="{{$item->id}}" @if ($item->cancelled == 1) disabled @endif> <i class="fa fa-trash"></i> </button>
+                          <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="{{route('appointment.show',$item->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
+                        @if ($item->status == 'pending')
+                          <button data-toggle="tooltip" data-placement="top" title="{{__('master.CHECKOUT')}}" class="btn btn-success btn-sm mx-1 px-3 get-checkout" data-id="{{$item->id}}" @if ($item->status == 'paid') disabled @endif> @if ($item->status == 'paid') <i class="fas fa-check-circle"></i> @else <i class="fas fa-money-bill-wave"></i> @endif  </button>
+                          <button data-toggle="tooltip" data-placement="top" title="{{__('master.CANCEL')}}" class="btn btn-danger btn-sm mx-1 px-3 cancel-appointment" data-id="{{$item->id}}" @if ($item->status == 'cancelled') disabled @endif> <i class="fa fa-trash"></i> </button>
+                        @elseif ($item->status == 'paid')
+                          <button data-toggle="tooltip" data-placement="top" title="{{__('master.CHECKOUT')}}" class="btn btn-success btn-sm mx-1 px-3 get-checkout" data-id="{{$item->id}}" @if ($item->status == 'paid') disabled @endif> @if ($item->status == 'paid') <i class="fas fa-check-circle"></i> @else <i class="fas fa-money-bill-wave"></i> @endif  </button>
+                        @endif
                       @elseif(auth()->user()->role == "Staff")
                         <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="{{route('staff-appointment.show',$item->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
-                        <a data-toggle="tooltip" data-placement="top" title="{{__('master.CHECKOUT')}}" href="#" class="btn btn-success btn-sm mx-1 px-3 get-checkout" data-id="{{$item->id}}"> <i class="fas fa-money-bill-wave"></i> </a>
-                        <button data-toggle="tooltip" data-placement="top" title="{{__('master.CANCEL')}}" href="#" class="btn btn-danger btn-sm mx-1 px-3 cancel-appointment" data-id="{{$item->id}}" @if ($item->cancelled == 1) disabled @endif> <i class="fa fa-trash"></i> </button>
+                       
                       @elseif(auth()->user()->role == "Doctor")
                         <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="{{route('doctor-appointment.show',$item->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
                       @endif

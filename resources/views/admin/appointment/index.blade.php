@@ -94,7 +94,10 @@ $('#example').DataTable( {
 
       $('#popup').modal('show');
       $('#modal_body').html(loader);
-
+      $('.get-checkout').removeClass('active-checkout');
+      $(this).addClass('active-checkout');
+      $(this).siblings('.cancel-appointment').addClass('active-cancel');
+      
       $.ajax({
           url:"{{route('appointment.checkout')}}",
           type:"POST",
@@ -109,6 +112,69 @@ $('#example').DataTable( {
 
   });
 
+  // =============  Checkout Appintment =============
+  $(document).on('submit', '.checkout_form', function(e)
+  {
+      e.preventDefault();
+      let formData = new FormData(this);
+      $('.submit').prop('disabled', true);
+      
+      var head1 	= "{{__('master.DONE')}}";
+      var title1 	= "{{__('master.PAYMENT-PAID-SUCCESSFULLY')}}";
+      var head2 	= "{{__('master.OOPS')}}";
+      var title2 	= "{{__('master.SOMETHING-WRONG')}}";
+
+      $.ajax({
+          url: 		"{{route('appointment.checkout-confirm')}}",
+          method: 	'POST',
+          data: formData,
+          dataType: 	'json',
+          contentType: false,
+          processData: false,
+          success : function(data)
+              {
+                  $('.submit').prop('disabled', false);
+                  
+                  if (data['status'] == 'true')
+                  {
+                      Swal.fire(
+                              head1,
+                              title1,
+                              'success'
+                              )
+                      $('.modal').modal('hide');
+                      $('.active-checkout').html('<i class="fas fa-check-circle"></i>');
+                      $('.active-checkout').prop('disabled', true);
+                      $('.active-cancel').prop('disabled', true);
+                  }
+                  else if (data['status'] == 'false')
+                  {
+                      Swal.fire(
+                              head2,
+                              title2,
+                              'error'
+                              )
+                  }
+              },
+              error : function(reject)
+              {
+                  $('.submit').prop('disabled', false);
+
+                  var response = $.parseJSON(reject.responseText);
+                  $.each(response.errors, function(key, val)
+                  {
+                      Swal.fire(
+                              head2,
+                              val[0],
+                              'error'
+                              )
+                  });
+              }
+          
+          
+      });
+
+  });
 
   // =============  Cancel Appintment =============
   $(document).on('click', '.cancel-appointment', function() {
@@ -139,6 +205,7 @@ $('#example').DataTable( {
                       data:		{id: item}	
               });
               
+              $(this).siblings('.get-checkout').prop('disabled', true);
               $(this).prop('disabled', true);
           }
       })

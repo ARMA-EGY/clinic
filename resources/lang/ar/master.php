@@ -310,4 +310,7 @@ return [
     "SUB-TOTAL" => "المجموع الفرعي",
     "TAX" => "ضريبة",
     "TOTAL" => "الاجمالي",
+
+    "NO-SERVICES-ADDED-YET" => "لا توجد خدمات مضافة حتى الان",
+    "PAYMENT-PAID-SUCCESSFULLY" => "تم الدفع بنجاح",
 ];
