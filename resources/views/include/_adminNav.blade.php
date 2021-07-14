@@ -468,6 +468,13 @@
                         </ul>
                       </div>
                   </li>
+
+                  <li class="nav-item">
+                      <a class="nav-link {{request()->routeIs('index-transactions') ? 'active' : '' }}" href="{{route('index-transactions')}}">
+                          <i class="fas fa-th-large"></i>
+                          <span class="nav-link-text">Transactions</span>
+                      </a>
+                  </li>
                   
               </ul>
               <!-- Divider -->

@@ -9,6 +9,7 @@ use App\Models\Branches;
 use App\Models\Sector;
 use App\Models\Patients;
 use App\Models\Countries;
+use App\Models\Transaction;
 use App\Models\BodyParts;
 use App\Models\User;
 use App\Models\Services;
@@ -318,6 +319,19 @@ class AppointmentController extends Controller
         return view('admin.modals.patient_info', [
             'patient'        => $patient,
             'countries'   => Countries::all(),
+        ]);
+    }
+
+    
+    //-------------- Get Transactions ---------------\\
+
+    public function transactions()
+    {
+        $transactions       = Transaction::all();
+        
+        return view('admin.appointment.transactions', [
+            'items'        => $transactions,
+            'items_count'   => count($transactions),
         ]);
     }
    

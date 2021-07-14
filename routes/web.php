@@ -87,6 +87,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
         Route::get('/deactivestaff', 'Admin\Staff\StaffController@deactive')->name('deactive-staff');
         Route::get('/staff/{id}/profile', 'Admin\Staff\StaffController@profile')->name('staff.profile');
         Route::resource('/appointment', 'Admin\Appointment\AppointmentController'); 
+        Route::get('/transactions', 'Admin\Appointment\AppointmentController@transactions')->name('index-transactions');
         Route::resource('/AppointmentServices', 'Admin\AppointmentServices\AppointmentServicesController'); 
         Route::get('/appointment-today', 'Admin\Appointment\AppointmentController@today')->name('appointment.today');
         Route::get('/appointment-done', 'Admin\Appointment\AppointmentController@done')->name('appointment.done');
