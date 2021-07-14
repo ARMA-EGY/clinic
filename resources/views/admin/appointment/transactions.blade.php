@@ -19,7 +19,7 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Transactions</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{__('master.TRANSACTIONS')}}</li>
                 </ol>
               </nav>
             </div>
@@ -49,7 +49,7 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">All Transactions <span class="badge badge-primary p-2">{{$items_count}}</span></h3>
+                  <h3 class="mb-0">{{__('master.ALL-TRANSACTIONS')}} <span class="badge badge-primary p-2">{{$items_count}}</span></h3>
                 </div>
               </div>
             </div>
@@ -62,19 +62,14 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col" class="sort" >Appointment NO.</th>
-                    <th scope="col" class="sort" >Patient Name</th>
-                    <th scope="col" class="sort" >Subtotal</th>
-                    <th scope="col" class="sort" >Tax</th>
-                    <th scope="col" class="sort" >Tax percentage</th>
-                    <th scope="col" class="sort" >Total</th>
-                    <th scope="col" class="sort" >Payment Method</th>
+                    <th scope="col" class="sort" >{{__('master.APPOINTMENT-NUMBER')}}</th>
+                    <th scope="col" class="sort" >{{__('master.PATIENT-NAME')}}</th>
+                    <th scope="col" class="sort" >{{__('master.SUB-TOTAL')}}</th>
+                    <th scope="col" class="sort" >{{__('master.TAX')}}</th>
+                    <th scope="col" class="sort" >{{__('master.TAX-PERCENTAGE')}}</th>
+                    <th scope="col" class="sort" >{{__('master.TOTAL')}}</th>
+                    <th scope="col" class="sort" >{{__('master.PAYMENT-METHOD')}}</th>
                     <th scope="col" class="sort" > </th>
-    
-                    
-                    
-                    
-                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -87,11 +82,11 @@
                     <td>{{ $item->Patient->name }} </td>
                     <td>{{ $item->sub_total }}</td>
                     <td>{{ $item->tax }}</td>
-                    <td>{{ $item->tax_percentage }} </td>
+                    <td>{{ $item->tax_percentage }} %</td>
                     <td>{{ $item->total }} </td>
-                    <td>{{ $item->payment_method }} </td>
+                    <td>{{__('master.'.$item->payment_method)}}</td>
                     <td>
-                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="#" class="btn btn-warning btn-sm mx-1 px-3 show-adjustment" data-id="{{$item->id}}"> <i class="fa fa-tv"></i> </a>
+                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="#" class="btn btn-warning btn-sm mx-1 px-3 get-checkout" data-id="{{$item->appointment_id}}"> <i class="fa fa-tv"></i> </a>
                     </td>
                   </tr>
 
@@ -137,6 +132,28 @@ $('#example').DataTable( {
   } );
 
 
+  // =============  Get Checkout Data =============
+  $('.get-checkout').click(function()
+  {
+      var id 	        = $(this).attr('data-id');
+      var loader 	    = $('#loader2').attr('data-load');
+
+      $('#popup').modal('show');
+      $('#modal_body').html(loader);
+      
+      $.ajax({
+          url:"{{route('appointment.checkout')}}",
+          type:"POST",
+          dataType: 'text',
+          data:    {"_token": "{{ csrf_token() }}",
+                      id: id},
+          success : function(response)
+              {
+              $('#modal_body').html(response);
+              }  
+          })
+
+  });
 
 </script>
     

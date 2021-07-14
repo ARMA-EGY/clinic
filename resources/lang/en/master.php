@@ -334,9 +334,17 @@ return [
     "VISA" => "Visa",
     "MADA" => "Mada",
     "SADAD" => "Sadad",
+    "cash" => "Cash",
+    "visa" => "Visa",
+    "mada" => "Mada",
+    "sadad" => "Sadad",
 
+    "TRANSACTION" => "Transaction",
+    "TRANSACTIONS" => "Transactions",
+    "ALL-TRANSACTIONS" => "All Transactions",
     "SUB-TOTAL" => "Sub Total",
     "TAX" => "Tax",
+    "TAX-PERCENTAGE" => "Tax Percentage",
     "TOTAL" => "Total",
     "REMAIN" => "Remain",
 

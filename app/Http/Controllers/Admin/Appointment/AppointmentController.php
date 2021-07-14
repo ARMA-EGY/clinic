@@ -11,7 +11,6 @@ use App\Models\Branches;
 use App\Models\Sector;
 use App\Models\Patients;
 use App\Models\Countries;
-use App\Models\Transaction;
 use App\Models\BodyParts;
 use App\Models\User;
 use App\Models\Services;

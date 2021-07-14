@@ -316,8 +316,8 @@ return [
     "ITEMS" => "العناصر",
     "TYPE" => "النوع",
     "ALL-ITEMS" => "جميع العناصر",
-    "ACTIVE-ITEMS" => "العناصرالمتاحة",
-    "DEACTIVE-ITEMS" => "العناصرغيرالمتاحة",
+    "ACTIVE-ITEMS" => "العناصر المتاحة",
+    "DEACTIVE-ITEMS" => "العناصر غير المتاحة",
     "TOTAL-ITEMS" => "اجمالي العناصر",
     "NO-ITEMS-AVAILABLE" => "لا توجد عناصر متاحة",
 
@@ -330,9 +330,17 @@ return [
     "VISA" => "فيزا",
     "MADA" => "مدى",
     "SADAD" => "سداد",
+    "cash" => "كاش",
+    "visa" => "فيزا",
+    "mada" => "مدى",
+    "sadad" => "سداد",
 
+    "TRANSACTION" => "عملية الدفع",
+    "TRANSACTIONS" => "عمليات الدفع",
+    "ALL-TRANSACTIONS" => "جميع عمليات الدفع",
     "SUB-TOTAL" => "المجموع الفرعي",
     "TAX" => "ضريبة",
+    "TAX-PERCENTAGE" => "نسبة الضريبة",
     "TOTAL" => "الاجمالي",
     "REMAIN" => "متبقي",
 

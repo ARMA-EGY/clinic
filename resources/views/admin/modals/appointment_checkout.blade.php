@@ -3,7 +3,7 @@
 
 <div class="modal-content">
     <div class="modal-header bg-blue">
-        <h4 class="modal-title text-white text-left"><i class="fas fa-money-bill-wave"></i> {{__('master.CHECKOUT')}}</h4>
+        <h4 class="modal-title text-white text-left"><i class="fas fa-money-bill-wave"></i> @if ($appointment->status == 'done') {{__('master.TRANSACTION')}} @else {{__('master.CHECKOUT')}}  @endif </h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     </div>
 
@@ -69,18 +69,20 @@
                     </div>
                     
                     <input type="hidden" name="appointment_id" value="{{$appointment->id}}">
-                    <div class="form-group col-md-6 mb-4 text-left">
-                        <label class="font-weight-bold text-uppercase">{{__('master.PAYMENT-METHOD')}}</label>
 
-                        <select class="form-control" name="payment_method" required>
-                            <option value="">{{__('master.SELECT-PAYMENT-METHOD')}}</option>
-                            <option value="cash">{{__('master.CASH')}}</option>
-                            <option value="visa">{{__('master.VISA')}}</option>
-                            <option value="mada">{{__('master.MADA')}}</option>
-                            <option value="sadad">{{__('master.SADAD')}}</option>
-                        </select>
-    
-                    </div>
+                    @if ($appointment->status == 'done')
+                    @else 
+                        <div class="form-group col-md-6 mb-4 text-left">
+                            <label class="font-weight-bold text-uppercase">{{__('master.PAYMENT-METHOD')}}</label>
+                                <select class="form-control" name="payment_method" required>
+                                    <option value="">{{__('master.SELECT-PAYMENT-METHOD')}}</option>
+                                    <option value="cash">{{__('master.CASH')}}</option>
+                                    <option value="visa">{{__('master.VISA')}}</option>
+                                    <option value="mada">{{__('master.MADA')}}</option>
+                                    <option value="sadad">{{__('master.SADAD')}}</option>
+                                </select>
+                        </div>
+                    @endif
 
             @else 
                 <p class="text-center"> {{__('master.NO-SERVICES-ADDED-YET')}} </p>
@@ -88,7 +90,10 @@
 
             <div class="modal-footer">
                 @if ($appointmentServices->count() > 0)
-                    <button type="submit" class="btn btn-success btn-sm submit">{{__('master.CONFIRM')}}</button>
+                    @if ($appointment->status == 'done')
+                    @else
+                        <button type="submit" class="btn btn-success btn-sm submit">{{__('master.CONFIRM')}}</button>
+                    @endif
                 @endif
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">{{__('master.CANCEL')}}</button>
             </div>

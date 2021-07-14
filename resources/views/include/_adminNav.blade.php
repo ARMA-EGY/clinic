@@ -250,6 +250,13 @@
                   </li>
 
                   <li class="nav-item">
+                      <a class="nav-link {{request()->routeIs('index-transactions') ? 'active' : '' }}" href="{{route('index-transactions')}}">
+                          <i class="fas fa-money-bill-wave"></i>
+                          <span class="nav-link-text">{{__('master.TRANSACTIONS')}}</span>
+                      </a>
+                  </li>
+
+                  <li class="nav-item">
                       <a class="nav-link collapsed" href="#navbar-services" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                         <i class="fas fa-briefcase-medical"></i>
                         <span class="nav-link-text">{{__('master.SERVICES')}}</span>
@@ -453,13 +460,6 @@
                       <a class="nav-link {{request()->routeIs('admin-setting') ? 'active' : '' }}" href="{{route('admin-setting')}}">
                           <i class="ni ni-settings"></i>
                           <span class="nav-link-text">{{__('master.SETTINGS')}}</span>
-                      </a>
-                  </li>
-
-                  <li class="nav-item">
-                      <a class="nav-link {{request()->routeIs('index-transactions') ? 'active' : '' }}" href="{{route('index-transactions')}}">
-                          <i class="fas fa-th-large"></i>
-                          <span class="nav-link-text">Transactions</span>
                       </a>
                   </li>
                   
