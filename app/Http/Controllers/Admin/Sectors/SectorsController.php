@@ -138,14 +138,14 @@ class SectorsController extends Controller
             $image = $request->file('image');
             $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
         
-            $destinationPath = public_path('/images/avatars');
+            $destinationPath = public_path('/images/sectors');
             ini_set('memory_limit', '256M');
             $img = Image::make($image->getRealPath());
             $img->resize(400, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($destinationPath.'/'.$input['imagename']);
 
-            $image = 'images/sector'.$input['imagename'];
+            $image = 'images/sectors/'.$input['imagename'];
 
             $data['image'] = $image;
         }

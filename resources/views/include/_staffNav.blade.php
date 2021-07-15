@@ -158,6 +158,11 @@
                 </li>
                 @endif 
 
+                @if(auth()->user()->can('internal create appointment') 
+                || auth()->user()->can('internal today appointment') 
+                || auth()->user()->can('internal done appointment') 
+                || auth()->user()->can('internal cancelled appointment')
+                || auth()->user()->can('internal all appointment'))
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#navbar-appointment" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-notes-medical"></i>
@@ -211,7 +216,13 @@
                       </ul>
                     </div>
                 </li>
+                @endif 
 
+                @if(auth()->user()->can('external create appointment') 
+                || auth()->user()->can('external today appointment') 
+                || auth()->user()->can('external done appointment') 
+                || auth()->user()->can('external cancelled appointment')
+                || auth()->user()->can('external all appointment'))
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#navbar-external-appointment" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-notes-medical"></i>
@@ -266,6 +277,7 @@
                       </ul>
                     </div>
                 </li>
+                @endif 
 
               @if(auth()->user()->can('transactions'))                 
                 <li class="nav-item">
@@ -324,6 +336,8 @@
                 @endif 
 
 
+                @if(auth()->user()->can('create xrays') 
+                || auth()->user()->can('all xrays') )
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#navbar-xrays" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-x-ray"></i>
@@ -351,7 +365,10 @@
                       </ul>
                     </div>
                 </li>
+                @endif 
 
+                @if(auth()->user()->can('create pledge') 
+                || auth()->user()->can('all pledge') )
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#navbar-pledges" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                       <i class="fas fa-file-contract"></i>
@@ -379,7 +396,14 @@
                       </ul>
                     </div>
                 </li>
+                @endif 
 
+                @if(auth()->user()->can('inventory all items') 
+                || auth()->user()->can('inventory active items') 
+                || auth()->user()->can('inventory deactivated items') 
+                || auth()->user()->can('inventory create items')
+                || auth()->user()->can('inventory all adjustment')
+                || auth()->user()->can('inventory create adjustment'))
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#navbar-inventory" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                         <i class="fa fa-cubes"></i>
@@ -444,6 +468,7 @@
                       </ul>
                     </div>
                 </li>
+                @endif 
                 
             </ul>
             <!-- Divider -->

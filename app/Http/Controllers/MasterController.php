@@ -146,7 +146,7 @@ class MasterController extends Controller
                 'patients_count' => Patients::all()->count(),
                 'today_appointments' => Appointment::where('appointment_date', $today)->where('branch_id', $branch->id)->count(),
                 'done_appointments' => Appointment::where('appointment_date', '<', $today)->where('branch_id', $branch->id)->count(),
-                'total_appointments' => Appointment::where('status', 'cancelled')->where('branch_id', $branch->id)->count(),
+                'total_appointments' => Appointment::where('branch_id', $branch->id)->count(),
                 'appointment_months' => $appointment_months,
                 'appointment_month_count' => $appointment_month_count,
                 'sector_name' => $sector_name,
