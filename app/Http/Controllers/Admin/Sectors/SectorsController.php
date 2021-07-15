@@ -152,10 +152,9 @@ class SectorsController extends Controller
 
         $sector->update($data);
 
-        if($request->bodyparts)
-        {
+        
             $sector->bodyparts()->sync($request->bodyparts);
-        }
+       
 		
 		session()->flash('success', 'Sector updated successfully');
 		

@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Sector;
 use App\Models\Branches;
 use App\Models\Countries;
+use App\Models\Appointment;
 use App\Http\Requests\Doctors\AddRequest;
 use App\Http\Requests\Doctors\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
@@ -222,9 +223,13 @@ class DoctorsController extends Controller
     {
         $user = auth()->user();
         $item     = User::where('id', $id)->first();
+        $today                = date('Y-m-d');
 
         return view('admin.doctors.profile', [
             'item' => $item,
+            'today_appointments' => Appointment::where('doctor_id', $id)->where('appointment_date', $today)->count(),
+            'done_appointments' => Appointment::where('doctor_id', $id)->where('appointment_date', '<', $today)->count(),
+            'total_appointments' => Appointment::where('doctor_id', $id)->count(),
         ]);
     }
 

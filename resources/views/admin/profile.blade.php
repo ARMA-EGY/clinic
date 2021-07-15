@@ -62,13 +62,13 @@
                             <!--=================  Name  =================-->
                             <div class="form-group col-md-6 mb-2 text-left">
                                 <label class="font-weight-bold text-uppercase">{{__('master.NAME')}}</label>
-                                <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}" >
+                                <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}" required>
                             </div>
         
                             <!--=================  Phone  =================-->
                             <div class="form-group col-md-6 mb-2 text-left">
                                 <label class="font-weight-bold text-uppercase">{{__('master.PHONE')}} </label>
-                                <input type="number" name="phone" class="form-control" value="{{ Auth::user()->phone }}" >
+                                <input type="number" name="phone" class="form-control" value="{{ Auth::user()->phone }}" required>
                             </div>
 
                         </div>
@@ -79,14 +79,14 @@
                             <!--=================  E-mail  =================-->
                             <div class="form-group col-md-6 mb-2 text-left">
                                 <label class="font-weight-bold text-uppercase">{{__('master.EMAIL')}}</label>
-                                <input type="email" name="email" class="form-control" value="{{ Auth::user()->email }}">
+                                <input type="email" name="email" class="form-control" value="{{ Auth::user()->email }}" required>
                             </div>
         
                             <!--=================  Gender  =================-->
                             <div class="form-group col-md-6 mb-2 text-left">
                                 <label class="font-weight-bold text-uppercase">{{__('master.GENDER')}}</label>
 
-                                <select class="form-control" name="gender">
+                                <select class="form-control" name="gender" required>
                                     <option value="Male" @if (Auth::user()->gender == 'Male') selected @endif>{{__('master.MALE')}}</option>
                                     <option value="Female" @if (Auth::user()->gender == 'Female') selected @endif>{{__('master.FEMALE')}}</option>
                                 </select>
@@ -100,7 +100,7 @@
                             <!--=================   Birthdate  =================-->
                             <div class="form-group col-md-6 mb-2 text-left">
                                 <label class="font-weight-bold text-uppercase">{{__('master.BIRTHDATE')}}</label>
-                                <input type="date" name="birthdate" class="form-control" value="{{ Auth::user()->birthdate }}" >
+                                <input type="date" name="birthdate" class="form-control" value="{{ Auth::user()->birthdate }}" required>
                             </div>
 
                             <!--=================  Nationality  =================-->

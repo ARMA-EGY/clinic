@@ -17,6 +17,8 @@ class UpdateRequest extends FormRequest
         return [
             'name' => 'required|unique:inventory,name,'.$this->inventory->id,
             'stock' => 'required',
+            'price' => 'required',
+            'expire_date' => 'required',
         ];
     }
 
@@ -25,7 +27,9 @@ class UpdateRequest extends FormRequest
         return [
             'name.required' => 'Item Name is required.',
             'name.unique' => 'This Item  Already Exist.',
-            'stock.required' => 'stock is required.',
+            'stock.required' => 'Stock is required.',
+            'price.required' => 'Price is required.',
+            'expire_date.required' => 'Expire date is required.',
         ];
     }
 

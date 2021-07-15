@@ -64,7 +64,7 @@
                             <!--=================  Stock  =================-->
                             <div class="form-group col-md-6 mb-4 text-left">
                               <label class="font-weight-bold text-uppercase">{{__('master.STOCK')}}</label>
-                              <input type="number" name="stock" class="@error('stock') is-invalid @enderror form-control"  value="{{ isset($item) ? $item->stock : old('stock') }}" >
+                              <input type="number" name="stock" min="0" class="@error('stock') is-invalid @enderror form-control"  value="{{ isset($item) ? $item->stock : old('stock') }}" required>
                           
                               @error('stock')
                                   <div>
@@ -82,7 +82,7 @@
                             <!--=================  Price  =================-->
                             <div class="form-group col-md-6 mb-4 text-left">
                                 <label class="font-weight-bold text-uppercase">{{__('master.PRICE')}}</label>
-                                <input type="number" step="0.1" name="price" class="@error('price') is-invalid @enderror form-control"  value="{{ isset($item) ? $item->price : old('price') }}" >
+                                <input type="number" step="0.1" min="0" name="price" class="@error('price') is-invalid @enderror form-control"  value="{{ isset($item) ? $item->price : old('price') }}" required>
                             
                                 @error('price')
                                     <div>
@@ -95,7 +95,7 @@
                             <!--=================  Expire Date  =================-->
                             <div class="form-group col-md-6 mb-4 text-left">
                                 <label class="font-weight-bold text-uppercase">{{__('master.EXPIRE-DATE')}}</label>
-                                <input type="date" name="expire_date" class="@error('expire_date') is-invalid @enderror form-control"  value="{{ isset($item) ? $item->expire_date : old('expire_date') }}" >
+                                <input type="date" name="expire_date" class="@error('expire_date') is-invalid @enderror form-control"  value="{{ isset($item) ? $item->expire_date : old('expire_date') }}" required>
                             
                                 @error('expire_date')
                                     <div>
@@ -113,8 +113,8 @@
                             <!--=================  Branch  =================-->
                             <div class="form-group col-md-6 mb-2">
                             <label class="font-weight-bold text-uppercase" for="body_part">{{__('master.SELECT-BRANCH')}}</label>
-                                <select class="form-control selectpicker" data-live-search="true" name="branch_id">
-                                    <option>-{{__('master.SELECT')}}-</option>
+                                <select class="form-control selectpicker" data-live-search="true" name="branch_id" required>
+                                    <option value="">-{{__('master.SELECT')}}-</option>
                   
                                     @if(isset($item))
                                       @foreach($branches as $branch)

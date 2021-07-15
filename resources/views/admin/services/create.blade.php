@@ -82,7 +82,7 @@
                             <!--=================  Price  =================-->
                             <div class="form-group col-md-6 mb-4 text-left">
                                 <label class="font-weight-bold text-uppercase">{{__('master.PRICE')}}</label>
-                                <input type="number" step="0.1" name="price" class="@error('price') is-invalid @enderror form-control" placeholder="{{__('master.PRICE')}}" value="{{ isset($item) ? $item->price : old('price') }}" >
+                                <input type="number" step="0.1" name="price" class="@error('price') is-invalid @enderror form-control" placeholder="{{__('master.PRICE')}}" value="{{ isset($item) ? $item->price : old('price') }}" required>
                             
                                 @error('price')
                                     <div>
@@ -116,17 +116,15 @@
                         <div class="row">
 
                             <!--=================  Sectors  =================-->
-                            @if ($Categories->count() > 0)
                                 <div class="form-group col-md-12 mb-4 text-left">
                                     <label class="font-weight-bold text-uppercase" for="sectors">{{__('master.CATEGORY')}}</label>
-                                    <select id="sectors" class=" form-control" name="category_id">
+                                    <select id="sectors" class=" form-control" name="category_id" required>
                                         @foreach ($Categories as $Category)
                                             <option value="{{$Category->id}}" @if (isset($item))  @if ($item->category_id == $Category->id) selected @endif @endif>{{$Category->name}}</option>
                                         @endforeach
                                     </select>
             
                                 </div>
-                            @endif
                             
                         </div>        
                         <div class="form-group card-footer">

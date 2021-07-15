@@ -183,7 +183,7 @@ class InventoryController extends Controller
         ]);
     }
 
-    public function adjustmentCreate()
+    public function adjustmentCreate(Request $request)
     {
         $user              = auth()->user();
         if(!$user->hasPermissionTo('all pledge'))
@@ -191,6 +191,12 @@ class InventoryController extends Controller
             return redirect(route('home'));
         }
         $inventories       = Inventory::orderBy('id','desc')->get();
+        if(count($inventories) == 0)
+        {
+            $request->session()->flash('success', 'No Items To Adjust');
+        
+            return redirect(route('staff-index-adjustment'));
+        }
         return view('staff.inventory.adjustment.create',[
             'items' => $inventories,
         ]);

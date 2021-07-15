@@ -72,6 +72,10 @@ class MasterController extends Controller
                                         ->get();
 
             $latest_appointments    = Appointment::orderBy('id','desc')->limit(10)->get();
+            $appointment_months             = [];
+            $appointment_month_count        = [];
+            $sector_name                    = [];
+            $sector_appointment_count       = [];
 
             foreach ($appointments as $appointment)
             {
@@ -93,7 +97,7 @@ class MasterController extends Controller
                 'patients_count' => Patients::all()->count(),
                 'today_appointments' => Appointment::where('appointment_date', $today)->count(),
                 'done_appointments' => Appointment::where('appointment_date', '<', $today)->count(),
-                'total_appointments' => Appointment::where('status', 'cancelled')->count(),
+                'total_appointments' => Appointment::all()->count(),
                 'appointment_months' => $appointment_months,
                 'appointment_month_count' => $appointment_month_count,
                 'sector_name' => $sector_name,
@@ -122,7 +126,7 @@ class MasterController extends Controller
             return view('doctor.home', [
                 'today_appointments' => Appointment::where('doctor_id', $user->id)->where('appointment_date', $today)->count(),
                 'done_appointments' => Appointment::where('doctor_id', $user->id)->where('appointment_date', '<', $today)->count(),
-                'total_appointments' => Appointment::where('doctor_id', $user->id)->where('status', 'cancelled')->count(),
+                'total_appointments' => Appointment::where('doctor_id', $user->id)->count(),
             ]);
 
         }
@@ -229,7 +233,7 @@ class MasterController extends Controller
            
         if($request->hasfile('logo'))
         {
-            Storage::disk('public')->delete($old_setting->logo);
+            Storage::disk('public')->delete($setting->logo);
             $logo           = $request->logo->store('images/logo', 'public');
             $data['logo']   = $logo;
         }

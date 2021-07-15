@@ -9,7 +9,7 @@ class SectorBodyparts extends Model
 {
     protected $table = 'body_parts_sector';
     
-    protected $fillable = ['sector_id', 'bodypart_id'];
+    protected $fillable = ['sector_id', 'body_parts_id'];
 
 
 }

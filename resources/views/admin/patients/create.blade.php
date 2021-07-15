@@ -51,7 +51,7 @@
                                 <label class="font-weight-bold text-uppercase">{{__('master.NAME')}}</label>
                                 <input type="text" name="name" class="@error('name') is-invalid @enderror form-control"
                                        placeholder="{{__('master.NAME')}}"
-                                       value="{{ isset($patient) ? $patient->name : old('name') }}">
+                                       value="{{ isset($patient) ? $patient->name : old('name') }}" required>
 
                                 @error('name')
                                 <div>
@@ -142,7 +142,7 @@
                                 <input type="number" name="age"
                                        class="@error('age') is-invalid @enderror form-control"
                                        placeholder="{{__('master.AGE')}}"
-                                       value="{{ isset($patient) ? $patient->age : old('age') }}">
+                                       value="{{ isset($patient) ? $patient->age : old('age') }}" required>
 
                                 @error('age')
                                 <div>

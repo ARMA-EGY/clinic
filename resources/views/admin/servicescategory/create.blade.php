@@ -52,7 +52,7 @@
                             <!--=================  Name  =================-->
                             <div class="form-group col-md-6 mb-4 text-left">
                                 <label class="font-weight-bold text-uppercase">{{__('master.NAME')}}</label>
-                                <input type="text" name="name" class="@error('name') is-invalid @enderror form-control" placeholder="{{__('master.EDIT-CATEGORY')}}" value="{{ isset($item) ? $item->name : old('name') }}" required>
+                                <input type="text" name="name" class="@error('name') is-invalid @enderror form-control" placeholder="{{ isset($item) ? __('master.EDIT-CATEGORY') : __('master.ADD-NEW-CATEGORY') }}" value="{{ isset($item) ? $item->name : old('name') }}" required>
                             
                                 @error('name')
                                     <div>

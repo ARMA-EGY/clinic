@@ -120,92 +120,73 @@
 
                 <div class="col-xl-8">
 
+                    <!-- Card stats -->
+
                     <div class="row justify-content-center">
-        
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.PATIENTS')}}</h5>
-                                    <span class="h2 font-weight-bold mb-0">0</span>
-                                    </div>
-                                    <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
-                                        <i class="fas fa-syringe"></i>
-                                    </div>
-                                    </div>
-                                </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                </p>
+
+                    <div class="col-xl-6 col-md-6">
+                        <div class="card card-stats">
+                        <!-- Card body -->
+                        <div class="card-body">
+                            <div class="row">
+                            <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.ALL-APPOINTMENTS')}}</h5>
+                                <span class="h2 font-weight-bold mb-0">{{number_format($total_appointments)}}</span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-gradient-pink text-white rounded-circle shadow">
+                                <i class="fas fa-notes-medical"></i>
                                 </div>
                             </div>
+                            </div>
+                            <p class="mt-3 mb-0 text-sm">
+                            </p>
                         </div>
-        
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.PATIENTS')}}</h5>
-                                    <span class="h2 font-weight-bold mb-0">0</span>
-                                    </div>
-                                    <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
-                                        <i class="fas fa-syringe"></i>
-                                    </div>
-                                    </div>
-                                </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                </p>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-md-6">
+                        <div class="card card-stats">
+                        <!-- Card body -->
+                        <div class="card-body">
+                            <div class="row">
+                            <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.DONE-APPOINTMENTS')}}</h5>
+                                <span class="h2 font-weight-bold mb-0">{{number_format($done_appointments)}}</span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-gradient-light text-white rounded-circle shadow">
+                                <i class="fas fa-notes-medical"></i>
                                 </div>
                             </div>
+                            </div>
+                            <p class="mt-3 mb-0 text-sm">
+                            </p>
                         </div>
-        
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.TODAY-APPOINTMENTS')}}</h5>
-                                    <span class="h2 font-weight-bold mb-0">0</span>
-                                    </div>
-                                    <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">
-                                        <i class="fas fa-notes-medical"></i>
-                                    </div>
-                                    </div>
-                                </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                </p>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-md-6">
+                        <div class="card card-stats">
+                        <!-- Card body -->
+                        <div class="card-body">
+                            <div class="row">
+                            <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.TODAY-APPOINTMENTS')}}</h5>
+                                <span class="h2 font-weight-bold mb-0">{{number_format($today_appointments)}}</span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">
+                                <i class="fas fa-notes-medical"></i>
                                 </div>
                             </div>
-                        </div>
-        
-                        <div class="col-xl-6 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{__('master.TODAY-APPOINTMENTS')}}</h5>
-                                    <span class="h2 font-weight-bold mb-0">0</span>
-                                    </div>
-                                    <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">
-                                        <i class="fas fa-notes-medical"></i>
-                                    </div>
-                                    </div>
-                                </div>
-                                <p class="mt-3 mb-0 text-sm">
-                                </p>
-                                </div>
                             </div>
+                            <p class="mt-3 mb-0 text-sm">
+                            </p>
                         </div>
-        
+                        </div>
+                    </div>
+
                     </div>
 
                     <div class="card card-defualt">

@@ -43,7 +43,8 @@ class AppointmentController extends Controller
     {
         $appointmentServices = appointmentServices::where('appointment_id',$appointment->id)->get();
         $services = Services::where('sector_id',$appointment->sector_id)->get();
-        $bodyparts = BodyParts::all();
+        $sector = Sector::with('bodypartspv')->find($appointment->sector_id);
+        $bodyparts = $sector->bodypartspv;
 
         return view('admin.appointment.show',[
             'appointment' => $appointment,
@@ -396,5 +397,32 @@ class AppointmentController extends Controller
             'items_count'   => count($transactions),
         ]);
     }
+
+
+    //-------------- ADD NEW NOTES ---------------\\
+
+    public function addNotes(Request $request)
+    {
+		$appointment = appointment::find($request->appointment_id);
+		
+        $appointment->update([
+            'notes' => $request->notes,
+        ]);
+
+        if($appointment)
+        {
+            return response()->json([
+                'status' => 'true',
+                'msg' => 'success'
+            ]) ;
+        }
+        else
+        {
+            return response()->json([
+                'status' => 'false',
+                'msg' => 'error'
+            ]) ;
+        }        
+    }     
    
 }

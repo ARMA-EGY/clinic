@@ -16,7 +16,7 @@
                             <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
                             <li class="breadcrumb-item"><a href="{{route('appointment.index')}}">{{__('master.APPOINTMENTS')}}</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">number</li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ $appointment->id }}</li>
                             </ol>
                         </nav>
                     </div>
@@ -60,8 +60,8 @@
                             </tr>
                             <tr>
                                 <th scope="col">Patient Name: </th>
-                                <td style="background-color: #fff; font-weight: bold;">{{ $appointment->patient->name }}</td>
-                            </tr>
+                                <td style="background-color: #fff; font-weight: bold;"><a class="font-weight-bold text-primary" href="{{ route('patient.profile',$appointment->patient->id) }}">{{ $appointment->patient->name }}</a></td>
+                               </tr>
                             <tr>
                                 <th scope="col">Patient Gender: </th>
                                 <td style="background-color: #fff; font-weight: bold;">{{ $appointment->patient->gender }}</td>
@@ -124,7 +124,8 @@
                 </div>
             </div>
 
-
+@if($appointment->status == "pending")
+    @if(count($services) > 0)
         <div class="col-xl-12 order-xl-1">
           <div class="card">
             <div class="card-header">
@@ -143,9 +144,9 @@
                         <div class="row">
 
                             <!--=================  Service  =================-->
-                            <div class="form-group col-md-6 mb-2">
+                            <div class="form-group col-md-4 mb-2">
                             <label class="font-weight-bold text-uppercase" for="service">Service</label>
-                                <select id="service" class="select2 form-control" name="service[]" multiple="multiple">
+                                <select id="service" class="form-control" name="service" required>
                                         @foreach($services as $service)
                                             <option value="{{ $service->id }}">{{ $service->name }}</option>
                                         @endforeach
@@ -160,17 +161,16 @@
                             </div>
 
                             <!--=================  Body Part  =================-->
-                            <div class="form-group col-md-6 mb-2">
+                            <div class="form-group col-md-4 mb-2">
                             <label class="font-weight-bold text-uppercase" for="body_part">Body Part</label>
                                 <select class="form-control selectpicker" data-live-search="true" name="body_part">
-                                    <option>-SELECT-</option>
-                                  
+                                    <option value="">-SELECT-</option>
                                     @foreach($bodyparts as $bodypart)
-                                        @if ($appointment->sector->hasBodyparts($bodypart->id))
+                                       
                                            <option value="{{$bodypart->name}}">{{$bodypart->name}}</option>
-                                        @endif
+                                     
                                     @endforeach
-                                   
+
                                 </select>
 
                                 @error('body_part')
@@ -179,6 +179,19 @@
                                 </div>
                                 @enderror
 
+                            </div>
+
+                            <!--=================  Notes  =================-->
+                            <div class="form-group col-md-4 mb-4 text-left">
+                                <label class="font-weight-bold text-uppercase">Notes</label>
+                                <input type="text" name="notes" placeholder="Add notes" class="@error('name') is-invalid @enderror form-control" >
+                            
+                                @error('notes')
+                                    <div>
+                                        <span class="text-danger">{{ $message }}</span>
+                                    </div>
+                                @enderror
+            
                             </div>
                         </div>
                       
@@ -191,7 +204,59 @@
             </div>
           </div>
         </div>
+    @endif
+        <div class="col-xl-12 order-xl-1">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Add New Notes</h3>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+                    <form  class="add_notes_form" enctype="multipart/form-data">
+                        @csrf
 
+                        <input type="hidden" name="appointment_id" value="{{ $appointment->id }}">
+
+                        <div class="row">
+                            <!--=================  Notes  =================-->
+                            <div class="form-group col-md-12 mb-2">
+                                <label class="font-weight-bold text-uppercase" for="notes">Notes</label>
+                                <input id="x" type="hidden" name="notes" value="{{$appointment->notes}}">
+                                    <trix-editor input="x"></trix-editor>
+                            </div>
+                        </div>
+                      
+                        <div class="form-group col-md-6 mb-1">
+                                <button type="submit" class="btn btn-success">Add</button>
+                            </div>
+
+
+                    </form>              
+            </div>
+          </div>
+        </div>        
+        @else 
+        <div class="row">
+            <!--================= NOTES  =================-->
+            <div class="card card-defualt">
+                <div class="card-header"><i class="fa fa-info-circle"></i> {{__('master.NOTES')}} </div>
+
+                <div class="card-body">
+                    <div class="form-group col-md-12 mb-2 text-left">
+                        <div class="form-control">
+                            {!! $appointment->notes !!}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+@endif
 
         </div>
 
@@ -219,7 +284,7 @@
             $('.submit').prop('disabled', true);
 
             var head1 	= 'Done';
-            var title1 	= 'Data Changed Successfully. ';
+            var title1 	= 'Service Added Successfully. ';
             var head2 	= 'Oops...';
             var title2 	= 'Something went wrong, please try again later.';
 
@@ -269,7 +334,66 @@
                 
             });
 
-        });                
+        });
+        
+        $(document).on('submit', '.add_notes_form', function(e)
+        {
+            e.preventDefault();
+            let formData = new FormData(this);
+            $('.submit').prop('disabled', true);
+
+            var head1 	= 'Done';
+            var title1 	= 'Data Changed Successfully. ';
+            var head2 	= 'Oops...';
+            var title2 	= 'Something went wrong, please try again later.';
+
+            $.ajax({
+                url: 		"{{route('admin-appointment-addnotes')}}",
+                method: 	'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success : function(data)
+                    {
+                        $('.submit').prop('disabled', false);
+                        
+                        if (data['status'] == 'true')
+                        {
+                            Swal.fire(
+                                    head1,
+                                    title1,
+                                    'success'
+                                    )
+                            setTimeout(function() {window.location.reload();}, 2000);
+                        }
+                        else if (data['status'] == 'false')
+                        {
+                            Swal.fire(
+                                    head2,
+                                    title2,
+                                    'error'
+                                    )
+                        }
+                    },
+                    error : function(reject)
+                    {
+                        $('.submit').prop('disabled', false);
+
+                        var response = $.parseJSON(reject.responseText);
+                        $.each(response.errors, function(key, val)
+                        {
+                            Swal.fire(
+                                    head2,
+                                    val[0],
+                                    'error'
+                                    )
+                        });
+                    }
+                
+                
+            });
+
+        });                  
             });
     </script>
 @endsection

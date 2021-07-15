@@ -134,7 +134,7 @@ class StaffController extends Controller
                 'nationality' => $request->nationality,
 
                 'branch_id' => $request->branch_id,
-                'sector_id' => $request->sector_id,
+                'role_id' => $request->role_id,
                 'working_hours' => $request->working_hours,
                 'salary' => $request->salary,
                 'hiring_date' => $request->hiring_date,
@@ -178,7 +178,7 @@ class StaffController extends Controller
     {
 
         $user = auth()->user();
-        $data = $request->only(['name', 'phone', 'email', 'gender', 'birthdate', 'nationality', 'branch_id', 'sector_id', 'working_hours', 'salary', 'hiring_date', 'profit_ratio', 'contract_duration', 'contract_end_date']);
+        $data = $request->only(['name', 'phone', 'email', 'gender', 'birthdate', 'nationality', 'branch_id', 'role_id', 'working_hours', 'salary', 'hiring_date', 'profit_ratio', 'contract_duration', 'contract_end_date']);
 
         if($request->hasfile('avatar'))
         {

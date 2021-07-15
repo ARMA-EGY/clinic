@@ -111,17 +111,15 @@
                         <div class="row">
 
                             <!--=================  Sectors  =================-->
-                            @if ($sectors->count() > 0)
                                 <div class="form-group col-md-12 mb-4 text-left">
                                     <label class="font-weight-bold text-uppercase" for="sectors">{{__('master.SECTORS')}}</label>
-                                    <select id="sectors" class="select2 form-control" name="sectors[]" multiple="multiple">
+                                    <select id="sectors" class="select2 form-control" name="sectors[]" multiple="multiple" required>
                                         @foreach ($sectors as $sector)
                                             <option value="{{$sector->id}}" @if (isset($item))  @if ($item->hasSector($sector->id)) selected @endif @endif>{{$sector->name}}</option>
                                         @endforeach
                                     </select>
             
                                 </div>
-                            @endif
                             
                         </div>
         

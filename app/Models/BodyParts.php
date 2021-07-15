@@ -17,6 +17,11 @@ class BodyParts extends Model
         return $this->belongsToMany(Sector::class);
     }
 
+    public function sectorspv()
+    {
+        return $this->belongsToMany('App\Models\Sector', 'body_parts_sector');
+    }
+
 }
 
 

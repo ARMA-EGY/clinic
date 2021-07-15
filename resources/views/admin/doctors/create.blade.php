@@ -85,7 +85,7 @@
                                     <!--=================  E-mail  =================-->
                                     <div class="form-group col-md-6 mb-2 text-left">
                                         <label class="font-weight-bold text-uppercase">{{__('master.EMAIL')}}</label>
-                                        <input type="email" name="email" class="@error('email') is-invalid @enderror form-control" placeholder="{{__('master.EMAIL')}}" value="{{ isset($item) ? $item->email : old('email') }}" >
+                                        <input type="email" name="email" class="@error('email') is-invalid @enderror form-control" placeholder="{{__('master.EMAIL')}}" value="{{ isset($item) ? $item->email : old('email') }}" required>
                                     
                                         @error('email')
                                             <div>
@@ -119,7 +119,7 @@
                                     <!--=================   Birthdate  =================-->
                                     <div class="form-group col-md-6 mb-2 text-left">
                                         <label class="font-weight-bold text-uppercase">{{__('master.BIRTHDATE')}}</label>
-                                        <input type="date" name="birthdate" class="@error('birthdate') is-invalid @enderror form-control" placeholder="{{__('master.BIRTHDATE')}}" value="{{ isset($item) ? $item->birthdate : old('birthdate') }}" >
+                                        <input type="date" name="birthdate" class="@error('birthdate') is-invalid @enderror form-control" placeholder="{{__('master.BIRTHDATE')}}" value="{{ isset($item) ? $item->birthdate : old('birthdate') }}" required>
                                     
                                         @error('birthdate')
                                             <div>
@@ -225,7 +225,7 @@
                                     <!--=================  Salary  =================-->
                                     <div class="form-group col-md-6 mb-2 text-left">
                                         <label class="font-weight-bold text-uppercase">{{__('master.SALARY')}}</label>
-                                        <input type="number" step="0.1" name="salary" class="@error('salary') is-invalid @enderror form-control" placeholder="{{__('master.SALARY')}}" value="{{ isset($item) ? $item->salary : old('salary') }}" required>
+                                        <input type="number" step="0.1" min="0" name="salary" class="@error('salary') is-invalid @enderror form-control" placeholder="{{__('master.SALARY')}}" value="{{ isset($item) ? $item->salary : old('salary') }}" required>
 
                                         @error('salary')
                                             <div>

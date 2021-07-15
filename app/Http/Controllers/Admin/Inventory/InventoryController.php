@@ -155,9 +155,15 @@ class InventoryController extends Controller
         ]);
     }
 
-    public function adjustmentCreate()
+    public function adjustmentCreate(Request $request)
     {
         $inventories       = Inventory::orderBy('id','desc')->get();
+        if(count($inventories) == 0)
+        {
+            $request->session()->flash('success', 'No Items To Adjust');
+        
+            return redirect(route('index-adjustment'));
+        }
         return view('admin.inventory.adjustment.create',[
             'items' => $inventories,
         ]);

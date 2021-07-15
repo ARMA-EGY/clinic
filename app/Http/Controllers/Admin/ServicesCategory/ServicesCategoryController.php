@@ -64,8 +64,9 @@ class ServicesCategoryController extends Controller
 
     //-------------- Update Category  ---------------\\
 
-    public function update(NewCategoryRequest $request, Categories $category)
+    public function update(NewCategoryRequest $request, $id)
     {
+        $category = Categories::find($id);
         $category->update([
             'name' => $request->name,
         ]);

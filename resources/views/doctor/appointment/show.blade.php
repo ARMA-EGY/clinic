@@ -128,7 +128,8 @@
                 </div>
             </div>
 
-
+@if($appointment->status == "pending")
+    @if(count($services) > 0)
         <div class="col-xl-12 order-xl-1">
           <div class="card">
             <div class="card-header">
@@ -149,7 +150,7 @@
                             <!--=================  Service  =================-->
                             <div class="form-group col-md-4 mb-2">
                             <label class="font-weight-bold text-uppercase" for="service">Service</label>
-                                <select id="service" class="form-control" name="service" >
+                                <select id="service" class="form-control" name="service" required>
                                         @foreach($services as $service)
                                             <option value="{{ $service->id }}">{{ $service->name }}</option>
                                         @endforeach
@@ -167,11 +168,11 @@
                             <div class="form-group col-md-4 mb-2">
                             <label class="font-weight-bold text-uppercase" for="body_part">Body Part</label>
                                 <select class="form-control selectpicker" data-live-search="true" name="body_part">
-                                    <option>-SELECT-</option>
+                                    <option value="">-SELECT-</option>
                                     @foreach($bodyparts as $bodypart)
-                                        @if ($appointment->sector->hasBodyparts($bodypart->id))
+                                       
                                            <option value="{{$bodypart->name}}">{{$bodypart->name}}</option>
-                                        @endif
+                                     
                                     @endforeach
 
                                 </select>
@@ -207,7 +208,7 @@
             </div>
           </div>
         </div>
-
+    @endif
         <div class="col-xl-12 order-xl-1">
           <div class="card">
             <div class="card-header">
@@ -240,8 +241,26 @@
                     </form>              
             </div>
           </div>
-        </div>        
+        </div> 
+@else 
+        <div class="row">
+            <!--================= NOTES  =================-->
+            <div class="card card-defualt">
+                <div class="card-header"><i class="fa fa-info-circle"></i> {{__('master.NOTES')}} </div>
 
+                <div class="card-body">
+                    <div class="form-group col-md-12 mb-2 text-left">
+                        <div class="form-control">
+                            {!! $appointment->notes !!}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+@endif
 
         </div>
 
@@ -269,12 +288,12 @@
             $('.submit').prop('disabled', true);
 
             var head1 	= 'Done';
-            var title1 	= 'Data Changed Successfully. ';
+            var title1 	= 'Service Added Successfully. ';
             var head2 	= 'Oops...';
             var title2 	= 'Something went wrong, please try again later.';
 
             $.ajax({
-                url: 		"{{route('AppointmentServices.store')}}",
+                url: 		"{{route('doctor-AppointmentServices.store')}}",
                 method: 	'POST',
                 data: formData,
                 contentType: false,

@@ -78,7 +78,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
         Route::get('/activesectors', 'Admin\Sectors\SectorsController@active')->name('active-sectors');
         Route::get('/deactivesectors', 'Admin\Sectors\SectorsController@deactive')->name('deactive-sectors');
         Route::resource('/services', 'Admin\Services\ServicesController');
-        Route::resource('/servicescategory', 'Admin\servicescategory\ServicesCategoryController');
+        Route::resource('/servicescategory', 'Admin\ServicesCategory\ServicesCategoryController');
         Route::resource('/doctors', 'Admin\Doctors\DoctorsController'); 
         Route::get('/activedoctors', 'Admin\Doctors\DoctorsController@active')->name('active-doctors');
         Route::get('/deactivedoctors', 'Admin\Doctors\DoctorsController@deactive')->name('deactive-doctors');
@@ -106,6 +106,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
         Route::post('/appointment-checkout-confirm', 'Admin\Appointment\AppointmentController@confirmCheckout')->name('appointment.checkout-confirm');
         Route::post('/appointment-cancel', 'Admin\Appointment\AppointmentController@cancel')->name('appointment.cancel');
         Route::post('/adjustment-show', 'Admin\Inventory\InventoryController@showAdjustment')->name('adjustment.show');
+        Route::post('/admin-appointment-addnotes', 'Admin\Appointment\AppointmentController@addNotes')->name('admin-appointment-addnotes');
+        Route::post('/AppointmentServices-remove', 'Admin\AppointmentServices\AppointmentServicesController@remove')->name('admin-AppointmentServicesController.remove');
     });
 
     /*
@@ -127,7 +129,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
 
         Route::resource('/staff-patients', 'Staff\Patients\PatientsController'); 
         Route::resource('/staff-services', 'Staff\Services\ServicesController');
-        Route::resource('/staff-servicescategory', 'Staff\servicescategory\ServicesCategoryController');
+        Route::resource('/staff-servicescategory', 'Staff\ServicesCategory\ServicesCategoryController');
         Route::resource('/staff-doctors', 'Staff\Doctors\DoctorsController'); 
         Route::get('/staff-activedoctors', 'Staff\Doctors\DoctorsController@active')->name('staff-active-doctors');
         Route::get('/staff-deactivedoctors', 'Staff\Doctors\DoctorsController@deactive')->name('staff-deactive-doctors');
@@ -179,8 +181,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
         Route::get('/appointment-today', 'Doctor\Appointment\AppointmentController@today')->name('doctor-appointment.today');
         Route::get('/appointment-done', 'Doctor\Appointment\AppointmentController@done')->name('doctor-appointment.done');
         Route::get('/appointment-cancelled', 'Doctor\Appointment\AppointmentController@cancelled')->name('doctor-appointment.cancelled');
-        Route::resource('/AppointmentServices', 'Doctor\AppointmentServices\AppointmentServicesController'); 
-        Route::post('/AppointmentServices', 'Doctor\AppointmentServices\AppointmentServicesController@remove')->name('doctor-AppointmentServicesController.remove');
+        Route::resource('/doctor-AppointmentServices', 'Doctor\AppointmentServices\AppointmentServicesController'); 
+        Route::post('/AppointmentServices-remove', 'Doctor\AppointmentServices\AppointmentServicesController@remove')->name('doctor-AppointmentServicesController.remove');
         
     });
 

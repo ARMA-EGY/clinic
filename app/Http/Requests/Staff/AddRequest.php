@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Doctors;
+namespace App\Http\Requests\Staff;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,15 +24,15 @@ class AddRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Doctor Name is required.',
-            'name.unique' => 'This Doctor is Already Exist.',
+            'name.required' => 'User Name is required.',
+            'name.unique' => 'This User is Already Exist.',
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => 'Doctor Name',
+            'name' => 'User Name',
         ];
     }
 }

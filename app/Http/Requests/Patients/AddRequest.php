@@ -15,8 +15,8 @@ class AddRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:patient',
-            'phone' => 'required|unique:patient',
+            'name' => 'required',
+            'phone' => 'required',
             'identifiation' => 'required',
             'dateofbirth' => 'required',
             'age' => 'required',

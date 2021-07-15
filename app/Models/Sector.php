@@ -44,4 +44,9 @@ class Sector extends Model
     {
         return $this->belongsToMany('App\Models\Branches', 'branches_sector');
     }
+
+    public function bodypartspv()
+    {
+        return $this->belongsToMany('App\Models\BodyParts', 'body_parts_sector','sector_id', 'body_parts_id');
+    }
 }

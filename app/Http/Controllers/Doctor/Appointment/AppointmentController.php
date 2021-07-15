@@ -42,7 +42,8 @@ class AppointmentController extends Controller
         $user = Auth::user();
         $appointmentServices = appointmentServices::where('appointment_id',$appointment->id)->get();
         $services = Services::where('sector_id',$appointment->sector_id)->get();
-        $bodyparts = BodyParts::all();
+        $sector = Sector::with('bodypartspv')->find($appointment->sector_id);
+        $bodyparts = $sector->bodypartspv;
         
         return view('doctor.appointment.show',[
             'appointment' => $appointment,
@@ -133,7 +134,7 @@ class AppointmentController extends Controller
         ]);
     }
 
-    //-------------- Get Patient Info ---------------\\
+    //-------------- ADD NEW NOTES ---------------\\
 
     public function addNotes(Request $request)
     {
