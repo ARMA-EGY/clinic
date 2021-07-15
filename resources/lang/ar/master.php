@@ -139,6 +139,7 @@ return [
     "ALL" => "الجميع",
     "NO-APPOINTMENTS-AVAILABLE" => "لا يوجد حجوزات متاحة",
 
+    "SERVICE" => "الخدمة",
     "SERVICES" => "الخدمات",
     "NO.SERVICES" => "عدد الخدمات",
     "ADD-NEW-SERVICE" => "اضافة خدمة جديدة",
@@ -387,4 +388,6 @@ return [
     "DAY" => "يوم",
     "WEEK" => "اسبوع",
     "MONTH" => "شهر",
+
+    "ADD-NEW-NOTES" => "اضافة ملاحظات جديدة",
 ];

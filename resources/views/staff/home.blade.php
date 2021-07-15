@@ -203,36 +203,93 @@
             </div>
           </div>
 
-      </div>
-
+        </div>
 
         <!-- Second Half -->
         <div class="col-xl-6">
 
-          <!-- No.Posts in each category -->
-          <div class="card bg-default shadow">
-            <div class="card-header bg-transparent">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h6 class="text-uppercase text-muted ls-1 mb-1">{{__('master.SECTORS')}}</h6>
-                  <h5 class="h3 mb-0 text-white">{{__('master.MONTHLY-SECTORS')}}</h5>
+            <!-- No.Appointments in each Sector -->
+            <div class="card bg-default shadow">
+              <div class="card-header bg-transparent">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <h6 class="text-uppercase text-muted ls-1 mb-1">{{__('master.SECTORS')}}</h6>
+                    <h5 class="h3 mb-0 text-white">{{__('master.MONTHLY-SECTORS')}}</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <!-- Chart -->
+                <div class="chart">
+                  <canvas id="chart-pie" class="chart-canvas"></canvas>
                 </div>
               </div>
             </div>
-            <div class="card-body">
-              <!-- Chart -->
-              <div class="chart">
-                <canvas id="chart-pie" class="chart-canvas"></canvas>
-              </div>
-            </div>
-          </div>
 
-      </div>
+        </div>
 
         <!-- Full Width -->
         <div class="col-12">
 
-          
+            <!-- Latest Appointments -->
+            <div class="card bg-default shadow">
+              <div class="card-header bg-transparent border-0">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <h3 class="text-white mb-0">{{__('master.LATEST-APPOINTMENTS')}}</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <!-- table -->
+                <table class="table align-items-center table-dark table-flush">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col" class="sort" >{{__('master.PATIENT-NAME')}}</th>
+                      <th scope="col" class="sort" >{{__('master.DOCTOR-NAME')}}</th>
+                      <th scope="col" class="sort" >{{__('master.APPOINTMENT-NUMBER')}}</th>
+                      <th scope="col" class="sort" >{{__('master.APPOINTMENT-DATE')}}</th>
+                      <th scope="col" class="sort" >{{__('master.BRANCH')}}</th>
+                      <th scope="col" class="sort" >{{__('master.SECTOR')}}</th>
+                      <th scope="col" class="sort" >{{__('master.STATUS')}}</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody class="list">
+
+                    @foreach ($latest_appointments as $latest_appointment)
+
+                    <tr class="parent">
+                      <td>{{ $loop->iteration }}</td>
+                      <td><b> {{$latest_appointment->patient->name}} </b></td>
+                      <td><b> {{$latest_appointment->doctor->name}} </b></td>
+                      <td><b> {{$latest_appointment->appointment_number}} </b></td>
+                      <td><b> {{$latest_appointment->appointment_date}} </b></td>
+                      <td><b> {{$latest_appointment->branch->name}} </b></td>
+                      <td><b> {{$latest_appointment->sector->name}} </b></td>
+                      <td>
+                        @if ($latest_appointment->status == 'pending')
+                            <span class="badge badge-yellow category-badge">  {{__('master.PENDING')}}</span>
+                        @elseif ($latest_appointment->status == 'paid')
+                            <span class="badge badge-success category-badge">  {{__('master.PAID')}}</span>
+                        @elseif ($latest_appointment->status == 'cancelled')
+                            <span class="badge badge-danger category-badge">  {{__('master.CANCELLED')}}</span>
+                        @endif
+                      </td>
+                      
+                      <td>
+                          <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="{{route('appointment.show',$latest_appointment->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
+                      </td>
+                    </tr>
+
+                    @endforeach
+                  
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
 
         </div>
 
@@ -264,10 +321,10 @@
       var ordersChart = new Chart($chart, {
         type: 'bar',
         data: {
-          labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          labels: {!! json_encode($appointment_months)!!},
           datasets: [{
             label: "{{__('master.APPOINTMENT')}}",
-            data: [25, 20, 30, 22, 17, 29]
+            data: {!! json_encode($appointment_month_count)!!}
           }]
         }
       });
@@ -289,9 +346,9 @@
     t = new Chart(e,{
       type:"pie",
       data: {
-        labels:['اسنان', 'ليزر', 'تجميل', 'جلدية'],
+        labels:{!! json_encode($sector_name)!!},
         datasets:[{
-            data:[25, 20, 30, 22],
+            data:{!! json_encode($sector_appointment_count)!!},
             backgroundColor:[Charts.colors.theme.danger,Charts.colors.theme.warning,Charts.colors.theme.success,Charts.colors.theme.primary,Charts.colors.theme.info]
             ,label:"Dataset 1"
             }]

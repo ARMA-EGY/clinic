@@ -140,6 +140,7 @@ return [
     "ALL" => "All",
     "NO-APPOINTMENTS-AVAILABLE" => "No Appointments Available",
 
+    "SERVICE" => "Service",
     "SERVICES" => "Services",
     "NO.SERVICES" => "No. Services",
     "ADD-NEW-SERVICE" => "Add New Service",
@@ -391,4 +392,6 @@ return [
     "DAY" => "Day",
     "WEEK" => "Week",
     "MONTH" => "Month",
+
+    "ADD-NEW-NOTES" => "Add New Notes",
 ];

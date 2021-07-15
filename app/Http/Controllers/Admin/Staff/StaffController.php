@@ -150,6 +150,9 @@ class StaffController extends Controller
                 'role' => 'Staff',
                 'password' => Hash::make($request->password),
             ]);
+
+            $role = Roles::find($request->role_id);
+            $staff->assignRole($role->name);
             
             $request->session()->flash('success', 'Staff Added successfully');
             
