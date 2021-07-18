@@ -22,7 +22,7 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('appointment.index')}}">{{__('master.INTERNAL-APPOINTMENTS')}}</a></li>
+                  <li class="breadcrumb-item"><a href="{{route('staff-appointment.index')}}">{{__('master.INTERNAL-APPOINTMENTS')}}</a></li>
                   <li class="breadcrumb-item active" aria-current="page">{{  __('master.CREATEE-NEW-APPOINTMENT') }}</li>
                 </ol>
               </nav>
@@ -48,17 +48,6 @@
                         <div class="box-row">
 
                             <div class="box active">
-                                <div class="box-button">
-                                    <div class="box-tag box-tag-left"></div>
-                                    <div class="box-icon text-center">
-                                    <i class="fas fa-clinic-medical"></i>
-                                    </div>
-                                    <div class="box-tag box-tag-right"></div>
-                                </div>
-                                <span class="box-label">{{__('master.BRANCH')}}</span>
-                            </div>
-
-                            <div class="box">
                                 <div class="box-button">
                                     <div class="box-tag box-tag-left"></div>
                                     <div class="box-icon text-center">
@@ -97,31 +86,31 @@
                       <div class="card-body mt-3 text-left" id="card-body">
                             <label class="font-weight-bold text-uppercase">{{__('master.SELECT-BRANCH')}}</label>
                             <div class="row justify-content-center">
-                                <!--=================  Branches  =================-->
+                                <!--=================  Sectors  =================-->
 
-                                @if (isset($branches))
-                                
-                                    @foreach ($branches as $branch)
-                                        
-                                        <div class="col-xl-3 col-md-4 col-10">
-                                            <div class="card card-defualt choose-card" data-step="1" data-all='{"step":"1", "branch":"{{$branch->id}}"}'>
-                                                <div class="card-body px-3">
-                                                    <img class="img-fluid px-4" src="{{asset('images/hospital.png')}}" alt="">
-                                                    <div class="text-center">
-                                                        <h3 class="mt-2">
-                                                            <b>{{$branch->name}}</b>
-                                                        </h3>
-                                                        <div class="my-2">
-                                                            <small> <b> <i class="fas fa-tooth"></i> {{__('master.SECTORS')}} :  {{$branch->sectors()->count()}}  </b> </small>
+                                    @foreach ($sectors as $sector)
+
+                                        @if ($branch->hasSector($sector->id))
+                                                
+                                                <div class="col-xl-3 col-md-4 col-10">
+                                                    <div class="card card-defualt choose-card" data-step="1" data-all='{"step":"1", "branch":"{{$branch->id}}", "sector": "{{$sector->id}}"}'>
+                                                        <div class="card-body px-3">
+                                                            <img class="img-fluid px-4" src="{{asset($sector->image)}}" alt="">
+                                                            <div class="text-center">
+                                                                <h3 class="mt-2">
+                                                                    <b>{{$sector->name}}</b>
+                                                                </h3>
+                                                                <div class="my-2">
+                                                                    <small> <b> <i class="fas fa-stethoscope"></i> {{__('master.DOCTORS')}} : {{$sector->user()->where('disable', 0)->where('role', 'Doctor')->where('branch_id', $branch->id)->count()}} </b> </small>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-
+                                        
+                                        @endif 
+                                        
                                     @endforeach
-
-                                @endif
 
                             </div>
 
@@ -239,7 +228,7 @@
             $('#card-body').html(loader);
 
             $.ajax({
-                    url: "{{route('appointment.next')}}",
+                    url: "{{route('staff-appointment.next')}}",
                     type:"POST",
                     dataType: 'text',
                     data:    all_objects,
@@ -263,7 +252,7 @@
             $('#card-body').html(loader);
 
             $.ajax({
-                    url: "{{route('appointment.prev')}}",
+                    url: "{{route('staff-appointment.prev')}}",
                     type:"POST",
                     dataType: 'text',
                     data:    all_objects,
@@ -287,7 +276,7 @@
             var doctor 	  = $(this).attr('data-doctor');
 
             $.ajax({
-                    url: "{{route('appointment.schedule')}}",
+                    url: "{{route('staff-appointment.schedule')}}",
                     type:"POST",
                     dataType: 'text',
                     data:    {date:date, doctor:doctor},
@@ -331,7 +320,7 @@
             var title2 	= "{{__('master.SOMETHING-WRONG')}}";
 
             $.ajax({
-                url: 		"{{route('appointment.store')}}",
+                url: 		"{{route('staff-appointment.store')}}",
                 method: 	'POST',
                 data: formData,
                 dataType: 	'json',
@@ -351,7 +340,7 @@
                             $('.modal').modal('hide');
                             window.setTimeout(function() 
                             {
-                                window.location.href = "{{route('appointment.index')}}";
+                                window.location.href = "{{route('staff-appointment.index')}}";
                             }, 1000);
                         }
                         else if (data['status'] == 'false')

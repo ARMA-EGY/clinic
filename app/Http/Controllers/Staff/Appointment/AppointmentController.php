@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Staff\Appointment;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Setting;
 use App\Models\Appointment;
 use App\Models\Transaction;
 use App\Models\Branches;
@@ -18,6 +19,7 @@ use App\Http\Requests\Appointment\AddRequest;
 use App\Http\Requests\Appointment\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 class AppointmentController extends Controller
 {

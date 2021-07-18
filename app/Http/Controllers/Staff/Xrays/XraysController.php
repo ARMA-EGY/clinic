@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Xrays;
+namespace App\Http\Controllers\Staff\Xrays;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -70,10 +70,9 @@ class XraysController extends Controller
 
             $xray_id = $xray->id;
 
-            for ($i = 0; $i < count($request->image); $i++) 
+            foreach($request->file('image') as $image)
             {
-                $image = $request->file('image')[$i];
-                $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+                $input['imagename'] = uniqid().'.'.$image->getClientOriginalExtension();
                 $destinationPath = public_path('/images/xrays');
                 ini_set('memory_limit', '256M');
                 $img = Image::make($image->getRealPath());
@@ -108,9 +107,9 @@ class XraysController extends Controller
 
     //-------------- Edit Data ---------------\\
     
-    public function edit(Xrays $xray)
+    public function edit($id)
     {
-        
+        $xray = Xrays::find($id);
         $user               = auth()->user();
         if(!$user->hasPermissionTo('edit xrays'))
         {
@@ -148,10 +147,9 @@ class XraysController extends Controller
 
         if($request->hasfile('image'))
         {
-            for ($i = 0; $i < count($request->image); $i++) 
+            foreach($request->file('image') as $image)
             {
-                $image = $request->file('image')[$i];
-                $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+                $input['imagename'] = uniqid().'.'.$image->getClientOriginalExtension();
                 $destinationPath = public_path('/images/xrays');
                 ini_set('memory_limit', '256M');
                 $img = Image::make($image->getRealPath());

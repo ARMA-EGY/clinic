@@ -21,7 +21,7 @@ class ServicesCategoryController extends Controller
     {
 		$items       = Categories::orderBy('id','desc')->get();
 		
-        return view('satff.servicescategory.index', [
+        return view('staff.servicescategory.index', [
             'items' => $items,
             'total_rows' => Categories::all()->count(),
         ]);
@@ -32,7 +32,7 @@ class ServicesCategoryController extends Controller
 
     public function create()
     {
-        return view('satff.servicescategory.create');
+        return view('staff.servicescategory.create');
     }
   
 
@@ -46,7 +46,7 @@ class ServicesCategoryController extends Controller
             
             $request->session()->flash('success', 'category created successfully');
             
-            return redirect(route('satff-servicescategory.index'));
+            return redirect(route('staff-servicescategory.index'));
     }
 
 
@@ -55,7 +55,7 @@ class ServicesCategoryController extends Controller
     public function edit($id)
     {
         $category = Categories::find($id);
-		return view('satff.servicescategory.create', [
+		return view('staff.servicescategory.create', [
             'item' => $category
         ]);
     }    
@@ -72,7 +72,7 @@ class ServicesCategoryController extends Controller
 		
 		session()->flash('success', 'Service updated successfully');
 		
-		return redirect(route('satff-servicescategory.index'));
+		return redirect(route('staff-servicescategory.index'));
     }
 
 

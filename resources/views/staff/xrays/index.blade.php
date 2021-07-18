@@ -25,7 +25,7 @@
             </div>
 
             <div class="col-lg-6 col-5 text-right">
-              <a href="{{ route('xrays.create')}}" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> {{__('master.ADD-NEW-RAYS')}}</a>
+              <a href="{{ route('staff-xrays.create')}}" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> {{__('master.ADD-NEW-RAYS')}}</a>
             </div>
 
             @if(session()->has('success'))	
@@ -81,7 +81,7 @@
                     <td><b>{{ $item->patient->name }} </b></td>
                     <td><b>{{ $item->created_at->format('d-m-Y')}} </b></td>
                     <td>
-                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.EDIT')}}" href="{{ route('xrays.edit', $item->id)}}" class="btn btn-secondary btn-sm mx-1 px-3"> <i class="fa fa-edit"></i> </a>
+                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.EDIT')}}" href="{{ route('staff-xrays.edit', $item->id)}}" class="btn btn-secondary btn-sm mx-1 px-3"> <i class="fa fa-edit"></i> </a>
                     </td>
                   </tr>
 

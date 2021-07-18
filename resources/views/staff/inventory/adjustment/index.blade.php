@@ -19,14 +19,14 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('inventory.index')}}">{{__('master.INVENTORY')}}</a></li>
+                  <li class="breadcrumb-item"><a href="{{route('staff-inventory.index')}}">{{__('master.INVENTORY')}}</a></li>
                   <li class="breadcrumb-item active" aria-current="page">{{__('master.ADJUSTMENTS')}}</li>
                 </ol>
               </nav>
             </div>
 
             <div class="col-lg-6 col-5 text-right">
-              <a href="{{ route('create-adjustment')}}" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> {{__('master.ADD-NEW-ADJUSTMENT')}}</a>
+              <a href="{{ route('staff-create-adjustment')}}" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> {{__('master.ADD-NEW-ADJUSTMENT')}}</a>
             </div>
 
             @if(session()->has('success'))	

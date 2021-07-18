@@ -91,8 +91,9 @@ class PatientsController extends Controller
 
     //-------------- Edit Patient Page ---------------\\
     
-    public function edit(Patients $patient)
+    public function edit($id)
     {
+        $patient = Patients::find($id);
         $user = auth()->user();
         if(!$user->hasPermissionTo('edit patients'))
         {

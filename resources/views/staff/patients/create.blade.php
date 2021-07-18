@@ -15,7 +15,7 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('patients.index')}}">{{__('master.PATIENTS')}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('staff-patients.index')}}">{{__('master.PATIENTS')}}</a></li>
                             <li class="breadcrumb-item active" aria-current="page">{{ isset($patient) ? __('master.EDIT-PATIENT') : __('master.ADD-NEW-PATIENT') }}</li>
                         </ol>
                     </nav>
@@ -37,7 +37,7 @@
 
                 <div class="card-body">
                     <form
-                        action="{{ isset($patient) ? route('patients.update', $patient->id) : route('patients.store')  }}"
+                        action="{{ isset($patient) ? route('staff-patients.update', $patient->id) : route('staff-patients.store')  }}"
                         method="post" enctype="multipart/form-data">
                         @csrf
 

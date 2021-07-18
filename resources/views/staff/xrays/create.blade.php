@@ -19,7 +19,7 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('xrays.index')}}">{{__('master.RAYS')}}</a></li>
+                  <li class="breadcrumb-item"><a href="{{route('staff-xrays.index')}}">{{__('master.RAYS')}}</a></li>
                   <li class="breadcrumb-item active" aria-current="page">{{ isset($item) ? __('master.EDIT-RAY') : __('master.ADD-NEW-RAYS') }}</li>
                 </ol>
               </nav>
@@ -40,7 +40,7 @@
                 <div class="card-header">{{ isset($item) ? __('master.EDIT-RAY') : __('master.ADD-NEW-RAYS') }} </div>
         
                 <div class="card-body">
-                    <form class="xrays_form" data-url="{{ isset($item) ? route('xrays.update', $item->id) : route('xrays.store')  }}" enctype="multipart/form-data">
+                    <form class="xrays_form" data-url="{{ isset($item) ? route('staff-xrays.update', $item->id) : route('staff-xrays.store')  }}" enctype="multipart/form-data">
                         @csrf
 
                         @if (isset($item))

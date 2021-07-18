@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Sector;
 use App\Models\Branches;
 use App\Models\Countries;
+use App\Models\Appointment;
 use App\Http\Requests\Doctors\AddRequest;
 use App\Http\Requests\Doctors\UpdateRequest;
 use Illuminate\Support\Facades\Storage;
@@ -179,8 +180,10 @@ class DoctorsController extends Controller
 
     //-------------- Edit Data Page ---------------\\
     
-    public function edit(User $doctor)
+    public function edit($id)
     {
+        $doctor = User::find($id);
+        $today                = date('Y-m-d');
         $user = auth()->user();
         if(!$user->hasPermissionTo('edit doctors'))
         {
@@ -188,9 +191,9 @@ class DoctorsController extends Controller
         } 
 		return view('staff.doctors.create', [
             'item' => $doctor,
-            'branches'   => Branches::where('disable', 0)->where('id', $user->branch_id)->orderBy('id','desc')->get(),
-            'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
-            'countries'   => Countries::all(),
+            'today_appointments' => Appointment::where('doctor_id', $id)->where('appointment_date', $today)->count(),
+            'done_appointments' => Appointment::where('doctor_id', $id)->where('appointment_date', '<', $today)->count(),
+            'total_appointments' => Appointment::where('doctor_id', $id)->count(),
         ]);
     }
 
@@ -257,6 +260,9 @@ class DoctorsController extends Controller
 
         return view('staff.doctors.profile', [
             'item' => $item,
+            'today_appointments' => Appointment::where('doctor_id', $id)->where('appointment_date', $today)->count(),
+            'done_appointments' => Appointment::where('doctor_id', $id)->where('appointment_date', '<', $today)->count(),
+            'total_appointments' => Appointment::where('doctor_id', $id)->count(),
         ]);
     }
 

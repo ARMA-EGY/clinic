@@ -19,7 +19,7 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('pledges.index')}}">{{__('master.PLEDGES')}}</a></li>
+                  <li class="breadcrumb-item"><a href="{{route('staff-pledges.index')}}">{{__('master.PLEDGES')}}</a></li>
                   <li class="breadcrumb-item active" aria-current="page">{{  __('master.ADD-NEW-PLEDGE') }}</li>
                 </ol>
               </nav>
@@ -40,7 +40,7 @@
                 <div class="card-header">{{__('master.ADD-NEW-PLEDGE')}} </div>
         
                 <div class="card-body">
-                    <form class="pledge_form" data-url="{{ route('pledges.store') }}" enctype="multipart/form-data">
+                    <form class="pledge_form" data-url="{{ route('staff-pledges.store') }}" enctype="multipart/form-data">
                         @csrf
 
                         <!--=================  PATIENT  =================-->

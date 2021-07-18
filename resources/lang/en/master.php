@@ -161,6 +161,7 @@ return [
     "PLEDGES" => "Pledges",
     "NO-PLEDGES" => "There is no Pledges.",
     "ADD-NEW-PLEDGE" => "Add New Pledge",
+    "ADD-NEW-PLEDGES" => "Add New Pledge",
     "ALL-PLEDGES" => "All Pledges",
 
     "ROLES" => "Roles & Permissions",

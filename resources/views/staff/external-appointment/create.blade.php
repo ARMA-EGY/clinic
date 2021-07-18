@@ -99,7 +99,7 @@
                             <div class="row justify-content-center">
                                 <!--=================  Branches  =================-->
 
-                                @if (isset($branches))
+                                @if (count($branches) > 0)
                                 
                                     @foreach ($branches as $branch)
                                         
@@ -120,7 +120,8 @@
                                         </div>
 
                                     @endforeach
-
+                                @else
+                                    <p class="text-center"> {{__('master.NO-BRANCHES-AVAILABLE')}} </p>
                                 @endif
 
                             </div>

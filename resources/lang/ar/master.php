@@ -158,6 +158,7 @@ return [
     "PLEDGES" => "التعهدات",
     "NO-PLEDGES" => "لا يوجد تعهدات",
     "ADD-NEW-PLEDGE" => "اضافة تعهد جديد",
+    "ADD-NEW-PLEDGES" => "اضافة تعهد جديد",
     "ALL-PLEDGES" => "جميع التعهدات",
 
     "ROLES" => "الادوار والصلاحيات",

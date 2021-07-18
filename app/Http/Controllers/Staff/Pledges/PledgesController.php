@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Pledges;
+namespace App\Http\Controllers\Staff\Pledges;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

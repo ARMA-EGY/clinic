@@ -133,7 +133,15 @@
                                     <td>{{$appointmentService->service->number}}</td>
                                     <td>{{$appointmentService->service->price}}</td>
                                     <td>{{$appointmentService->service->sector->name}}</td>
-                                    <td>{{$appointmentService->status}}</td>
+                                    <td>
+                                        @if ($appointmentService->status == 'pending')
+                                            <span class="badge badge-yellow category-badge">  {{__('master.PENDING')}}</span>
+                                        @elseif ($appointmentService->status == 'paid')
+                                            <span class="badge badge-success category-badge">  {{__('master.PAID')}}</span>
+                                        @elseif ($appointmentService->status == 'cancelled')
+                                            <span class="badge badge-danger category-badge">  {{__('master.CANCELLED')}}</span>
+                                        @endif
+                                    </td>
                                     <td>{{$appointmentService->body_part}}</td>
                                     <td>
                                         @if($appointmentService->status == "pending")

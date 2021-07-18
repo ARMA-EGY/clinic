@@ -25,7 +25,7 @@ class ServicesController extends Controller
         }
 		$items       = Services::orderBy('id','desc')->get();
 		
-        return view('satff.services.index', [
+        return view('staff.services.index', [
             'items' => $items,
             'total_rows' => Services::all()->count(),
         ]);
@@ -38,7 +38,7 @@ class ServicesController extends Controller
     {
 		$items       = Services::where('disable', 0)->orderBy('id','desc')->get();
 		
-        return view('satff.services.active', [
+        return view('staff.services.active', [
             'items' => $items,
             'total_rows' => Services::where('disable', 0)->count(),
         ]);
@@ -51,7 +51,7 @@ class ServicesController extends Controller
     {
 		$items       = Services::where('disable', 1)->orderBy('id','desc')->get();
 		
-        return view('satff.services.deactive', [
+        return view('staff.services.deactive', [
             'items' => $items,
             'total_rows' => Services::where('disable', 1)->count(),
         ]);
@@ -68,7 +68,7 @@ class ServicesController extends Controller
             return redirect(route('home'));
         }
         $Categories = Categories::all();
-        return view('satff.services.create', [
+        return view('staff.services.create', [
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
             'Categories' => $Categories
             ]);
@@ -94,21 +94,22 @@ class ServicesController extends Controller
             
             $request->session()->flash('success', 'Service created successfully');
             
-            return redirect(route('satff-services.index'));
+            return redirect(route('staff-services.index'));
     }
 
 
     //-------------- Edit Data Page ---------------\\
     
-    public function edit(Services $service)
+    public function edit($id)
     {
+        $service = Services::find($id);
         $user = auth()->user();
         if(!$user->hasPermissionTo('edit services'))
         {
             return redirect(route('home'));
         }
         $Categories = Categories::all();
-		return view('satff.services.create', [
+		return view('staff.services.create', [
             'item' => $service,
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
             'Categories' => $Categories
@@ -135,7 +136,7 @@ class ServicesController extends Controller
 		
 		session()->flash('success', 'Service updated successfully');
 		
-		return redirect(route('satff-services.index'));
+		return redirect(route('staff-services.index'));
     }
 
 

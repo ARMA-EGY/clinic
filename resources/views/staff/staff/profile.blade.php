@@ -17,7 +17,7 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('staff.index')}}">{{__('master.STAFF')}}</a></li>
+                  <li class="breadcrumb-item"><a href="{{route('staff-staff.index')}}">{{__('master.STAFF')}}</a></li>
                   <li class="breadcrumb-item active" aria-current="page">{{__('master.STAFF-DETAILS')}}</li>
                 </ol>
               </nav>
