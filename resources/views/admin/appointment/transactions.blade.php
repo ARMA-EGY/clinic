@@ -62,6 +62,7 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">#</th>
+                    <th scope="col" class="sort" >{{__('master.APPOINTMENT-DATE')}}</th>
                     <th scope="col" class="sort" >{{__('master.APPOINTMENT-NUMBER')}}</th>
                     <th scope="col" class="sort" >{{__('master.PATIENT-NAME')}}</th>
                     <th scope="col" class="sort" >{{__('master.SUB-TOTAL')}}</th>
@@ -78,7 +79,8 @@
 
                   <tr class="parent">
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->appointment_id}}</td>
+                    <td><strong>{{$item->appointment->appointment_date}} </strong></td>
+                    <td><strong>{{ $item->appointment->appointment_number}}</strong></td>
                     <td>{{ $item->Patient->name }} </td>
                     <td>{{ $item->sub_total }}</td>
                     <td>{{ $item->tax }}</td>

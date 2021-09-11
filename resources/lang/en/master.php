@@ -395,4 +395,11 @@ return [
     "MONTH" => "Month",
 
     "ADD-NEW-NOTES" => "Add New Notes",
+    "DOCTORS-PROFIT" => "Doctors Profit",
+    "DOCTOR-PROFIT" => "Doctor Profit",
+    "DATE-FROM" => "Date From",
+    "DATE-TO" => "Date to",
+    "PRINT" => "Print",
+    "REGISTERED-DATE" => "Registered Date",
+    "NO-DATA-AVAILABLE" => "No Data Available",
 ];

@@ -391,4 +391,11 @@ return [
     "MONTH" => "شهر",
 
     "ADD-NEW-NOTES" => "اضافة ملاحظات جديدة",
+    "DOCTORS-PROFIT" => "ربح الاطباء",
+    "DOCTOR-PROFIT" => "ربح الطبيب",
+    "DATE-FROM" => "التاريخ من",
+    "DATE-TO" => "التاريخ الى",
+    "PRINT" => "طباعة",
+    "REGISTERED-DATE" => "تاريخ التسجيل",
+    "NO-DATA-AVAILABLE" => "لا تتوافر بيانات",
 ];
