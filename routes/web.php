@@ -108,6 +108,16 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
         Route::post('/adjustment-show', 'Admin\Inventory\InventoryController@showAdjustment')->name('adjustment.show');
         Route::post('/admin-appointment-addnotes', 'Admin\Appointment\AppointmentController@addNotes')->name('admin-appointment-addnotes');
         Route::post('/AppointmentServices-remove', 'Admin\AppointmentServices\AppointmentServicesController@remove')->name('admin-AppointmentServicesController.remove');
+
+        Route::get('/reportDoctors', 'Admin\Reports\ReportsController@doctors')->name('report.doctors');
+        Route::get('/reportDoctorsProfit', 'Admin\Reports\ReportsController@doctorsProfit')->name('report.doctors.profit');
+        Route::get('/reportDoctorProfit/{id}', 'Admin\Reports\ReportsController@doctorProfit')->name('report.doctor.profit');
+        Route::get('/reportPatients', 'Admin\Reports\ReportsController@patients')->name('report.patients');
+        Route::get('/reportAppointments', 'Admin\Reports\ReportsController@appointments')->name('report.appointments');
+        Route::get('/reportTransactions', 'Admin\Reports\ReportsController@transactions')->name('report.transactions');
+        Route::get('/reportInventory', 'Admin\Reports\ReportsController@inventory')->name('report.inventory');
+        Route::get('/reportServices', 'Admin\Reports\ReportsController@services')->name('report.services');
+
     });
 
     /*

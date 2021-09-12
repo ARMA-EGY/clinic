@@ -224,33 +224,31 @@
             </div>
           </div>
 
-      </div>
-
+        </div>
 
         <!-- Second Half -->
         <div class="col-xl-6">
 
-          <!-- No.Posts in each category -->
-          <div class="card bg-default shadow">
-            <div class="card-header bg-transparent">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h6 class="text-uppercase text-muted ls-1 mb-1">{{__('master.SECTORS')}}</h6>
-                  <h5 class="h3 mb-0 text-white">{{__('master.MONTHLY-SECTORS')}}</h5>
+            <!-- No.Appointments in each Sector -->
+            <div class="card bg-default shadow">
+              <div class="card-header bg-transparent">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <h6 class="text-uppercase text-muted ls-1 mb-1">{{__('master.SECTORS')}}</h6>
+                    <h5 class="h3 mb-0 text-white">{{__('master.MONTHLY-SECTORS')}}</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <!-- Chart -->
+                <div class="chart">
+                  <canvas id="chart-pie" class="chart-canvas"></canvas>
                 </div>
               </div>
             </div>
-            <div class="card-body">
-              <!-- Chart -->
-              <div class="chart">
-                <canvas id="chart-pie" class="chart-canvas"></canvas>
-              </div>
-            </div>
-          </div>
 
-      </div>
+        </div>
 
-        
         <!-- Full Width -->
         <div class="col-12">
 

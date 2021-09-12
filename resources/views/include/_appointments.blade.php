@@ -13,6 +13,7 @@
                     <th scope="col" class="sort" >{{__('master.APPOINTMENT-DATE')}}</th>
                     <th scope="col" class="sort" >{{__('master.BRANCH')}}</th>
                     <th scope="col" class="sort" >{{__('master.SECTOR')}}</th>
+                    <th scope="col" class="sort" >{{__('master.STATUS')}}</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -28,6 +29,15 @@
                     <td><b> {{$item->appointment_date}} </b></td>
                     <td><b> {{$item->branch->name}} </b></td>
                     <td><b> {{$item->sector->name}} </b></td>
+                    <td>
+                      @if ($item->status == 'pending')
+                          <span class="badge badge-yellow category-badge">  {{__('master.PENDING')}}</span>
+                      @elseif ($item->status == 'paid')
+                          <span class="badge badge-success category-badge">  {{__('master.PAID')}}</span>
+                      @elseif ($item->status == 'cancelled')
+                          <span class="badge badge-danger category-badge">  {{__('master.CANCELLED')}}</span>
+                      @endif
+                    </td>
                     <td>
                       @if(auth()->user()->role == "Admin")
                           <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="{{route('appointment.show',$item->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>

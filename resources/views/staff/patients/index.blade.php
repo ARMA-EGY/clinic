@@ -105,8 +105,8 @@
                     <td>{{__('master.'.$patient->gender )}} </td>
                     <td>{{__('nationality.'.$patient->nationality )}} </td>
                     <td>
-                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.EDIT')}}" href="{{ route('patients.edit', $patient->id)}}" class="btn btn-secondary btn-sm mx-1 px-3"> <i class="fa fa-edit"></i> </a>
-                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="{{ route('patient.profile', $patient->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
+                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.EDIT')}}" href="{{ route('staff-patients.edit', $patient->id)}}" class="btn btn-secondary btn-sm mx-1 px-3"> <i class="fa fa-edit"></i> </a>
+                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="{{ route('staff-patient.profile', $patient->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
                     </td>
                   </tr>
 

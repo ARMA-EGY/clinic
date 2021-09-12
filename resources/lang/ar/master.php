@@ -139,6 +139,7 @@ return [
     "ALL" => "الجميع",
     "NO-APPOINTMENTS-AVAILABLE" => "لا يوجد حجوزات متاحة",
 
+    "SERVICE" => "الخدمة",
     "SERVICES" => "الخدمات",
     "NO.SERVICES" => "عدد الخدمات",
     "ADD-NEW-SERVICE" => "اضافة خدمة جديدة",
@@ -157,6 +158,7 @@ return [
     "PLEDGES" => "التعهدات",
     "NO-PLEDGES" => "لا يوجد تعهدات",
     "ADD-NEW-PLEDGE" => "اضافة تعهد جديد",
+    "ADD-NEW-PLEDGES" => "اضافة تعهد جديد",
     "ALL-PLEDGES" => "جميع التعهدات",
 
     "ROLES" => "الادوار والصلاحيات",
@@ -387,4 +389,13 @@ return [
     "DAY" => "يوم",
     "WEEK" => "اسبوع",
     "MONTH" => "شهر",
+
+    "ADD-NEW-NOTES" => "اضافة ملاحظات جديدة",
+    "DOCTORS-PROFIT" => "ربح الاطباء",
+    "DOCTOR-PROFIT" => "ربح الطبيب",
+    "DATE-FROM" => "التاريخ من",
+    "DATE-TO" => "التاريخ الى",
+    "PRINT" => "طباعة",
+    "REGISTERED-DATE" => "تاريخ التسجيل",
+    "NO-DATA-AVAILABLE" => "لا تتوافر بيانات",
 ];

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Inventory;
+namespace App\Http\Controllers\Staff\Inventory;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -129,8 +129,9 @@ class InventoryController extends Controller
 
     //-------------- Edit Data Page ---------------\\
     
-    public function edit(Inventory $inventory)
+    public function edit($id)
     {
+        $inventory = Inventory::find($id);
         $user           = auth()->user();
         if(!$user->hasPermissionTo('inventory edit items'))
         {

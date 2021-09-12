@@ -66,7 +66,7 @@
 
                   <tr class="parent">
                     <td>{{ $loop->iteration }}</td>
-                    <td> <a href="{{ route('doctors.profile', $item->id)}}"> <strong> {{  $item->name }} </strong> </a> </td>
+                    <td> <a href="{{ route('staff-doctors.profile', $item->id)}}"> <strong> {{  $item->name }} </strong> </a> </td>
                     <td>{{ $item->phone }}</td>
                     <td>{{ $item->hiring_date }} </td>
                     <td>{{ $item->sector->name }} </td>
@@ -76,8 +76,8 @@
                       </div>
                     </td>
                     <td>
-                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.EDIT')}}" href="{{ route('doctors.edit', $item->id)}}" class="btn btn-secondary btn-sm mx-1 px-3"> <i class="fa fa-edit"></i> </a>
-                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="{{ route('doctors.profile', $item->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
+                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.EDIT')}}" href="{{ route('staff-doctors.edit', $item->id)}}" class="btn btn-secondary btn-sm mx-1 px-3"> <i class="fa fa-edit"></i> </a>
+                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.DETAILS')}}" href="{{ route('staff-doctors.profile', $item->id)}}" class="btn btn-warning btn-sm mx-1 px-3"> <i class="fa fa-tv"></i> </a>
                     </td>
                   </tr>
 

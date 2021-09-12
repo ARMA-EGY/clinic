@@ -107,8 +107,38 @@ class MasterController extends Controller
         }
         else if( $user->role == 'Staff')
         {
-            $today                = date('Y-m-d');
             $branch               = Branches::where('id', $user->branch_id)->first();
+            $currentMonth         = date('m');
+            $today                = date('Y-m-d');
+
+            $appointments           = Appointment::where('branch_id', $user->branch_id)->selectRaw('year(created_at) year, monthname(created_at) month, count(*) data')
+                                        ->groupBy('year', 'month')
+                                        ->orderBy('year', 'desc')
+                                        ->get();
+
+            $sectors                = Appointment::where('branch_id', $user->branch_id)->select('sector_id', DB::raw('count(*) as total'))
+                                        ->whereRaw('MONTH(created_at) = ?',[$currentMonth])
+                                        ->groupBy('sector_id')->orderBy('total','desc')
+                                        ->get();
+
+            $latest_appointments    = Appointment::where('branch_id', $user->branch_id)->orderBy('id','desc')->limit(10)->get();
+            $appointment_months             = [];
+            $appointment_month_count        = [];
+            $sector_name                    = [];
+            $sector_appointment_count       = [];
+
+            foreach ($appointments as $appointment)
+            {
+                $appointment_months[]        = $appointment->month;
+                $appointment_month_count[]   = $appointment->data;
+            }
+
+            foreach ($sectors as $sector)
+            {
+                $sector_name[]                = $sector->sector->name;
+                $sector_appointment_count[]   = $sector->total;
+            }
+
             return view('staff.home', [
                 'sectors_count' => $branch->sectors()->count(),
                 'staff_count' => User::where('disable', 0)->where('role', 'Staff')->where('branch_id', $branch->id)->count(),
@@ -116,7 +146,12 @@ class MasterController extends Controller
                 'patients_count' => Patients::all()->count(),
                 'today_appointments' => Appointment::where('appointment_date', $today)->where('branch_id', $branch->id)->count(),
                 'done_appointments' => Appointment::where('appointment_date', '<', $today)->where('branch_id', $branch->id)->count(),
-                'total_appointments' => Appointment::where('status', 'cancelled')->where('branch_id', $branch->id)->count(),
+                'total_appointments' => Appointment::where('branch_id', $branch->id)->count(),
+                'appointment_months' => $appointment_months,
+                'appointment_month_count' => $appointment_month_count,
+                'sector_name' => $sector_name,
+                'sector_appointment_count' => $sector_appointment_count,
+                'latest_appointments' => $latest_appointments,
             ]);
 
         }

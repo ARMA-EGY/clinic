@@ -33,7 +33,7 @@
 
             @if($type == "all")
             <div class="col-lg-6 col-5 text-right">
-              <a href="{{ route('inventory.create')}}" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> {{__('master.ADD-NEW-ITEM')}}</a>
+              <a href="{{ route('staff-inventory.create')}}" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> {{__('master.ADD-NEW-ITEM')}}</a>
             </div>
             @endif
 
@@ -103,11 +103,11 @@
                     <td>{{ $item->branch->name }} </td>
                     <td>
                       <div class="col-3">
-                        <input type="checkbox" class="check_off item_check" data-id="{{$item->id}}" data-url="{{route('inventory-disable')}}" data-toggle="toggle" data-size="sm"  @if ($item->disable == '0') checked @endif>
+                        <input type="checkbox" class="check_off item_check" data-id="{{$item->id}}" data-url="{{route('staff-inventory-disable')}}" data-toggle="toggle" data-size="sm"  @if ($item->disable == '0') checked @endif>
                       </div>
                     </td>
                     <td>
-                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.EDIT')}}" href="{{ route('inventory.edit', $item->id)}}" class="btn btn-secondary btn-sm mx-1 px-3"> <i class="fa fa-edit"></i> </a>
+                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.EDIT')}}" href="{{ route('staff-inventory.edit', $item->id)}}" class="btn btn-secondary btn-sm mx-1 px-3"> <i class="fa fa-edit"></i> </a>
                     </td>
                   </tr>
 

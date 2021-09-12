@@ -18,7 +18,7 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('services.index')}}">{{__('master.SERVICES')}}</a></li>
+                  <li class="breadcrumb-item"><a href="{{route('staff-services.index')}}">{{__('master.SERVICES')}}</a></li>
                   <li class="breadcrumb-item active" aria-current="page">{{ isset($item) ? __('master.EDIT-SERVICE') : __('master.ADD-NEW-SERVICE') }}</li>
                 </ol>
               </nav>
@@ -39,7 +39,7 @@
                 <div class="card-header">{{ isset($item) ? __('master.EDIT-SERVICE') : __('master.ADD-NEW-SERVICE') }} </div>
         
                 <div class="card-body">
-                    <form action="{{ isset($item) ? route('services.update', $item->id) : route('services.store')  }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ isset($item) ? route('staff-services.update', $item->id) : route('staff-services.store')  }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         @if (isset($item))

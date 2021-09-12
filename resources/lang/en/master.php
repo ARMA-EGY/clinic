@@ -140,6 +140,7 @@ return [
     "ALL" => "All",
     "NO-APPOINTMENTS-AVAILABLE" => "No Appointments Available",
 
+    "SERVICE" => "Service",
     "SERVICES" => "Services",
     "NO.SERVICES" => "No. Services",
     "ADD-NEW-SERVICE" => "Add New Service",
@@ -160,6 +161,7 @@ return [
     "PLEDGES" => "Pledges",
     "NO-PLEDGES" => "There is no Pledges.",
     "ADD-NEW-PLEDGE" => "Add New Pledge",
+    "ADD-NEW-PLEDGES" => "Add New Pledge",
     "ALL-PLEDGES" => "All Pledges",
 
     "ROLES" => "Roles & Permissions",
@@ -391,4 +393,13 @@ return [
     "DAY" => "Day",
     "WEEK" => "Week",
     "MONTH" => "Month",
+
+    "ADD-NEW-NOTES" => "Add New Notes",
+    "DOCTORS-PROFIT" => "Doctors Profit",
+    "DOCTOR-PROFIT" => "Doctor Profit",
+    "DATE-FROM" => "Date From",
+    "DATE-TO" => "Date to",
+    "PRINT" => "Print",
+    "REGISTERED-DATE" => "Registered Date",
+    "NO-DATA-AVAILABLE" => "No Data Available",
 ];

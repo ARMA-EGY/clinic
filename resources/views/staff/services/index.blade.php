@@ -83,7 +83,7 @@
                     <td>{{ $item->price }} </td>
                     <td>{{ $item->sector->name }} </td>
                     <td>
-                      <a href="{{ route('services.edit', $item->id)}}" class="btn btn-primary btn-sm mx-1"> <i class="fa fa-edit"></i> {{__('master.EDIT')}} </a>
+                      <a href="{{ route('staff-services.edit', $item->id)}}" class="btn btn-primary btn-sm mx-1"> <i class="fa fa-edit"></i> {{__('master.EDIT')}} </a>
                     </td>
                   </tr>
 

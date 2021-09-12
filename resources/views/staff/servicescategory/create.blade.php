@@ -18,7 +18,7 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('master.DASHBOARD')}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{route('services.index')}}">{{__('master.SERVICES')}}</a></li>
+                  <li class="breadcrumb-item"><a href="{{route('staff-services.index')}}">{{__('master.SERVICES')}}</a></li>
                   <li class="breadcrumb-item active" aria-current="page">{{ isset($item) ? "Edit Category" : "Add New Category" }}</li>
                 </ol>
               </nav>
@@ -40,7 +40,7 @@
         
                 <div class="card-body">
 
-                    <form action="{{ isset($item) ? route('servicescategory.update', $item->id) : route('servicescategory.store')  }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ isset($item) ? route('staff-servicescategory.update', $item->id) : route('staff-servicescategory.store')  }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         @if (isset($item))

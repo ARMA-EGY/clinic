@@ -36,7 +36,7 @@ class StaffController extends Controller
         } 
 		$items       = User::where('role', 'Staff')->where('branch_id', $user->branch_id)->orderBy('id','desc')->get();
 
-        return view('satff.staff.index', [
+        return view('staff.staff.index', [
             'items' => $items,
             'total_rows' => User::where('role', 'Staff')->where('branch_id', $user->branch_id)->count(),
         ]);
@@ -54,7 +54,7 @@ class StaffController extends Controller
         } 
 		$items       = User::where('role', 'Staff')->where('disable', 0)->where('branch_id', $user->branch_id)->orderBy('id','desc')->get();
 		
-        return view('satff.staff.active', [
+        return view('staff.staff.active', [
             'items' => $items,
             'total_rows' => User::where('role', 'Staff')->where('disable', 0)->where('branch_id', $user->branch_id)->count(),
         ]);
@@ -72,7 +72,7 @@ class StaffController extends Controller
         }
 		$items       = User::where('role', 'Staff')->where('disable', 1)->where('branch_id', $user->branch_id)->orderBy('id','desc')->get();
 		
-        return view('satff.staff.deactive', [
+        return view('staff.staff.deactive', [
             'items' => $items,
             'total_rows' => User::where('role', 'Staff')->where('disable', 1)->where('branch_id', $user->branch_id)->count(),
         ]);
@@ -88,7 +88,7 @@ class StaffController extends Controller
         {
             return redirect(route('home'));
         }
-        return view('satff.staff.create', [
+        return view('staff.staff.create', [
             'branches'   => Branches::where('disable', 0)->where('id', $user->branch_id)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
             'roles'      => Roles::where('name', '!=', 'Doctor')->orderBy('id','desc')->get(),
@@ -173,20 +173,21 @@ class StaffController extends Controller
             
             $request->session()->flash('success', 'Staff Added successfully');
             
-            return redirect(route('satff-staff.index'));
+            return redirect(route('staff-staff.index'));
     }
 
 
     //-------------- Edit Data Page ---------------\\
     
-    public function edit(User $staff)
+    public function edit($id)
     {
+        $staff = User::find($id);
         $user = auth()->user();
         if(!$user->hasPermissionTo('edit patients'))
         {
             return redirect(route('home'));
         }
-		return view('satff.staff.create', [
+		return view('staff.staff.create', [
             'item' => $staff,
             'branches'   => Branches::where('disable', 0)->where('id', $user->branch_id)->orderBy('id','desc')->get(),
             'sectors'    => Sector::where('disable', 0)->orderBy('id','desc')->get(),
@@ -241,7 +242,7 @@ class StaffController extends Controller
 		
 		session()->flash('success', 'Staff updated successfully');
 		
-		return redirect(route('satff-staff.index'));
+		return redirect(route('staff-staff.index'));
     }
 
 
@@ -256,7 +257,7 @@ class StaffController extends Controller
         }
         $item     = User::where('id', $id)->first();
 
-        return view('satff.staff.profile', [
+        return view('staff.staff.profile', [
             'item' => $item,
         ]);
     }

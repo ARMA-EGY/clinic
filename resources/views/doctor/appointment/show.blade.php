@@ -40,68 +40,87 @@
     <!-- Page content -->
     <div class="container-fluid hide-for-print mt--6">
         <div class="row">
+
+
+            <!-- Patient Info -->
             <div class="col-xl-12">
                 <div class="card bg-default shadow">
+
                     <div class="card-header bg-transparent border-0">
                         <div class="row">
-                            <div class="col-md-8"><h3 class="text-white mb-0">Appointment #{{ $appointment->id }}</h3></div>
+                            <div class="col-md-8"><h3 class="text-white mb-0">{{__('master.APPOINTMENT')}} #{{ $appointment->id }}</h3></div>
                         </div>
                     </div>
 
-
-                    {{--ORDER INFO--}}
                     <div class="table-responsive ">
-                        <!-- Projects table -->
                         <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
+                            <thead class="thead-light">                         
                             <tr>
-                                <th scope="col">Appointment ID: </th>
+                                <th scope="col">{{__('master.BRANCH')}} </th>
+                                <td style="background-color: #fff; font-weight: bold;">{{ $appointment->branch->name }}</td>
+                            </tr> 
+                            <tr>
+                                <th scope="col">{{__('master.SECTOR')}} </th>
+                                <td style="background-color: #fff; font-weight: bold;">{{ $appointment->sector->name }}</td>
+                            </tr>   
+                            <tr>
+                                <th scope="col">{{__('master.APPOINTMENT-NUMBER')}} </th>
                                 <td style="background-color: #fff; font-weight: bold;">{{ $appointment->id }}</td>
                             </tr>
                             <tr>
-                                <th scope="col">Patient Name: </th>
-                                <td style="background-color: #fff; font-weight: bold;"><a class="font-weight-bold text-primary" href="{{ route('patient.profile',$appointment->patient->id) }}">{{ $appointment->patient->name }}</a></td>
-                            </tr>
+                                <th scope="col">{{__('master.DOCTOR-NAME')}} </th>
+                                <td style="background-color: #fff; font-weight: bold;">{{ $appointment->doctor->name }}</td>
+                            </tr> 
                             <tr>
-                                <th scope="col">Patient Gender: </th>
+                                <th scope="col">{{__('master.PATIENT-NAME')}} </th>
+                                <td style="background-color: #fff; font-weight: bold;"><a class="font-weight-bold text-primary" href="{{ route('patient.profile',$appointment->patient->id) }}">{{ $appointment->patient->name }}</a></td>
+                               </tr>
+                            <tr>
+                                <th scope="col">{{__('master.GENDER')}} </th>
                                 <td style="background-color: #fff; font-weight: bold;">{{ $appointment->patient->gender }}</td>
                             </tr>
-                            <tr>
-                                <th scope="col">Patient Medical History: </th>
-                                <td style="background-color: #fff; font-weight: bold;">{{ $appointment->patient->medical_history }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="col">Doctor Name: </th>
-                                <td style="background-color: #fff; font-weight: bold;">{{ $appointment->doctor->name }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="col">Sector: </th>
-                                <td style="background-color: #fff; font-weight: bold;">{{ $appointment->sector->name }}</td>
-                            </tr>                            
-                            <tr>
-                                <th scope="col">Branch: </th>
-                                <td style="background-color: #fff; font-weight: bold;">{{ $appointment->branch->name }}</td>
-                            </tr>  
                             </thead>
                             <tbody>
                         </table>
                     </div>
+                    
+                </div>
+            </div>
 
-                    <div class="card-header bg-transparent border-0 ">
-                        <h3 class="text-white mb-0">Services</h3>
+            <!-- Medical History -->
+            <div class="col-xl-12">
+                <div class="card card-defualt">
+                    <div class="card-header"> {{__('master.MEDICAL-HISTORY')}} </div>
+
+                    <div class="card-body">
+                        <div class="col-md-12 mb-2 text-left">
+                                {!! $appointment->patient->medical_history !!}
+                        </div>
                     </div>
+
+                </div>
+            </div>
+
+            <!-- Services -->
+            <div class="col-xl-12">
+                <div class="card bg-default shadow">
+
+                    
+                    <div class="card-header bg-transparent border-0 ">
+                        <h3 class="text-white mb-0">{{__('master.SERVICES')}}</h3>
+                    </div>
+
                     <div class="table-responsive">
-                        <table class="table align-items-center table-dark table-flush">
-                            <thead class="thead-dark">
+                        <table class="table align-items-center table-light table-flush">
+                            <thead class="thead-light">
                             <tr>
                                 <th scope="col" class="sort">#</th>
                                 <th scope="col" class="sort" >{{__('master.NAME')}}</th>
                                 <th scope="col" class="sort" >{{__('master.SERVICE-NUMBER')}}</th>
                                 <th scope="col" class="sort" >{{__('master.PRICE')}}</th>
                                 <th scope="col" class="sort" >{{__('master.SECTOR')}} </th>
-                                <th scope="col" class="sort" >Status </th>
-                                <th scope="col" class="sort" >Body Part </th>
-                                <th scope="col" class="sort" >Notes</th>
+                                <th scope="col" class="sort" >{{__('master.STATUS')}} </th>
+                                <th scope="col" class="sort" >{{__('master.BODY-PARTS')}} </th>
                                 <th scope="col" class="sort" ></th>
                             </tr>
                             </thead>
@@ -114,159 +133,168 @@
                                     <td>{{$appointmentService->service->number}}</td>
                                     <td>{{$appointmentService->service->price}}</td>
                                     <td>{{$appointmentService->service->sector->name}}</td>
-                                    <td>{{$appointmentService->status}}</td>
+                                    <td>
+                                        @if ($appointmentService->status == 'pending')
+                                            <span class="badge badge-yellow category-badge">  {{__('master.PENDING')}}</span>
+                                        @elseif ($appointmentService->status == 'paid')
+                                            <span class="badge badge-success category-badge">  {{__('master.PAID')}}</span>
+                                        @elseif ($appointmentService->status == 'cancelled')
+                                            <span class="badge badge-danger category-badge">  {{__('master.CANCELLED')}}</span>
+                                        @endif
+                                    </td>
                                     <td>{{$appointmentService->body_part}}</td>
-                                    <td>{{$appointmentService->notes}}</td>
-                                    @if($appointmentService->status == "pending")
-                                    <td> <a data-toggle="tooltip" data-url="{{ route('doctor-AppointmentServicesController.remove') }}" data-id="{{ $appointmentService->id }}" data-placement="top" title="{{__('master.CANCEL')}}" href="#" class="btn btn-danger btn-sm mx-1 px-3 remove_item"> <i class="fa fa-trash"></i> </a></td>
-                                    @endif
+                                    <td>
+                                        @if($appointmentService->status == "pending")
+                                            <a data-toggle="tooltip" data-url="{{ route('doctor-AppointmentServicesController.remove') }}" data-id="{{ $appointmentService->id }}" data-placement="top" title="{{__('master.CANCEL')}}" href="#" class="btn btn-danger btn-sm mx-1 px-3 remove_item"> <i class="fa fa-trash"></i> </a>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
+                    
                 </div>
             </div>
 
-@if($appointment->status == "pending")
-    @if(count($services) > 0)
-        <div class="col-xl-12 order-xl-1">
-          <div class="card">
-            <div class="card-header">
-              <div class="row align-items-center">
-                <div class="col-8">
-                  <h3 class="mb-0">Add New Service</h3>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-                    <form  class="add_service_form" enctype="multipart/form-data">
-                        @csrf
 
-                        <input type="hidden" name="appointment_id" value="{{ $appointment->id }}">
 
-                        <div class="row">
-
-                            <!--=================  Service  =================-->
-                            <div class="form-group col-md-4 mb-2">
-                            <label class="font-weight-bold text-uppercase" for="service">Service</label>
-                                <select id="service" class="form-control" name="service" required>
-                                        @foreach($services as $service)
-                                            <option value="{{ $service->id }}">{{ $service->name }}</option>
-                                        @endforeach
-                                </select>
-
-                                @error('service')
-                                <div>
-                                    <span class="text-danger">{{ $message }}</span>
+            @if($appointment->status == "pending")
+                @if(count($services) > 0)
+                    <div class="col-xl-12 order-xl-1">
+                        <div class="card">
+                            <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                <h3 class="mb-0">{{__('master.ADD-NEW-SERVICE')}}</h3>
                                 </div>
-                                @enderror
-
                             </div>
-
-                            <!--=================  Body Part  =================-->
-                            <div class="form-group col-md-4 mb-2">
-                            <label class="font-weight-bold text-uppercase" for="body_part">Body Part</label>
-                                <select class="form-control selectpicker" data-live-search="true" name="body_part">
-                                    <option value="">-SELECT-</option>
-                                    @foreach($bodyparts as $bodypart)
-                                       
-                                           <option value="{{$bodypart->name}}">{{$bodypart->name}}</option>
-                                     
-                                    @endforeach
-
-                                </select>
-
-                                @error('body_part')
-                                <div>
-                                    <span class="text-danger">{{ $message }}</span>
-                                </div>
-                                @enderror
-
                             </div>
+                            <div class="card-body">
+                                    <form  class="add_service_form" enctype="multipart/form-data">
+                                        @csrf
 
-                            <!--=================  Notes  =================-->
-                            <div class="form-group col-md-4 mb-4 text-left">
-                                <label class="font-weight-bold text-uppercase">Notes</label>
-                                <input type="text" name="notes" placeholder="Add notes" class="@error('name') is-invalid @enderror form-control" >
+                                        <input type="hidden" name="appointment_id" value="{{ $appointment->id }}">
+
+                                        <div class="row">
+
+                                            <!--=================  Service  =================-->
+                                            <div class="form-group col-md-4 mb-2">
+                                            <label class="font-weight-bold text-uppercase" for="service">{{__('master.SERVICES')}}</label>
+                                                <select id="service" class="form-control" name="service" required>
+                                                        @foreach($services as $service)
+                                                            <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                                        @endforeach
+                                                </select>
+
+                                                @error('service')
+                                                <div>
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                </div>
+                                                @enderror
+
+                                            </div>
+
+                                            <!--=================  Body Part  =================-->
+                                            <div class="form-group col-md-4 mb-2">
+                                            <label class="font-weight-bold text-uppercase" for="body_part">{{__('master.BODY-PARTS')}}</label>
+                                                <select class="form-control selectpicker" data-live-search="true" name="body_part">
+                                                    <option value="">{{__('master.SELECT')}}</option>
+                                                    @foreach($bodyparts as $bodypart)
+                                                    
+                                                        <option value="{{$bodypart->name}}">{{$bodypart->name}}</option>
+                                                    
+                                                    @endforeach
+
+                                                </select>
+
+                                                @error('body_part')
+                                                <div>
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                </div>
+                                                @enderror
+
+                                            </div>
+
+                                            <!--=================  Notes  =================-->
+                                            <div class="form-group col-md-4 mb-4 text-left">
+                                                <label class="font-weight-bold text-uppercase">{{__('master.NOTES')}}</label>
+                                                <input type="text" name="notes" placeholder="Add notes" class="@error('name') is-invalid @enderror form-control" >
+                                            
+                                                @error('notes')
+                                                    <div>
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    </div>
+                                                @enderror
                             
-                                @error('notes')
-                                    <div>
-                                        <span class="text-danger">{{ $message }}</span>
-                                    </div>
-                                @enderror
-            
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="form-group col-md-6 mb-1">
+                                                <button type="submit" class="btn btn-success">{{__('master.ADD')}}</button>
+                                            </div>
+
+
+                                    </form>              
                             </div>
-                        </div>
-                      
-                        <div class="form-group col-md-6 mb-1">
-                                <button type="submit" class="btn btn-success">Add</button>
-                            </div>
-
-
-                    </form>              
-            </div>
-          </div>
-        </div>
-    @endif
-        <div class="col-xl-12 order-xl-1">
-          <div class="card">
-            <div class="card-header">
-              <div class="row align-items-center">
-                <div class="col-8">
-                  <h3 class="mb-0">Add New Notes</h3>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-                    <form  class="add_notes_form" enctype="multipart/form-data">
-                        @csrf
-
-                        <input type="hidden" name="appointment_id" value="{{ $appointment->id }}">
-
-                        <div class="row">
-                            <!--=================  Notes  =================-->
-                            <div class="form-group col-md-12 mb-2">
-                                <label class="font-weight-bold text-uppercase" for="notes">Notes</label>
-                                <input id="x" type="hidden" name="notes" value="{{$appointment->notes}}">
-                                    <trix-editor input="x"></trix-editor>
-                            </div>
-                        </div>
-                      
-                        <div class="form-group col-md-6 mb-1">
-                                <button type="submit" class="btn btn-success">Add</button>
-                            </div>
-
-
-                    </form>              
-            </div>
-          </div>
-        </div> 
-@else 
-        <div class="row">
-            <!--================= NOTES  =================-->
-            <div class="card card-defualt">
-                <div class="card-header"><i class="fa fa-info-circle"></i> {{__('master.NOTES')}} </div>
-
-                <div class="card-body">
-                    <div class="form-group col-md-12 mb-2 text-left">
-                        <div class="form-control">
-                            {!! $appointment->notes !!}
                         </div>
                     </div>
-                </div>
+                @endif
+                    <div class="col-xl-12 order-xl-1">
+                        <div class="card">
+                            <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                <h3 class="mb-0">{{__('master.ADD-NEW-NOTES')}}</h3>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="card-body">
+                                    <form  class="add_notes_form" enctype="multipart/form-data">
+                                        @csrf
 
-            </div>
+                                        <input type="hidden" name="appointment_id" value="{{ $appointment->id }}">
+
+                                        <div class="row">
+                                            <!--=================  Notes  =================-->
+                                            <div class="form-group col-md-12 mb-2">
+                                                <label class="font-weight-bold text-uppercase" for="notes">{{__('master.NOTES')}}</label>
+                                                <input id="x" type="hidden" name="notes" value="{{$appointment->notes}}">
+                                                    <trix-editor input="x"></trix-editor>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="form-group col-md-6 mb-1">
+                                                <button type="submit" class="btn btn-success">{{__('master.ADD')}}</button>
+                                            </div>
+
+
+                                    </form>              
+                            </div>
+                        </div>
+                    </div>        
+            @else 
+
+                    <div class="col-xl-12">
+                        <!--================= NOTES  =================-->
+                        <div class="card card-defualt">
+                            <div class="card-header"><i class="fa fa-info-circle"></i> {{__('master.NOTES')}} </div>
+
+                            <div class="card-body">
+                                <div class="col-md-12 mb-2 text-left">
+                                        {!! $appointment->notes !!}
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+            @endif
 
         </div>
 
-@endif
 
-        </div>
-
-
-
-        
     </div>
 
 

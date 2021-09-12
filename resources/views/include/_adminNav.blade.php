@@ -433,22 +433,56 @@
                       <a class="nav-link collapsed" href="#navbar-reports" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                         <i class="far fa-chart-bar"></i>
                         <span class="nav-link-text"> {{__('master.REPORTS')}}</span>
-                        <span class="badge badge-warning fs-9 p-1 mx-2">{{__('master.PENDING')}}</span>
                       </a>
                       <div class="collapse" id="navbar-reports" style="">
                         <ul class="nav nav-sm flex-column">
                           
                           <li class="nav-item">
-                              <a href="#" class="nav-link nav-link-sub">
+                              <a href="{{ route('report.doctors')}}" class="nav-link nav-link-sub {{request()->routeIs('report.doctors') ? 'active' : '' }}">
                                 <i class="far fa-dot-circle"></i>
-                                <span class="sidenav-normal"> Report 1 </span>
+                                <span class="sidenav-normal"> {{__('master.DOCTORS')}} </span>
+                              </a>
+                          </li>
+                          
+                          {{-- <li class="nav-item">
+                              <a href="{{ route('report.doctors.profit')}}" class="nav-link nav-link-sub {{request()->routeIs('report.doctors.profit') ? 'active' : '' }}">
+                                <i class="far fa-dot-circle"></i>
+                                <span class="sidenav-normal"> {{__('master.DOCTORS-PROFIT')}} </span>
+                              </a>
+                          </li> --}}
+                          
+                          <li class="nav-item">
+                              <a href="{{ route('report.patients')}}" class="nav-link nav-link-sub {{request()->routeIs('report.patients') ? 'active' : '' }}">
+                                <i class="far fa-dot-circle"></i>
+                                <span class="sidenav-normal"> {{__('master.PATIENTS')}} </span>
                               </a>
                           </li>
                           
                           <li class="nav-item">
-                              <a href="#" class="nav-link nav-link-sub">
+                              <a href="{{ route('report.appointments')}}" class="nav-link nav-link-sub {{request()->routeIs('report.appointments') ? 'active' : '' }}">
                                 <i class="far fa-dot-circle"></i>
-                                <span class="sidenav-normal"> Report 2 </span>
+                                <span class="sidenav-normal"> {{__('master.APPOINTMENTS')}} </span>
+                              </a>
+                          </li>
+                          
+                          <li class="nav-item">
+                              <a href="{{ route('report.transactions')}}" class="nav-link nav-link-sub {{request()->routeIs('report.transactions') ? 'active' : '' }}">
+                                <i class="far fa-dot-circle"></i>
+                                <span class="sidenav-normal"> {{__('master.TRANSACTIONS')}} </span>
+                              </a>
+                          </li>
+                          
+                          <li class="nav-item">
+                              <a href="{{ route('report.inventory')}}" class="nav-link nav-link-sub {{request()->routeIs('report.inventory') ? 'active' : '' }}">
+                                <i class="far fa-dot-circle"></i>
+                                <span class="sidenav-normal"> {{__('master.INVENTORY')}} </span>
+                              </a>
+                          </li>
+                          
+                          <li class="nav-item">
+                              <a href="{{ route('report.services')}}" class="nav-link nav-link-sub {{request()->routeIs('report.services') ? 'active' : '' }}">
+                                <i class="far fa-dot-circle"></i>
+                                <span class="sidenav-normal"> {{__('master.SERVICES')}} </span>
                               </a>
                           </li>
                           
