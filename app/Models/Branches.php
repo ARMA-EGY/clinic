@@ -28,6 +28,11 @@ class Branches extends Model
         return $this->hasMany(User::class, 'branch_id', 'id');
     }
 
+    public function doctor()
+    {
+        return $this->hasMany(User::class, 'branch_id', 'id')->where('role', 'Doctor')->where('disable',0);
+    }
+
     public function inventory(){
         return $this->hasMany('App\Inventory','branch_id');
     }

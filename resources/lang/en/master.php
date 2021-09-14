@@ -402,4 +402,15 @@ return [
     "PRINT" => "Print",
     "REGISTERED-DATE" => "Registered Date",
     "NO-DATA-AVAILABLE" => "No Data Available",
+
+    "EXPENSES" => "Expenses",
+
+    "ADD-NEW-EXPENSES" => "Add New Expense",
+    "EDIT-EXPENSES" => "Edit Expense",
+    "ALL-EXPENSES" => "All Expense",
+    "ADD-NEW-PRESCRIPTION" => "Add New Prescription",
+    "PRESCRIPTION" => "Prescription",
+    
+    
+    
 ];

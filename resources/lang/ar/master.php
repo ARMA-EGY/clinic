@@ -398,4 +398,12 @@ return [
     "PRINT" => "طباعة",
     "REGISTERED-DATE" => "تاريخ التسجيل",
     "NO-DATA-AVAILABLE" => "لا تتوافر بيانات",
+    "EXPENSES" => "مصاريف",
+
+    "ADD-NEW-EXPENSES" => "إضافة مصاريف جديدة",
+    "EDIT-EXPENSES" => "تعديل المصاريف",
+    "ALL-EXPENSES" => "كل المصاريف",
+
+    "ADD-NEW-PRESCRIPTION" => "إضافة وصفة طبية جديدة",
+    "PRESCRIPTION" => "وصفة طبية",
 ];

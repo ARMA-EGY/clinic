@@ -79,6 +79,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
         Route::get('/deactivesectors', 'Admin\Sectors\SectorsController@deactive')->name('deactive-sectors');
         Route::resource('/services', 'Admin\Services\ServicesController');
         Route::resource('/servicescategory', 'Admin\ServicesCategory\ServicesCategoryController');
+        Route::resource('/expenses', 'Admin\Expenses\ExpensesController');
+        Route::resource('/expensescategory', 'Admin\ExpensesCategory\ExpensesCategoryController');
         Route::resource('/doctors', 'Admin\Doctors\DoctorsController'); 
         Route::get('/activedoctors', 'Admin\Doctors\DoctorsController@active')->name('active-doctors');
         Route::get('/deactivedoctors', 'Admin\Doctors\DoctorsController@deactive')->name('deactive-doctors');
@@ -102,11 +104,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
         Route::post('/disablestaff', 'Admin\Staff\StaffController@disable')->name('staff-disable');
         Route::get('/logo', 'MasterController@logo')->name('admin-logo');
         Route::get('/setting', 'MasterController@setting')->name('admin-setting');
+
+        Route::get('/prescriptionprint/{appointment}', 'Admin\Appointment\AppointmentController@printPrescription')->name('prescription-print');
+
         Route::post('/appointment-checkout-show', 'Admin\Appointment\AppointmentController@showCheckout')->name('appointment.checkout');
         Route::post('/appointment-checkout-confirm', 'Admin\Appointment\AppointmentController@confirmCheckout')->name('appointment.checkout-confirm');
         Route::post('/appointment-cancel', 'Admin\Appointment\AppointmentController@cancel')->name('appointment.cancel');
         Route::post('/adjustment-show', 'Admin\Inventory\InventoryController@showAdjustment')->name('adjustment.show');
         Route::post('/admin-appointment-addnotes', 'Admin\Appointment\AppointmentController@addNotes')->name('admin-appointment-addnotes');
+        Route::post('/admin-appointment-prescription', 'Admin\Appointment\AppointmentController@addPrescription')->name('admin-appointment-prescription');
         Route::post('/AppointmentServices-remove', 'Admin\AppointmentServices\AppointmentServicesController@remove')->name('admin-AppointmentServicesController.remove');
 
         Route::get('/reportDoctors', 'Admin\Reports\ReportsController@doctors')->name('report.doctors');
