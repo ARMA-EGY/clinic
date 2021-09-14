@@ -401,4 +401,11 @@ return [
 
     "EXPENSES" => "المصروفات",
     "STAFF-ACTIONS" => "اجراءات الموظفون",
+
+    "ADD-NEW-EXPENSES" => "إضافة مصاريف جديدة",
+    "EDIT-EXPENSES" => "تعديل المصروفات",
+    "ALL-EXPENSES" => "جميع المصروفات",
+
+    "ADD-NEW-PRESCRIPTION" => "إضافة وصفة طبية جديدة",
+    "PRESCRIPTION" => "وصفة طبية",
 ];

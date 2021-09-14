@@ -423,6 +423,39 @@ class AppointmentController extends Controller
                 'msg' => 'error'
             ]) ;
         }        
-    }     
+    } 
+    
+    
+    public function addPrescription(Request $request)
+    {
+		$appointment = appointment::find($request->appointment_id);
+		
+        $appointment->update([
+            'prescription' => $request->prescription,
+        ]);
+
+        if($appointment)
+        {
+            return response()->json([
+                'status' => 'true',
+                'msg' => 'success'
+            ]) ;
+        }
+        else
+        {
+            return response()->json([
+                'status' => 'false',
+                'msg' => 'error'
+            ]) ;
+        }        
+    } 
+
+
+    public function printPrescription(Appointment $appointment)
+    {
+        return view('admin.appointment.printPrescription',[
+            'appointment' => $appointment,
+        ]);
+    }
    
 }

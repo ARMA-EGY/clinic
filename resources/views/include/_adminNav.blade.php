@@ -404,6 +404,46 @@
                   </li>
 
                   <li class="nav-item">
+                      <a class="nav-link collapsed" href="#navbar-expenses" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span class="nav-link-text">{{__('master.EXPENSES')}}</span>
+                      </a>
+                      <div class="collapse" id="navbar-expenses" style="">
+                        <ul class="nav nav-sm flex-column">
+
+                          <li class="nav-item">
+                            <a href="{{ route('expensescategory.create')}}" class="nav-link nav-link-sub {{request()->routeIs('expensescategory.create') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> {{__('master.ADD-NEW-CATEGORY')}} </span>
+                            </a>
+                          </li>
+                          
+                          <li class="nav-item">
+                            <a href="{{ route('expensescategory.index')}}" class="nav-link nav-link-sub {{request()->routeIs('expensescategory.index') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> {{__('master.ALL-CATEGORIES')}} </span>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="{{ route('expenses.create')}}" class="nav-link nav-link-sub {{request()->routeIs('expenses.create') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> {{__('master.ADD-NEW-EXPENSES')}} </span>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="{{ route('expenses.index')}}" class="nav-link nav-link-sub {{request()->routeIs('expenses.index') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> {{__('master.ALL-EXPENSES')}} </span>
+                            </a>
+                          </li>
+                          
+                        </ul>
+                      </div>
+                  </li>
+
+                  <li class="nav-item">
                       <a class="nav-link collapsed" href="#navbar-roles" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                         <i class="fas fa-user-tag"></i>
                         <span class="nav-link-text"> {{__('master.ROLES')}}</span>

@@ -83,7 +83,7 @@
                                 <input type="text" name="identifiation"
                                        class="@error('identifiation') is-invalid @enderror form-control"
                                        placeholder="{{__('master.IDENTIFICATION')}}"
-                                       value="{{ isset($patient) ? $patient->identifiation : old('identifiation') }}">
+                                       value="{{ isset($patient) ? $patient->identifiation : old('identifiation') }}" required>
 
                                 @error('identifiation')
                                 <div>

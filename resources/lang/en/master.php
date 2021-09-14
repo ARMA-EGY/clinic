@@ -405,4 +405,13 @@ return [
 
     "EXPENSES" => "Expenses",
     "STAFF-ACTIONS" => "Staff Actions",
+
+    "ADD-NEW-EXPENSES" => "Add New Expense",
+    "EDIT-EXPENSES" => "Edit Expense",
+    "ALL-EXPENSES" => "All Expense",
+    "ADD-NEW-PRESCRIPTION" => "Add New Prescription",
+    "PRESCRIPTION" => "Prescription",
+    
+    
+    
 ];
