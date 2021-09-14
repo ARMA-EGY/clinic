@@ -268,7 +268,9 @@
                       <thead class="thead-light">
                         <tr>
                           <th scope="col">#</th>
-                          <th scope="col" class="sort" >{{__('master.PRICE')}}</th>
+                          <th scope="col" class="sort" >{{__('master.DATE')}}</th>
+                          <th scope="col" class="sort" >{{__('master.CATEGORY')}}</th>
+                          <th scope="col" class="sort" >{{__('master.AMOUNT')}}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -277,6 +279,8 @@
       
                         <tr class="parent">
                           <td>{{ $loop->iteration }}</td>
+                          <td><b>{{ $expense->date }} </b></td>
+                          <td><b>{{ $expense->category->name }} </b></td>
                           <td><b>{{ $expense->price }} </b></td>
                         </tr>
       
@@ -286,7 +290,10 @@
                       <tfoot>
                           <tr>
                               <th class="p-2 search_number"></th>
-                              <th scope="col" class="sort p-2" >{{__('master.PRICE')}}</th>
+                              <th scope="col" class="sort p-2" >{{__('master.DATE')}}</th>
+                              <th scope="col" class="sort p-2" >{{__('master.CATEGORY')}}</th>
+                              <th scope="col" class="sort p-2" >{{__('master.AMOUNT')}}</th>
+                            </tr>
                           </tr>
                       </tfoot>
                     </table>

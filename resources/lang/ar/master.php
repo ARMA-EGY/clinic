@@ -408,4 +408,6 @@ return [
 
     "ADD-NEW-PRESCRIPTION" => "إضافة وصفة طبية جديدة",
     "PRESCRIPTION" => "وصفة طبية",
+    
+    "AMOUNT" => "المبلغ",
 ];

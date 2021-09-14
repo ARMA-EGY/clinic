@@ -50,6 +50,20 @@
           </div>
 
         </div>
+                  
+        <div class="row justify-content-center">
+
+            <div class="form-group col-md-3 mb-2 ">
+                <label class="font-weight-bold">{{__('master.DATE-FROM')}}:</label>
+                <input class="form-control form-control-sm" type="text" id="min" name="min" autocomplete="off">
+            </div>
+
+            <div class="form-group col-md-3 mb-2 ">
+                <label class="font-weight-bold">{{__('master.DATE-TO')}}:</label>
+                <input class="form-control form-control-sm" type="text" id="max" name="max" autocomplete="off">
+            </div>
+
+        </div>
 
         <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
 
@@ -89,10 +103,10 @@
                       <thead class="thead-light">
                         <tr>
                           <th scope="col">#</th>
+                          <th scope="col" class="sort" >{{__('master.APPOINTMENT-DATE')}}</th>
                           <th scope="col" class="sort" >{{__('master.PATIENT-NAME')}}</th>
                           <th scope="col" class="sort" >{{__('master.DOCTOR-NAME')}}</th>
                           <th scope="col" class="sort" >{{__('master.APPOINTMENT-NUMBER')}}</th>
-                          <th scope="col" class="sort" >{{__('master.APPOINTMENT-DATE')}}</th>
                           <th scope="col" class="sort" >{{__('master.BRANCH')}}</th>
                           <th scope="col" class="sort" >{{__('master.SECTOR')}}</th>
                           <th scope="col" class="sort" >{{__('master.STATUS')}}</th>
@@ -104,10 +118,10 @@
       
                         <tr class="parent">
                           <td>{{ $loop->iteration }}</td>
+                          <td><b> {{$appointment->appointment_date}} </b></td>
                           <td><b> {{$appointment->patient->name}} </b></td>
                           <td><b> {{$appointment->doctor->name}} </b></td>
                           <td><b> {{$appointment->appointment_number}} </b></td>
-                          <td><b> {{$appointment->appointment_date}} </b></td>
                           <td><b> {{$appointment->branch->name}} </b></td>
                           <td><b> {{$appointment->sector->name}} </b></td>
                           <td>
@@ -127,10 +141,10 @@
                       <tfoot>
                           <tr>
                               <th class="p-2 search_number"></th>
+                              <th scope="col" class="sort p-2" >{{__('master.APPOINTMENT-DATE')}}</th>
                               <th scope="col" class="sort p-2" >{{__('master.PATIENT-NAME')}}</th>
                               <th scope="col" class="sort p-2" >{{__('master.DOCTOR-NAME')}}</th>
                               <th scope="col" class="sort p-2" >{{__('master.APPOINTMENT-NUMBER')}}</th>
-                              <th scope="col" class="sort p-2" >{{__('master.APPOINTMENT-DATE')}}</th>
                               <th scope="col" class="sort p-2" >{{__('master.BRANCH')}}</th>
                               <th scope="col" class="sort p-2" >{{__('master.SECTOR')}}</th>
                               <th scope="col" class="sort p-2" >{{__('master.STATUS')}}</th>
@@ -253,7 +267,9 @@
                       <thead class="thead-light">
                         <tr>
                           <th scope="col">#</th>
-                          <th scope="col" class="sort" >{{__('master.PRICE')}}</th>
+                          <th scope="col" class="sort" >{{__('master.DATE')}}</th>
+                          <th scope="col" class="sort" >{{__('master.CATEGORY')}}</th>
+                          <th scope="col" class="sort" >{{__('master.AMOUNT')}}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -262,6 +278,8 @@
       
                         <tr class="parent">
                           <td>{{ $loop->iteration }}</td>
+                          <td><b>{{ $expense->date }} </b></td>
+                          <td><b>{{ $expense->category->name }} </b></td>
                           <td><b>{{ $expense->price }} </b></td>
                         </tr>
       
@@ -271,7 +289,10 @@
                       <tfoot>
                           <tr>
                               <th class="p-2 search_number"></th>
-                              <th scope="col" class="sort p-2" >{{__('master.PRICE')}}</th>
+                              <th scope="col" class="sort p-2" >{{__('master.DATE')}}</th>
+                              <th scope="col" class="sort p-2" >{{__('master.CATEGORY')}}</th>
+                              <th scope="col" class="sort p-2" >{{__('master.AMOUNT')}}</th>
+                            </tr>
                           </tr>
                       </tfoot>
                     </table>
@@ -297,8 +318,37 @@
         
 <script>
 
+var minDate, maxDate;
+   
+   // Custom filtering function which will search data in column four between two values
+   $.fn.dataTable.ext.search.push(
+       function( settings, data, dataIndex ) {
+           var min = minDate.val();
+           var max = maxDate.val();
+           var date = new Date( data[1] );
+    
+           if (
+               ( min === null && max === null ) ||
+               ( min === null && date <= max ) ||
+               ( min <= date   && max === null ) ||
+               ( min <= date   && date <= max )
+           ) {
+               return true;
+           }
+           return false;
+       }
+   );
+     
     
    $(document).ready(function() {
+
+       // Create date inputs
+       minDate = new DateTime($('#min'), {
+           format: 'MMMM Do YYYY'
+       });
+       maxDate = new DateTime($('#max'), {
+           format: 'MMMM Do YYYY'
+       });
        
       // Setup - add a text input to each footer cell
       $('#example tfoot th').each( function () {
@@ -331,8 +381,7 @@
                         { extend: 'excel', title: 'Appointments Report', className: 'btn btn-sm btn-success' },
                         { extend: 'print', text: '{{__("master.PRINT")}}', title: 'Appointments Report', className: 'btn btn-sm btn-primary' },
                     ]
-    });
-
+      });
 
       // Setup - add a text input to each footer cell
       $('#example2 tfoot th').each( function () {
@@ -368,40 +417,45 @@
       });
 
 
-        // Setup - add a text input to each footer cell
-        $('#example3 tfoot th').each( function () {
-              var title = $(this).text();
-              $(this).html( '<input type="text" placeholder=" '+title+'" />' );
-          } );
+      // Setup - add a text input to each footer cell
+      $('#example3 tfoot th').each( function () {
+            var title = $(this).text();
+            $(this).html( '<input type="text" placeholder=" '+title+'" />' );
+        } );
 
-          // DataTable
-          var table3 = $('#example3').DataTable({
-              initComplete: function () {
-                  // Apply the search
-                  this.api().columns().every( function () {
-                      var that = this;
+        // DataTable
+        var table3 = $('#example3').DataTable({
+            initComplete: function () {
+                // Apply the search
+                this.api().columns().every( function () {
+                    var that = this;
 
-                      $( 'input', this.footer() ).on( 'keyup change clear', function () {
-                          if ( that.search() !== this.value ) {
-                              that
-                                  .search( this.value )
-                                  .draw();
-                          }
-                      } );
-                  } );
-              },
-              "pagingType": "numbers",
-              dom: 'Blfrtip',
-              
-              buttons: [
-                          { extend: 'copy', className: 'btn btn-sm btn-warning' },
-                          { extend: 'csv', className: 'btn btn-sm btn-info' },
-                          { extend: 'excel', title: 'Expenses Report', className: 'btn btn-sm btn-success' },
-                          { extend: 'print', text: '{{__("master.PRINT")}}', title: 'Expenses Report', className: 'btn btn-sm btn-primary' },
-                      ]
-        });
+                    $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                        if ( that.search() !== this.value ) {
+                            that
+                                .search( this.value )
+                                .draw();
+                        }
+                    } );
+                } );
+            },
+            "pagingType": "numbers",
+            dom: 'Blfrtip',
+            
+            buttons: [
+                        { extend: 'copy', className: 'btn btn-sm btn-warning' },
+                        { extend: 'csv', className: 'btn btn-sm btn-info' },
+                        { extend: 'excel', title: 'Expenses Report', className: 'btn btn-sm btn-success' },
+                        { extend: 'print', text: '{{__("master.PRINT")}}', title: 'Expenses Report', className: 'btn btn-sm btn-primary' },
+                    ]
+      });
 
-
+       // Refilter the table
+       $('#min, #max').on('change', function () {
+           table.draw();
+           table2.draw();
+           table3.draw();
+       });
    
    });
 

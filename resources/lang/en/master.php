@@ -412,6 +412,7 @@ return [
     "ADD-NEW-PRESCRIPTION" => "Add New Prescription",
     "PRESCRIPTION" => "Prescription",
     
+    "AMOUNT" => "Amount",
     
     
 ];
