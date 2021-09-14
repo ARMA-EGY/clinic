@@ -398,4 +398,7 @@ return [
     "PRINT" => "طباعة",
     "REGISTERED-DATE" => "تاريخ التسجيل",
     "NO-DATA-AVAILABLE" => "لا تتوافر بيانات",
+
+    "EXPENSES" => "المصروفات",
+    "STAFF-ACTIONS" => "اجراءات الموظفون",
 ];

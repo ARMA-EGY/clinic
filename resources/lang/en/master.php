@@ -402,4 +402,7 @@ return [
     "PRINT" => "Print",
     "REGISTERED-DATE" => "Registered Date",
     "NO-DATA-AVAILABLE" => "No Data Available",
+
+    "EXPENSES" => "Expenses",
+    "STAFF-ACTIONS" => "Staff Actions",
 ];
