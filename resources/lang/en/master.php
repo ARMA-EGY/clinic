@@ -404,6 +404,7 @@ return [
     "NO-DATA-AVAILABLE" => "No Data Available",
 
     "EXPENSES" => "Expenses",
+    "STAFF-ACTIONS" => "Staff Actions",
 
     "ADD-NEW-EXPENSES" => "Add New Expense",
     "EDIT-EXPENSES" => "Edit Expense",
@@ -424,6 +425,7 @@ return [
     
     
     
+    "AMOUNT" => "Amount",
     
     
 ];

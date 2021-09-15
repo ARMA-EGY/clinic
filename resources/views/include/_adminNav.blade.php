@@ -478,18 +478,32 @@
                         <ul class="nav nav-sm flex-column">
                           
                           <li class="nav-item">
+                              <a href="{{ route('report.branches')}}" class="nav-link nav-link-sub {{request()->routeIs('report.branches') ? 'active' : '' }}">
+                                <i class="far fa-dot-circle"></i>
+                                <span class="sidenav-normal"> {{__('master.BRANCHES')}} </span>
+                              </a>
+                          </li>
+                          
+                          <li class="nav-item">
                               <a href="{{ route('report.doctors')}}" class="nav-link nav-link-sub {{request()->routeIs('report.doctors') ? 'active' : '' }}">
                                 <i class="far fa-dot-circle"></i>
                                 <span class="sidenav-normal"> {{__('master.DOCTORS')}} </span>
                               </a>
                           </li>
                           
-                          {{-- <li class="nav-item">
-                              <a href="{{ route('report.doctors.profit')}}" class="nav-link nav-link-sub {{request()->routeIs('report.doctors.profit') ? 'active' : '' }}">
+                           <li class="nav-item">
+                              <a href="{{ route('doctor.profit')}}" class="nav-link nav-link-sub {{request()->routeIs('doctor.profit') ? 'active' : '' }}">
                                 <i class="far fa-dot-circle"></i>
                                 <span class="sidenav-normal"> {{__('master.DOCTORS-PROFIT')}} </span>
                               </a>
-                          </li> --}}
+                          </li> 
+                          
+                          <li class="nav-item">
+                             <a href="{{ route('staff.actions')}}" class="nav-link nav-link-sub {{request()->routeIs('staff.actions') ? 'active' : '' }}">
+                               <i class="far fa-dot-circle"></i>
+                               <span class="sidenav-normal"> {{__('master.STAFF-ACTIONS')}} </span>
+                             </a>
+                         </li> 
                           
                           <li class="nav-item">
                               <a href="{{ route('report.patients')}}" class="nav-link nav-link-sub {{request()->routeIs('report.patients') ? 'active' : '' }}">

@@ -398,11 +398,13 @@ return [
     "PRINT" => "طباعة",
     "REGISTERED-DATE" => "تاريخ التسجيل",
     "NO-DATA-AVAILABLE" => "لا تتوافر بيانات",
-    "EXPENSES" => "مصاريف",
+
+    "EXPENSES" => "المصروفات",
+    "STAFF-ACTIONS" => "اجراءات الموظفون",
 
     "ADD-NEW-EXPENSES" => "إضافة مصاريف جديدة",
-    "EDIT-EXPENSES" => "تعديل المصاريف",
-    "ALL-EXPENSES" => "كل المصاريف",
+    "EDIT-EXPENSES" => "تعديل المصروفات",
+    "ALL-EXPENSES" => "جميع المصروفات",
 
     "ADD-NEW-PRESCRIPTION" => "إضافة وصفة طبية جديدة",
     "PRESCRIPTION" => "وصفة طبية",
@@ -413,4 +415,6 @@ return [
     "DATE-DISCHARGE" => "تاريخ الخروج",
     "SICK-LEAVE-PERIOD" => "فترة الإجازة المرضية",
     "DIAGNOSIS" => "تشخبص",
+    
+    "AMOUNT" => "المبلغ",
 ];
