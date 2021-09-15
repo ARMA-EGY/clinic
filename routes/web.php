@@ -106,12 +106,16 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
         Route::get('/setting', 'MasterController@setting')->name('admin-setting');
 
         Route::get('/prescriptionprint/{appointment}', 'Admin\Appointment\AppointmentController@printPrescription')->name('prescription-print');
+        Route::get('/printmedicalreport/{appointment}', 'Admin\Appointment\AppointmentController@printMedicalReport')->name('medical-report-print');
 
         Route::post('/appointment-checkout-show', 'Admin\Appointment\AppointmentController@showCheckout')->name('appointment.checkout');
         Route::post('/appointment-checkout-confirm', 'Admin\Appointment\AppointmentController@confirmCheckout')->name('appointment.checkout-confirm');
         Route::post('/appointment-cancel', 'Admin\Appointment\AppointmentController@cancel')->name('appointment.cancel');
         Route::post('/adjustment-show', 'Admin\Inventory\InventoryController@showAdjustment')->name('adjustment.show');
         Route::post('/admin-appointment-addnotes', 'Admin\Appointment\AppointmentController@addNotes')->name('admin-appointment-addnotes');
+
+        Route::post('/admin-appointment-report', 'Admin\Appointment\AppointmentController@addReport')->name('admin-appointment-report');
+
         Route::post('/admin-appointment-prescription', 'Admin\Appointment\AppointmentController@addPrescription')->name('admin-appointment-prescription');
         Route::post('/AppointmentServices-remove', 'Admin\AppointmentServices\AppointmentServicesController@remove')->name('admin-AppointmentServicesController.remove');
 

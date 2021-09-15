@@ -302,7 +302,81 @@
                                     </form>              
                             </div>
                         </div>
-                    </div>                      
+                    </div> 
+                    
+                   
+                    <div class="col-xl-12 order-xl-1">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col-6">
+                                        <h3 class="mb-0">{{__('master.ADD-MEDICAL-REPORT')}}</h3>
+                                    </div>
+                                    <div class="col-lg-6 col-5 text-right">
+                                        <a href="{{ route('medical-report-print', $appointment->id)}}"  class="btn btn-sm btn-neutral"><i class="fa fa-print"></i> {{__('master.PRINT')}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                    <form  class="add_medical_report_form" enctype="multipart/form-data">
+                                        @csrf
+
+                                        <input type="hidden" name="appointment_id" value="{{ $appointment->id }}">
+
+                                        <div class="row">
+                                            <!--=================  DATE HOSPITAL VISIT  =================-->
+                                            <div class="form-group col-md-6 mb-2">
+                                                <label class="font-weight-bold text-uppercase" for="hospital_visit_date">{{__('master.DATE-HOSPITAL-VISIT')}}</label>
+                                                <input type="date" value="{{$appointment->report_hospital_visit_date}}" name="hospital_visit_date" class="form-control" id="hospital_visit_date">
+                                                 
+                                            </div>
+
+                                             <!--=================  DATE ADMISSION  =================-->
+                                            <div class="form-group col-md-6 mb-2">
+                                                <label class="font-weight-bold text-uppercase" for="admission_date">{{__('master.DATE-ADMISSION')}}</label>
+                                                <input type="date" name="admission_date" value="{{$appointment->report_admission_date}}" class="form-control" id="admission_date">
+                
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <!--=================  DATE DISCHARGE  =================-->
+                                            <div class="form-group col-md-6 mb-2">
+                                                <label class="font-weight-bold text-uppercase" for="date_discharge">{{__('master.DATE-DISCHARGE')}}</label>
+                                                <input type="date" name="date_discharge" value="{{$appointment->report_date_discharge}}" class="form-control" id="date_discharge">
+                                                 
+                                            </div>
+
+                                             <!--=================  SICK LEAVE PERIOD  =================-->
+                                            <div class="form-group col-md-6 mb-2">
+                                                <label class="font-weight-bold text-uppercase" for="sick_leave_period">{{__('master.SICK-LEAVE-PERIOD')}}</label>
+                                                <input type="number" name="sick_leave_period" value="{{$appointment->report_sick_leave_period}}" class="form-control" id="sick_leave_period">
+                
+                                            </div>
+                                        </div>                                        
+                                    
+                                        <div class="row">
+                                            <!--=================  DIAGNOSIS  =================-->
+                                            <div class="form-group col-md-12 mb-2">
+                                                <label class="font-weight-bold text-uppercase" for="diagnosis">{{__('master.DIAGNOSIS')}}</label>
+                                                <input id="h" type="hidden" name="diagnosis" value="{{$appointment->report_diagnosis}}">
+                                                    <trix-editor input="h"></trix-editor>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group col-md-6 mb-1">
+                                                <button type="submit" class="btn btn-success">{{__('master.ADD')}}</button>
+                                            </div>
+
+
+                                    </form>              
+                            </div>
+                        </div>
+                    </div>                     
+
+
             @else 
 
                     <div class="col-xl-12">
@@ -346,6 +420,9 @@
                         </div>
 
                     </div>
+
+
+                    
 
             @endif
 
@@ -427,6 +504,9 @@
 
         });
         
+
+
+
         $(document).on('submit', '.add_notes_form', function(e)
         {
             e.preventDefault();
@@ -544,6 +624,66 @@
             });
 
         });
+
+
+        $(document).on('submit', '.add_medical_report_form', function(e)
+        {
+            e.preventDefault();
+            let formData = new FormData(this);
+            $('.submit').prop('disabled', true);
+
+            var head1 	= 'Done';
+            var title1 	= 'Data Changed Successfully. ';
+            var head2 	= 'Oops...';
+            var title2 	= 'Something went wrong, please try again later.';
+
+            $.ajax({
+                url: 		"{{route('admin-appointment-report')}}",
+                method: 	'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success : function(data)
+                    {
+                        $('.submit').prop('disabled', false);
+                        
+                        if (data['status'] == 'true')
+                        {
+                            Swal.fire(
+                                    head1,
+                                    title1,
+                                    'success'
+                                    )
+                            setTimeout(function() {window.location.reload();}, 2000);
+                        }
+                        else if (data['status'] == 'false')
+                        {
+                            Swal.fire(
+                                    head2,
+                                    title2,
+                                    'error'
+                                    )
+                        }
+                    },
+                    error : function(reject)
+                    {
+                        $('.submit').prop('disabled', false);
+
+                        var response = $.parseJSON(reject.responseText);
+                        $.each(response.errors, function(key, val)
+                        {
+                            Swal.fire(
+                                    head2,
+                                    val[0],
+                                    'error'
+                                    )
+                        });
+                    }
+                
+                
+            });
+
+        }); 
             });
     </script>
 @endsection

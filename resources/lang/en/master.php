@@ -410,6 +410,19 @@ return [
     "ALL-EXPENSES" => "All Expense",
     "ADD-NEW-PRESCRIPTION" => "Add New Prescription",
     "PRESCRIPTION" => "Prescription",
+
+    "ADD-MEDICAL-REPORT" => "Medical Report",
+    "DATE-HOSPITAL-VISIT" => "Date of Hospital visit",
+    "DATE-ADMISSION" => "Date of Admission",
+    "DATE-DISCHARGE" => "Date of Discharge",
+    "SICK-LEAVE-PERIOD" => "Sick leave Period",
+    "DIAGNOSIS" => "Diagnosis",
+    
+    
+    
+    
+    
+    
     
     
     

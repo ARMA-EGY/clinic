@@ -406,4 +406,11 @@ return [
 
     "ADD-NEW-PRESCRIPTION" => "إضافة وصفة طبية جديدة",
     "PRESCRIPTION" => "وصفة طبية",
+
+    "ADD-MEDICAL-REPORT" => "تقرير طبي",
+    "DATE-HOSPITAL-VISIT" => "تاريخ زيارة المستشفى",
+    "DATE-ADMISSION" => "تاريخ القبول",
+    "DATE-DISCHARGE" => "تاريخ الخروج",
+    "SICK-LEAVE-PERIOD" => "فترة الإجازة المرضية",
+    "DIAGNOSIS" => "تشخبص",
 ];
