@@ -327,14 +327,14 @@
                                             <!--=================  DATE HOSPITAL VISIT  =================-->
                                             <div class="form-group col-md-6 mb-2">
                                                 <label class="font-weight-bold text-uppercase" for="hospital_visit_date">{{__('master.DATE-HOSPITAL-VISIT')}}</label>
-                                                <input type="date" value="{{$appointment->report_hospital_visit_date}}" name="hospital_visit_date" class="form-control" id="hospital_visit_date">
+                                                <input type="date" value="{{$appointment->report_hospital_visit_date}}" name="hospital_visit_date" class="form-control" id="hospital_visit_date" required>
                                                  
                                             </div>
 
                                              <!--=================  DATE ADMISSION  =================-->
                                             <div class="form-group col-md-6 mb-2">
                                                 <label class="font-weight-bold text-uppercase" for="admission_date">{{__('master.DATE-ADMISSION')}}</label>
-                                                <input type="date" name="admission_date" value="{{$appointment->report_admission_date}}" class="form-control" id="admission_date">
+                                                <input type="date" name="admission_date" value="{{$appointment->report_admission_date}}" class="form-control" id="admission_date" required>
                 
                                             </div>
                                         </div>
@@ -344,14 +344,14 @@
                                             <!--=================  DATE DISCHARGE  =================-->
                                             <div class="form-group col-md-6 mb-2">
                                                 <label class="font-weight-bold text-uppercase" for="date_discharge">{{__('master.DATE-DISCHARGE')}}</label>
-                                                <input type="date" name="date_discharge" value="{{$appointment->report_date_discharge}}" class="form-control" id="date_discharge">
+                                                <input type="date" name="date_discharge" value="{{$appointment->report_date_discharge}}" class="form-control" id="date_discharge" required>
                                                  
                                             </div>
 
                                              <!--=================  SICK LEAVE PERIOD  =================-->
                                             <div class="form-group col-md-6 mb-2">
                                                 <label class="font-weight-bold text-uppercase" for="sick_leave_period">{{__('master.SICK-LEAVE-PERIOD')}}</label>
-                                                <input type="number" name="sick_leave_period" value="{{$appointment->report_sick_leave_period}}" class="form-control" id="sick_leave_period">
+                                                <input type="number" name="sick_leave_period" value="{{$appointment->report_sick_leave_period}}" class="form-control" id="sick_leave_period" required>
                 
                                             </div>
                                         </div>                                        
@@ -360,7 +360,7 @@
                                             <!--=================  DIAGNOSIS  =================-->
                                             <div class="form-group col-md-12 mb-2">
                                                 <label class="font-weight-bold text-uppercase" for="diagnosis">{{__('master.DIAGNOSIS')}}</label>
-                                                <input id="h" type="hidden" name="diagnosis" value="{{$appointment->report_diagnosis}}">
+                                                <input id="h" type="hidden" name="diagnosis" value="{{$appointment->report_diagnosis}}" required>
                                                     <trix-editor input="h"></trix-editor>
                                             </div>
                                         </div>
