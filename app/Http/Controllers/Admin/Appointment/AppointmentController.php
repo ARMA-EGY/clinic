@@ -266,6 +266,7 @@ class AppointmentController extends Controller
 
     public function store(AddRequest $request)
     {
+        $user = auth()->user();
         if(isset($request->patient_id))
         {
             $patient_id = $request->patient_id;

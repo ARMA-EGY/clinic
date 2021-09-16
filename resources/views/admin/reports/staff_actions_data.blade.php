@@ -128,6 +128,8 @@
                           <td>
                             @if ($appointment->status == 'pending')
                                 <span class="badge badge-yellow category-badge">  {{__('master.PENDING')}}</span>
+                            @elseif ($appointment->status == 'partial_paid')
+                                <span class="badge badge-info category-badge">  {{__('master.PARTIAL-PAID')}}</span>
                             @elseif ($appointment->status == 'paid')
                                 <span class="badge badge-success category-badge">  {{__('master.PAID')}}</span>
                             @elseif ($appointment->status == 'cancelled')

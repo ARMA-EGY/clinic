@@ -98,6 +98,8 @@
                     <td>
                       @if ($item->status == 'pending')
                           <span class="badge badge-yellow category-badge">  {{__('master.PENDING')}}</span>
+                      @elseif ($item->status == 'partial_paid')
+                          <span class="badge badge-info category-badge">  {{__('master.PARTIAL-PAID')}}</span>
                       @elseif ($item->status == 'paid')
                           <span class="badge badge-success category-badge">  {{__('master.PAID')}}</span>
                       @elseif ($item->status == 'cancelled')
