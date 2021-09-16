@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Sector;
 use App\Models\Branches;
+use App\Models\Expenses;
+use App\Models\ExpensesCategories;
+use App\Models\DoctorExpenses;
 use App\Http\Requests\Doctors\AddRequest;
 use App\Http\Requests\Doctors\UpdateRequest;
 use App\Http\Requests\Doctors\ChangePassword;
@@ -16,6 +19,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use DB;
 
 use Image;
 
@@ -101,9 +105,17 @@ class DoctorsController extends Controller
     {
         $user = auth()->user();
         $item     = User::where('id', $user->id)->first();
+        $expenses = DoctorExpenses::where('doctor_id',$user->id)->select(
+            DB::raw("(sum(price)) as price"),
+            DB::raw("(DATE_FORMAT(created_at, '%m-%Y')) as month_year")
+            )
+            ->orderBy('created_at','DESC')
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+            ->get();
 
         return view('doctor.profile', [
             'item' => $item,
+            'expenses' => $expenses,
         ]);
     }
 

@@ -157,6 +157,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
         Route::get('/staff-activeinventory', 'Staff\Inventory\InventoryController@active')->name('staff-active-inventory');
         Route::get('/staff-deactiveinventory', 'Staff\Inventory\InventoryController@deactive')->name('staff-deactive-inventory');
 
+        Route::resource('/staff-expenses', 'Staff\Expenses\ExpensesController');
+
+        Route::get('/staff-expenses-delete', 'Staff\Expenses\ExpensesController@delete')->name('staff-expenses-delete');
+
+        Route::resource('/staff-expensescategory', 'Staff\ExpensesCategory\ExpensesCategoryController');
+
         Route::resource('/staff-patients', 'Staff\Patients\PatientsController'); 
         Route::resource('/staff-services', 'Staff\Services\ServicesController');
         Route::resource('/staff-servicescategory', 'Staff\ServicesCategory\ServicesCategoryController');
@@ -213,6 +219,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
         Route::get('/appointment-cancelled', 'Doctor\Appointment\AppointmentController@cancelled')->name('doctor-appointment.cancelled');
         Route::resource('/doctor-AppointmentServices', 'Doctor\AppointmentServices\AppointmentServicesController'); 
         Route::post('/AppointmentServices-remove', 'Doctor\AppointmentServices\AppointmentServicesController@remove')->name('doctor-AppointmentServicesController.remove');
+
+        Route::get('/prescriptionprint/{appointment}', 'Doctor\Appointment\AppointmentController@printPrescription')->name('doctor-prescription-print');
+        Route::get('/printmedicalreport/{appointment}', 'Doctor\Appointment\AppointmentController@printMedicalReport')->name('doctor-medical-report-print');
+
+        Route::post('/doctor-appointment-report', 'Doctor\Appointment\AppointmentController@addReport')->name('doctor-appointment-report');
+        Route::post('/docotor-appointment-prescription', 'Doctor\Appointment\AppointmentController@addPrescription')->name('doctor-appointment-prescription');
         
     });
 

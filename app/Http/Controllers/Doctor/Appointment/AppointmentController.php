@@ -158,6 +158,77 @@ class AppointmentController extends Controller
                 'msg' => 'error'
             ]) ;
         }        
+    }   
+    
+    
+    public function addPrescription(Request $request)
+    {
+		$appointment = appointment::find($request->appointment_id);
+		
+        $appointment->update([
+            'prescription' => $request->prescription,
+        ]);
+
+        if($appointment)
+        {
+            return response()->json([
+                'status' => 'true',
+                'msg' => 'success'
+            ]) ;
+        }
+        else
+        {
+            return response()->json([
+                'status' => 'false',
+                'msg' => 'error'
+            ]) ;
+        }        
+    } 
+
+
+    public function printPrescription(Appointment $appointment)
+    {
+        return view('doctor.appointment.printPrescription',[
+            'appointment' => $appointment,
+        ]);
+    }
+
+    
+    public function addReport(Request $request)
+    {
+		$appointment = appointment::find($request->appointment_id);
+		
+        $appointment->update([
+            'report_hospital_visit_date' => $request->hospital_visit_date,
+            'report_admission_date' => $request->admission_date,
+            'report_date_discharge' => $request->date_discharge,
+            'report_sick_leave_period' => $request->sick_leave_period,
+            'report_diagnosis' => $request->diagnosis,
+        ]);
+
+        if($appointment)
+        {
+            return response()->json([
+                'status' => 'true',
+                'msg' => 'success'
+            ]) ;
+        }
+        else
+        {
+            return response()->json([
+                'status' => 'false',
+                'msg' => 'error'
+            ]) ;
+        }        
+    } 
+   
+
+    
+    public function printMedicalReport(Appointment $appointment)
+    {
+        return view('doctor.appointment.printMedicalReport',[
+            'appointment' => $appointment,
+        ]);
     }    
    
 }

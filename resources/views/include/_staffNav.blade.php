@@ -218,6 +218,48 @@
                 </li>
                 @endif 
 
+
+                <li class="nav-item">
+                      <a class="nav-link collapsed" href="#navbar-expenses" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span class="nav-link-text">{{__('master.EXPENSES')}}</span>
+                      </a>
+                      <div class="collapse" id="navbar-expenses" style="">
+                        <ul class="nav nav-sm flex-column">
+
+                          <li class="nav-item">
+                            <a href="{{ route('staff-expensescategory.create')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-expensescategory.create') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> {{__('master.ADD-NEW-CATEGORY')}} </span>
+                            </a>
+                          </li>
+                          
+                          <li class="nav-item">
+                            <a href="{{ route('staff-expensescategory.index')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-expensescategory.index') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> {{__('master.ALL-CATEGORIES')}} </span>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="{{ route('staff-expenses.create')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-expenses.create') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> {{__('master.ADD-NEW-EXPENSES')}} </span>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="{{ route('staff-expenses.index')}}" class="nav-link nav-link-sub {{request()->routeIs('staff-expenses.index') ? 'active' : '' }}">
+                              <i class="far fa-dot-circle"></i>
+                              <span class="sidenav-normal"> {{__('master.ALL-EXPENSES')}} </span>
+                            </a>
+                          </li>
+                          
+                        </ul>
+                      </div>
+                  </li>
+
+
                 @if(auth()->user()->can('external create appointment') 
                 || auth()->user()->can('external today appointment') 
                 || auth()->user()->can('external done appointment') 

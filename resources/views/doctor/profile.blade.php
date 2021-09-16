@@ -305,7 +305,37 @@
 
 
 
+                    <div class="card card-defualt">
+                        <div class="card-header"><i class="fas fa-briefcase"></i> {{__('master.EXPENSES')}} </div>
+                        <div class="card-body">
 
+                            <div class="table-responsive">
+                                <!-- Projects table -->
+                                <table class="table align-items-center table-flush display nowrap" id="example">
+                                    <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col" class="sort" >{{__('master.PRICE')}}</th>
+                                        <th scope="col" class="sort" >{{__('master.DATE')}} </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    @foreach ($expenses as $expense)
+
+                                    <tr class="parent">
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $expense->price }} </td>
+                                        <td>{{ $expense->month_year }} </td>
+                                    </tr>
+
+                                    @endforeach
+                                    
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
 
 
