@@ -81,6 +81,8 @@ class PatientsController extends Controller
                 'relationship' => $request->relationship,
                 'job' => $request->job,
                 'medical_history' => $request->medical_history,
+                'file_no' => $request->file_no,
+                'insurance_no' => $request->insurance_no,
             ]);
             
             $request->session()->flash('success', 'Patient created successfully');
@@ -126,6 +128,8 @@ class PatientsController extends Controller
             'relationship' => $request->relationship,
             'job' => $request->job,
             'medical_history' => $request->medical_history,
+            'file_no' => $request->file_no,
+            'insurance_no' => $request->insurance_no,
         ]);
 		
 		session()->flash('success', 'Patient updated successfully');

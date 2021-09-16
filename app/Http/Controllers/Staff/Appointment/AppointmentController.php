@@ -63,7 +63,7 @@ class AppointmentController extends Controller
 
     public function showCheckout(Request $request)
     {
-		$appointment            = Appointment::where('id',$request->id)->first();
+		$appointment            = Appointment::with('transaction')->where('id',$request->id)->first();
         $appointmentServices    = appointmentServices::where('appointment_id',$appointment->id)->get();
         $setting                = Setting::first();
         $subtotal               = 0;
@@ -90,6 +90,7 @@ class AppointmentController extends Controller
 
     public function confirmCheckout(Request $request)
     {
+        $user = auth()->user();
 		$appointment            = Appointment::where('id',$request->appointment_id)->first();
         $appointmentServices    = appointmentServices::where('appointment_id',$appointment->id)->get();
         $setting                = Setting::first();
@@ -103,30 +104,98 @@ class AppointmentController extends Controller
 
         $tax            = $setting->tax*$subtotal/100;
         $total          = $subtotal + $tax;
+        $remain         = $total - $request->paid;
 
-        $transaction =  Transaction::create([
-            'appointment_id' => $appointment->id,
-            'patient_id' => $appointment->patient_id,
-            'branch_id' => $appointment->branch_id,
-            'payment_method' => $request->payment_method,
-            'sub_total' => $subtotal,
-            'tax' => $tax,
-            'tax_percentage' => $setting->tax,
-            'total' => $total,
-        ]);
 
-        foreach ($appointmentServices as $appointmentService)
+		$get_transaction      = Transaction::where('appointment_id',$request->appointment_id)->first();
+
+        if($get_transaction )
         {
-            $appointmentService->update([
-                'status' => 'paid',
+            $old_paid       = $get_transaction->paid;
+            $old_remain     = $get_transaction->remain;
+
+            $paid2          = $old_paid + $request->paid;
+            $remain2        = $old_remain - $request->paid;
+
+            if($remain2 > 0)
+            {
+                $status = 'partial_paid';
+            }
+            else
+            {
+                $status = 'paid';
+            }
+
+            foreach ($appointmentServices as $appointmentService)
+            {
+                $appointmentService->update([
+                    'status' => $status,
+                ]);
+            }
+
+            $appointment->update([
+                'status' => $status,
+            ]);
+
+            $get_transaction->update([
+                'paid'              => $paid2,
+                'remain'            => $remain2,
+                'status'            => $status,
+            ]);
+
+            $transaction_details =  TransactionDetails::create([
+                'transaction_id'    => $get_transaction->id,
+                'payment_method'    => $request->payment_method,
+                'amount'            => $request->paid,
             ]);
         }
+        else
+        {
+            if($remain > 0)
+            {
+                $status = 'partial_paid';
+            }
+            else
+            {
+                $status = 'paid';
+            }
 
-        $appointment->update([
-            'status' => 'paid',
-        ]);
+            foreach ($appointmentServices as $appointmentService)
+            {
+                $appointmentService->update([
+                    'status' => $status,
+                ]);
+            }
 
-        if($transaction)
+            $appointment->update([
+                'status' => $status,
+            ]);
+
+            $transaction =  Transaction::create([
+                'appointment_id'    => $appointment->id,
+                'patient_id'        => $appointment->patient_id,
+                'branch_id'         => $appointment->branch_id,
+                'payment_method'    => $request->payment_method,
+                'sub_total'         => $subtotal,
+                'tax'               => $tax,
+                'tax_percentage'    => $setting->tax,
+                'total'             => $total,
+                'paid'              => $request->paid,
+                'remain'            => $remain,
+                'status'            => $status,
+                'user_id'           => $user->id,
+            ]);
+
+            $transaction_details =  TransactionDetails::create([
+                'transaction_id'    => $transaction->id,
+                'payment_method'    => $request->payment_method,
+                'amount'            => $request->paid,
+            ]);
+
+        }
+        
+
+        if($transaction_details)
         {
             return response()->json([
                 'status' => 'true',
@@ -245,6 +314,8 @@ class AppointmentController extends Controller
                 'relationship' => $request->relationship,
                 'job' => $request->job,
                 'medical_history' => $request->medical_history,
+                'file_no' => $request->file_no,
+                'insurance_no' => $request->insurance_no,
             ]);
 
             $patient_id = $patient->id;
@@ -257,6 +328,7 @@ class AppointmentController extends Controller
                 'patient_id' => $patient_id,
                 'appointment_number' => $request->appointment_number,
                 'appointment_date' => $request->appointment_date,
+                'user_id'           => $user->id,
             ]);
             
             if($appointment)

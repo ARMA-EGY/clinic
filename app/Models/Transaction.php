@@ -8,7 +8,7 @@ class Transaction extends Model
 {
     protected $table = 'transactions';
     
-    protected $fillable = ['appointment_id', 'patient_id', 'branch_id', 'sub_total', 'tax', 'tax_percentage', 'total', 'payment_method' , 'user_id'];
+    protected $fillable = ['appointment_id', 'patient_id', 'branch_id', 'sub_total', 'tax', 'tax_percentage', 'total', 'payment_method' , 'user_id' , 'status' , 'paid' , 'remain'];
 
     public function Appointment()
     {

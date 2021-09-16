@@ -3,7 +3,7 @@
 
 <div class="modal-content">
     <div class="modal-header bg-blue">
-        <h4 class="modal-title text-white text-left"><i class="fas fa-money-bill-wave"></i> @if ($appointment->status == 'done') {{__('master.TRANSACTION')}} @else {{__('master.CHECKOUT')}}  @endif </h4>
+        <h4 class="modal-title text-white text-left"><i class="fas fa-money-bill-wave"></i> @if ($appointment->status == 'paid') {{__('master.TRANSACTION')}} @else {{__('master.CHECKOUT')}}  @endif </h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     </div>
 
@@ -67,11 +67,35 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
+                    @if (!empty($appointment->transaction))
+                        <div class="table-responsive rounded">
+                            <table class="table align-items-center table-light table-flush rounded">
+                                <tbody class="list">
+                                        <tr class="parent">
+                                            <td></td>
+                                            <td><b>{{__('master.PAID')}}</b></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{$appointment->transaction->paid}}</td>
+                                        </tr>
+                                        <tr class="parent">
+                                            <td></td>
+                                            <td><b>{{__('master.REMAIN')}}</b></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{$appointment->transaction->remain}}</td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
+
                     <input type="hidden" name="appointment_id" value="{{$appointment->id}}">
 
-                    @if ($appointment->status == 'done')
+                    @if ($appointment->status == 'paid')
                     @else 
+                    <div class="row">
                         <div class="form-group col-md-6 mb-4 text-left">
                             <label class="font-weight-bold text-uppercase">{{__('master.PAYMENT-METHOD')}}</label>
                                 <select class="form-control" name="payment_method" required>
@@ -82,6 +106,11 @@
                                     <option value="sadad">{{__('master.SADAD')}}</option>
                                 </select>
                         </div>
+                        <div class="form-group col-md-6 mb-4 text-left">
+                            <label class="font-weight-bold text-uppercase">{{__('master.AMOUNT')}}</label>
+                            <input type="number" step="0.1" min="1" placeholder="0.00"  max="{{ !empty($appointment->transaction) ? $appointment->transaction->remain: $total }}" class="form-control" name="paid" required>
+                        </div>
+                    </div>
                     @endif
 
             @else 
@@ -90,9 +119,9 @@
 
             <div class="modal-footer">
                 @if ($appointmentServices->count() > 0)
-                    @if ($appointment->status == 'done')
+                    @if ($appointment->status == 'paid')
                     @else
-                        <button type="submit" class="btn btn-success btn-sm submit">{{__('master.CONFIRM')}}</button>
+                        <button type="submit" class="btn btn-success btn-sm submit">{{__('master.PAY')}}</button>
                     @endif
                 @endif
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">{{__('master.CANCEL')}}</button>

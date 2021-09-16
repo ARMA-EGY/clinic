@@ -25,7 +25,7 @@
             </div>
 
             <div class="col-lg-6 col-5 text-right">
-              <a href="{{ route('expenses.create')}}" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> {{__('master.ADD-NEW-SERVICE')}}</a>
+              <a href="{{ route('expenses.create')}}" class="btn btn-sm btn-neutral"><i class="fa fa-plus"></i> {{__('master.ADD-NEW-EXPENSES')}}</a>
             </div>
 
             @if(session()->has('success'))	
@@ -66,8 +66,8 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col" class="sort" >{{__('master.NAME')}}</th>
-                    <th scope="col" class="sort" >{{__('master.PRICE')}}</th>
                     <th scope="col" class="sort" >{{__('master.CATEGORY')}} </th>
+                    <th scope="col" class="sort" >{{__('master.AMOUNT')}}</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -78,10 +78,10 @@
                   <tr class="parent">
                     <td>{{ $loop->iteration }}</td>
                     <td><b> {{  $item->name }} </b></td>
-                    <td>{{ $item->price }} </td>
                     <td>{{ $item->category->name }} </td>
+                    <td>{{ $item->price }} </td>
                     <td>
-                      <a href="{{ route('services.edit', $item->id)}}" class="btn btn-primary btn-sm mx-1"> <i class="fa fa-edit"></i> {{__('master.EDIT')}} </a>
+                      <a data-toggle="tooltip" data-placement="top" title="{{__('master.REMOVE')}}" href="#" class="btn btn-danger btn-sm mx-1 px-3"> <i class="fa fa-times"></i> </a>
                     </td>
                   </tr>
 

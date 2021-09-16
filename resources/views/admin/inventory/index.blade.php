@@ -86,6 +86,7 @@
                     <th scope="col" class="sort" >{{__('master.PRICE')}}</th>
                     <th scope="col" class="sort" >{{__('master.EXPIRE-DATE')}}</th>
                     <th scope="col" class="sort" >{{__('master.BRANCH')}}</th>
+                    <th scope="col" class="sort" >{{__('master.MEDICATION-PLACE')}}</th>
                     <th scope="col">{{__('master.STATUS')}}</th>
                     <th scope="col"></th>
                   </tr>
@@ -101,6 +102,7 @@
                     <td>{{ $item->price }} </td>
                     <td>{{ $item->expire_date }} </td>
                     <td>{{ $item->branch->name }} </td>
+                    <td>{{ $item->place }} </td>
                     <td>
                       <div class="col-3">
                         <input type="checkbox" class="check_off item_check" data-id="{{$item->id}}" data-url="{{route('inventory-disable')}}" data-toggle="toggle" data-size="sm"  @if ($item->disable == '0') checked @endif>

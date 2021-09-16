@@ -112,9 +112,9 @@
                         <div class="row">
                             <!--=================  Branch  =================-->
                             <div class="form-group col-md-6 mb-2">
-                            <label class="font-weight-bold text-uppercase" for="body_part">Branch</label>
+                              <label class="font-weight-bold text-uppercase" for="body_part">{{__('master.SELECT-BRANCH')}}</label>
                                 <select class="form-control selectpicker" data-live-search="true" name="branch_id">
-                                    <option>-SELECT-</option>
+                                    <option>-{{__('master.SELECT')}}-</option>
                   
                                     @if(isset($item))
                                       @foreach($branches as $branch)
@@ -135,6 +135,19 @@
                                 @enderror
 
                             </div>
+
+                            <!--=================  Place  =================-->
+                            <div class="form-group col-md-6 mb-4 text-left">
+                              <label class="font-weight-bold text-uppercase">{{__('master.MEDICATION-PLACE')}}</label>
+                              <input type="text" name="place" class="@error('place') is-invalid @enderror form-control" placeholder="{{__('master.MEDICATION-PLACE')}}" value="{{ isset($item) ? $item->place : old('place') }}" required>
+                          
+                              @error('place')
+                                  <div>
+                                      <span class="text-danger">{{ $message }}</span>
+                                  </div>
+                              @enderror
+          
+                          </div>
                         </div>                        
                         <hr class="my-3">
         

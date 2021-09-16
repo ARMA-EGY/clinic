@@ -32,6 +32,8 @@
                     <td>
                       @if ($item->status == 'pending')
                           <span class="badge badge-yellow category-badge">  {{__('master.PENDING')}}</span>
+                      @elseif ($item->status == 'partial_paid')
+                          <span class="badge badge-info category-badge">  {{__('master.PARTIAL-PAID')}}</span>
                       @elseif ($item->status == 'paid')
                           <span class="badge badge-success category-badge">  {{__('master.PAID')}}</span>
                       @elseif ($item->status == 'cancelled')
@@ -45,6 +47,8 @@
                         @if ($item->status == 'pending')
                           <button data-toggle="tooltip" data-placement="top" title="{{__('master.CHECKOUT')}}" class="btn btn-success btn-sm mx-1 px-3 get-checkout" data-id="{{$item->id}}" @if ($item->status == 'paid') disabled @endif> @if ($item->status == 'paid') <i class="fas fa-check-circle"></i> @else <i class="fas fa-money-bill-wave"></i> @endif  </button>
                           <button data-toggle="tooltip" data-placement="top" title="{{__('master.CANCEL')}}" class="btn btn-danger btn-sm mx-1 px-3 cancel-appointment" data-id="{{$item->id}}" @if ($item->status == 'cancelled') disabled @endif> <i class="fa fa-trash"></i> </button>
+                        @elseif ($item->status == 'partial_paid')
+                          <button data-toggle="tooltip" data-placement="top" title="{{__('master.CHECKOUT')}}" class="btn btn-success btn-sm mx-1 px-3 get-checkout" data-id="{{$item->id}}" @if ($item->status == 'paid') disabled @endif> @if ($item->status == 'paid') <i class="fas fa-check-circle"></i> @else <i class="fas fa-money-bill-wave"></i> @endif  </button>
                         @elseif ($item->status == 'paid')
                           <button data-toggle="tooltip" data-placement="top" title="{{__('master.CHECKOUT')}}" class="btn btn-success btn-sm mx-1 px-3 get-checkout" data-id="{{$item->id}}" @if ($item->status == 'paid') disabled @endif> @if ($item->status == 'paid') <i class="fas fa-check-circle"></i> @else <i class="fas fa-money-bill-wave"></i> @endif  </button>
                         @endif
@@ -55,6 +59,8 @@
                         @if ($item->status == 'pending')
                           <button data-toggle="tooltip" data-placement="top" title="{{__('master.CHECKOUT')}}" class="btn btn-success btn-sm mx-1 px-3 get-checkout" data-id="{{$item->id}}" @if ($item->status == 'paid') disabled @endif> @if ($item->status == 'paid') <i class="fas fa-check-circle"></i> @else <i class="fas fa-money-bill-wave"></i> @endif  </button>
                           <button data-toggle="tooltip" data-placement="top" title="{{__('master.CANCEL')}}" class="btn btn-danger btn-sm mx-1 px-3 cancel-appointment" data-id="{{$item->id}}" @if ($item->status == 'cancelled') disabled @endif> <i class="fa fa-trash"></i> </button>
+                        @elseif ($item->status == 'partial_paid')
+                          <button data-toggle="tooltip" data-placement="top" title="{{__('master.CHECKOUT')}}" class="btn btn-success btn-sm mx-1 px-3 get-checkout" data-id="{{$item->id}}" @if ($item->status == 'paid') disabled @endif> @if ($item->status == 'paid') <i class="fas fa-check-circle"></i> @else <i class="fas fa-money-bill-wave"></i> @endif  </button>
                         @elseif ($item->status == 'paid')
                           <button data-toggle="tooltip" data-placement="top" title="{{__('master.CHECKOUT')}}" class="btn btn-success btn-sm mx-1 px-3 get-checkout" data-id="{{$item->id}}" @if ($item->status == 'paid') disabled @endif> @if ($item->status == 'paid') <i class="fas fa-check-circle"></i> @else <i class="fas fa-money-bill-wave"></i> @endif  </button>
                         @endif

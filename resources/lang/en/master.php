@@ -419,13 +419,16 @@ return [
     "SICK-LEAVE-PERIOD" => "Sick leave Period",
     "DIAGNOSIS" => "Diagnosis",
     
-    
-    
-    
-    
-    
-    
     "AMOUNT" => "Amount",
+    "PARTIAL-PAID" => "Partial Paid",
+    "PAY" => "Pay",
+    "FILE-NUMBER" => "File Number",
+    "INSURANCE-NUMBER" => "Insurance Number",
+    "MEDICATION-PLACE" => "Medication Place",
     
+    "FROM-DATE" => "From Date",
+    "SIGNATURE" => "Signature",
+    "MEDICAL-MANAGER" => "Medical Manager",
+    "GENERAL-MANAGER" => "General Manager",
     
 ];

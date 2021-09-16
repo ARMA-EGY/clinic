@@ -410,11 +410,21 @@ return [
     "PRESCRIPTION" => "وصفة طبية",
 
     "ADD-MEDICAL-REPORT" => "تقرير طبي",
-    "DATE-HOSPITAL-VISIT" => "تاريخ زيارة المستشفى",
-    "DATE-ADMISSION" => "تاريخ القبول",
-    "DATE-DISCHARGE" => "تاريخ الخروج",
+    "DATE-HOSPITAL-VISIT" => "تاريخ مراجعة المستشفى",
+    "DATE-ADMISSION" => "تاريخ دخول المستشفى",
+    "DATE-DISCHARGE" => "تاريخ الخروج من المستشفى",
     "SICK-LEAVE-PERIOD" => "فترة الإجازة المرضية",
-    "DIAGNOSIS" => "تشخبص",
+    "DIAGNOSIS" => "التشخيص",
     
     "AMOUNT" => "المبلغ",
+    "PARTIAL-PAID" => "دفع جزئي",
+    "PAY" => "دفع",
+    "FILE-NUMBER" => "رقم الملف",
+    "INSURANCE-NUMBER" => "رقم بوليصة التأمين",
+    "MEDICATION-PLACE" => "مكان صرف الدواء",
+    
+    "FROM-DATE" => "اعتباراً من تاريخ",
+    "SIGNATURE" => "التوقيع",
+    "MEDICAL-MANAGER" => "المدير الطبي",
+    "GENERAL-MANAGER" => "المدير العام",
 ];

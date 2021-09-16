@@ -104,6 +104,7 @@ class InventoryController extends Controller
                 'price' => $request->price,
                 'expire_date' => $request->expire_date,
                 'branch_id' => $request->branch_id,
+                'place' => $request->place,
             ]);
             
             $request->session()->flash('success', 'Item created successfully');
@@ -135,6 +136,7 @@ class InventoryController extends Controller
             'price' => $request->price,
             'expire_date' => $request->expire_date,
             'branch_id' => $request->branch_id,
+            'place' => $request->place,
         ]);
 		
 		session()->flash('success', 'Item updated successfully');

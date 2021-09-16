@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="header-body">
                 <div class="row align-items-center py-4">
-                    <div class="col-lg-6 col-md-7">
+                    <div class="col-lg-6 col-md-7 text-left">
                         <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
@@ -162,71 +162,71 @@
                             </div>
                             </div>
                             <div class="card-body">
-                                    <form  class="add_service_form" enctype="multipart/form-data">
-                                        @csrf
+                                <form class="add_service_form text-left" enctype="multipart/form-data">
+                                    @csrf
 
-                                        <input type="hidden" name="appointment_id" value="{{ $appointment->id }}">
+                                    <input type="hidden" name="appointment_id" value="{{ $appointment->id }}">
 
-                                        <div class="row">
+                                    <div class="row">
 
-                                            <!--=================  Service  =================-->
-                                            <div class="form-group col-md-4 mb-2">
-                                            <label class="font-weight-bold text-uppercase" for="service">{{__('master.SERVICES')}}</label>
-                                                <select id="service" class="form-control" name="service" required>
-                                                        @foreach($services as $service)
-                                                            <option value="{{ $service->id }}">{{ $service->name }}</option>
-                                                        @endforeach
-                                                </select>
-
-                                                @error('service')
-                                                <div>
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                </div>
-                                                @enderror
-
-                                            </div>
-
-                                            <!--=================  Body Part  =================-->
-                                            <div class="form-group col-md-4 mb-2">
-                                            <label class="font-weight-bold text-uppercase" for="body_part">{{__('master.BODY-PARTS')}}</label>
-                                                <select class="form-control selectpicker" data-live-search="true" name="body_part">
-                                                    <option value="">{{__('master.SELECT')}}</option>
-                                                    @foreach($bodyparts as $bodypart)
-                                                    
-                                                        <option value="{{$bodypart->name}}">{{$bodypart->name}}</option>
-                                                    
+                                        <!--=================  Service  =================-->
+                                        <div class="form-group col-md-4 mb-2">
+                                        <label class="font-weight-bold text-uppercase" for="service">{{__('master.SERVICES')}}</label>
+                                            <select id="service" class="form-control" name="service" required>
+                                                    @foreach($services as $service)
+                                                        <option value="{{ $service->id }}">{{ $service->name }}</option>
                                                     @endforeach
+                                            </select>
 
-                                                </select>
+                                            @error('service')
+                                            <div>
+                                                <span class="text-danger">{{ $message }}</span>
+                                            </div>
+                                            @enderror
 
-                                                @error('body_part')
+                                        </div>
+
+                                        <!--=================  Body Part  =================-->
+                                        <div class="form-group col-md-4 mb-2">
+                                        <label class="font-weight-bold text-uppercase" for="body_part">{{__('master.BODY-PARTS')}}</label>
+                                            <select class="form-control selectpicker" data-live-search="true" name="body_part">
+                                                <option value="">{{__('master.SELECT')}}</option>
+                                                @foreach($bodyparts as $bodypart)
+                                                
+                                                    <option value="{{$bodypart->name}}">{{$bodypart->name}}</option>
+                                                
+                                                @endforeach
+
+                                            </select>
+
+                                            @error('body_part')
+                                            <div>
+                                                <span class="text-danger">{{ $message }}</span>
+                                            </div>
+                                            @enderror
+
+                                        </div>
+
+                                        <!--=================  Notes  =================-->
+                                        <div class="form-group col-md-4 mb-4 text-left">
+                                            <label class="font-weight-bold text-uppercase">{{__('master.NOTES')}}</label>
+                                            <input type="text" name="notes" placeholder="Add notes" class="@error('name') is-invalid @enderror form-control" >
+                                        
+                                            @error('notes')
                                                 <div>
                                                     <span class="text-danger">{{ $message }}</span>
                                                 </div>
-                                                @enderror
-
-                                            </div>
-
-                                            <!--=================  Notes  =================-->
-                                            <div class="form-group col-md-4 mb-4 text-left">
-                                                <label class="font-weight-bold text-uppercase">{{__('master.NOTES')}}</label>
-                                                <input type="text" name="notes" placeholder="Add notes" class="@error('name') is-invalid @enderror form-control" >
-                                            
-                                                @error('notes')
-                                                    <div>
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                    </div>
-                                                @enderror
-                            
-                                            </div>
+                                            @enderror
+                        
                                         </div>
-                                    
-                                        <div class="form-group col-md-6 mb-1">
-                                                <button type="submit" class="btn btn-success">{{__('master.ADD')}}</button>
-                                            </div>
+                                    </div>
+                                
+                                    <div class="form-group col-md-6 mb-1">
+                                            <button type="submit" class="btn btn-success">{{__('master.SAVE')}}</button>
+                                        </div>
 
 
-                                    </form>              
+                                </form>              
                             </div>
                         </div>
                     </div>
@@ -241,26 +241,26 @@
                             </div>
                             </div>
                             <div class="card-body">
-                                    <form  class="add_notes_form" enctype="multipart/form-data">
-                                        @csrf
+                                <form class="add_notes_form text-left" enctype="multipart/form-data">
+                                    @csrf
 
-                                        <input type="hidden" name="appointment_id" value="{{ $appointment->id }}">
+                                    <input type="hidden" name="appointment_id" value="{{ $appointment->id }}">
 
-                                        <div class="row">
-                                            <!--=================  Notes  =================-->
-                                            <div class="form-group col-md-12 mb-2">
-                                                <label class="font-weight-bold text-uppercase" for="notes">{{__('master.NOTES')}}</label>
-                                                <input id="x" type="hidden" name="notes" value="{{$appointment->notes}}">
-                                                    <trix-editor input="x"></trix-editor>
-                                            </div>
+                                    <div class="row">
+                                        <!--=================  Notes  =================-->
+                                        <div class="form-group col-md-12 mb-2">
+                                            <label class="font-weight-bold text-uppercase" for="notes">{{__('master.NOTES')}}</label>
+                                            <input id="x" type="hidden" name="notes" value="{{$appointment->notes}}">
+                                                <trix-editor input="x"></trix-editor>
                                         </div>
-                                    
-                                        <div class="form-group col-md-6 mb-1">
-                                                <button type="submit" class="btn btn-success">{{__('master.ADD')}}</button>
-                                            </div>
+                                    </div>
+                                
+                                    <div class="form-group col-md-6 mb-1">
+                                            <button type="submit" class="btn btn-success">{{__('master.SAVE')}}</button>
+                                        </div>
 
 
-                                    </form>              
+                                </form>              
                             </div>
                         </div>
                     </div>  
@@ -280,26 +280,26 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                    <form  class="add_prescription_form" enctype="multipart/form-data">
-                                        @csrf
+                                <form class="add_prescription_form text-left" enctype="multipart/form-data">
+                                    @csrf
 
-                                        <input type="hidden" name="appointment_id" value="{{ $appointment->id }}">
+                                    <input type="hidden" name="appointment_id" value="{{ $appointment->id }}">
 
-                                        <div class="row">
-                                            <!--=================  Prescription  =================-->
-                                            <div class="form-group col-md-12 mb-2">
-                                                <label class="font-weight-bold text-uppercase" for="prescription">{{__('master.PRESCRIPTION')}}</label>
-                                                <input id="f" type="hidden" name="prescription" value="{{$appointment->prescription}}">
-                                                    <trix-editor input="f"></trix-editor>
-                                            </div>
+                                    <div class="row">
+                                        <!--=================  Prescription  =================-->
+                                        <div class="form-group col-md-12 mb-2">
+                                            <label class="font-weight-bold text-uppercase" for="prescription">{{__('master.PRESCRIPTION')}}</label>
+                                            <input id="f" type="hidden" name="prescription" value="{{$appointment->prescription}}">
+                                                <trix-editor input="f"></trix-editor>
                                         </div>
-                                    
-                                        <div class="form-group col-md-6 mb-1">
-                                                <button type="submit" class="btn btn-success">{{__('master.ADD')}}</button>
-                                            </div>
+                                    </div>
+                                
+                                    <div class="form-group col-md-6 mb-1">
+                                            <button type="submit" class="btn btn-success">{{__('master.SAVE')}}</button>
+                                        </div>
 
 
-                                    </form>              
+                                </form>              
                             </div>
                         </div>
                     </div> 
@@ -318,7 +318,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                    <form  class="add_medical_report_form" enctype="multipart/form-data">
+                                    <form class="add_medical_report_form text-left" enctype="multipart/form-data">
                                         @csrf
 
                                         <input type="hidden" name="appointment_id" value="{{ $appointment->id }}">
@@ -367,7 +367,7 @@
 
 
                                         <div class="form-group col-md-6 mb-1">
-                                                <button type="submit" class="btn btn-success">{{__('master.ADD')}}</button>
+                                                <button type="submit" class="btn btn-success">{{__('master.SAVE')}}</button>
                                             </div>
 
 

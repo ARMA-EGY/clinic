@@ -204,6 +204,22 @@
                         <hr class="my-3">  
 
                         <div class="row">
+                            <!--=================  File Number  =================-->
+                            <div class="form-group col-md-4 mb-2 text-left">
+                                <label class="font-weight-bold text-uppercase">{{__('master.FILE-NUMBER')}}</label>
+                                <input type="text" name="file_no" class="form-control" placeholder="{{__('master.FILE-NUMBER')}}" required>
+                            </div>
+
+                            <!--=================  Insurance Number  =================-->
+                            <div class="form-group col-md-4 mb-2 text-left">
+                                <label class="font-weight-bold text-uppercase">{{__('master.INSURANCE-NUMBER')}}</label>
+                                <input type="text" name="insurance_no" class="@error('insurance_no') is-invalid @enderror form-control"  placeholder="{{__('master.INSURANCE-NUMBER')}}" required>
+                            </div>
+
+                        </div>
+                        <hr class="my-3">
+
+                        <div class="row">
 
                             <!--================= Medical History  =================-->
                             <div class="form-group col-md-12 mb-2">

@@ -97,7 +97,6 @@
                         </div>
                         <hr class="my-3">
 
-
                         <div class="row">
 
                             <!--=================  dateofbirth  =================-->
@@ -154,7 +153,6 @@
 
                         </div>
                         <hr class="my-3">
-
 
                         <div class="row">
 
@@ -218,6 +216,40 @@
                         </div>
                         <hr class="my-3">  
 
+                        <div class="row">
+                            <!--=================  File Number  =================-->
+                            <div class="form-group col-md-4 mb-2 text-left">
+                                <label class="font-weight-bold text-uppercase">{{__('master.FILE-NUMBER')}}</label>
+                                <input type="text" name="file_no" class="@error('file_no') is-invalid @enderror form-control"
+                                       placeholder="{{__('master.FILE-NUMBER')}}"
+                                       value="{{ isset($patient) ? $patient->file_no : old('file_no') }}" required>
+
+                                @error('file_no')
+                                <div>
+                                    <span class="text-danger">{{ $message }}</span>
+                                </div>
+                                @enderror
+
+                            </div>
+
+                            <!--=================  Insurance Number  =================-->
+                            <div class="form-group col-md-4 mb-2 text-left">
+                                <label class="font-weight-bold text-uppercase">{{__('master.INSURANCE-NUMBER')}}</label>
+                                <input type="text" name="insurance_no"
+                                       class="@error('insurance_no') is-invalid @enderror form-control"
+                                       placeholder="{{__('master.INSURANCE-NUMBER')}}"
+                                       value="{{ isset($patient) ? $patient->insurance_no : old('insurance_no') }}" required>
+
+                                @error('insurance_no')
+                                <div>
+                                    <span class="text-danger">{{ $message }}</span>
+                                </div>
+                                @enderror
+
+                            </div>
+
+                        </div>
+                        <hr class="my-3">
 
                         <div class="row">
 

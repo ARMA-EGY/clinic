@@ -8,7 +8,7 @@ class Patients extends Model
 {
     protected $table = 'patient';
     
-    protected $fillable = ['name', 'phone', 'identifiation', 'dateofbirth', 'age', 'gender', 'nationality' , 'job', 'relationship', 'medical_history'];
+    protected $fillable = ['name', 'phone', 'identifiation', 'dateofbirth', 'age', 'gender', 'nationality' , 'job', 'relationship', 'medical_history', 'file_no', 'insurance_no'];
 
     public function Appointment()
     {

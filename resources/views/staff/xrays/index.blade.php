@@ -79,7 +79,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td><b> {{  $item->name }} </b></td>
                     <td><b>{{ $item->patient->name }} </b></td>
-                    <td><b>{{ $item->created_at->format('d-m-Y')}} </b></td>
+                    <td><b>{{ $item->created_at->format('Y-m-d h:i A')}} </b></td>
                     <td>
                       <a data-toggle="tooltip" data-placement="top" title="{{__('master.EDIT')}}" href="{{ route('staff-xrays.edit', $item->id)}}" class="btn btn-secondary btn-sm mx-1 px-3"> <i class="fa fa-edit"></i> </a>
                     </td>

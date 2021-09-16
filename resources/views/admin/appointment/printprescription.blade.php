@@ -10,6 +10,7 @@
             var divContents = document.getElementById("printDiv").innerHTML;
             var a = window.open('', '', 'height=500, width=500');
             a.document.write('<html>');
+            a.document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">');
             a.document.write('<body >');
             a.document.write(divContents);
             a.document.write('</body></html>');
@@ -22,7 +23,7 @@
         <div class="container-fluid">
             <div class="header-body">
                 <div class="row align-items-center py-4">
-                    <div class="col-lg-6 col-md-7">
+                    <div class="col-lg-6 col-md-7 text-left">
                         <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fas fa-home"></i></a></li>
@@ -34,7 +35,7 @@
                     </div>
 
             <div class="col-lg-6 col-5 text-right">
-              <a href=""  onclick="printDiv()" class="btn btn-sm btn-neutral"><i class="fa fa-print"></i> {{__('master.PRINT')}}</a>
+              <a href="#" onclick="printDiv()" class="btn btn-sm btn-neutral"><i class="fa fa-print"></i> {{__('master.PRINT')}}</a>
             </div>
             
                     @if(session()->has('success'))
@@ -56,13 +57,30 @@
     <!-- Page content -->
     <div class="container-fluid">
         <div class="row" id="printDiv">
-       
-            {!! $appointment->prescription !!}
+
+            <div style="padding: 30px 10px;">
+                <h3 style="text-align: center;border: 2px solid #000;width: fit-content; margin: 10px auto; padding: 5px 20px; border-radius: 10px;">{{__('master.PRESCRIPTION')}}</h3>
+
+                
+                <div style="padding: 10px;border: 2px solid #000; border-radius: 10px; height: 900px;">
+                    <div class="row" @if (LaravelLocalization::getCurrentLocale() == 'ar') dir="rtl" style="text-align: right"  @elseif (LaravelLocalization::getCurrentLocale() == 'en')  dir="ltr" style="text-align: left"  @endif>
+                        <h3 class="col-6">{{__('master.PATIENT-NAME')}}: {{$appointment->patient->name}} </h3>
+                        <h3 class="col-6">{{__('master.FILE-NUMBER')}}: {{$appointment->patient->file_no}}  </h3>
+                        <h3 class="col-6">{{__('master.DOCTOR-NAME')}}: {{$appointment->doctor->name}} </h3>
+                        <h3 class="col-6">{{__('master.AGE')}}: {{$appointment->patient->age}} </h3>
+                        <h3 class="col-6">{{__('master.DATE')}}:  <span class="mx-2"></span> /<span class="mx-2"></span>/   </h3>
+                    </div>
+                    <hr style="margin-top: 2rem; margin-bottom: 2rem; border: 0; border-top: 2px solid rgba(0, 0, 0, .1);">
+                    <div class="row" @if (LaravelLocalization::getCurrentLocale() == 'ar') dir="rtl" style="text-align: right"  @elseif (LaravelLocalization::getCurrentLocale() == 'en')  dir="ltr" style="text-align: left"  @endif>
+                        <h2 class="col-6">{{__('master.DIAGNOSIS')}}  </h2>
+                    </div>
+                    <div class="py-4">
+                        {!! $appointment->prescription !!}
+                    </div>
+                </div>
+            </div>
 
         </div>
-
-
-
         
     </div>
 

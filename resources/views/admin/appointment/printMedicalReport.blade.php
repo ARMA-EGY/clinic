@@ -10,6 +10,7 @@
             var divContents = document.getElementById("printDiv").innerHTML;
             var a = window.open('', '', 'height=500, width=500');
             a.document.write('<html>');
+            a.document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">');
             a.document.write('<body >');
             a.document.write(divContents);
             a.document.write('</body></html>');
@@ -34,7 +35,7 @@
                     </div>
 
             <div class="col-lg-6 col-5 text-right">
-              <a href=""  onclick="printDiv()" class="btn btn-sm btn-neutral"><i class="fa fa-print"></i> {{__('master.PRINT')}}</a>
+              <a href="#" onclick="printDiv()" class="btn btn-sm btn-neutral"><i class="fa fa-print"></i> {{__('master.PRINT')}}</a>
             </div>
             
                     @if(session()->has('success'))
@@ -56,8 +57,41 @@
     <!-- Page content -->
     <div class="container-fluid">
         <div class="row" id="printDiv">
-       
-            {!! $appointment->report_diagnosis !!}
+
+            <div style="padding: 30px 10px;">
+                <h3 style="text-align: center;border: 2px solid #000;width: fit-content; margin: 10px auto; padding: 5px 20px; border-radius: 10px;">{{__('master.ADD-MEDICAL-REPORT')}}</h3>
+
+                
+                <div style="padding: 10px;border: 2px solid #000; border-radius: 10px; height: 900px;">
+                    <div class="row" @if (LaravelLocalization::getCurrentLocale() == 'ar') dir="rtl" style="text-align: right"  @elseif (LaravelLocalization::getCurrentLocale() == 'en')  dir="ltr" style="text-align: left"  @endif>
+                        <h4 class="col-12">{{__('master.PATIENT-NAME')}}: {{$appointment->patient->name}} </h4>
+                        <h4 class="col-12">{{__('master.FILE-NUMBER')}}: {{$appointment->patient->file_no}}  </h4>
+                        <h4 class="col-12">{{__('master.AGE')}}: {{$appointment->patient->age}} </h4>
+                        <h4 class="col-12">{{__('master.NATIONALITY')}}: {{$appointment->patient->nationality}} </h4>
+                        <h4 class="col-12">{{__('master.JOB')}}: {{$appointment->patient->job}} </h4>
+                        <h4 class="col-12">{{__('master.DATE-HOSPITAL-VISIT')}}: {{$appointment->hospital_visit_date}} </h4>
+                        <h4 class="col-12">{{__('master.DATE-ADMISSION')}}: {{$appointment->report_admission_date}}  </h4>
+                        <h4 class="col-12">{{__('master.DATE-DISCHARGE')}}: {{$appointment->report_date_discharge}} </h4>
+                    </div>
+                    <hr style="margin-top: 2rem; margin-bottom: 2rem; border: 0; border-top: 2px solid rgba(0, 0, 0, .1);">
+                    <div class="row" @if (LaravelLocalization::getCurrentLocale() == 'ar') dir="rtl" style="text-align: right"  @elseif (LaravelLocalization::getCurrentLocale() == 'en')  dir="ltr" style="text-align: left"  @endif>
+                        <h4 class="col-6">{{__('master.DIAGNOSIS')}}  </h4>
+                    </div>
+                    <div class="py-4">
+                    {!! $appointment->report_diagnosis !!}
+                    </div>
+                    <hr style="margin-top: 2rem; margin-bottom: 2rem; border: 0; border-top: 2px solid rgba(0, 0, 0, .1);">
+                    <div class="row" @if (LaravelLocalization::getCurrentLocale() == 'ar') dir="rtl" style="text-align: right"  @elseif (LaravelLocalization::getCurrentLocale() == 'en')  dir="ltr" style="text-align: left"  @endif>
+                        
+                        <h4 class="col-12">{{__('master.SICK-LEAVE-PERIOD')}}: {{$appointment->report_sick_leave_period}} </h4>
+                        <h4 class="col-12">{{__('master.FROM-DATE')}}:  <span class="mx-2"></span> /<span class="mx-2"></span>/   </h4>
+                        <h4 class="col-6">{{__('master.DOCTOR-NAME')}}: {{$appointment->doctor->name}} </h4>
+                        <h4 class="col-6">{{__('master.SIGNATURE')}}:  </h4>
+                        <h4 class="col-6">{{__('master.MEDICAL-MANAGER')}}:  </h4>
+                        <h4 class="col-6">{{__('master.GENERAL-MANAGER')}}:  </h4>
+                    </div>
+                </div>
+            </div>
 
         </div>
 

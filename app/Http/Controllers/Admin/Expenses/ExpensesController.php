@@ -39,9 +39,11 @@ class ExpensesController extends Controller
     public function create()
     {
         $user = auth()->user();
-        $Categories = ExpensesCategories::all();
+		$branches       = Branches::where('disable', 0)->orderBy('id','desc')->get();
+        $Categories     = ExpensesCategories::all();
         return view('admin.expenses.create', [
-            'Categories' => $Categories
+            'Categories' => $Categories,
+            'branches' => $branches,
             ]);
     }
 
@@ -50,7 +52,7 @@ class ExpensesController extends Controller
 
     public function store(AddRequest $request)
     {
-            $user = auth()->user();
+        $user = auth()->user();
              
         DB::transaction(function() use ($request) {  
 
@@ -58,6 +60,8 @@ class ExpensesController extends Controller
                 'name' => $request->name,
                 'price' => $request->price,
                 'category_id'=> $request->category_id,
+                'branch_id'=> $request->branch_id,
+                'user_id'           => $user->id,
             ]);
 
             $branches = Branches::with('doctor')->where('disable',0)->get();

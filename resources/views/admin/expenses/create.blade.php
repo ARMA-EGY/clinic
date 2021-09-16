@@ -63,8 +63,8 @@
         
                             <!--=================  Price  =================-->
                             <div class="form-group col-md-6 mb-4 text-left">
-                                <label class="font-weight-bold text-uppercase">{{__('master.PRICE')}}</label>
-                                <input type="number" step="0.1" name="price" class="@error('price') is-invalid @enderror form-control" placeholder="{{__('master.PRICE')}}" value="{{ isset($item) ? $item->price : old('price') }}" required>
+                                <label class="font-weight-bold text-uppercase">{{__('master.AMOUNT')}}</label>
+                                <input type="number" step="0.1" name="price" class="@error('price') is-invalid @enderror form-control" placeholder="{{__('master.AMOUNT')}}" value="{{ isset($item) ? $item->price : old('price') }}" required>
                             
                                 @error('price')
                                     <div>
@@ -73,21 +73,38 @@
                                 @enderror
             
                             </div>
-
+                        </div>
                         <hr class="my-3">
 
                         <div class="row">
 
-                            <!--=================  Sectors  =================-->
-                                <div class="form-group col-md-12 mb-4 text-left">
-                                    <label class="font-weight-bold text-uppercase" for="sectors">{{__('master.CATEGORY')}}</label>
-                                    <select id="sectors" class=" form-control" name="category_id" required>
-                                        @foreach ($Categories as $Category)
-                                            <option value="{{$Category->id}}" @if (isset($item))  @if ($item->category_id == $Category->id) selected @endif @endif>{{$Category->name}}</option>
-                                        @endforeach
-                                    </select>
-            
-                                </div>
+                            <!--=================  Category  =================-->
+                              <div class="form-group col-md-6 mb-4 text-left">
+                                  <label class="font-weight-bold text-uppercase" for="sectors">{{__('master.CATEGORY')}}</label>
+                                  <select id="sectors" class=" form-control" name="category_id" required>
+                                      @foreach ($Categories as $Category)
+                                          <option value="{{$Category->id}}" @if (isset($item))  @if ($item->category_id == $Category->id) selected @endif @endif>{{$Category->name}}</option>
+                                      @endforeach
+                                  </select>
+          
+                              </div>
+                
+                            <!--=================  Branches  =================-->
+                            <div class="form-group col-md-6 mb-2 text-left">
+                                <label class="font-weight-bold text-uppercase">{{__('master.BRANCH')}}</label>
+
+                                <select class="form-control" name="branch_id" required>
+                                    @foreach ($branches as $branch)
+                                        <option value="{{$branch->id}}" @if (isset($item))  @if ($item->branch_id == $branch->id ) selected @endif @endif>{{$branch->name}}</option>
+                                    @endforeach
+                                </select>
+
+                                @error('branch_id')
+                                    <div>
+                                        <span class="text-danger">{{ $message }}</span>
+                                    </div>
+                                @enderror
+                            </div>
                             
                         </div>        
                         <div class="form-group card-footer">
