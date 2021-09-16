@@ -54,14 +54,14 @@ class ExpensesController extends Controller
     {
         $user = auth()->user();
              
-        DB::transaction(function() use ($request) {  
+        DB::transaction(function() use ($request, $user) {  
 
             $expense =  Expenses::create([
                 'name' => $request->name,
                 'price' => $request->price,
                 'category_id'=> $request->category_id,
                 'branch_id'=> $request->branch_id,
-                'user_id'           => $user->id,
+                'user_id'  => $user->id,
             ]);
 
             $branches = Branches::with('doctor')->where('disable',0)->get();
