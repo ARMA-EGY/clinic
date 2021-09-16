@@ -80,6 +80,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'a
         Route::resource('/services', 'Admin\Services\ServicesController');
         Route::resource('/servicescategory', 'Admin\ServicesCategory\ServicesCategoryController');
         Route::resource('/expenses', 'Admin\Expenses\ExpensesController');
+
+        Route::get('/expenses-delete', 'Admin\Expenses\ExpensesController@delete')->name('expenses-delete');
+
         Route::resource('/expensescategory', 'Admin\ExpensesCategory\ExpensesCategoryController');
         Route::resource('/doctors', 'Admin\Doctors\DoctorsController'); 
         Route::get('/activedoctors', 'Admin\Doctors\DoctorsController@active')->name('active-doctors');

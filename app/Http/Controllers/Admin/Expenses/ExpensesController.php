@@ -123,7 +123,19 @@ class ExpensesController extends Controller
 		return redirect(route('services.index'));
     }*/
 
+    public function delete(Request $request)
+    {
 
+        $expense = Expenses::find($request->id);
+        DB::transaction(function() use ($expense) { 
+            
+            DoctorExpenses::where('expense_id',$expense->id)->delete();
+            $expense->delete();
+
+        });
+
+        
+    }
 
    
 }

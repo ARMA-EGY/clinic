@@ -81,7 +81,7 @@
                     <td>{{ $item->price }} </td>
                     <td>{{ $item->category->name }} </td>
                     <td>
-                      <a href="{{ route('services.edit', $item->id)}}" class="btn btn-primary btn-sm mx-1"> <i class="fa fa-edit"></i> {{__('master.EDIT')}} </a>
+                    <button data-toggle="tooltip" data-placement="top" title="{{__('master.CANCEL')}}" class="btn btn-danger btn-sm mx-1 px-3 delete-expense" data-id="{{$item->id}}"> <i class="fa fa-trash"></i> </button>
                     </td>
                   </tr>
 
@@ -126,6 +126,56 @@ $('#example').DataTable( {
     "pagingType": "numbers"
   } );
 
+
+
+  // =============  Cancel Appintment =============
+  $(document).on('click', '.delete-expense', function() {
+      
+      var item 	= $(this).attr('data-id');
+      var url 	= $(this).attr('data-url');
+
+      Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, Cancel it!'
+      }).then((result) => {
+          if (result.isConfirmed) {
+          Swal.fire(
+              'Cancelled!',
+              'Expense has been Deleted.',
+              'success'
+          )
+
+          $.ajax({
+                      url: 		"{{route('expenses-delete')}}",
+                      method: 	'GET',
+                      dataType: 	'json',
+                      data:		{id: item},
+            success : function(data)
+                {
+                  $(this).parents('.parent').remove();  
+                },
+                error : function(reject)
+                {
+                    $.each(response.errors, function(key, val)
+                    {
+                        Swal.fire(
+                                head2,
+                                val[0],
+                                'error'
+                                )
+                    });
+                }	
+              });
+         
+          }
+      })
+      
+  });
 </script>
     
 @endsection
